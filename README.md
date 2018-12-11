@@ -7,7 +7,7 @@
   - [파스타 설치(AWS, OpenStack, vSphere, Google, Azure)](./PaaS_TA_PaaS-TA_Install_Guide-v4.0.md)
 
 ##  가이드
-- [CF Migration 가이드 (3.1 to 3.5)](./PaaS_TA_4.0_paas_monitoring.md)
+- [CF Migration 가이드 (3.1 to 4.0)](./PaaS_TA_4.0_migration.md)
 
 ## 서비스 설치 가이드
 - DBMS 설치
