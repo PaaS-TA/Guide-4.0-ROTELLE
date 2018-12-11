@@ -195,3 +195,6 @@ $ exit
 $ cf login
 $ cf apps 
 ```
+
+
+[PaaSTa_Migration_Image]:./images/paasta-3.5/paasta-migration.png
