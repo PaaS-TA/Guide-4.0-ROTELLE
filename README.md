@@ -33,6 +33,9 @@
 ## 포털 설치 가이드
 - [PaaS-TA 포털](./Install-Guide/Portal/PaaS-TA_Portal_install.md)
 
+## 모니터링 설치 가이드
+- [PaaS-TA 모니터링](./Install-Guide/monitoring/PaaS_TA_4.0_paas_monitoring.md)
+
 ## 활용 가이드
 - [BOSH CLI V2(Command Line Interface) 사용](./Use-Guide/Bosh/PaaS-TA_BOSH_CLI_V2_사용자_가이드v1.0.md)
 - [CF CLI(Command Line Interface) 사용](../../../Guide-1.0-Spaghetti-/blob/master/Use-Guide/OpenPaas%20CLi%20가이드.md)
