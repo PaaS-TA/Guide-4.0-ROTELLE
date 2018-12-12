@@ -133,11 +133,6 @@ $ exit
 $ exit    # blobstore vm 에서 나온다.
 ```
 
-[PaaSTa_Migration_Image]:../images/paasta-3.5/paasta-migration.png
-[PaaSTa_BOSH_Use_Guide_Image2]:../images/paasta-3.5/bosh2.png
-[PaaSTa_INSTALL_Use_Guide_Image]:../images/paasta-3.5/cloud-config.png
-
-
 ### <div id='13'/>2.3.3.	uaa database recovery
 uaa는 사용자 정보 및 인증정보를 보관하고 있다.
 
@@ -197,4 +192,4 @@ $ cf apps
 ```
 
 
-[PaaSTa_Migration_Image]:./images/paasta-3.5/paasta-migration.png
+[PaaSTa_Migration_Image]:./images/paasta4.0-migration.png

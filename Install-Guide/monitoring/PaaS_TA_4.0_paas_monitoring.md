@@ -60,11 +60,8 @@ PaaS-TA 서비스는 내부적으로 메트릭스 정보를 수집 및 전달하
 ## <div id='9'/>3.1. Pre-requsite
 
 1. PaaS-Ta 4.0 Monitoring을 설치 하기 위해서는 bosh 설치과정에서 언급한 것 처럼 관련 deployment, release , stemcell을 파스타 사이트에서 다운로드 받아 정해진 경로에 복사 해야 한다.
-2. Bosh가 bosh2 기반으로 설치 되어 있어야 한다.
-3. PaaS-Ta 4.0을 설치하는 환경은 bosh를 설치한 inception(설치 환경)에서 작업 해야 한다.
-4. Paasta-3.1 Paasta-controller.yml에 db_encryption_key에 있는 값이 paasta-3.5 설치시 동일해야 한다. 
-5. PaaS-TA 4.0이 설치되어 있어야 하며 monitoring Agent가 설치되어 있어야 한다.
-6. bosh login이 되어 있어야 한다.
+2. PaaS-TA 4.0이 설치되어 있어야 하며 monitoring Agent가 설치되어 있어야 한다.
+3. bosh login이 되어 있어야 한다.
 
 ## <div id='10'/>3.2.	PaaS-TA 4.0 모니터링 설치 파일 다운로드
 

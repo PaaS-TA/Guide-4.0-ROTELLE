@@ -4,7 +4,7 @@
 - [설치 파일 다운로드 받기](https://paas-ta.kr/download/package)
 - 운영 환경 설치
   - [BOSH 설치(AWS, OpenStack, vSphere, Google, Azure)](./PaaS-TA_BOSH2_사용자_가이드v1.0.md)
-  - [파스타 설치(AWS, OpenStack, vSphere, Google, Azure)](./PaaS_TA_PaaS-TA_Install_Guide-v4.0.md)
+  - [파스타 수동 설치(AWS, OpenStack, vSphere, Google, Azure)](./PaaS_TA_PaaS-TA_Install_Guide-v4.0.md)
 
 ##  가이드
 - [CF Migration 가이드 (3.1 to 4.0)](./PaaS_TA_4.0_migration.md)
