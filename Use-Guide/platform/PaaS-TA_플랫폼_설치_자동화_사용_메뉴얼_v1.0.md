@@ -123,16 +123,16 @@
 
 
 # <div id='6'/>2.3.  플랫폼 설치 자동화 사용 & 활용 가이드
-[플랫폼 설치 자동화를 통해 AWS PaaS-TA 설치 가이드](PaaS-TA_플랫폼_설치자동화_AWS.md)
+[플랫폼 설치 자동화를 통해 AWS PaaS-TA 설치 가이드](./PaaS-TA_플랫폼_설치자동화_AWS.md)
 
-[플랫폼 설치 자동화를 통해 Openstack PaaS-TA 설치 가이드](PaaS-TA_플랫폼_설치자동화_Openstack.md)
+[플랫폼 설치 자동화를 통해 Openstack PaaS-TA 설치 가이드](./PaaS-TA_플랫폼_설치자동화_Openstack.md)
 
-[플랫폼 설치 자동화를 통해 Azure PaaS-TA 설치 가이드](PaaS-TA_플랫폼_설치자동화_Azure.md)
+[플랫폼 설치 자동화를 통해 Azure PaaS-TA 설치 가이드](./PaaS-TA_플랫폼_설치자동화_Azure.md)
 
-[플랫폼 설치 자동화를 통해 Google PaaS-TA 설치 가이드](PaaS-TA_플랫폼_설치자동화_Google.md)
+[플랫폼 설치 자동화를 통해 Google PaaS-TA 설치 가이드](./PaaS-TA_플랫폼_설치자동화_Google.md)
 
-[플랫폼 설치 자동화를 통해 vSphere PaaS-TA 설치 가이드](PaaS-TA_플랫폼_설치자동화_vsphere.md)
+[플랫폼 설치 자동화를 통해 vSphere PaaS-TA 설치 가이드](./PaaS-TA_플랫폼_설치자동화_vsphere.md)
 
-[PaaS-TA 설치 완료 후 플랫폼 설치 자동화 활용 가이드](PaaS-TA_플랫폼_설치_자동화_활용_메뉴얼_v1.0.md)
+[PaaS-TA 설치 완료 후 플랫폼 설치 자동화 활용 가이드](./PaaS-TA_플랫폼_설치_자동화_활용_메뉴얼_v1.0.md)
 
-[이종 플랫폼 설치 자동화를 통해 AWS-Openstack PaaS-TA 설치 가이드](#)
+[이종 플랫폼 설치 자동화를 통해 AWS-Openstack PaaS-TA 설치 가이드](./이종_PaaS-TA_설치_자동화_사용_가이드_v1.0.md)
