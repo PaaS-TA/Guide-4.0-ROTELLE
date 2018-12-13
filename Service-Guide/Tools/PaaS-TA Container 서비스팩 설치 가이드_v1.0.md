@@ -2322,4 +2322,4 @@ $ sudo /var/vcap/jobs/docker/bin/ctl start
 
 
 
-[Architecture]:../images/ContainerService/Container_Service_Architecture.png
+[Architecture]:../images/container_service/Container_Service_Architecture.png
