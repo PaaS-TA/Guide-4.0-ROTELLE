@@ -1429,16 +1429,16 @@ laasclient
 
 -	운영관리의 코드관리 메뉴로 이동하여 다음과 같이 코드를 등록한다.
 
-> ※ Group Table
-> 코드 ID  : LAAS
-> 코드 이름 : Logging Service
+> ※ Group Table<br>
+> 코드 ID  : LAAS<br>
+> 코드 이름 : Logging Service<br>
 > ![003]
 >
-> ※ Detail Table
-> Key : laas_base_url
-> Value : http://<Logging Service 접근 IP>/app/laas
-> 요약 : Logging Service Base URL
-> 사용 : Y
+> ※ Detail Table<br>
+> Key : laas_base_url<br>
+> Value : http://<Logging Service 접근 IP>/app/laas<br>
+> 요약 : Logging Service Base URL<br>
+> 사용 : Y<br>
 > ![004]
 
 ![005]
