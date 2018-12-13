@@ -5,7 +5,7 @@
 - 운영 환경 설치
   - [BOSH 설치(AWS, OpenStack, vSphere, Google, Azure)](./PaaS-TA_BOSH2_사용자_가이드v1.0.md)
   - [파스타 수동 설치(AWS, OpenStack, vSphere, Google, Azure)](./PaaS_TA_PaaS-TA_Install_Guide-v4.0.md)
-  - [플랫폼 설치 자동화  설치](./Install-Guide/PlatformInstallSystem/PaaS-TA_플랫폼_설치_자동화_설치_가이드_v1.0.md)
+  - [플랫폼 설치 자동화  설치](./Use-Guide//platform/PaaS-TA_플랫폼_설치_자동화_설치_가이드_v1.0.md)
   - [플랫폼 설치 자동화 사용 메뉴얼](./Use-Guide/platform/PaaS-TA_플랫폼_설치_자동화_사용_메뉴얼_v1.0.md)
 ##  가이드
 - [CF Migration 가이드 (3.1 to 4.0)](./PaaS_TA_4.0_migration.md)
