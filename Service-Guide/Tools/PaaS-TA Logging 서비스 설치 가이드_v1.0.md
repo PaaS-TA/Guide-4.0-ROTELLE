@@ -59,15 +59,15 @@ maintenance | 1 | 1 | 1 | Root 8G
 본 설치 가이드는 Linux 환경에서 설치하는 것을 기준으로 하였다. Logging 서비스 설치를 위해서는 먼저 BOSH CLI v2 가 설치 되어 있어야 하고 BOSH 에 로그인 되어 있어야 한다.
 BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이드 문서를 참고 하여 BOSH CLI v2를 설치해야 한다.
 
->BOSH2 사용자 가이드 : https://github.com/PaaS-TA/Guide-3.0-Penne-/blob/v3.5/Use-Guide/Bosh/PaaS-TA_BOSH2_%EC%82%AC%EC%9A%A9%EC%9E%90_%EA%B0%80%EC%9D%B4%EB%93%9Cv1.0.md  
+>BOSH2 사용자 가이드 : https://github.com/PaaS-TA/Guide-4.0-ROTELLE/blob/master/PaaS-TA_BOSH2_사용자_가이드v1.0.md  
 >
->BOSH CLI V2 사용자 가이드 : https://github.com/PaaS-TA/Guide-3.0-Penne-/blob/v3.5/Use-Guide/Bosh/PaaS-TA_BOSH_CLI_V2_%EC%82%AC%EC%9A%A9%EC%9E%90_%EA%B0%80%EC%9D%B4%EB%93%9Cv1.0.md  
+>BOSH CLI V2 사용자 가이드 : https://github.com/PaaS-TA/Guide-4.0-ROTELLE/blob/master/Use-Guide/Bosh/PaaS-TA_BOSH_CLI_V2_사용자_가이드v1.0.md  
 
 ### <div id="2.1.1"/> 2.1.1 Logging 서비스 설치 파일 다운로드
 
 Logging 서비스 설치에 필요한 Deployment 및 릴리즈 파일을 다운로드 받아 서비스 설치 작업 경로로 위치시킨다.
 
--	설치 파일 다운로드 위치 : https://github.com/PaaS-TA/Guide-4.0-XXXXX-/blob/v4.0/Download_Page.md  
+-	설치 파일 다운로드 위치 : https://paas-ta.kr/download/package  
   = Deployment : paasta-logging-service-2.0  
   = 릴리즈 파일 : paasta-logging-service-release.tgz
 
@@ -94,7 +94,7 @@ paasta-logging-service-release.tgz
 
 Logging 서비스 설치에 필요한 을 확인하여 존재하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell을 업로드 한다. (Logging 서비스는 Stemcell 3445.2/3468.51 버전을 사용, PaaSTA-Stemcell.zip)
 
--	설치 파일 다운로드 위치 : https://github.com/PaaS-TA/Guide-3.0-Penne-/blob/v3.5/Download_Page.md
+-	설치 파일 다운로드 위치 : https://paas-ta.kr/download/package
 
 ```
 # Stemcell 목록 확인
