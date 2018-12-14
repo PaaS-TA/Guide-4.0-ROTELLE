@@ -11,17 +11,20 @@
 3. [IaaS-PaaS 통합 모니터링 설치](#9)
     * [Pre-requsite](#10)
     * [IaaS/PaaS Monitoring 설치환경](#11)
-    * [Logsearch 설치](#12)
-      * [logsearch-deployment.yml](#13)
-      * [logsearch deploy.sh](#14)
-    * [Redis/InfluxDB 설치](#15)
-        *  [redis-influxdb.yml](#16)
-        *  [redis-influxdb deploy.sh](#17)
-    * [IaaS/PaaS 통합 Monitoring 설치](#18)
-        *  [PaaS Database 생성](#19)
-        *  [소스 다운로드](#20)
-        *  [paasta-monitoring-batch 설치](#21)
-        *  [iaas-paas-monitoring-web 설치](#22)
+      * [Monasca 설치](#12)
+        * [Monasca Server 설치](#13)
+        * [Monasca Client(agent) 설치](#14)
+      * [Logsearch 설치](#15)
+        * [logsearch-deployment.yml](#16)
+        * [logsearch deploy.sh](#17)
+      * [Redis/InfluxDB 설치](#18)
+        *  [redis-influxdb.yml](#19)
+        *  [redis-influxdb deploy.sh](#20)
+      * [IaaS/PaaS 통합 Monitoring 설치](#21)
+        *  [PaaS Database 생성](#22)
+        *  [소스 다운로드](#23)
+        *  [paasta-monitoring-batch 설치 및 실행](#24)
+        *  [iaas-paas-monitoring-web 설치 및 실행](#25)
 
 # <div id='1'/>1.  문서 개요 
 
@@ -85,14 +88,26 @@ IaaS/PaaS 통합 모니터링 환경은 앞에서 설치한 Monasca-Server에서
 
 PaaS-TA를 설치한 Inceptoin환경에 접속하여 아래 Logsearch와 redis-influxdb를 설치한다.
 
-### <div id='12'/>3.2.1.	Logsearch 설치
+### <div id='12'/>3.2.1.	Monasca 설치
+Monasca는 Server와 Client로 구성되어 있다. Openstack controller/compute Node에 Monasca-Client(Agent)를 설치 하여 Monasca 상태정보를 Monasca-Server에 전송한다.
+수집된 Data를 기반으로 IaaS 모니터링을 수행한다.
+
+#### <div id='13'/>3.2.1.1.	Monasca Server 설치
+
+> **[Monasca - Server](./monasca-server.md)**
+
+#### <div id='14'/>3.2.1.2.	Monasca Client(agent) 설치
+
+> **[Monasca - Client](./monasca-client.md)**
+
+### <div id='15'/>3.2.2.	Logsearch 설치
 Paasta-4.0 설치한 Inception(설치환경)에서 PaaS-TA VM Log수집을 하는 logsearch를 Bosh를 사용하여 설치 한다.
 
 ```
 $ cd ~/workspace/paasta-4.0/deployment/service-deployment/logsearch
 ```
 
-#### <div id='13'/>3.2.1.1.	logsearch-deployment.yml
+#### <div id='16'/>3.2.2.1.	logsearch-deployment.yml
 logsearch-deployment.yml에는 ls-router, cluster-monitor, elasticsearch_data, elastic_master, kibana, mainternance 의 명세가 정의되어 있다. 
 
 ```
@@ -435,7 +450,7 @@ stemcells:
   version: "latest"
 ```
 
-#### <div id='14'/>3.2.1.2. logsearch deploy.sh
+#### <div id='17'/>3.2.2.2. logsearch deploy.sh
 
 deploy.sh의 –v 의 inception_os_user_name, router_ip, system_domain 및 director_name을 시스템 상황에 맞게 설정한다.
 system_domain은 paasta 설치시 설정했던 system_domain을 입력하면 된다.
@@ -462,7 +477,7 @@ $ bosh -e {director_name} -d logsearch vms
 ![PaaSTa_logsearch_vms]
 
 
-### <div id='15'/>3.2.2.	Redis/InfluxDB 설치
+### <div id='18'/>3.2.3.	Redis/InfluxDB 설치
 
 PaaS-TA VM 에서 발생되는 MetricData 저장소인 InfluxDB와 통합 Loging시 사용되는 Redis를 설치 한다.
 
@@ -470,7 +485,7 @@ PaaS-TA VM 에서 발생되는 MetricData 저장소인 InfluxDB와 통합 Loging
 $ cd ~/workspace/paasta-4.0/deployment/service-deployment/paasta-influxdb-redis
 ```
 
-#### <div id='16'/>3.2.2.1.	redis-influxdb.yml
+#### <div id='19'/>3.2.3.1.	redis-influxdb.yml
 redis-influxdb.yml에는 influxdb와 redis vm의 명세가 정의되어 있다. 
 
 ```
@@ -575,7 +590,7 @@ update:
 ```
 
 
-#### <div id='17'/>3.2.2.2. redis-influxdb deploy.sh
+#### <div id='20'/>3.2.3.2. redis-influxdb deploy.sh
 
 deploy.sh의 –v 의 inception_os_user_name, router_ip, system_domain 및 director_name을 시스템 상황에 맞게 설정한다.
 system_domain은 paasta 설치시 설정했던 system_domain을 입력하면 된다.
@@ -602,13 +617,7 @@ $ bosh -e {director_name} -d redis-influxdb vms
 ```
 ![redus_influxdb_vms]
 
-### <div id='18'/>3.3.1.	IaaS/PaaS 통합 Monitoring 설치
-
-통합 모니터링을 설치하기 위해서 monasca-server/monasca-client를 먼져 설치 한다.
-
-> **[Monasca - Server](./monasca-server.md)**
-
-> **[Monasca - Client](./monasca-client.md)**
+### <div id='21'/>3.2.4.	IaaS/PaaS 통합 Monitoring 설치
 
 > **git 설치** <div id='2.3.1.1' />
 
@@ -624,7 +633,7 @@ $ bosh -e {director_name} -d redis-influxdb vms
 > **[golang 설치 참고 URL](https://medium.com/@patdhlk/how-to-install-go-1-9-1-on-ubuntu-16-04-ee64c073cd79)**
 
 
-#### <div id='19'/>3.3.1.1	PaaS Database 생성
+#### <div id='22'/>3.2.4.1	PaaS Database 생성
 
 위에서 구성한 Monasca-Server가 정상적으로 설치 되어 있다면 설치된 Monasca-Server에 접속하여 PaastaMonitoring Database를 생성한다.
 
@@ -633,7 +642,7 @@ $ mysql –u root –p    # mysql 로그인
 $ CREATE DATABASE IF NOT EXISTS PaastaMonitoring CHARACTER SET utf8 COLLATE utf8_general_ci;
 ```
 
-#### <div id='20'/>3.3.1.2	소스 다운로드
+#### <div id='23'/>3.2.4.2	소스 다운로드
 
 위에서 구성한 Monasca Server에서 IaaS-PaaS-Monitoring 소스를 다운 받는다.
 
@@ -647,7 +656,7 @@ $ cd ~/workspace/PaaS-TA-Monitoring/paasta-monitoring-batch
 $ ./install.sh
 ```
 
-#### <div id='21'/>3.3.1.3.	paasta-monitoring-batch
+#### <div id='24'/>3.2.4.3.	paasta-monitoring-batch 설치 및 실행
 paasta-monitoring batch는 Bosh, PaaS-TA VM, container 모니터링 및 PaaS-TA Application Container Autoscaling을 수행한다.
 paasta-monitoring-batch config정보를 시스템 상황에 맞게 수정한다.
 
@@ -726,7 +735,7 @@ $ cd ~/workspace/PaaS-TA-Monitoring/paasta-monitoring-batch
 $ nohup ./batch_run.sh &
 ```
 
-#### <div id='22'/>3.3.1.4.	iaas-paas-monitoring-web 설치
+#### <div id='25'/>3.2.4.4.	iaas-paas-monitoring-web 설치 및 실행
 
 iaas-paas-monitoring-management는 IaaS/PaaS 통함 모니터링 Dashboard 및 알람정책 설정, 알람 관리등의 기능을 제공한다. 
 

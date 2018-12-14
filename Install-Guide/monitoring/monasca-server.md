@@ -109,18 +109,15 @@ https://mariadb.org/mariadb-10-2-7-now-available/
 ![](images/Monasca/3.3.png)
 
 <pre>
-    $ mysql –u root –p"패스워드"
+    $ mysql -u root –p"패스워드"
 </pre>     
 
-- Monasca Server 관련 데이터베이스 다운로드 및 등록
-<pre>
+- Monasca Server 관련 데이터베이스 생성 및 Schema 생성
+
+    생성한 Mysql에 접속하여 
+https://github.com/PaaS-TA/Guide-4.0-ROTELLE/tree/master/Install-Guide/monitoring/mon_mysql.sql 에 있는 mon_mysql.sql을 실행하여 database 및 Schema를 생성한다.
     
-    $ wget https://github.com/PaaS-TA/Guide-4.0-ROTELLE/tree/master/Install-Guide/monitoring/mon_mysql.sql   
-        
-    $ mysql –u root –p"패스워드" < mon_mysql.sql
-</pre>    
-    
-- Monasca Database 확인
+- Monasca Database 확인(mon DB)
 <pre>    
     $ mysql –u root –p"패스워드"
 </pre>        
