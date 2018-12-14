@@ -113,16 +113,16 @@ http://docs.cloudfoundry.org
 BOSH CLI v2가 설치 되어 있지 않을 경우, 먼저 BOSH 2.0 설치 가이드 문서를 참고하여 BOSH CLI v2를 설치를 하고 사용법을 숙지해야한다.<br>
 
 - BOSH 2.0 사용자 가이드
-  >BOSH 2 사용자 가이드 : <https://github.com/PaaS-TA/Guide-3.0-Penne-/blob/v3.5/Use-Guide/Bosh/PaaS-TA_BOSH2_사용자_가이드v1.0.md>
+  >BOSH 2 사용자 가이드 : <https://github.com/PaaS-TA/Guide-4.0-ROTELLE/blob/master/PaaS-TA_BOSH2_사용자_가이드v1.0.md>
   >
-  >BOSH CLI V2 사용자 가이드 : <https://github.com/PaaS-TA/Guide-3.0-Penne-/blob/v3.5/Use-Guide/Bosh/PaaS-TA_BOSH_CLI_V2_사용자_가이드v1.0.md>
+  >BOSH CLI V2 사용자 가이드 : <https://github.com/PaaS-TA/Guide-4.0-ROTELLE/blob/master/Use-Guide/Bosh/PaaS-TA_BOSH_CLI_V2_사용자_가이드v1.0.md>
 
 
 #### <div id='211'/> 2.1.1. Container 서비스 Deployment 및 Release 파일 다운로드
 
 Container 서비스 설치에 필요한 Deployment 및 릴리즈 파일을 다운로드 받아 서비스 설치 작업 경로로 위치시킨다.
 
--	설치 파일 다운로드 위치 : https://github.com/PaaS-TA/Guide-3.0-Penne-/blob/v3.5/Download_Page.md
+-	설치 파일 다운로드 위치 : https://paas-ta.kr/download/package
 -	Release, deployment 파일은 /home/{user_name}/workspace/paasta-4.0 이하에 다운로드 받아야 한다.
 -	설치 작업 경로 생성 및 파일 다운로드
 
@@ -156,7 +156,7 @@ $ mkdir -p ~/workspace/paasta-4.0/release/service
   >Stemcell 목록이 존재 하지 않을 경우, BOSH 설치 가이드 문서를 참고하여 Stemcell을 업로드를 해야 한다. (Stemcell 3586.26 버전 사용, PaaSTA-Stemcell.zip)
 
 - Stemcell 다운로드 위치
-  >https://github.com/PaaS-TA/Guide-3.0-Penne-/blob/v3.5/Download_Page.md
+  >https://paas-ta.kr/download/package
 
 
 ```
