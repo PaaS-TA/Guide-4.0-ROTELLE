@@ -10,6 +10,7 @@ Monasca Client 설치 가이드
     * [dependencies 설치](#2.1.)
     * [monasca agent 설치](#2.2.)
     * [설치확인](#2.3.)
+        * [Reference : Cross-Project(Tenant) 사용자 추가 및 권한 부여](#2.3.1.)
     * [monasca-setup 실행](#2.4.)
         * [Controller Node의 경우](#2.4.1.)
         * [Compute Node의 경우 (System 정보 수집과 VM 정보 수집 setup)](#2.4.2.)
@@ -42,6 +43,8 @@ Monasca Client 설치 가이드
 
 ## 1.3.	확인사항   <div id='1.3.'/>
 - Openstack 기반 환경 구성에 따라 Agent Setup 설정이 달라짐을 확인한다.
+- Openstack Compute/Controller Node는 외부와 네트워크 통신(dns포함)이 가능해야 한다.
+- monasca-agent는 python기반에 실행되며 python 버전은 2.7.12이다.
 - Openstack newton 버전
 - Node OS (Ubuntu 16.0.14)
 - 크게 Controller Node .와 Compute Node로 구분된다.
@@ -60,6 +63,8 @@ Monasca Client 설치 가이드
     
 ## 2.2.	monasca agent 설치   <div id='2.2.'/>
 <pre>
+    $ export LC_ALL="en_US.UTF-8"
+    $ export LC_CTYPE="en_US.UTF-8"
     $ sudo pip install monasca-agent==2.7.0
 </pre>
     
@@ -67,9 +72,27 @@ Monasca Client 설치 가이드
 <pre>
     $  sudo pip list |grep monasca-agent
 </pre>
-    
+
+### 2.3.1. Reference : Cross-Project(Tenant) 사용자 추가 및 권한 부여  <div id='2.3.1.'/>
+Openstack 기반으로 생성된 모든 Project(Tenant)의 정보를 하나의 계정으로 수집 및 조회하기 위해서는 Cross-Tenant 사용자를 생성하여, 각각의 Project(Tenant)마다 조회할 수 있도록 멤버로 등록한다.
+Openstack Cli를 이용하여 Cross-Tenant 사용자를 생성한 후, Openstack Horizon 화면으로 통해 각각의 프로젝트 사용자 정보에 생성한 Cross-Tenant 사용자 및 권한을 부여한다.
+1. Cross-Tenant 사용자 생성
+<pre>
+    $ openstack user create --domain default --password-prompt monasca-agent
+    $ openstack role create monitoring-delegate
+</pre>
+
+
+2. Project 사용자 추가
+![](images/Monasca/14.1.png)
+각각의 프로젝트 멤버관리에 추가한 Cross-Tenant 사용자 정보를 등록한다.
+![](images/Monasca/14.2.png)
+![](images/Monasca/14.3.png)
+추가한 Cross-Tenant 사용자를 선택 후, 생성한 Role을 지정한다.
+
 ## 2.4.	monasca-setup 실행   <div id='2.4.'/>
 ### 2.4.1.	Controller Node의 경우   <div id='2.4.1.'/>
+
 <pre>
     $ sudo monasca-setup \
       --username “cross-tenant user id” \
@@ -216,7 +239,7 @@ Monasca Client 설치 가이드
 </pre>
 <pre>    
     $cd /etc/systemd/system/multi-user.target.wants
-    sudo ln –s /etc/systemd/system/monasca-agent.service /etc/systemd/system/monasca-agent.service
+    sudo ln –s /etc/systemd/system/monasca-agent.service ./monasca-agent.service
 </pre>        
 
 - cf-mon os user 자동 등록되지 않을경우 사용자 수동 등록
@@ -259,6 +282,8 @@ Monasca Client 설치 가이드
 </pre>
     
 # 3.	FileBeat 설치 및 설정   <div id='3.'/>
+Openstack Compute Node에서 발생한는 Log정보를 수집하기 위해서는 LogAget를 Compute/Controller Node에 설치 해야 한다.
+Elastic Search에서 제공하는 FileBeat를 이용하여 Openstack Node정보를 수집한다.
 ## 3.1.	filebeat repository 등록   <div id='3.1.'/>
 <pre>
     $ echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" | sudo tee -a     /etc/apt/sources.list.d/elastic-5.x.list
