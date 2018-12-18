@@ -153,9 +153,9 @@ CF & Diego Document:
 | bosh        |BOSH CLI 실행 파일   |
 
 
-### 2.  플랫폼 설치 자동화 설치(IEDA-WEB-INSTALLER) 모듈과 플랫폼 설치 자동화(OPENPAAS-IEDA-WEB) 모듈을 다운로드 받는다.
+### 2.  플랫폼 설치 자동화 설치(IEDA-WEB-INSTALLER) 모듈과 플랫폼 설치 자동화(OPENPAAS-IEDA-WEB) 모듈을 다운로드 받는다.(PaaSTA-Env)
 
-[다운로드](https://paas-ta.kr/data/packages/4.0/PaaSTA-Env.zip)
+[다운로드](https://paas-ta.kr/download/package)
 
 	  IEDA-WEB-INSTALLER-v4.0.tar
 	  OPENPAAS-IEDA-WEB-v4.0.tar

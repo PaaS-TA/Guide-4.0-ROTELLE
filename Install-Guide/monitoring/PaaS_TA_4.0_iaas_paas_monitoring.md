@@ -75,6 +75,8 @@ Monitoring 시스템 은 TSDB(InfluxDB)로부터 시스템 환경 정보 데이�
 
 # <div id='9'/>3. IaaS-PaaS 통합 모니터링 설치
 
+> **[Monitoring Source Git](https://github.com/PaaS-TA/PaaS-TA-Monitoring)**
+
 ## <div id='10'/>3.1.	Pre-requsite
 
  1. Openstack newton version
@@ -87,6 +89,8 @@ Monitoring 시스템 은 TSDB(InfluxDB)로부터 시스템 환경 정보 데이�
 
 IaaS/PaaS 통합 모니터링 환경을 구성하기 위해서는 IaaS에서는 Monasca-Server/Client를 설치해야 한다.
 PaaS에서 사용하는 logsearch(paasta Log repository)와 Redis/InfluxDB는 PaaS-TA를 설치한 Inceptoin(설치환경)에서 먼저 설치 해야 한다. 
+
+
 
 ### <div id='12'/>3.2.1.	Monasca 설치
 Monasca는 Server와 Client로 구성되어 있다. Openstack controller/compute Node에 Monasca-Client(Agent)를 설치 하여 Monasca 상태정보를 Monasca-Server에 전송한다. 수집된 Data를 기반으로 IaaS 모니터링을 수행한다.

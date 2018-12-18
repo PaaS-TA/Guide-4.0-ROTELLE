@@ -19,6 +19,8 @@ Monasca Client 설치 가이드
         * [/etc/monasca/agent/conf.d/cpu.yaml](#2.6.1.)
         * [/etc/monasca/agent/conf.d/disk.yaml](#2.6.2.)
         * [/etc/monasca/agent/conf.d/libvirt.yaml (Compute Node에 한함)](#2.6.3.)
+        * [/etc/monasca/agent/conf.d/process.yaml(Controller Node 한함)](#2.6.4.)
+        * [/etc/monasca/agent/conf.d/process.yaml(Compute Node 한함)](#2.6.5.)
     * [monasca agent 서비스 재시작](#2.7.)
     * [확인](#2.8.)
     * [서비스 자동등록 되지 않을경우](#2.9.)
@@ -148,8 +150,8 @@ Openstack Cli를 이용하여 Cross-Tenant 사용자를 생성한 후, Openstack
       region_name: null
       service_type: null
       url: http:// “monasca server ip”:”monasca server port”/v2.0
-      user_domain_id: “domain id”
-      user_domain_name: default
+      user_domain_id: default    #default domain
+      user_domain_name: null
       username: admin
     Logging:
       collector_log_file: /var/log/monasca/agent/collector.log
@@ -158,10 +160,10 @@ Openstack Cli를 이용하여 Cross-Tenant 사용자를 생성한 후, Openstack
       log_level: DEBUG                                           # Log 레벨 설정
       statsd_log_file: /var/log/monasca/agent/statsd.log
     Main:
-      check_freq: 15                                              # 수집 주기(초)
+      check_freq: 30                                              # 수집 주기(초)
       collector_restart_interval: 24
       dimensions: {}
-      hostname: controller
+      hostname: controller           #controller node hostname
       num_collector_threads: 1
       pool_full_max_retries: 4
       sub_collection_warn: 6
@@ -187,6 +189,7 @@ Openstack Cli를 이용하여 Cross-Tenant 사용자를 생성한 후, Openstack
       device_blacklist_re: .*freezer_backup_snap.*
       ignore_filesystem_types: iso9660,tmpfs
       name: disk_stats
+      ping_check: false
       send_rollup_stats: True    # Node disk 사용량  Option 추가
 </pre>
 
@@ -216,7 +219,187 @@ Openstack Cli를 이용하여 Cross-Tenant 사용자를 생성한 후, Openstack
       vnic_collection_period: 0
     instances: []
 </pre>
-    
+
+### 2.6.4.	/etc/monasca/agent/conf.d/process.yaml(Controller Node 한함)   <div id='2.6.4.'/>
+<pre>
+init_config: null
+instances:
+- built_by: MonAgent
+  detailed: true
+  dimensions:
+    component: monasca-agent
+    service: monitoring
+  name: monasca-agent
+  username: mon-agent
+- built_by: Nova
+  detailed: true
+  dimensions:
+    component: nova-compute
+    service: compute
+  exact_match: false
+  name: nova-compute
+  search_string:
+  - nova-compute
+- built_by: Glance
+  detailed: true
+  dimensions:
+    component: glance 
+    service: glance-api 
+  exact_match: false
+  name: glance-api 
+  search_string:
+  - glance-api
+- built_by: ProcessCheck
+  detailed: true
+  dimensions:
+    component: nova
+    service: nova-api
+  exact_match: true 
+  name: nova-api
+  search_string:
+  - nova-api
+- built_by: ProcessCheck
+  detailed: true
+  dimensions:
+    component: keystone
+    service: keystone
+  exact_match: false
+  name: keystone
+  search_string:
+  - keystone
+- built_by: ProcessCheck
+  detailed: true
+  dimensions:
+    component: rabbitmq
+    service: rabbitmq
+  exact_match: false
+  name: rabbitmq
+  search_string:
+  - rabbitmq
+- built_by: ProcessCheck
+  detailed: true
+  dimensions:
+    component: neutron
+    service: neutron-server
+  exact_match: false
+  name: neutron-server
+  search_string:
+  - neutron-server
+- built_by: ProcessCheck
+  detailed: true
+  dimensions:
+    component: neutron
+    service: neutron-metadata-agent
+  exact_match: false
+  name: neutron-metadata-agent
+  search_string:
+  - neutron-metadata-agent
+- built_by: ProcessCheck
+  detailed: true
+  dimensions:
+    component: ceph
+    service: ceph-mgr
+  exact_match: false
+  name: ceph-mgr
+  search_string:
+  - ceph-mgr
+- built_by: ProcessCheck
+  detailed: true
+  dimensions:
+    component: ceph
+    service: ceph-mon
+  exact_match: false
+  name: ceph-mon
+  search_string:
+  - ceph-mon
+</pre>
+
+
+### 2.6.5.	/etc/monasca/agent/conf.d/process.yaml(Compute Node 한함)   <div id='2.6.5.'/>
+<pre>
+init_config: null
+instances:
+- built_by: MonAgent
+  detailed: true
+  dimensions:
+    component: monasca-agent
+    service: monitoring
+  name: monasca-agent
+  username: mon-agent
+- built_by: Nova
+  detailed: true
+  dimensions:
+    component: nova-compute
+    service: compute
+  exact_match: false
+  name: nova-compute
+  search_string:
+  - nova-compute
+- built_by: ProcessCheck
+  detailed: true
+  dimensions:
+    component: ceph
+    service: ceph-mgr
+  exact_match: false
+  name: ceph-mgr
+  search_string:
+  - ceph-mgr
+- built_by: ProcessCheck
+  detailed: true
+  dimensions:
+    component: ceph
+    service: ceph-mon
+  exact_match: false
+  name: ceph-mon
+  search_string:
+  - ceph-mon
+- built_by: ProcessCheck
+  detailed: true
+  dimensions:
+    component: ceph
+    service: ceph-osd
+  exact_match: false
+  name: ceph-osd
+  search_string:
+  - ceph-osd
+- built_by: ProcessCheck
+  detailed: true
+  dimensions:
+    component: neutron
+    service: neutron-server
+  exact_match: false
+  name: neutron-server
+  search_string:
+  - neutron-server
+- built_by: ProcessCheck
+  detailed: true
+  dimensions:
+    component: neutron
+    service: neutron-metadata-agent
+  exact_match: false
+  name: neutron-metadata-agent
+  search_string:
+  - neutron-metadata-agent
+- built_by: ProcessCheck
+  detailed: true
+  dimensions:
+    component: neutron 
+    service: neutron-linuxbridge-agent
+  exact_match: false
+  name: neutron-linuxbridge-agent 
+  search_string:
+  - neutron-linuxbridge-agent
+- built_by: ProcessCheck
+  detailed: true
+  dimensions:
+    component: qemu 
+    service: qemu 
+  exact_match: false
+  name: qemu-system-x86 
+  search_string:
+  - qemu-system-x86 
+</pre>
+
 ## 2.7.	monasca agent 서비스 재시작.   <div id='2.7.'/>
 <pre>
     $ sudo service monasca-agent restart
