@@ -2194,7 +2194,7 @@ broker: delivery-pipeline-service-broker
 
 ```
 $ cf enable-service-access container-service
-Enabling access to all plans of service caas for all orgs as admin...
+Enabling access to all plans of service container-service for all orgs as admin...
 OK
 ```
 
