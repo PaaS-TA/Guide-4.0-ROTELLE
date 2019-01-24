@@ -2193,7 +2193,7 @@ broker: delivery-pipeline-service-broker
 - 특정 조직에 해당 서비스 접근 허용을 할당한다.
 
 ```
-$ cf enable-service-access caas
+$ cf enable-service-access container-service
 Enabling access to all plans of service caas for all orgs as admin...
 OK
 ```
