@@ -145,13 +145,13 @@ https://github.com/PaaS-TA/Guide-4.0-ROTELLE/tree/master/Install-Guide/monitorin
 # 5.	Apache Kafka 설치  <div id='5.'/>
 - Apache kafka 다운로드
 <pre>    
-    $ wget http://apache.mirrors.tds.net/kafka/1.1.0/kafka_2.12-1.1.0.tgz
+    $ wget http://apache.mirrors.tds.net/kafka/2.1.0/kafka_2.12-2.1.0.tgz
 </pre>
 
 - 압축해제 및 서비스 디렉토리 변경 (Optional)
 <pre>
-    $ tar zxf kafka_2.12-1.1.0.tgz
-    $ mv kafka_2.12-1.1.0 kafka
+    $ tar zxf kafka_2.12-2.1.0.tgz
+    $ mv kafka_2.12-2.1.0 kafka
     $ sudo mv kafka /opt/
 </pre>     
     
