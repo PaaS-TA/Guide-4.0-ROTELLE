@@ -2029,7 +2029,7 @@ Feature user_org_creation Enabled.
         Client ID:  admin\
         Client secret:  *****
         
-3. uaac client add portalclient –s “portalclient Secret”\ 
+3. uaac client add portalclient –s “portalclient Secret” 
 >--redirect_uri "사용자포탈 Url, 사용자포탈 Url/callback"\
 $ uaac client add portalclient -s xxxxx --redirect_uri "http://portal-web-user.xxxx.xip.io, http://portal-web-user.xxxx.xip.io/callback" \
 --scope "cloud_controller_service_permissions.read , openid , cloud_controller.read , cloud_controller.write , cloud_controller.admin" \
@@ -2186,9 +2186,10 @@ Paas-TA Portal 설치 후에 관리자 포탈에서 빌드팩, 서비스팩을 �
 ### 3.4. 모니터링 적용
 #### 1. 포탈 설치 이전 모니터링 설정 적용
 ###### PaaS-TA 에서 제공하고있는 모니터링을 미리 설치를 한 후에 진행해야 한다.
- 1. Paas-TA Portal 설치전 2.3. PaaS-TA Portal Deployment 배포의 deploy-{Iaas}.sh 설정단계에서 
-        monitoring_api_url= 모니터링 url, portal_webuser_monitoring = true로 적용한 후 배포를 하면 정상적으로
-        모니터링 페이지를 사용할 수 있다.
+   > Paas-TA Portal 설치전 2.3. PaaS-TA Portal Deployment 배포의 deploy-{Iaas}.sh 설정단계에서\
+    monitoring_api_url= 모니터링 url, portal_webuser_monitoring = true
+    로 적용한 후 배포를 하면 정상적으로 모니터링 페이지를 사용할 수 있다.
+        
 ##### 2. 포탈 설치 이후 모니터링 설정 적용
  1. 사용자 포탈의 앱 상세 페이지로 이동한다.
      >![paas-ta-portal-27]
