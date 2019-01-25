@@ -10,6 +10,7 @@
     *  [2.3 PaaS-TA Portal Deployment 배포](#23-paas-ta-portal-deployment-배포)
     *  [2.4 사용자의 조직 생성 Flag 활성화](#24-사용자의-조직-생성-flag-활성화)
     *  [2.5 사용자포탈 UAA페이지 오류](#25.-사용자포탈-uaa페이지-오류)
+    *  [2.6 운영자포탈 유저페이지 오류](#26.-운영자-포탈-유저-페이지-조회-오류)
 3. [PaaS-TA Portal 운영](#3-paas-ta-portal-운영)
     *  [3.1 DB Migration](#31-db-migration)
     *  [3.2 Log](#32-log)
@@ -2020,7 +2021,7 @@ Feature user_org_creation Enabled.
 ```
 
 ### 2.5. 사용자포탈 UAA페이지 오류
->![paas-ta-portal-27]
+>![paas-ta-portal-31]
 1. uaac portalclient가 등록이 되어있지 않다면 해당 화면과 같이 redirect오류가 발생한다.
 2. uaac client add를 통해 potalclient를 추가시켜주어야 한다.
     > $ uaac target\
@@ -2046,6 +2047,8 @@ $ uaac client add portalclient -s xxxxx --redirect_uri "http://portal-web-user.x
 3. uaac client update portalclient --redirect_uri "사용자포탈 Url, 사용자포탈 Url/callback"
     >$ uaac client update portalclient --redirect_uri "http://portal-web-user.xxxx.xip.io, http://portal-web-user.xxxx.xip.io/callback"
 
+### 2.6. 운영자 포탈 유저 페이지 조회 오류
+1. 페이지 이동시 정보를 가져오지 못하고 오류가 났을 경우 common-api VM으로 이동후에 DB 정보 config를 수정후 재시작을 해 주어야 한다.
 
 
 # 3. PaaS-TA Portal 운영
@@ -2227,5 +2230,5 @@ Paas-TA Portal 설치 후에 관리자 포탈에서 빌드팩, 서비스팩을 �
 [paas-ta-portal-28]:../../Install-Guide/Portal/images/Paas-TA-Portal_28.png
 [paas-ta-portal-29]:../../Install-Guide/Portal/images/Paas-TA-Portal_29.png
 [paas-ta-portal-30]:../../Install-Guide/Portal/images/Paas-TA-Portal_30.png
-[paas-ta-portal-31]:../../Install-Guide/Portal/images/Paas-TA-Portal_31.png
+[paas-ta-portal-31]:../../Install-Guide/Portal/images/Paas-TA-Portal_27.jpg
 [paas-ta-portal-32]:../../Install-Guide/Portal/images/Paas-TA-Portal_32.png
