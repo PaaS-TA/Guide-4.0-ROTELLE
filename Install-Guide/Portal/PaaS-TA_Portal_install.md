@@ -77,7 +77,7 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 - 다운로드 방법
 1. 릴리즈된 파일받는방법
 
-        $ wget -O download.zip http://45.248.73.44/index.php/s/4bWDWyX6xrrmf7x/download
+        $ wget -O download.zip http://45.248.73.44/index.php/s/MeXCEMGWDtZzB8r/download
         $ unzip download.zip 
 
 2. PAAS-TA-PORTAL-RELEASE 다운받아  직접 릴리즈 생성및 업로드 하는 방법
@@ -2037,7 +2037,7 @@ $ uaac client add portalclient -s xxxxx --redirect_uri "http://portal-web-user.x
 --authorities="uaa.resource" \
 --autoapprove="openid , cloud_controller_service_permissions.read"
 
- >![paas-ta-portal-28]
+ >![paas-ta-portal-32]
 1. uaac portalclient가 url이 잘못 등록되어있다면 해당 화면과 같이 redirect오류가 발생한다. 
 2. uaac client update를 통해 url을 수정해야한다.
    > $ uaac target\
@@ -2183,23 +2183,7 @@ Paas-TA Portal 설치 후에 관리자 포탈에서 빌드팩, 서비스팩을 �
  4. 사용자포탈에서 변경된값이 적용되어있는지 확인한다.
     >![paas-ta-portal-19] 
     
-### 3.4. 모니터링 적용
-#### 1. 포탈 설치 이전 모니터링 설정 적용
-###### PaaS-TA 에서 제공하고있는 모니터링을 미리 설치를 한 후에 진행해야 한다.
-   > Paas-TA Portal 설치전 2.3. PaaS-TA Portal Deployment 배포의 deploy-{Iaas}.sh 설정단계에서\
-    monitoring_api_url= 모니터링 url, portal_webuser_monitoring = true
-    로 적용한 후 배포를 하면 정상적으로 모니터링 페이지를 사용할 수 있다.
-        
-##### 2. 포탈 설치 이후 모니터링 설정 적용
- 1. 사용자 포탈의 앱 상세 페이지로 이동한다.
-     >![paas-ta-portal-27]
- 2. 상세페이지 레이아웃 하단의 모니터링 버튼을 누른다.
-     >![paas-ta-portal-28]
- 3. 모니터링 오토 스케일링 화면
-     >![paas-ta-portal-29]
- 4. 모니터링 알람 설정 화면
-     >![paas-ta-portal-30]
- 5. 추이차트 탭에서 디스크 메모리 네트워크 사용량을 인스턴스 별로 확인이 가능하다.       
+  
     
 [paas-ta-portal-01]:../../Install-Guide/Portal/images/Paas-TA-Portal_01.png
 [paas-ta-portal-02]:../../Install-Guide/Portal/images/Paas-TA-Portal_02.png
@@ -2232,3 +2216,4 @@ Paas-TA Portal 설치 후에 관리자 포탈에서 빌드팩, 서비스팩을 �
 [paas-ta-portal-29]:../../Install-Guide/Portal/images/Paas-TA-Portal_29.png
 [paas-ta-portal-30]:../../Install-Guide/Portal/images/Paas-TA-Portal_30.png
 [paas-ta-portal-31]:../../Install-Guide/Portal/images/Paas-TA-Portal_27.jpg
+[paas-ta-portal-32]:../../Install-Guide/Portal/images/Paas-TA-Portal_28.jpg
