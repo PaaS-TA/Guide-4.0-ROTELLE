@@ -9,8 +9,8 @@
     *  [2.2 PaaS-TA Portal 릴리즈 업로드](#22-paas-ta-portal-릴리즈-업로드)
     *  [2.3 PaaS-TA Portal Deployment 배포](#23-paas-ta-portal-deployment-배포)
     *  [2.4 사용자의 조직 생성 Flag 활성화](#24-사용자의-조직-생성-flag-활성화)
-    *  [2.5 사용자포탈 UAA페이지 오류](#25.-사용자포탈-uaa페이지-오류)
-    *  [2.6 운영자포탈 유저페이지 오류](#26.-운영자-포탈-유저-페이지-조회-오류)
+    *  [2.5 사용자포탈 UAA페이지 오류](#25-사용자포탈-uaa페이지-오류)
+    *  [2.6 운영자포탈 유저페이지 오류](#26-운영자-포탈-유저-페이지-조회-오류)
 3. [PaaS-TA Portal 운영](#3-paas-ta-portal-운영)
     *  [3.1 DB Migration](#31-db-migration)
     *  [3.2 Log](#32-log)
@@ -2226,9 +2226,8 @@ Paas-TA Portal 설치 후에 관리자 포탈에서 빌드팩, 서비스팩을 �
 [paas-ta-portal-24]:../../Install-Guide/Portal/images/Paas-TA-Portal_24.png
 [paas-ta-portal-25]:../../Install-Guide/Portal/images/Paas-TA-Portal_25.png
 [paas-ta-portal-26]:../../Install-Guide/Portal/images/Paas-TA-Portal_26.png
-[paas-ta-portal-27]:../../Install-Guide/Portal/images/Paas-TA-Portal_27.png
-[paas-ta-portal-28]:../../Install-Guide/Portal/images/Paas-TA-Portal_28.png
+[paas-ta-portal-27]:../../Install-Guide/Portal/images/Paas-TA-Portal_27.PNG
+[paas-ta-portal-28]:../../Install-Guide/Portal/images/Paas-TA-Portal_28.PNG
 [paas-ta-portal-29]:../../Install-Guide/Portal/images/Paas-TA-Portal_29.png
 [paas-ta-portal-30]:../../Install-Guide/Portal/images/Paas-TA-Portal_30.png
 [paas-ta-portal-31]:../../Install-Guide/Portal/images/Paas-TA-Portal_27.jpg
-[paas-ta-portal-32]:../../Install-Guide/Portal/images/Paas-TA-Portal_32.png
