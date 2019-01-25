@@ -3,7 +3,7 @@
     * [1.1. 목적](#1.1)
     * [1.2. 범위](#1.2)
     * [1.3. 운영자 포탈 설치](#1.3)
-2. [PaaS-TA 관리자 포탈 시작](#2)
+2. [PaaS-TA 운영자 포탈 시작](#2)
     * [2.1. PaaS-TA 운영자 포탈 로그인](#2.1)
     * [2.2. PaaS-TA 운영자 포탈 로그](#2.2)
 3. [PaaS-TA 운영자 포탈 대시보드](#3)
@@ -20,10 +20,13 @@
     * [4.6. 코드 관리](#4.6)   
     * [4.7. 설정 정보](#4.7)
     * [4.8. 할당량 관리](#4.8)      
+    * [4.9. 분할 관리](#4.9)  
 5. [서비스 관리](#5)
     * [5.1. 빌드팩](#5.1)
     * [5.2. 서비스 브로커](#5.2)
-
+    * [5.3. 서비스 제어](#5.3)
+6. [보안 관리](#6)
+    * [6.1. 시큐리티 그룹](#6.1)
 
 
 ## <a name="1"/>1.  문서 개요
@@ -40,9 +43,9 @@
 
 본 사용 가이드는 설치에 대한 내용은 기술하지 않았다.
 
- 운영자 포탈 설치는 [PaaS-TA Portal 배포 가이드 문서](https://github.com/PaaS-TA/Guide-3.0-Penne-/blob/master/Use-Guide/portal/PaaS-TA%20Portal%20%EB%B0%B0%ED%8F%AC%20%EA%B0%80%EC%9D%B4%EB%93%9C_v1.1.md)를 참고한다.
+ 운영자 포탈 설치는 [PaaS-TA Portal 배포 가이드 문서](https://github.com/PaaS-TA/Guide-3.0-Penne-/blob/v3.5/Install-Guide/Portal/PaaS-TA%20Portal%20%EC%84%A4%EC%B9%98%EA%B0%80%EC%9D%B4%EB%93%9C.md)를 참고한다.
 
-## <a name="1"/>2.  PaaS-TA 운영자 포탈 시작
+## <a name="2"/>2.  PaaS-TA 운영자 포탈 시작
 
 PaaS-TA 운영자 포탈 웹 사이트에 접속한다.
 
@@ -278,6 +281,24 @@ PaaS-TA 포탈의 조직 및 공간 할당량 관리를 수행하기 위한 메�
 8. 삭제 할 공간 할당량을 클릭한다. 공간 할당량 상세 팝업에서 ② "삭제" 버튼을 클릭하여 공간 할당량을 삭제한다.
 ![61]
 
+### <a name="4.9"/>  4.9. 분할 관리
+
+1. PaaS-TA 포탈에서 사용하는 분활 관리 내역을 조회한다.<br>
+![isolationSegments01]
+
+2. Segment Name 입력 칸에 생성할 이름을 입력한다. "Segment 등록" 버튼을 클릭하여 등록한다.<br>
+![isolationSegments02]
+
+3. 분할 관리 리스트 이름을 클릭하면 조직 정보가 조회된다. ① "Add Organization" 리스트에서 추가 할 조직을 클릭하여 추가한다.
+![isolationSegments03]
+
+4. Organization Name 리스트 이름을 클릭하면 조직 상세 정보가 조회된다. ① "Isolation Segments Name" 리스트에서 모든 분할관리에 포한 된 조직을 확인 할 수 있다.
+![isolationSegments04]
+
+5. ①"삭제" 버튼을 클릭하여 분할 관리를 삭제한다.
+![isolationSegments05]
+
+
 ## <a name="5"/>5.  서비스 관리
 
 PaaS-TA 포탈의 서비스 관리를 수행하기 위한 메뉴이다.<br>
@@ -309,6 +330,55 @@ PaaS-TA 포탈의 서비스 관리를 수행하기 위한 메뉴이다.<br>
 4.  서비스 브로커 리스트의 ①"서비스 브로커 등록" 버튼을 클릭한다. 서비스 브로커 이름, 사용자 이름, 사용자 패스워드,URL 정보를 입력한다. ②"등록"버튼을 클릭하면 서비스 브로커 등록이 완료된다.<br>
 ![57]
 
+### <a name="5.3"/>  5.3 서비스 제어
+
+1. PaaS-TA 포탈에서 사용하는 서비스 내역을 조회한다.<br>
+![63]
+
+2. 서비스 제어 리스트의 서비스를 클릭하면 해당 서비스 또는 서비스 플랜에 대한 권한 활성화를 볼 수 있다. ①"접근" 리스트를 클릭하여 하위 집합에 대한 권한 활성화 변경이 가능하다. ② 리스트 서비스 또는 서비스 플랜에 지정된 조직 권한을 부여할 수 있다.<br>
+**"접근"이 ALL(활성화)의 경우, 하나 또는 모든 조직에 대한 서비스 또는 서비스 플랜 대한 액세스를 'NONE(비 활성화)'으로 변경해야한다.**<br>
+![64]
+
+3. ① "Add Organization" 리스트에서 권한 추가 할 조직을 클릭하여 추가한다.
+![65]
+
+4. ①"삭제" 버튼을 클릭하여 조직을 삭제한다. 삭제가 완료 되면, 처음의 접근 상태 "ALL"로 변경된다. <br>
+![66]
+![67]
+
+
+## <a name="6"/>6.  보안 관리
+
+PaaS-TA 포탈의 보안 관리를 수행하기 위한 메뉴이다.<br>
+    
+### <a name="6.1"/>  6.1 시큐리티 그룹
+
+1. PaaS-TA 포탈에서 사용하는 시큐리티 그룹 정보들을 조회한다.<br>
+![securitygroups01]
+
+2. ①"시큐리티 그룹 등록" 버튼을 클릭하여 시큐리트 그룹을 등록한다. <br>
+![securitygroups02]
+
+3. 시큐리티 그룹 등록 팝업에 이름을 입력(필수)하고 staging default설정(필수), running default설정(필수) 체크박스를 선택한다. 팝업의 탭의 내용 입력 부분에 설명, 규칙(필수), 로그, 포트, 프로토콜을 입력한다. ① "+" 를 클릭하여 탭을 증가시킨다. ② "텝 삭제" 버튼을 클릭하여 탭을 삭제한다.<br>
+![securitygroups03]
+
+4. 시큐리티 그룹 등록 팝업에서 ①"파일 내보내기" 버튼을 클릭하여 시큐리트 그룹 정보를 ②.txt 파일로 확인 할 수 있다.
+![securitygroups04]
+
+5. 시큐리티 그룹 등록 팝업에서 ①"파일 불러오기" 버튼을 클릭하여 시큐리트 그룹 정보를 ②.txt 파일로 확인 할 수 있다. 불러온 파일은 추가 된 새 탭에서 확인 할 수 있다.
+![securitygroups05]
+
+6. 시큐리티 그룹 등록 팝업에서 ①"org"를 클릭한다. ②"space"를 클릭한다. ③"등록" 버튼을 클릭하여 org,space 를 등록한다.
+![securitygroups06]
+
+7. 시큐리티 그룹 등록 팝업에서 ①"삭제" 버튼을 클릭하여 org,space 를 삭제한다. ②"등록 "버튼을 클릭하여 시큐리티 그룹 정보를 저장한다.
+![securitygroups07]
+
+8. 수정 할 시큐리티 그룹을 선택한다. 시큐리티 그룹 상세 팝업에서 ①"수정" 버튼을 클릭하여 시큐리티 그룹을 수정한다.<br>
+![securitygroups08]
+
+9. 삭제 할 시큐리티 그룹을 선택한다. 시큐리티 그룹 상세 팝업에서 ①"삭제" 버튼을 클릭하여 시큐리티 그룹을 삭제한다.<br>
+![securitygroups09] 
 
 
 
@@ -376,7 +446,26 @@ PaaS-TA 포탈의 서비스 관리를 수행하기 위한 메뉴이다.<br>
 [60]:../images/admin-portal/portal-web-admin-60.png	
 [61]:../images/admin-portal/portal-web-admin-61.png	
 [62]:../images/admin-portal/portal-web-admin-62.png	
+[63]:../images/admin-portal/portal-web-admin-63.png	
+[64]:../images/admin-portal/portal-web-admin-64.png	
+[65]:../images/admin-portal/portal-web-admin-65.png	
+[66]:../images/admin-portal/portal-web-admin-66.png	
+[67]:../images/admin-portal/portal-web-admin-67.png	
 [pipeline]:../images/admin-portal/portal-web-admin-pipeline.png
 [pipeline-app-service-create]:../images/admin-portal/pipeline-app-service-create.png
 [pipeline-app-dashboard]:../images/admin-portal/pipeline-app-dashboard.png
 [sourcecontroller]:../images/admin-portal/portal-web-admin-sourcecontroller.png
+[securitygroups01]:../images/admin-portal/securitygroups01.png			
+[securitygroups02]:../images/admin-portal/securitygroups02.png	
+[securitygroups03]:../images/admin-portal/securitygroups03.png	
+[securitygroups04]:../images/admin-portal/securitygroups04.png	
+[securitygroups05]:../images/admin-portal/securitygroups05.png	
+[securitygroups06]:../images/admin-portal/securitygroups06.png	
+[securitygroups07]:../images/admin-portal/securitygroups07.png	
+[securitygroups08]:../images/admin-portal/securitygroups08.png	
+[securitygroups09]:../images/admin-portal/securitygroups09.png	
+[isolationSegments01]:../images/admin-portal/isolationSegments01.png	
+[isolationSegments02]:../images/admin-portal/isolationSegments02.png	
+[isolationSegments03]:../images/admin-portal/isolationSegments03.png	
+[isolationSegments04]:../images/admin-portal/isolationSegments04.png	
+[isolationSegments05]:../images/admin-portal/isolationSegments05.png	
