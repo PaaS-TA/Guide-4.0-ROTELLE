@@ -15,7 +15,7 @@
     *  [3.1 DB Migration](#31-db-migration)
     *  [3.2 Log](#32-log)
     *  [3.3 카탈로그 적용](#33-카탈로그-적용)
-    *  [3.4 모니터링 적용](#34-모니터링-적용)
+    *  [3.4 모니터링 및 오토스케일링 적용](#34-모니터링-및-오토스케일링-적용)
 
 # 1. 문서 개요
 ### 1.1. 목적
@@ -2183,7 +2183,22 @@ Paas-TA Portal 설치 후에 관리자 포탈에서 빌드팩, 서비스팩을 �
  4. 사용자포탈에서 변경된값이 적용되어있는지 확인한다.
     >![paas-ta-portal-19] 
     
-  
+### 3.4. 모니터링 및 오토스케일링 적용
+##### 1. 포탈 설치 이전 모니터링 설정 적용
+###### PaaS-TA 에서 제공하고있는 모니터링을 미리 설치를 한 후에 진행해야 한다.
+ 1. Paas-TA Portal 설치전 2.3. PaaS-TA Portal Deployment 배포의 deploy-{Iaas}.sh 설정단계에서 
+    monitoring_api_url= 모니터링 url, portal_webuser_monitoring = true로 적용한 후 배포를 하면 정상적으로
+    모니터링 페이지 및 오토스케일링을 사용할 수 있다.
+##### 2. 포탈 설치 이후 모니터링 설정 적용
+ 1. 사용자 포탈의 앱 상세 페이지로 이동한다.
+    >![paas-ta-portal-30]
+ 2. ① 상세페이지 레이아웃 하단의 모니터링 버튼을 누른다.
+    
+ 3. ② 모니터링 오토 스케일링 화면
+    
+ 4. ③ 모니터링 알람 설정 화면
+    
+ 5. 추이차트 탭에서 디스크 메모리 네트워크 사용량을 인스턴스 별로 확인이 가능하다.        
     
 [paas-ta-portal-01]:../../Install-Guide/Portal/images/Paas-TA-Portal_01.png
 [paas-ta-portal-02]:../../Install-Guide/Portal/images/Paas-TA-Portal_02.png
