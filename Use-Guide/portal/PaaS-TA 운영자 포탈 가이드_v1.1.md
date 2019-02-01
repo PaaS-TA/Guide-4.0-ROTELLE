@@ -207,11 +207,12 @@ PaaS-TA 포탈의 운영에 필요한 관리를 수행하기 위한 메뉴이다
 ![27]
      > "실행" 버튼 클릭 후 사용자 관리 리스트 확인 시[관리자] **Y**에서 **N** 으로 변한다. 사용자 관리 리스트 [관리자] **N** 경우 ①"관리" 버튼 클릭 후 "운영자권한 부여"를 클릭한다. <br>
      > ![27-1]
-4. ①"관리" 버튼 클릭 후 "가입 해제"를 클릭하여 가입을 해제한다.<br>
+4. ①"관리" 버튼 클릭 후 "가입 해제"를 클릭하여 CF 로그인을 차단한다. 비승인일시 "가입 승인"을 클릭하여 CF 로그인을 승인한다.<br>
 ![30]
 ![31]
      > "수정" 버튼 클릭 후 사용자 관리 리스트를 확인 시 [상태] **승인**에서 **비승인**으로 변한다. 비승인시 포탈 및 CF 로그인 불가<br>
      > ![31-1]
+     > ![31-2]
 5. ①"관리" 버튼 클릭 후 "계정 삭제"를 클릭하여 해당 계정을 삭제한다.<br>
 ![32]
 ![33]
@@ -439,7 +440,8 @@ PaaS-TA 포탈의 보안 관리를 수행하기 위한 메뉴이다.<br>
 [29]:../images/admin-portal/portal-web-admin-29.png					
 [30]:../images/admin-portal/portal-web-admin-30.png					
 [31]:../images/admin-portal/portal-web-admin-31.png		
-[31-1]:../images/admin-portal/portal-web-admin-31-1.png		
+[31-1]:../images/admin-portal/portal-web-admin-31-1.png
+[31-2]:../images/admin-portal/portal-web-admin-31-2.PNG	
 [32]:../images/admin-portal/portal-web-admin-32.png					
 [33]:../images/admin-portal/portal-web-admin-33.png					
 [34]:../images/admin-portal/portal-web-admin-34.png					
