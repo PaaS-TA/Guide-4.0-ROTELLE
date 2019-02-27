@@ -88,7 +88,7 @@ paasta-4.0는 bosh2를 기반으로 설치된다. Bosh2를 사용하여 Bosh생�
 
 ### <div id='11'/>3.2.	PaaS-TA Release 파일 다운로드
 
-   - [설치 파일 다운로드 받기](../../Download_Page.md)
+   - [설치 파일 다운로드 받기](http://45.248.73.44/index.php/s/GjXJ6DLz5iSG5tt)
 
 1. 파스타 다운로드 URL에서 [PaaS-TA 설치 릴리즈] 파일을 다운로드 받아 ~/workspace/paasta-4.0/release 이하 디렉토리에 압축을 푼다. 
 압출을 풀면 아래 그림과 같이 ~/workspace/paasta-4.0/release/paasta 이하 디렉토리가 생성되며 이하에 릴리즈 파일(tgz)이 존재한다.
