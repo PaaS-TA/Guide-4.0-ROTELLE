@@ -63,6 +63,47 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 >
 >BOSH CLI V2 사용자 가이드 : https://github.com/PaaS-TA/Guide-4.0-ROTELLE/blob/master/Use-Guide/Bosh/PaaS-TA_BOSH_CLI_V2_사용자_가이드v1.0.md  
 
+※ 설치 전 확인 사항
+
+uaac client에 "firehose-to-syslog"가 등록되어 있는지 확인 하여, 등록되어 있는 경우에는 "authorities"를 확인하여 "cloud_controller.admin" 권한을 부여한다.
+```
+# endpoint 설정
+$ uaac target https://uaa.<DOMAIN> --skip-ssl-validation
+
+# target 확인
+$ uaac target
+Target: https://uaa.<DOMAIN>
+Context: uaa_admin, from client uaa_admin
+
+# uaac 로그인
+$ uaac token client get <UAA_ADMIN_CLIENT_ID> -s <UAA_ADMIN_CLIENT_SECRET>
+
+# "firehose-to-syslog" uaac client 확인
+$ uaac client get firehose-to-syslog
+scope: cloud_controller.admin_read_only cloud_controller.global_auditor openid routing.router_groups.write network.write scim.read cloud_controller.admin uaa.user cloud_controller.read
+    password.write routing.router_groups.read cloud_controller.write network.admin doppler.firehose scim.write
+client_id: firehose-to-syslog
+resource_ids: none
+authorized_grant_types: client_credentials
+autoapprove: 
+authorities: uaa.none doppler.firehose                   >>>>>>>>  cloud_controller.admin 권한 여부 확인
+lastmodified: 1552530293656
+
+# "firehose-to-syslog" uaac client 변경
+$ uaac client update firehose-to-syslog --authorities "doppler.firehose, uaa.none, cloud_controller.admin"
+
+# "firehose-to-syslog" uaac client 확인
+$ uaac client get firehose-to-syslog
+scope: cloud_controller.admin_read_only cloud_controller.global_auditor openid routing.router_groups.write network.write scim.read cloud_controller.admin uaa.user cloud_controller.read
+    password.write routing.router_groups.read cloud_controller.write network.admin doppler.firehose scim.write
+client_id: firehose-to-syslog
+resource_ids: none
+authorized_grant_types: client_credentials
+autoapprove: 
+authorities: uaa.none doppler.firehose cloud_controller.admin
+lastmodified: 1552530293656
+```
+
 ### <div id="2.1.1"/> 2.1.1 Logging 서비스 설치 파일 다운로드
 
 Logging 서비스 설치에 필요한 Deployment 및 릴리즈 파일을 다운로드 받아 서비스 설치 작업 경로로 위치시킨다.
