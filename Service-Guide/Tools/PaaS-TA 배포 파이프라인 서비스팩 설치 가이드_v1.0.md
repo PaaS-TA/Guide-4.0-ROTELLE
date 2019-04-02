@@ -145,6 +145,7 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 
 - 다운로드 위치
 >PaaSTA-PipeLine 통합본 : **<http://45.248.73.44/index.php/s/6tWBDJTBHjFmknR/download>**
+
 >PaaSTA-Deployment : **<https://paas-ta.kr/data/packages/3.5/deployment.zip>**  
 >PaaSTA-Sample-Apps : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip>**
 
