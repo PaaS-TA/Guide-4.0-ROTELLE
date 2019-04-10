@@ -59,16 +59,14 @@ PaaS-TA 3.5 버전부터는 Bosh2.0 기반으로 deploy를 진행하며 기존 B
 BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이드 문서를 참고 하여 BOSH CLI v2를 설치를 하고 사용법을 숙지 해야 한다.
 
 - BOSH2.0 사용자 가이드
->BOSH2 사용자 가이드 : **<https://github.com/PaaS-TA/Guide-3.0-Penne-/blob/v3.5/Use-Guide/Bosh/PaaS-TA_BOSH2_%EC%82%AC%EC%9A%A9%EC%9E%90_%EA%B0%80%EC%9D%B4%EB%93%9Cv1.0.md>**
+>BOSH2 사용자 가이드 : **<https://github.com/PaaS-TA/Guide-4.0-ROTELLE/blob/master/PaaS-TA_BOSH2_%EC%82%AC%EC%9A%A9%EC%9E%90_%EA%B0%80%EC%9D%B4%EB%93%9Cv1.0.md>**
 
->BOSH CLI V2 사용자 가이드 : **<https://github.com/PaaS-TA/Guide-3.0-Penne-/blob/v3.5/Use-Guide/Bosh/PaaS-TA_BOSH_CLI_V2_%EC%82%AC%EC%9A%A9%EC%9E%90_%EA%B0%80%EC%9D%B4%EB%93%9Cv1.0.md>**
+>BOSH CLI V2 사용자 가이드 : **<https://github.com/PaaS-TA/Guide-4.0-ROTELLE/blob/master/Use-Guide/Bosh/PaaS-TA_BOSH_CLI_V2_%EC%82%AC%EC%9A%A9%EC%9E%90_%EA%B0%80%EC%9D%B4%EB%93%9Cv1.0.md>**
 
 - PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (PaaSTA-Deployment.zip, PaaSTA-Sample-Apps.zip, PaaSTA-Services.zip)
 
-- 다운로드 위치  
->PaaSTA-Services : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Services.zip>**  
->PaaSTA-Deployment : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip>**  
->PaaSTA-Sample-Apps : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip>**
+- 설치 파일 다운로드 위치 
+>Download : **<https://paas-ta.kr/download/package>**  
 
 <br>
 
@@ -1194,8 +1192,8 @@ Cubrid 서비스팩 배포가 완료 되었으면 Application에서 서비스 �
 ##### Cubrid 서비스 브로커를 등록한다.
 
 >`$ cf create-service {서비스명} {서비스 플랜} {내 서비스명}`
-- **서비스명** : p-rabbitmq로 Marketplace에서 보여지는 서비스 명칭이다.
-- **서비스플랜** : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. RabbitMQ 서비스는 standard plan만 지원한다.
+- **서비스명** : CubridDB 로 Marketplace에서 보여지는 서비스 명칭이다.
+- **서비스플랜** : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다.
 - **내 서비스명** : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경 설정 정보를 가져온다.
  
 >`cf create-service-broker cubrid-service-broker admin cloudfoundry http://10.30.107.122:8080`
