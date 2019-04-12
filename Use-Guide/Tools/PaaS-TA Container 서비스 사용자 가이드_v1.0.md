@@ -356,8 +356,8 @@ spec:
         image: 10.30.111.41:5000/nginx
         ports:
         - containerPort: 80
-      - imagePullSecrets:    
-        - name: private-image-repository-secret
+      imagePullSecrets:    
+      - name: private-image-repository-secret
 ```
 
 
