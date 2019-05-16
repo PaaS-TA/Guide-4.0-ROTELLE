@@ -4,10 +4,10 @@
   * [목적](#2)
   * [범위](#3)
   * [참고자료](#4)
-2. [paasta-4.0](#5)
+2. [paasta-4.3](#5)
 	* [paasta-3.1](#6)
-	* [paasta-4.0](#7)
-3. [paasta-4.0 설치](#8)
+	* [paasta-4.3](#7)
+3. [paasta-4.3 설치](#8)
 	* [pre-requsite](#9)
     * [Stemcell upload](#10)
     * [cloud-config](#11)
@@ -43,7 +43,7 @@
 본 문서(설치가이드)는 paasta 를 설치 하기 위한 가이드를 제공하는데 그목적이 있다.
 
 ## <div id='3'/>1.2.  범위
-Paasta-4.0에서 사용하는 설치 방식은 기존 bosh1과 다르다. Bosh2에서 제공하는 bosh-deployment를 기반으로 bosh를 설치 된 환경에서 paasta-4.3 를 설치 한다.
+Paasta-4.3에서 사용하는 설치 방식은 기존 bosh1과 다르다. Bosh2에서 제공하는 bosh-deployment를 기반으로 bosh를 설치 된 환경에서 paasta-4.3 를 설치 한다.
 
 본문서는 cf-deployment v6.10.0을 기준으로 작성 되었다.
 기본 stemcell은 기존  ubuntu-xenial-97.28에서  ubuntu-xenial-170.16 변경되었다.
@@ -62,7 +62,7 @@ CF DEPLOYMENT: [https://github.com/cloudfoundry/cf-deployment](https://github.co
 
 
 
-# <div id='5'/>2. paasta-4.0
+# <div id='5'/>2. paasta-4.3
 Pasta-3.1까지는 bosh-init을 통하여 Bosh를 생성하고, bosh1 cli를 통하여 PaaS-TA Controller, Container를 생성하였다. 
 
 
@@ -73,12 +73,12 @@ Bosh1은 bosh-init을 통하여 Bosh를 생성하고, bosh1 cli를 통하여 Paa
 
 ![PaaSTa_BOSH_Use_Guide_Image1]
 
-## <div id='7'/>2.2.	paasta-4.0
+## <div id='7'/>2.2.	paasta-4.3
 paasta-4.3는 bosh2를 기반으로 설치된다. Bosh2를 사용하여 Bosh생성 후 paasta-deployment를 활용하여 paasta를 deploy한다. Paasta-3.1 버전까지는  PaaS-TA Container, Controller를 별도로 deployment로 설치 해야 했지만 3.5/4.0/4.3 에서는 paasta deployment 하나로 통합 되었으며, 한번에 PaaS-TA를 설치 할 수 있다. 
 
 ![PaaSTa_BOSH_Use_Guide_Image2]
 
-# <div id='8'/>3.	paasta-4.0 설치
+# <div id='8'/>3.	paasta-4.3 설치
 
 ## <div id='9'/>3.1.	pre-requsite
 
@@ -90,8 +90,8 @@ paasta-4.3는 bosh2를 기반으로 설치된다. Bosh2를 사용하여 Bosh생�
 
    - [설치 파일 다운로드 받기](http://45.248.73.44/index.php/s/GjXJ6DLz5iSG5tt)
 
-1. 파스타 다운로드 URL에서 [PaaS-TA 설치 릴리즈] 파일을 다운로드 받아 ~/workspace/paasta-4.0/release 이하 디렉토리에 압축을 푼다. 
-압출을 풀면 아래 그림과 같이 ~/workspace/paasta-4.0/release/paasta 이하 디렉토리가 생성되며 이하에 릴리즈 파일(tgz)이 존재한다.
+1. 파스타 다운로드 URL에서 [PaaS-TA 설치 릴리즈] 파일을 다운로드 받아 ~/workspace/paasta-4.3/release 이하 디렉토리에 압축을 푼다. 
+압출을 풀면 아래 그림과 같이 ~/workspace/paasta-4.3/release/paasta 이하 디렉토리가 생성되며 이하에 릴리즈 파일(tgz)이 존재한다.
 
 ![PaaSTa_release_Image]
 
@@ -408,7 +408,7 @@ PaaS-TA 4.3부터 적용된는 부분으로 PaaS-TA Component에서 Consul이 �
 
 Bosh Login후 아래 내용을 실행한다.
 ```
-$ cd ~/workspace/paasta-4.0/deployment/bosh-deployment
+$ cd ~/workspace/paasta-4.3/deployment/bosh-deployment
 $ ./update-runtime-config.sh
 ```
 
@@ -416,7 +416,7 @@ $ ./update-runtime-config.sh
 아래 내용을 inception 상황에 맞게 수정하여 실행한다.
 ```
 bosh -e {director-name} update-runtime-config runtime-configs/dns.yml \
--v inception_os_user_name=ubuntu \ # home user명 (release file path와 연관성 있음. /home/ubuntu/paasta-4.0 이하 release 파일들의 경로 설정)
+-v inception_os_user_name=ubuntu \ # home user명 (release file path와 연관성 있음. /home/ubuntu/paasta-4.3 이하 release 파일들의 경로 설정)
 -v cert_days=3650   # 인증서 인증 기간
 ```
 
@@ -426,7 +426,7 @@ bosh -e {director-name} update-runtime-config runtime-configs/dns.yml \
 파일명은 deploy-{iaaS-name}.sh 로 만들어 졌다. 
 
 ```
-$ cd ~/workspace/paasta-4.0/deployment/paasta-deployment
+$ cd ~/workspace/paasta-4.3/deployment/paasta-deployment
 $ chmod 755 *.sh
 ```
 
@@ -823,7 +823,7 @@ uaa_admin_client_secret 적용 확인 방법
 ### <div id='29'/>3.6.	paasta deploy 
 
 ```
-$ cd ~/workspace/paasta-4.0/deployment/paasta-deployment
+$ cd ~/workspace/paasta-4.3/deployment/paasta-deployment
 $ ./deploy-{iaas}.sh
 ```
 
