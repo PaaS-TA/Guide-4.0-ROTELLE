@@ -123,7 +123,7 @@ BOSH 및 PaaS-TA 설치를 위해 Inception 서버에 구성해야 할 컴포넌
 ### <div id='13'/>3.3.1.	Pre-requsite
 
 -	본 설치 가이드는 Ubuntu 16.04 버전을 기준으로 한다.
--	Release, deployment 파일은 /home/{user_name}/workspace/paasta-4.0 이하에 다운로드 받아 야 한다.
+-	Release, deployment 파일은 /home/{user_name}/workspace/paasta-4.3 이하에 다운로드 받아 야 한다.
 
 ### <div id='14'/>3.3.2.	Bosh cli 및 dependency 설치
 
@@ -184,9 +184,9 @@ bosh -version
 - [설치 파일 다운로드 받기](https://paas-ta.kr/download/package)
 
 ```
-$ mkdir -p ~/workspace/paasta-4.0/deployment
-$ mkdir -p ~/workspace/paasta-4.0/release
-$ mkdir -p ~/workspace/paasta-4.0/stemcell
+$ mkdir -p ~/workspace/paasta-4.3/deployment
+$ mkdir -p ~/workspace/paasta-4.3/release
+$ mkdir -p ~/workspace/paasta-4.3/stemcell
 ```
 
 2.	파스타 다운로드 URL에서 [PaaS-TA Deployment] 파일을 다운로드 받아 ~/workspace/paasta-4.0/deployment 이하 디렉토리에 압축을 푼다.
