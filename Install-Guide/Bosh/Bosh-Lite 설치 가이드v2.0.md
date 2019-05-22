@@ -78,7 +78,7 @@ sudo apt-get install -y build-essential zlibc zlib1g-dev ruby ruby-dev openssl l
 
 
 
-##Install  Bosh  Director VM
+## Install  Bosh  Director VM
 
 ```
 git clone https://github.com/cloudfoundry/bosh-deployment ~/workspace/bosh-deployment
