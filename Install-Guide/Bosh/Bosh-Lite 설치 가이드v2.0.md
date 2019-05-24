@@ -604,7 +604,27 @@ $ cf set-space-role test test-org test-space SpaceDeveloper
 
 ```
 
+## cf login test user
+```
+$ cf login 
+API 엔드포인트: https://api.bosh-lite.com
 
+Email> test
+
+Password>
+인증 중...
+확인
+
+대상 지정된 조직 test-org
+
+대상 지정된 영역 test-space
+
+
+
+API 엔드포인트:   https://api.bosh-lite.com(API 버전: 2.125.0)
+사용자:           test
+조직:             test-org
+```
 
 ## Java 8 install
 ```
