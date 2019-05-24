@@ -14,6 +14,8 @@ $ sudo apt update
 
 $ wget --content-disposition https://download.virtualbox.org/virtualbox/5.2.22/virtualbox-5.2_5.2.22-126460~Ubuntu~bionic_amd64.deb
 
+$ wget --content-disposition https://download.virtualbox.org/virtualbox/5.2.20/virtualbox-5.2_5.2.20-125813~Ubuntu~bionic_amd64.deb
+
 $ sudo dpkg -i virtualbox-5.2_5.2.22-126460~Ubuntu~bionic_amd64.deb
 
 $ VBoxManage --version
