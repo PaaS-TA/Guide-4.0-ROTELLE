@@ -565,6 +565,9 @@ cf 버전 6.44.1+c3b20bfbe.2019-05-08
 
 ## cf login
 ```
+
+$ cf api api.bosh-lite.com --skip-ssl-validation
+
 $ cf login
 API 엔드포인트: https://api.bosh-lite.com
 
