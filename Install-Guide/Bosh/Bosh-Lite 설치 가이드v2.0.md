@@ -342,6 +342,10 @@ stemcells:
 
 
 ```
+$ cd ~/workspace/paasta-4.0/deployment/paasta-deployment
+
+$ vi ./paasta-deployment.yml
+
 bosh -e vbox -d paasta deploy paasta-deployment.yml \
    -o operations/bosh-lite.yml \
    -o operations/use-compiled-releases.yml \
