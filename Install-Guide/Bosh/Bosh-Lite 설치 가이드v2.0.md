@@ -328,9 +328,9 @@ Succeeded
 
 ```
 
-## Deploy CF
+## Deploy PaaS-TA
 
-stemcell 버전은 cf-deployment.yml 파일의 "stemcells" 버전을 입력한다.
+stemcell 버전은 paasta-deployment.yml 파일의 "stemcells" 버전을 입력한다.
 ```
 ~/workspace/paasta-4.0/deployment/paasta-deployment$ vi paasta-deployment.yml
 …..
