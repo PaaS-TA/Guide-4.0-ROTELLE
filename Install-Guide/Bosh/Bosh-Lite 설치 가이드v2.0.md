@@ -265,6 +265,7 @@ User      admin
 
 Succeeded
 ```
+# PaaS-TA 설치
 
 ## PaaS-TA 설치파일 업로드
 
@@ -571,7 +572,7 @@ bosh –e vbox tasks
 bosh -e vbox locks
 ```
 
-# PaaS-TA 설치
+# PaaS-TA App Push Test
 
 ## cf cli 설치 (Linux)
 ```
