@@ -563,34 +563,6 @@ $ cf -v
 cf 버전 6.44.1+c3b20bfbe.2019-05-08
 ```
 
-
-## Java 8 install
-```
-
-$ sudo apt-get update
-
-$ sudo apt install openjdk-8-jdk
-
-$ java -version
-openjdk version "1.8.0_212"
-OpenJDK Runtime Environment (build 1.8.0_212-8u212-b03-0ubuntu1.18.04.1-b03)
-OpenJDK 64-Bit Server VM (build 25.212-b03, mixed mode)
-```
-
-
-## Sample app test
-```
-$ mkdir sample 
-
-& cd sample
-
-$ git clone https://github.com/cloudfoundry-samples/spring-music.git
-
-$ cd spring-music/
-
-$ ./gradlew clean assemble
-```
-
 ## cf login
 ```
 $ cf login
@@ -634,6 +606,34 @@ $ cf set-space-role test test-org test-space SpaceDeveloper
 
 ```
 
+
+
+## Java 8 install
+```
+
+$ sudo apt-get update
+
+$ sudo apt install openjdk-8-jdk
+
+$ java -version
+openjdk version "1.8.0_212"
+OpenJDK Runtime Environment (build 1.8.0_212-8u212-b03-0ubuntu1.18.04.1-b03)
+OpenJDK 64-Bit Server VM (build 25.212-b03, mixed mode)
+```
+
+
+## Sample app test
+```
+$ mkdir ~/workspace/sample
+
+& cd ~/workspace/sample
+
+$ git clone https://github.com/cloudfoundry-samples/spring-music.git
+
+$ cd spring-music/
+
+$ ./gradlew clean assemble
+```
 
 
 ## cf push
