@@ -87,16 +87,13 @@ sudo apt-get install -y build-essential zlibc zlib1g-dev ruby ruby-dev openssl l
 ## Install  Bosh  Director VM
 
 ```
+$ cd ~/workspace/bosh-deployment/virtualbox
+
 $ git clone https://github.com/cloudfoundry/bosh-deployment ~/workspace/bosh-deployment
 
 $ vi ~/workspace/bosh-deployment/virtualbox/cpi.yml
    
       memory: 8196 ==> 수정
-
-$ mkdir -p ~/deployments/vbox
-
-
-$ cd ~/deployments/vbox
 
 
 $ vi create-bosh.sh
@@ -118,8 +115,9 @@ bosh create-env ~/workspace/bosh-deployment/bosh.yml \
   -v internal_cidr=192.168.50.0/24 \
   -v outbound_network_name=NatNetwork
 
+~/workspace/bosh-deployment$ chmod 755 ./create-bosh.sh
 
-~/deployments/vbox$ ./create-bosh.sh
+~/workspace/bosh-deployment$ ./create-bosh.sh
 Deployment manifest: '/home/ubuntu/workspace/bosh-deployment/bosh.yml'
 Deployment state: './state.json'
 
