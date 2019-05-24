@@ -13,8 +13,8 @@
 ![004]
 ![005]
 
-[001]:../images/001.png
-[002]:../images/002.png
-[003]:../images/003.png
-[004]:../images/004.png
-[005]:../images/005.png
+[001]:./images/001.png
+[002]:./images/002.png
+[003]:./images/003.png
+[004]:./images/004.png
+[005]:./images/005.png
