@@ -571,6 +571,7 @@ bosh –e vbox tasks
 bosh -e vbox locks
 ```
 
+# PaaS-TA 설치
 
 ## cf cli 설치 (Linux)
 ```
@@ -671,7 +672,7 @@ OpenJDK 64-Bit Server VM (build 25.212-b03, mixed mode)
 ```
 $ mkdir ~/workspace/sample
 
-& cd ~/workspace/sample
+$ cd ~/workspace/sample
 
 $ git clone https://github.com/cloudfoundry-samples/spring-music.git
 
