@@ -686,7 +686,7 @@ $ ./gradlew clean assemble
 ## cf push
 ```
 
-$ cd ~/workspace/sample
+$ cd ~/workspace/sample/spring-music
 
 $ cf push
 
