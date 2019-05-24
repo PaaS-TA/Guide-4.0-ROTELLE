@@ -277,13 +277,11 @@ $ route add           10.244.0.0/16     192.168.50.6 # Windows
 
 ## Update cloud config
 ```
-$ git clone https://github.com/cloudfoundry/cf-deployment ~/workspace/cf-deployment
+
+$ cd ~/workspace/paasta-4.0/deployment/cloud-config
 
 
-$ cd ~/workspace/cf-deployment
-
-
-$ bosh -e vbox update-cloud-config iaas-support/bosh-lite/cloud-config.yml
+$ bosh -e vbox update-cloud-config bosh-lite-cloud-config.yml
 ```
 
 
