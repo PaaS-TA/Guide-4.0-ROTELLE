@@ -682,6 +682,19 @@ $ cd spring-music/
 $ ./gradlew clean assemble
 ```
 
+## manifest.yml 설정 추가
+```
+$ vi manifest.yml
+
+---
+applications:
+- name: spring-music
+  memory: 1G
+  random-route: true
+  buildpack: java_buildpack
+  health-check-type: none
+  path: build/libs/spring-music-1.0.jar
+```
 
 ## cf push
 ```
