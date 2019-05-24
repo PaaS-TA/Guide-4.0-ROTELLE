@@ -571,25 +571,20 @@ $ cf api api.bosh-lite.com --skip-ssl-validation
 $ cf login
 API 엔드포인트: https://api.bosh-lite.com
 
-
 Email> admin
-
 
 Password>
 인증 중...
 확인
 
+대상 지정된 조직 system
 
-대상 지정된 조직 test-org
-
-
-대상 지정된 영역 test-space
 
 
 API 엔드포인트:   https://api.bosh-lite.com(API 버전: 2.125.0)
-사용자:           test
-조직:             test-org
-영역:             test-space
+사용자:           admin
+조직:             system
+영역:             대상 지정된 영역이 없습니다. 'cf target -s SPACE' 명령을 사용하십시오.
 ```
 
 
