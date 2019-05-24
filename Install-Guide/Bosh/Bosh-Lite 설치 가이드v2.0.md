@@ -685,6 +685,11 @@ $ ./gradlew clean assemble
 
 ## cf push
 ```
+
+$ cd ~/workspace/sample
+
+$ cf push
+
 Manifest에서 test(으)로 test-org 조직/test-space 영역에 푸시 중...
 Manifest 파일 /home/ubuntu/workspace/sample/spring-music/manifest.yml 사용
 앱 정보를 가져오는 중...
