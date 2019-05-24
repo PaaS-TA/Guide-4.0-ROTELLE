@@ -31,6 +31,18 @@
 ![021]
 ![022]
 
+## ssh 서버 설정
+
+```
+
+$ sudo apt-get update
+
+$ sudo apt-get install openssh-server
+
+$ sudo service ssh start
+
+```
+
 
 [001]:./images/001.png
 [002]:./images/002.png

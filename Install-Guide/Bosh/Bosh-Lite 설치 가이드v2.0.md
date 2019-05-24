@@ -266,6 +266,27 @@ User      admin
 Succeeded
 ```
 
+## PaaS-TA 설치파일 업로드
+
+```
+
+$ scp ./paasta-4.0.tar  ubuntu@192.168.1.122:~/workspace/
+
+
+```
+
+
+## PaaS-TA 설치파일 압축풀기
+
+```
+$ cd ~/workspace/
+
+$ tar -xvf ./paasta-4.0.tar 
+
+
+```
+
+
 ## Local Route
 ```
 $ sudo route add -net 10.244.0.0/16     192.168.50.6 # Mac OS X
