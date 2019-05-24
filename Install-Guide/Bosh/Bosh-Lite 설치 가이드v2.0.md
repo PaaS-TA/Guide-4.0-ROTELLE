@@ -572,7 +572,7 @@ $ cf login
 API 엔드포인트: https://api.bosh-lite.com
 
 
-Email> test
+Email> admin
 
 
 Password>
