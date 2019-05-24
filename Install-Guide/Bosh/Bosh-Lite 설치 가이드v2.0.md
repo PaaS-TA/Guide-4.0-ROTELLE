@@ -566,13 +566,8 @@ cf 버전 6.44.1+c3b20bfbe.2019-05-08
 
 ## Java 8 install
 ```
-$ sudo add-apt-repository ppa:webupd8team/java
 
 $ sudo apt-get update
-
-$ apt search oracle-java
-
- $ sudo apt install oracle-java8-installer
 
 $ sudo apt install openjdk-8-jdk
 
