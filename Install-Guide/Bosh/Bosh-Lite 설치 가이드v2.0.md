@@ -506,64 +506,8 @@ cf api https://api.bosh-lite.com --skip-ssl-validation
 export CF_ADMIN_PASSWORD=$(bosh int <(credhub get -n /bosh-lite/cf/cf_admin_password --output-json) --path /value)
 cf auth admin $CF_ADMIN_PASSWORD
 ```
-## Set CredHub
-```
-export BOSH_CA_CERT="$(bosh interpolate ~/deployments/vbox/creds.yml --path /director_ssl/ca)"
-
-export CREDHUB_SERVER=https://192.168.50.6:8844
-export CREDHUB_CLIENT=credhub-admin
-export CREDHUB_SECRET=$(bosh interpolate ~/deployments/vbox/creds.yml --path=/credhub_admin_client_secret)
-export CREDHUB_CA_CERT="$(bosh interpolate ~/deployments/vbox/creds.yml --path=/credhub_tls/ca )"$'\n'"$( bosh interpolate ~/deployments/vbox/creds.yml --path=/uaa_ssl/ca)"
-```
-### CredHub CLI
-Download release file
-> https://github.com/cloudfoundry-incubator/credhub-cli/releases
-
-and install
-```
-tar -xvf credhub-linux-2.2.0.tgz
-mv credhub /usr/local/bin
-```
-
-and retrieve credentials in CredHub
-```
-credhub login -s https://192.168.50.6:8844 --skip-tls-validation
-credhub find
-credhub find -n cf_admin_password
-credhub get -n <FULL_CREDENTIAL_NAME>
-credhub get -n /bosh-lite/cf/cf_admin_password
-```
-
-## Release Modify
-```
-git clone https://github.com/cloudfoundry/diego-release ~/workspace/diego-release
-cf ~/workspace/diego-release
-git checkout tags/v2.22.0
-bosh -e vbox releases
-bosh -e vbox create-release --force
-bosh -e vbox upload-release
-```
-modify cf-deployment.yml
-```
-releases:
-- name: diego
-#  url: https://bosh.io/d/github.com/cloudfoundry/diego-release?v=2.22.0
-  version: 2.22.0+dev.3
-  sha1: 0cd26089729d4e526dd27c47191cc3b9cb3189c6
-```
-deploy
-```
-cd ~/workspace/cf-deployment
-bosh -e vbox -d cf deploy cf-deployment.yml \
-   -o operations/bosh-lite.yml \
-   -v system_domain=bosh-lite.com
-```
 
 ## Commands
-- 자동복구모드 off
-```
-bosh -e vbox -d cf update-resurrection off
-```
 
 - releases
 ```
