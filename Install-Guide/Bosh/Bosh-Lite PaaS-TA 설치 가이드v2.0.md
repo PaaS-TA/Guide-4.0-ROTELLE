@@ -4,7 +4,7 @@
 
 ```
 
-$ scp ./paasta-4.0.tar  ubuntu@192.168.1.122:~/workspace/
+$ scp ./paasta-4.0.tar  ubuntu@<inception ip>:~/workspace/
 
 or
 
