@@ -7,6 +7,28 @@
 
 실습환경 : Ubuntu 18.04
 
+
+## Bosh dependency 설치
+
+```
+$ sudo apt-get update
+```
+
+
+Ubuntu 16.04
+```
+sudo apt-get install -y build-essential zlibc zlib1g-dev ruby ruby-dev openssl libxslt-dev libxml2-dev libssl-dev libreadline6 libreadline6-dev libyaml-dev libsqlite3-dev sqlite3
+```
+
+Ubuntu 18.04
+```
+sudo apt-get install -y build-essential zlibc zlib1g-dev ruby ruby-dev openssl libxslt1-dev libxml2-dev libssl-dev libreadline7 libreadline-dev libyaml-dev libsqlite3-dev sqlite3
+```
+
+
+
+
+
 <!--
 $ wget --content-disposition https://download.virtualbox.org/virtualbox/5.2.22/virtualbox-5.2_5.2.22-126460~Ubuntu~bionic_amd64.deb
 -->
@@ -82,17 +104,6 @@ Succeeded
 
 
 
-## Bosh dependency 설치
-
-Ubuntu 16.04
-```
-sudo apt-get install -y build-essential zlibc zlib1g-dev ruby ruby-dev openssl libxslt-dev libxml2-dev libssl-dev libreadline6 libreadline6-dev libyaml-dev libsqlite3-dev sqlite3
-```
-
-Ubuntu 18.04
-```
-sudo apt-get install -y build-essential zlibc zlib1g-dev ruby ruby-dev openssl libxslt1-dev libxml2-dev libssl-dev libreadline7 libreadline-dev libyaml-dev libsqlite3-dev sqlite3
-```
 
 
 
