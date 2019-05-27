@@ -290,6 +290,114 @@ User      admin
 Succeeded
 ```
 
+## credhub
+BOSH설치시 operation file에 credhub.yml을 추가 하였다. Credhub은 인증정보를 저장소이다. 
+Bosh 설치 시 credhub.yml을 적용하면 paasta 설치시 인증정보를 credhub에 저장하게 된다. 
+Credhub에 로그인 하기 위해서는 credhub cli를 통해 인증정보를 조회 수정 삭제 할 수 있다
+
+```
+$ cd ~/workspace/
+$ wget https://github.com/cloudfoundry-incubator/credhub-cli/releases/download/2.0.0/credhub-linux-2.0.0.tgz
+--2019-05-27 15:57:54--  https://github.com/cloudfoundry-incubator/credhub-cli/releases/download/2.0.0/credhub-linux-2.0.0.tgz
+Resolving github.com (github.com)... 52.78.231.108
+접속 github.com (github.com)|52.78.231.108|:443... 접속됨.
+HTTP request sent, awaiting response... 302 Found
+Location: https://github-production-release-asset-2e65be.s3.amazonaws.com/57993310/aacbac0e-9662-11e8-83d6-8f4e66c9988b?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20190527%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20190527T065754Z&X-Amz-Expires=300&X-Amz-Signature=048cc5479dcf353cbfdbb54ad5a35d471c7ca59562c7330dec860f3aac8a0785&X-Amz-SignedHeaders=host&actor_id=0&response-content-disposition=attachment%3B%20filename%3Dcredhub-linux-2.0.0.tgz&response-content-type=application%2Foctet-stream [following]
+--2019-05-27 15:57:54--  https://github-production-release-asset-2e65be.s3.amazonaws.com/57993310/aacbac0e-9662-11e8-83d6-8f4e66c9988b?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20190527%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20190527T065754Z&X-Amz-Expires=300&X-Amz-Signature=048cc5479dcf353cbfdbb54ad5a35d471c7ca59562c7330dec860f3aac8a0785&X-Amz-SignedHeaders=host&actor_id=0&response-content-disposition=attachment%3B%20filename%3Dcredhub-linux-2.0.0.tgz&response-content-type=application%2Foctet-stream
+Resolving github-production-release-asset-2e65be.s3.amazonaws.com (github-production-release-asset-2e65be.s3.amazonaws.com)... 52.216.102.3
+접속 github-production-release-asset-2e65be.s3.amazonaws.com (github-production-release-asset-2e65be.s3.amazonaws.com)|52.216.102.3|:443... 접속됨.
+HTTP request sent, awaiting response... 200 OK
+Length: 3267079 (3.1M) [application/octet-stream]
+Saving to: ‘credhub-linux-2.0.0.tgz’
+
+
+credhub-linux-2.0.0.tgz                          100%[=========================================================================================================>]   3.12M  1.26MB/s    in 2.5s
+
+
+2019-05-27 15:57:58 (1.26 MB/s) - ‘credhub-linux-2.0.0.tgz’ saved [3267079/3267079]
+
+
+$ tar -xvf credhub-linux-2.0.0.tgz
+./
+./credhub
+
+$ chmod +x credhub
+
+$ sudo mv credhub /usr/local/bin/credhub
+[sudo] ubuntu의 암호:
+
+$ credhub --version
+CLI Version: 2.0.0
+Server Version: Not Found. Have you targeted and authenticated against a CredHub server?
+
+
+```
+
+credhub login
+
+```
+$ cd ~/bosh-env/
+
+
+$ export CREDHUB_CLIENT=credhub-admin
+$ export CREDHUB_SECRET=$(bosh int --path /credhub_admin_client_secret virtualbox/creds.yml)
+$ export CREDHUB_CA_CERT=$(bosh int --path /credhub_tls/ca virtualbox/creds.yml)
+$ credhub login -s https://192.168.50.6:8844 --skip-tls-validation 
+Warning: The targeted TLS certificate has not been verified for this connection.
+Warning: The --skip-tls-validation flag is deprecated. Please use --ca-cert instead.
+Setting the target url: https://192.168.50.6:8844
+Login Successful
+
+$ credhub find
+credentials: []
+```
+
+
+## jumpbox
+BOSH설치시 operation file에 jumpbox-user.yml을 추가 하였다. 
+Jumpbox는 BOSH VM에 접근하기 위한 인증을 적용하게 된다. 
+인증 key는 Bosh 자체적으로 생성하며 인증키를 통해 BOSH VM에 접근 할 수 있다. 
+bosh vm에 이상이 이 있거나 상태를 체크 할때 jumpbox를 활용하여 bosh vm에 접근할 수 있다. 
+만약 Bosh에 문제가 있어 Bosh VM에 접근할 필요가 있을때 사용한다.
+
+```
+$ cd ~/bosh-env/
+
+$ bosh int virtualbox/creds.yml --path /jumpbox_ssh/private_key > jumpbox.key 
+
+$ chmod 600 jumpbox.key
+
+$ ssh jumpbox@192.168.50.6 -i jumpbox.key
+Unauthorized use is strictly prohibited. All access and activity
+is subject to logging and monitoring.
+Welcome to Ubuntu 16.04.6 LTS (GNU/Linux 4.15.0-50-generic x86_64)
+
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+
+Last failed login: Mon May 27 07:08:49 UTC 2019 from 192.168.50.1 on ssh:notty
+There was 1 failed login attempt since the last successful login.
+Last login: Mon May 27 07:09:04 2019 from 192.168.50.1
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+
+bosh/0:~$
+
+```
+
 
 ## VirtualBox 저장 및 시작 
 ```
