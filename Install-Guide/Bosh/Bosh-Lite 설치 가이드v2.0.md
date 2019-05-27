@@ -28,7 +28,7 @@ $ VBoxManage --version
 5.2.22r126460
 
 ```
-
+<!--
 UnInstall VirtualBox
 ```
 sudo apt-get remove virtualbox* —purge
@@ -40,6 +40,7 @@ sudo rm -rf  ~/'VirtualBox VMs’/
 sudo rm -rf ~/.config/VirtualBox/
 
 ```
+-->
 
 Install Git & Curl 
 ```
