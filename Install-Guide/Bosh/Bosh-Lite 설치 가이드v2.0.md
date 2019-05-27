@@ -7,16 +7,18 @@
 
 실습환경 : Ubuntu 18.04
 
+<!--
+$ wget --content-disposition https://download.virtualbox.org/virtualbox/5.2.22/virtualbox-5.2_5.2.22-126460~Ubuntu~bionic_amd64.deb
+-->
+
 
 Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 ```
 $ sudo apt update
 
-$ wget --content-disposition https://download.virtualbox.org/virtualbox/5.2.22/virtualbox-5.2_5.2.22-126460~Ubuntu~bionic_amd64.deb
-<!--
 $ wget --content-disposition https://download.virtualbox.org/virtualbox/5.2.20/virtualbox-5.2_5.2.20-125813~Ubuntu~bionic_amd64.deb
--->
-$ sudo dpkg -i virtualbox-5.2_5.2.22-126460~Ubuntu~bionic_amd64.deb
+
+$ sudo dpkg -i virtualbox-5.2_5.2.20-125813~Ubuntu~bionic_amd64.deb
 
 $ sudo apt --fix-broken install
 
@@ -273,6 +275,9 @@ Succeeded
 
 $ scp ./paasta-4.0.tar  ubuntu@192.168.1.122:~/workspace/
 
+or
+
+$ wget --content-disposition  http://amedio0222.ipdisk.co.kr/Media/dev/paasta-4.0.tar
 
 ```
 
