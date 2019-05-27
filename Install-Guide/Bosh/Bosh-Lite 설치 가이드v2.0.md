@@ -110,9 +110,10 @@ Succeeded
 ## Install  Bosh  Director VM
 
 ```
-$ cd ~/workspace/bosh-deployment/virtualbox
 
 $ git clone https://github.com/cloudfoundry/bosh-deployment ~/workspace/bosh-deployment
+
+$ cd ~/workspace/bosh-deployment/virtualbox
 
 $ vi ~/workspace/bosh-deployment/virtualbox/cpi.yml
    
