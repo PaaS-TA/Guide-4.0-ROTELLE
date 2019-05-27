@@ -3,12 +3,12 @@
 ## PaaS-TA 설치파일 업로드
 
 ```
-
-$ scp ./paasta-4.0.tar  ubuntu@<inception ip>:~/workspace/
+$ wget --content-disposition http://45.248.73.44/index.php/s/kdyoEY7dcBDkGJn/download
 
 or
 
 $ wget --content-disposition  http://amedio0222.ipdisk.co.kr/pubdav/HDD2/dev/paasta-4.0.tar
+
 
 ```
 
