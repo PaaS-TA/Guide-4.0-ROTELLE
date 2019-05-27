@@ -277,7 +277,7 @@ $ scp ./paasta-4.0.tar  ubuntu@192.168.1.122:~/workspace/
 
 or
 
-$ wget --content-disposition  http://amedio0222.ipdisk.co.kr/Media/dev/paasta-4.0.tar
+$ wget --content-disposition  http://amedio0222.ipdisk.co.kr/pubdav/HDD2/dev/paasta-4.0.tar
 
 ```
 
