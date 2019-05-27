@@ -28,6 +28,14 @@ $ VBoxManage --version
 5.2.22r126460
 
 ```
+
+
+virtualbox 설치 실패시 실행
+
+```
+$ sudo /sbin/vboxconfig
+```
+
 <!--
 UnInstall VirtualBox
 ```
@@ -71,6 +79,7 @@ version 5.3.1-8366c6fd-2018-09-25T18:25:51Z
 
 Succeeded
 ```
+
 
 
 ## Bosh dependency 설치
