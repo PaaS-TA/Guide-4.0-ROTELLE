@@ -1,6 +1,6 @@
 # PaaS-TA 4.0 설치
 
-## PaaS-TA 설치파일 업로드
+## PaaS-TA 설치파일 다운로드
 
 ```
 $ wget --content-disposition http://45.248.73.44/index.php/s/kdyoEY7dcBDkGJn/download
