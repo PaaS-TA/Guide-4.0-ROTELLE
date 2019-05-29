@@ -267,12 +267,14 @@ Succeeded
 ```
 
 https://github.com/cloudfoundry/cf-deployment/blob/master/deployment-guide.md
-
+<!--
 ```
 cf api https://api.bosh-lite.com --skip-ssl-validation
 export CF_ADMIN_PASSWORD=$(bosh int <(credhub get -n /bosh-lite/cf/cf_admin_password --output-json) --path /value)
 cf auth admin $CF_ADMIN_PASSWORD
 ```
+-->
+
 
 ## Commands
 
