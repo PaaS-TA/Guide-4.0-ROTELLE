@@ -3,6 +3,8 @@
 ## PaaS-TA 설치파일 다운로드
 
 ```
+$ cd ~/workspace/
+
 $ wget --content-disposition http://45.248.73.44/index.php/s/kdyoEY7dcBDkGJn/download
 
 or
