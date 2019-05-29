@@ -91,13 +91,14 @@ Succeeded
 ## Deploy PaaS-TA
 
 stemcell 버전은 paasta-deployment.yml 파일의 "stemcells" 버전을 입력한다.
+
 ```
 ~/workspace/paasta-4.0/deployment/paasta-deployment$ vi paasta-deployment.yml
 …..
 stemcells:
 - alias: default
   os: ubuntu-xenial
-  #version: "97.28"
+  version: "97.28"
 ```
 
 
