@@ -249,7 +249,11 @@ Succeeded
 ```
 
 ## Alias and log into the Director
+
+
 ```
+$ cd ~/workspace/bosh-deployment
+
 $ bosh alias-env vbox -e 192.168.50.6 --ca-cert <(bosh int ./creds.yml --path /director_ssl/ca)
 
 Using environment '192.168.50.6' as anonymous user
@@ -336,12 +340,12 @@ Server Version: Not Found. Have you targeted and authenticated against a CredHub
 credhub login
 
 ```
-$ cd ~/bosh-env/
+$ cd ~/workspace/bosh-deployment
 
 
 $ export CREDHUB_CLIENT=credhub-admin
-$ export CREDHUB_SECRET=$(bosh int --path /credhub_admin_client_secret virtualbox/creds.yml)
-$ export CREDHUB_CA_CERT=$(bosh int --path /credhub_tls/ca virtualbox/creds.yml)
+$ export CREDHUB_SECRET=$(bosh int --path /credhub_admin_client_secret ~/workspace/bosh-deployment/creds.yml)
+$ export CREDHUB_CA_CERT=$(bosh int --path /credhub_tls/ca ~/workspace/bosh-deployment/creds.yml)
 $ credhub login -s https://192.168.50.6:8844 --skip-tls-validation 
 Warning: The targeted TLS certificate has not been verified for this connection.
 Warning: The --skip-tls-validation flag is deprecated. Please use --ca-cert instead.
@@ -361,9 +365,9 @@ bosh vm에 이상이 이 있거나 상태를 체크 할때 jumpbox를 활용하�
 만약 Bosh에 문제가 있어 Bosh VM에 접근할 필요가 있을때 사용한다.
 
 ```
-$ cd ~/bosh-env/
+$ cd ~/workspace/bosh-deployment
 
-$ bosh int virtualbox/creds.yml --path /jumpbox_ssh/private_key > jumpbox.key 
+$ bosh int ~/workspace/bosh-deployment/creds.yml --path /jumpbox_ssh/private_key > jumpbox.key 
 
 $ chmod 600 jumpbox.key
 
@@ -402,10 +406,10 @@ bosh/0:~$
 ## VirtualBox 저장 및 시작 
 ```
 # To save state of vm
-vboxmanage controlvm $(bosh int ~/deployments/vbox/state.json --path /current_vm_cid) savestate
+vboxmanage controlvm $(bosh int ~/workspace/bosh-deployment/state.json --path /current_vm_cid) savestate
 
 # To start vm
-vboxmanage startvm $(bosh int ~/deployments/vbox/state.json --path /current_vm_cid) --type headless
+vboxmanage startvm $(bosh int ~/workspace/bosh-deployment/state.json --path /current_vm_cid) --type headless
 ```
 
 
