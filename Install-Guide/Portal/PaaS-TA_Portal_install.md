@@ -85,8 +85,10 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
         $ git clone https://github.com/PaaS-TA/PAAS-TA-PORTAL-RELEASE.git
         $ git checkout v4.0
         $ cd ~/PAAS-TA-PORTAL-RELEASE
-        $ wget -O download.zip http://45.248.73.44/index.php/s/xc3JeTsHnmfH6zt/download
-        $ unzip download.zip
+	$ mkdir src
+        $ cd src
+        $ wget -O src.zip http://45.248.73.44/index.php/s/MLmXeMFYkAbNMPp/download
+        $ unzip src.zip
         $ cd ..
         $ sh start.sh
         
