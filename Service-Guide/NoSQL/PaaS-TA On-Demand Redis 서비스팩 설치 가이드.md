@@ -283,7 +283,7 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
         nats                                       26*       f407411  
         nodejs-buildpack                           1.6.38    f7c4b52  
         ~                                          1.6.32*   fe11b60  
-        on-demand-release                          1.0       empty+  
+        on-demand-redis-release                    1.0       empty+  
         paas-ta-web-ide-broker-release             2.0*      non-git  
         paasta-container-service-projects-release  1.0*      02a858d+  
         paasta-delivery-pipeline-release           1.0*      non-git  
@@ -784,6 +784,64 @@ bosh -d on-demand-service-broker deploy paasta_on_demand_service_broker.yml \
    -l necessary_on_demand_vars.yml\
    -l unnecessary_on_demand_vars.yml
 ```
+
+
+```
+necessary_on_demand_vars.yml
+
+#!/bin/bash
+
+---
+### On-Demand Bosh Deployment Name Setting ###
+deployment_name: on-demand-service-broker                       #On-Demand Deployment Name을 지정한다.
+
+### Main Stemcells Setting ###
+stemcell_os: ubuntu-trusty                                      # Deployment Main Stemcell OS
+stemcell_version: 3586.25                                       # Main Stemcell Version
+stemcell_alias: default                                         # Main Stemcell Alias
+
+### On-Demand Release Deployment Setting ### 
+releases_name : on-demand-redis-release                         # On-Demand Release Name
+internal_networks_name : service_private                        # Some Network From Your 'bosh cloud-config(cc)'
+mariadb_disk_type : 2GB                                         # MariaDB Disk Type 'bosh cloud-config(cc)' 2G 이하로 할당할 경우 에러 발생
+broker_port : 8080                                              # On-Demand Broker Server Port 서비스 브로커 등록할때 접근할 포트를 지정한다.
+bosh_client_admin_id: admin                                     # Bosh Client Admin ID 를 입력한다.
+bosh_client_admin_secret:                                       # Bosh Client Admin Secret을 입력한다.
+bosh_url: https://xxx.xxx.xxx.xxx                               # Bosh URL을 입력한다. 'bosh env' 명령어를 치면 알 수 있다.
+bosh_director_port: 25555                                       # Bosh API Port
+bosh_oauth_port: 8443                                           # Bosh Oauth Port
+
+cloudfoundry_url: xxx.xxx.xxx.xxx.xip.io                        # CloudFoundry URL
+cloudfoundry_sslSkipValidation: true                            # CloudFoundry Login SSL Validation
+cloudfoundry_admin_id: admin                                    # CloudFoundry Admin ID
+cloudfoundry_admin_password:                                    # CloudFoundry Admin Password
+
+### On-Demand Service Property(Changes are possible) ###
+mariadb_port: 3306                                              # MariaDB Server Port
+mariadb_user_password:                                          # MariaDB Root Password(임의로 지정한다.)
+
+### On-Demand Dedicated Service Instance Properties ###
+
+on_demand_service_instance_name: redis                          # On-Demand Service Instance Name
+service_password: admin_test                                    # Dedicated Service Password
+service_port: 6379                                              # Dedicated Service Port
+
+```
+
+현재 On-Demand Service는 Plan 1개만 입력받도록 되어있다.
+```
+service_instance_guid: 54e2de61-de84-4b9c-afc3-88d08aadfcb6                # Service Instance Guid 이볅한다.
+service_instance_name: redis                                               # Service Instance Name 입력한다.
+service_instance_bullet_name: Redis Dedicated Server Use                   # Service Instance bullet Name을 입력한다.
+service_instance_bullet_desc: Redis Service Using a Dedicated Server       # Service Instance bullet에 대한 설명을 입력한다.
+service_instance_plan_guid: 2a26b717-b8b5-489c-8ef1-02bcdc445720           # Service Instance Plan Guid를 입력한다.
+service_instance_plan_name: dedicated-vm                                   # Service Instance Plan Name을 입력한다.
+service_instance_plan_desc: Redis service to provide a key-value store     # Service Instance Plan에 대한 설명을 입력한다.
+service_instance_org_limitation: -1                                        # Org에 설치할수 있는 Service Instance 개수를 제한한다. (-1일경우 제한없음)
+service_instance_space_limitation: -1                                      # Space에 설치할수 있는 Service Instance 개수를 제한한다. (-1일경우 제한없음)
+
+```
+
 
 -	On-Demand-Redis 서비스팩을 배포한다.
 
@@ -1735,7 +1793,7 @@ Get Redis Value ::null
 ##### Sample App을 재기동한다.
 ![15]
 
-```
+
 
 ##### App이 정상적으로 Redis 서비스를 사용하는지 확인한다.
 
@@ -1849,6 +1907,7 @@ Redis Desktop Manager 프로그램은 무료로 사용할 수 있는 오픈소�
 [18]:/Service-Guide/images/redis/redis_test18.PNG
 [19]:/Service-Guide/images/redis/redis_test19.PNG
 [20]:/Service-Guide/images/redis/redis_test20.PNG
+
 
 
 
