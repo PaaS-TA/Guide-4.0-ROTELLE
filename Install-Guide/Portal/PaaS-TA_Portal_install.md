@@ -77,7 +77,7 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 - 다운로드 방법
 1. 릴리즈된 파일받는방법
 
-        $ wget -O download.zip http://45.248.73.44/index.php/s/TfpySf2i4wE4B4n/download?path=%2F&files=paasta-portal-release-2.0.tgz
+        $ wget -O download.zip http://45.248.73.44/index.php/s/x4ie8AJKKs8jA9d/download
         $ unzip download.zip 
 
 2. PAAS-TA-PORTAL-RELEASE 다운받아  직접 릴리즈 생성및 업로드 하는 방법
@@ -85,11 +85,9 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
         $ git clone https://github.com/PaaS-TA/PAAS-TA-PORTAL-RELEASE.git
         $ git checkout v4.0
         $ cd ~/PAAS-TA-PORTAL-RELEASE
-	    $ mkdir src
-	    $ cd src
-	    $ wget -O src.zip http://45.248.73.44/index.php/s/MLmXeMFYkAbNMPp/download
-	    $ unzip src.zip 
-	    $ cd ..
+	    $ wget -O src.zip http://45.248.73.44/index.php/s/JAQRFctz7Tn26qK/download
+	    $ unzip src.zip
+	    $ rm -rf src.zip
 	    $ sh start.sh
 	
         
