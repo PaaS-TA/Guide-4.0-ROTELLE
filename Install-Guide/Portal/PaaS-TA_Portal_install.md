@@ -77,7 +77,7 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 - 다운로드 방법
 1. 릴리즈된 파일받는방법
 
-        $ wget -O download.zip http://45.248.73.44/index.php/s/x4ie8AJKKs8jA9d/download
+        $ wget -O download.zip http://45.248.73.44/index.php/s/WrFWMyWzLHXtAeG/download
         $ unzip download.zip 
 
 2. PAAS-TA-PORTAL-RELEASE 다운받아  직접 릴리즈 생성및 업로드 하는 방법
