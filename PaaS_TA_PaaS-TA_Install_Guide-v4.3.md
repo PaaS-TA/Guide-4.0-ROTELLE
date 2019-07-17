@@ -645,7 +645,7 @@ bosh -e {director_name} -d paasta deploy paasta-deployment.yml \
 ```
 
 
-### <div id='25'/>3.5.5. deploy-vshpere.sh
+### <div id='25'/>3.5.5. deploy-vsphere.sh
 
 ```
 bosh -e {director_name} -d paasta deploy paasta-deployment.yml \
