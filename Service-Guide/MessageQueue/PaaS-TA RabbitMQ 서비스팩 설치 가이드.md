@@ -554,7 +554,7 @@ instance_groups:
   - name: ((default_network_name))       # cloud config 에 정의한 network 이름
     static_ips:
     - 10.30.107.193                      # 사용할 IP addresses 정의(필수): rabbitmq-server IP
-  templates:
+  jobs:
   - name: rabbitmq-server                # job template 이름(필수)
     release: paasta-rabbitmq             # 릴리즈 이름(필수)
   syslog_aggregator: null
@@ -569,7 +569,7 @@ instance_groups:
   - name: ((default_network_name))       # cloud config 에 정의한 network 이름
     static_ips:
     - 10.30.107.192                      # 사용할 IP addresses 정의(필수): rabbitmq haproxy IP
-  templates:
+  jobs:
   - name: rabbitmq-haproxy                # job template 이름(필수)
     release: paasta-rabbitmq             # 릴리즈 이름(필수)
   syslog_aggregator: null
@@ -584,7 +584,7 @@ instance_groups:
   - name: ((default_network_name))       # cloud config 에 정의한 network 이름
     static_ips:
     - 10.30.107.191                      # 사용할 IP addresses 정의(필수): rabbitmq broker
-  templates:
+  jobs:
   - name: rabbitmq-broker                # job template 이름(필수)
     release: paasta-rabbitmq             # 릴리즈 이름(필수)
   syslog_aggregator: null
@@ -606,7 +606,7 @@ instance_groups:
       username: admin
       protocol: http
       port: 4567
-  templates:
+  jobs:
   - name: broker-registrar
     release: paasta-rabbitmq
 
@@ -627,7 +627,7 @@ instance_groups:
       username: admin
       protocol: http
       port: 4567
-  templates:
+  jobs:
   - name: broker-deregistrar
     release: paasta-rabbitmq
 
