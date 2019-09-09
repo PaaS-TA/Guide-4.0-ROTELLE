@@ -229,10 +229,9 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 - **사용 예시**
 
 		$ bosh -e micro-bosh stemcells
-		Name                                      Version   OS             CPI  CID  
-		bosh-vsphere-esxi-ubuntu-trusty-go_agent  3586.26*  ubuntu-trusty  -    sc-109fbdb0-f663-49e8-9c30-8dbdd2e5b9b9  
-		~                                         3445.2*   ubuntu-trusty  -    sc-025c70b5-7d6e-4ba3-a12b-7e71c33dad24  
-		~                                         3309*     ubuntu-trusty  -    sc-22429dba-e5cc-4469-ab3a-882091573277  
+		Name                                       Version  OS             CPI  CID  
+		bosh-openstack-kvm-ubuntu-xenial-go_agent  315.41*  ubuntu-xenial  -    fb08e389-2350-4091-9b29-41743495e62c  
+		~                                          315.36*  ubuntu-xenial  -    7076cf5d-a473-4c46-b6c1-4a7813911f76   
 
 		(*) Currently deployed
 
@@ -535,12 +534,12 @@ deployment 파일에서 사용하는 network, vm_type 등은 cloud config 를 �
 -	Deployment 파일을 서버 환경에 맞게 수정한다.
 
 ```yml
-# paasta-cubrid 설정 파일 내용
+# paasta-cubrid-service 설정 파일 내용
 ---
-name: paasta-cubrid-service  # 서비스 배포이름(필수)
+name: "((deployment_name))"  # 서비스 배포이름(필수)
 
 releases:
-- name: paasta-cubrid  #서비스 릴리즈 이름(필수)
+- name: "((releases_name))"  #서비스 릴리즈 이름(필수)
   version: "2.0"   #서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
 
 stemcells:
@@ -563,14 +562,9 @@ instance_groups:
   stemcell: default
   networks:
   - name: ((default_network_name))           # cloud config 에 정의한 network 이름
-    static_ips:
-    - 10.30.107.123                          # 사용할 IP addresses 정의(필수): Cubrid 서버 IP
-  templates:
+  jobs:
   - name: cubrid
-    release: paasta-cubrid
-  env:
-    bosh: 
-      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
+    release: "((releases_name))"
 
 - name: cubrid_broker   #작업 이름(필수): Cubrid 서비스 브로커
   azs:
@@ -580,118 +574,72 @@ instance_groups:
   stemcell: default
   networks:
   - name: ((default_network_name))           # cloud config 에 정의한 network 이름
-    static_ips:
-    - 10.30.107.122                          # 사용할 IP addresses 정의(필수): broker IP
-  templates:
+  jobs:
   - name: cubrid_broker  # job template 이름(필수)
-    release: paasta-cubrid
-
-- name: cubrid_broker_registrar
-  azs:
-  - z5
-  instances: 1
-  lifecycle: errand
-  vm_type: ((vm_type_small))
-  stemcell: default
-  networks:
-  - name: ((default_network_name))
-  properties:
-      broker: # 서비스 브로커 설정 정보
-        host: 10.30.107.122 # 서비스 브로커 IP 
-        name: CubridDB  # CF에서 서비스 브로커를 생성시 생기는 서비스 이름 브로커에 고정되어있는 값
-        password: cloudfoundry  # 브로커 접근 아이디 비밀번호(필수)
-        username: admin   # 브로커 접근 아이디(필수)
-        protocol: http
-        port: 8088  # 브로커 포트
-      cf:
-        admin_password: admin   # CF 사용자의 패스워드
-        admin_username: admin_test   # CF 사용자 이름
-        api_url: https://api.115.68.46.189.xip.io   # CF 설치시 설정한 api uri 정보(필수)
-  templates:
-  - name: cubrid_broker_registrar  # job template 이름(필수)
-    release: paasta-cubrid
-
-- name: cubrid_broker_deregistrar
-  azs:
-  - z5
-  instances: 1 
-  lifecycle: errand
-  vm_type: ((vm_type_small))
-  stemcell: default
-  networks:
-  - name: ((default_network_name))
-  properties:
-      broker: # 서비스 브로커 설정 정보
-        host: 10.30.107.122 # 서비스 브로커 IP 
-        name: CubridDB  # CF에서 서비스 브로커를 생성시 생기는 서비스 이름 브로커에 고정되어있는 값
-        password: cloudfoundry  # 브로커 접근 아이디 비밀번호(필수)
-        username: admin   # 브로커 접근 아이디(필수)
-      cf:
-        admin_password: admin   # CF 사용자의 패스워드
-        admin_username: admin_test   # CF 사용자 이름
-        api_url: https://api.115.68.46.189.xip.io   # CF 설치시 설정한 api uri 정보(필수)
-  templates:
-  - name: cubrid_broker_deregistrar  # job template 이름(필수)
-    release: paasta-cubrid
-
+    release: "((releases_name))"
 properties:
   cubrid:   # Cubrid 설정 정보
     max_clients: 200
   cubrid_broker:  # Cubrid Servcice Broker 설정 정보
-    cubrid_ip: 10.30.107.123 # Cubrid IP
     cubrid_db_port: 30000 # Cubrid Port
     cubrid_db_name: cubrid_broker   # Cubrid service 관리를 위한 데이터베이스 이름
     cubrid_db_user: dba   # 브로커 관리용 데이터베이스 접근 사용자이름
     cubrid_db_passwd: paasta  # 브로커 관리용 데이터베이스 접근 사용자 비밀번호
     cubrid_ssh_port: 22   # Cubrid가 설치된 서버 SSH 접속 포트
     cubrid_ssh_user: vcap # Cubrid가 설치된 서버 SSH 접속 사용자 이름
-    cubrid_ssh_passwd: c1oudc0w # Cubrid가 설치된 서버 SSH 접속 사용자 비밀번호cubrid job의 bosh password 값
-    cubrid_ssh_sudo_passwd: c1oudc0w # Cubrid가 설치된 서버 sudo 비밀번호cubrid job의 bosh password 값
-    cubrid_ssh_identity: "" # Cubrid가 설치된 서버 SSH 접속 인증 키/var/vcap/jobs/cubrid_broker/config/bosh.pem 인증키 사용시
-    #cubrid_ssh_identity: /var/vcap/jobs/cubrid_broker/config/bosh.pem # Cubrid가 설치된 서버 SSH 접속 >인증 키/var/vcap/jobs/cubrid_broker/config/bosh.pem
-    cubrid_ssh_key: ""
-#    cubrid_ssh_key: |
-#      -----BEGIN RSA PRIVATE KEY-----
-#      MIIEpAIBAAKCAQEA6Bf5unjJSccNlQk3jXqz4TNdpZkleKc92P69d1w//3moCyHz
-#      RxZ9+FKaYgoJEmm7ydP4uEBA7Zpb6+SUyHGp3yv57PaeSgccyoci1tcgHg9XtVAH
-#      c9wguyWwg8NDHNdX10Gsk8HRBtdK5CJLpIn3Wq0aiDndaCD2rrtRCqtCOHeTJy7q
-#      N5bvnCBmaFeTKfZ7lIcasDwh8ynfDdmI6T38hXUAW50SF1A8JVfeq5xx0zt4Amgx
-#      XeYduXFo7an6oYsJdqTOeYSuf+nswvgbSz1pKgnc0taxP9DLQRB+gJ1N/6xNjqhJ
-#      4zNWRG4Dn2W84XDwwhZFMwXMXm5uqI16UxZZCwIDAQABAoIBAQDVKF/lENXdeoFQ
-#      5Zwtxgm6xNA3LMYrX33/80XTf9gPLI5XWyDxowiirkq3y/u0+4LKxHFj1y9KiT/v
-#      EIpM5YdcPilVptKNrqaUozQuGHmY4gJttUiC8iLlfqH1Abp7nJNCUUDMm278V3Ki
-#      v5S1UzjoAJ+jiXF9Fvk4VTUDFXLGI9weF4wuxrF/d9f95TEEJ81U152lJY71M0km
-#      v4cvc+G9IkeeBSCj0pwgUi/fMMXJaJuS93k/10QrISYiAo7ZoI6labE6+TCBag17
-#      yFhm077Jms0suQ9tJjJMECcUQPefn3UtR/iBN/ar5pP1ADCR1u2HDA67u++QFLpr
-#      FdSVjCuBAoGBAPjgUT9UOjPWAE3mXwb2pqjeumbaLGm/D0ihx+VvmmVxfG+7hz3h
-#      Odkeq0Bo/u/k6XI99ai7T6GXY5eINcL+XMxEn/NNkgnfRcIiGyx2pwdRvlQv7Wao
-#      znSgyB71tPG4yjwZjkAQG5suoRoHEngSWqbwjwYlMrFbupZ0SNlfdYgrAoGBAO68
-#      rk+uYXQQdy+/j4hF9FA+rAktd8/W7qi4IVVJ57RNOjj9vM6ENqBT5N7EUWwTxbsZ
-#      m+ZAPBQxEhdfnZsVvSDaKdkER9zEZCtIuHCQo0EHrWwKNkPecoxx6ZTibgWg0zrJ
-#      cBCBa7kyg0GWRB7ngKevyQKbwm+bSf0jxes5QiKhAoGBALVq5y7v2gGBRPWEMc8k
-#      qzY8LcrdzTREdwKuE8Y3BWhfQqM8IwjDjmSsC4/HOddrmZSSf+nAqPqVHZ8PRole
-#      3Ax3FdXIvOT/YZ1zOTW/RGB8gO5jhX2pHd48ecS/vWfbGWiYBG7Ejyse4YbUkuz+
-#      DCDXCJslMH/C6w/TsmrqQAXDAoGAT34oFIQeEwWAijeg1WFlrmqP4iZvpJcOtMNK
-#      5hlLu6+TWXKzsZg4kD4fEUYRTolu55PpY0u0NYz5VysRUZh1d0DtekOAojQKnpcC
-#      QwkGMxsZVcY4t3SUc8tiWZ7jv6ADdampVPWjJvF43xfn6tpu7mcL6YBvx7XPdyi4
-#      OFDCgsECgYAYN2AZymeW9s4Noo8rM7KfMO00AupN5VgrJjFKKqRHT+trSjbhreQF
-#      TXMm7JczHYurUaNuSxh14T1Wno5ybrKyRWKhuF9Og1B/ciUEUijifg6Vz+GFfR92
-#      dvXLLjmsTzJ0dGO3vlEKwja9kyy2rN72gS/jLp1OeFReyf29cUD+Yw==
-#      -----END RSA PRIVATE KEY-----
+    cubrid_ssh_key: ((ssh_key))
+
 ```
 
 -	deploy-cubrid-bosh2.0.sh 파일을 서버 환경에 맞게 수정한다.
 
 ```sh
 #!/bin/bash
-# stemcell 버전은vsphere 및 openstack은  3215.4 버전으로aws은 3263.28  사용하시고 https://github.com/PaaS-TA/Guide-2.0-Linguine-/blob/master/Download_Page.md 에서 다운받아 쓰십시요.
 
-bosh -e micro-bosh -d paasta-cubrid-service deploy paasta_cubrid_bosh2.0.yml \
-   -v default_network_name=service_private \
-   -v stemcell_os=ubuntu-trusty \
-   -v stemcell_version=3215.4 \
+bosh -d paasta-cubrid-service deploy paasta_cubrid.yml \
+   -v deployment_name=paasta-cubrid-service \
+   -v releases_name=paasta-cubrid \
+   -v default_network_name=default \
+   -v stemcell_os=ubuntu-xenial \
+   -v stemcell_version="456.1" \
    -v vm_type_small=minimal \
-   -v vm_type_default=default
+   -v vm_type_default=medium \
+   -l pem.yml
+```
+
+-	pem.yml 수정한다.(bosh vm에 접속시 사용하는 pem key의 값을 넣는다 없을경우 ssk_key:""로 수정한다.)
+
+```sh
+
+ssh_key: |
+        -----BEGIN RSA PRIVATE KEY-----
+MIIEowIBAAKCAQEA24kRZy6XCkduExlJs0NEDEXGMWPzpMctDQOTaIwE6KmYJkUU
+skDyydyJ1uuvBMmckkJPJtbKp7H2R2EuUEYbRqMuNvti1DtKDIomu+7J5i5BezkU
+HceC8tOM0UNX3iNt9QnLcEBPhS2fQZvcQ5h3/FSkr/OjpR6SlCDLJD69E3VtWuYa
+lmTBMqqHSP6LQUotCjmbUsDrdJu32Z/pgUr8v3hlA8AQJRphQn84oFZrSuPr855+
+xvWMNDFiXeZqrMKNlgZ7BQ8VFB0e+LmrnJy8kxJdCsPet6tPTCvPSYbWbFzZieBi
+r4OtzS1J0vPZnzyik+p75pD45TU0KceymnEWJwIDAQABAoIBAH6ZR5jqDB3YXUjU
+P2UJ+FbfcdCPpDQ0y+0CT+JtRHNrQZtoIOw+egQgkriGxzIKlajeZkiuesVD4hL9
+nriaBSax+Xepdi+PVT9v97BOns2HhSlrHAekQwaHKmCO5j/qzIEPOessmu7hBULP
+f7DXXvH7WdFBve/9dmfHlX38VArAjm8DrBP/4zotJvN1TxhuMWBeY4jxYch/5Z7H
++BaLSen7W1wP8O8hZK0FGKKfJ8H1k6Ki47yJdinAI0NuWNo7SSK58Q4bzV8ulVXR
+UGAXw1bFJqdfKeXAW1DRb7J52beUSbnQhPa4KQ0IEK1BwsuhrF4Pv8ZUww0b5DPd
+0ZgThnkCgYEA8PgUHmL2dz3F5iWZqmPjwgYJ1nexK9UWxymF4a41t1cEsrb17DNY
+76yJVU1nxvZ3I6Zh+e5kgiYfWJqd8XPd3Aeq6IeaUyy2poWpnRiQpZeWTkEr2QqS
+9cTIc4Hj42hzpsE1BZ2OrLB/eYO4+dgDkigOdJTwcA5qla3hPTlWJVMCgYEA6Tq5
+y6YhfJcDY11H2x2etYmJOvzNVXdCIwFjrPHOZPVRG4HCG1WeYlXVxOzhY9Dercmv
+0au8kcI3UF5SuGPmHRNaUhCOPKvaRVh8JNwQdLa6UbHoRNQMlw22jNQ+2ja1Cdsx
+pBPhRGhomgJN7aXu/kh1iUXE98e9mQvbCqjkfV0CgYEAgkRKdAbh4KJ3aqym/tMT
+XF9xUAzSrbR7pN1QsClChsO3GXoJRlCX4rGuaHv4/zlcPNyEmN2EXkuHpJmpis8t
+f/ZxMVWlWxOQBkO55uBRygNB0TowHxw1SEHCb5cngFeGNf660DdV2wtrTmCkTgS2
+IXwgHGwr8xgIDLS8UCG/7VsCgYBJD554TziaQOxMykHiQCshj04v7lWcell7gcnp
+uW4AbmDUDxfxXCbbgywOHm6UyC+ZnV64feX6ey68vG+JV7IUVaWro4gLNYKQyqFJ
+Iq79AOjpAqRSO2MeRqty/mIaFZ0s0z9/uMKOnW53IFWtJpfxjF1VfUewnx+ju/UI
+J9Q7+QKBgAeuebZGR2+ocCfKvkWscqMxnqKDK0Ndv8afYkLdJ7Z1+tfRw/J18UIU
+UT4edXsdO2hPmmTJY63LywiRHbQ5oHdPFqoUbOJFsw5/msJMo5Lfpc7F5KhLlkbR
+G/GIqOk+vwkB8x//oOelECn4gWxeue0G11YNG5MrcWuVU7ijLyT6
+        -----END RSA PRIVATE KEY-----
+#not ssh key >> ssh_key: ""
 ```
 
 -	Cubrid 서비스팩을 배포한다.

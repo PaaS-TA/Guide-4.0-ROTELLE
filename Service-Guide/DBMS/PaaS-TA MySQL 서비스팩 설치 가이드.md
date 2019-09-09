@@ -225,10 +225,9 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 - **사용 예시**
 
 		$ bosh -e micro-bosh stemcells
-		Name                                      Version   OS             CPI  CID  
-		bosh-vsphere-esxi-ubuntu-trusty-go_agent  3586.26*  ubuntu-trusty  -    sc-109fbdb0-f663-49e8-9c30-8dbdd2e5b9b9  
-		~                                         3445.2*   ubuntu-trusty  -    sc-025c70b5-7d6e-4ba3-a12b-7e71c33dad24  
-		~                                         3309*     ubuntu-trusty  -    sc-22429dba-e5cc-4469-ab3a-882091573277  
+		Name                                       Version  OS             CPI  CID  
+		bosh-openstack-kvm-ubuntu-xenial-go_agent  315.41*  ubuntu-xenial  -    fb08e389-2350-4091-9b29-41743495e62c  
+		~                                          315.36*  ubuntu-xenial  -    7076cf5d-a473-4c46-b6c1-4a7813911f76   
 
 		(*) Currently deployed
 
@@ -236,7 +235,7 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 
 		Succeeded
 		
->Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell을 업로드를 해야 한다. (mysql 은 stemcell 3309 버전을 사용)
+>Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell을 업로드를 해야 한다.
 
 ### <div id='23'> 2.3. MySQL 서비스 Deployment 파일 및 deploy-mysql-bosh2.0.sh 수정 및 배포
 
@@ -531,7 +530,7 @@ deployment 파일에서 사용하는 network, vm_type 등은 cloud config 를 �
 -	Deployment 파일을 서버 환경에 맞게 수정한다.
 
 ```yml
-# paasta-mysql 설정 파일 내용
+# paasta-mysql-service 설정 파일 내용
 name: paasta-mysql-service                              # 서비스 배포이름(필수)
 
 releases:
@@ -552,139 +551,138 @@ update:
 instance_groups:
 - name: mysql
   azs:
-  - z5
-  instances: 3
+  - z4
+  instances: 1
   vm_type: ((vm_type_small))
   stemcell: default
   persistent_disk_type: 8GB
   networks:
   - name: ((default_network_name))
     static_ips:
-    - 10.30.107.166
-    - 10.30.107.165
-    - 10.30.107.164
-  properties:
-    admin_password: admin                # MySQL 어드민 패스워드
-    cluster_ips:                         # 클러스터 구성시 IPs(필수)
-    - 10.30.107.166
-    - 10.30.107.165
-    - 10.30.107.164
-    network_name: ((default_network_name))
-    seeded_databases: null
-    syslog_aggregator: null
-    collation_server: utf8_unicode_ci    # Mysql CharSet
-    character_set_server: utf8
-  release: paasta-mysql
-  template: mysql
+    - xx.x.xxx.01
+  jobs:
+  - name: mysql
+    release: paasta-mysql  
+    properties:
+      admin_password: admin                # MySQL 어드민 패스워드
+      cluster_ips:                         # 클러스터 구성시 IPs(필수)
+      - xx.x.xxx.01
+      network_name: ((default_network_name))
+      seeded_databases: null
+      syslog_aggregator: null
+      collation_server: utf8_unicode_ci    # Mysql CharSet
+      character_set_server: utf8
 
 - name: proxy
   azs:
-  - z5
+  - z4
   instances: 1
   vm_type: ((vm_type_small))
   stemcell: default
   networks:
   - name: ((default_network_name))
     static_ips:
-    - 10.30.107.168
-  properties:
-    cluster_ips:
-    - 10.30.107.166
-    - 10.30.107.165
-    - 10.30.107.164
-    external_host: 115.68.46.189.xip.io       # PaaS-TA 설치시 설정한 외부 호스트 정보(필수)
-    nats:                                    # PaaS-TA 설치시 설치한 nats 정보 (필수)
-      machines:
-      - 10.30.112.2 
-      password: "((nats_password))"
-      port: 4222
-      user: nats
-    network_name: ((default_network_name))
-    proxy:                                   # proxy 정보 (필수)
-      api_password: admin
-      api_username: api
-      api_force_https: false
-    syslog_aggregator: null
-  release: paasta-mysql
-  template: proxy
+    - xx.x.xxx.02
+  jobs:
+  - name: proxy
+    release: paasta-mysql
+    properties:
+      cluster_ips:
+      - xx.x.xxx.01
+      external_host: xx.x.xxx.04.xip.io       # PaaS-TA 설치시 설정한 외부 호스트 정보(필수)
+      nats:                                    # PaaS-TA 설치시 설치한 nats 정보 (필수)
+        machines:
+        - xx.x.xxx.05 
+        password: "((nats_password))"
+        port: 4222
+        user: nats
+      network_name: ((default_network_name))
+      proxy:                                   # proxy 정보 (필수)
+        api_password: admin
+        api_username: api
+        api_force_https: false
+      syslog_aggregator: null
 
 - name: paasta-mysql-java-broker
   azs:
-  - z5
+  - z4
   instances: 1
   vm_type: ((vm_type_small))
   stemcell: default
   networks:
   - name: ((default_network_name))
     static_ips:
-    - 10.30.107.167
-  properties:                                        # Mysql 정보
-    jdbc_ip: 10.30.107.168
-    jdbc_pwd: admin
-    jdbc_port: 3306
-    log_dir: paasta-mysql-java-broker
-    log_file: paasta-mysql-java-broker
-    log_level: INFO
-  release: paasta-mysql
-  template: op-mysql-java-broker
+    - xx.x.xxx.03
+  jobs:
+  - name: op-mysql-java-broker
+    release: paasta-mysql
+    properties:                                        # Mysql 정보
+      jdbc_ip: xx.x.xxx.02
+      jdbc_pwd: admin
+      jdbc_port: 3306
+      log_dir: paasta-mysql-java-broker
+      log_file: paasta-mysql-java-broker
+      log_level: INFO
 
 - name: broker-registrar
   lifecycle: errand                                 # bosh deploy시 vm에 생성되어 설치 되지 않고 bosh errand 로 실행할때 설정, 주로 테스트 용도에 쓰임
   azs:
-  - z5
+  - z4
   instances: 1
   vm_type: ((vm_type_small))
   stemcell: default
   networks:
   - name: ((default_network_name))
-  properties:
-    broker:
-      host: 10.30.107.167
-      name: mysql-service-broker
-      password: cloudfoundry
-      username: admin
-      protocol: http
-      port: 8080
-    cf:
-      admin_password: admin
-      admin_username: admin_test
-      api_url: https://api.115.68.46.189.xip.io
-      skip_ssl_validation: true
-  release: paasta-mysql
-  template: broker-registrar
+  jobs:
+  - name: broker-registrar
+    release: paasta-mysql
+    properties:
+      broker:
+        host: xx.x.xxx.03
+        name: mysql-service-broker
+        password: cloudfoundry
+        username: admin
+        protocol: http
+        port: 8080
+      cf:
+        admin_password: admin
+        admin_username: admin
+        api_url: https://api.xx.x.xxx.04.xip.io
+        skip_ssl_validation: true
 
 - name: broker-deregistrar
   lifecycle: errand                                 # bosh deploy시 vm에 생성되어 설치 되지 않고 bosh errand 로 실행할때 설정, 주로 테스트 용도에 쓰임
   azs:
-  - z5
+  - z4
   instances: 1
   vm_type: ((vm_type_small))
   stemcell: default
   networks:
   - name: ((default_network_name))
-  properties:
-    broker:
-      name: mysql-service-broker
-    cf:
-      admin_password: admin
-      admin_username: admin_test
-      api_url: https://api.115.68.46.189.xip.io
-      skip_ssl_validation: true
-  release: paasta-mysql
-  template: broker-deregistrar
-
+  jobs:
+  - name: broker-deregistrar
+    release: paasta-mysql
+    properties:
+      broker:
+        name: mysql-service-broker
+      cf:
+        admin_password: admin
+        admin_username: admin
+        api_url: https://api.xx.x.xxx.04.xip.io
+        skip_ssl_validation: true
 
 meta:
-  apps_domain: 115.68.46.189.xip.io
+  apps_domain: xx.x.xxx.04.xip.io
   environment: null
-  external_domain: 115.68.46.189.xip.io
+  external_domain: xx.x.xxx.04.xip.io
   nats:
     machines:
-    - 10.30.112.2 
-    password: "((nats_password))"
+    - xx.x.xxx.05                                    # PaaSTA nats IP
+    password: "((nats_password))"                 # PaaSTA nats password
     port: 4222
     user: nats
   syslog_aggregator: null
+
 ```
 
 -	deploy-mysql-bosh2.0.sh 파일을 서버 환경에 맞게 수정한다.
@@ -694,10 +692,10 @@ meta:
 # stemcell 버전은 3309 버전으로 사용하시고 https://github.com/PaaS-TA/Guide-2.0-Linguine-/blob/master/Download_Page.md 에서 다운받아 쓰십시요.
 
 bosh -e micro-bosh -d paasta-mysql-service deploy paasta_mysql_bosh2.0.yml \
-   -v default_network_name=service_private \
-   -v stemcell_os=ubuntu-trusty \
-   -v stemcell_version=3309 \
-   -v nats_password=fxaqRErYZ1TD8296u9HdMg8ol8dJ0G \
+   -v default_network_name=default \
+   -v stemcell_os=ubuntu-xenial \
+   -v stemcell_version="latest" \
+   -v nats_password=229yq707p0tfaq32gkhs \
    -v vm_type_small=minimal
 ```
 

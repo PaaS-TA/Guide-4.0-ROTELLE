@@ -8,8 +8,7 @@
   - 2.1. [설치전 준비사항](#21)
   - 2.2. [Pinpoint 서비스 릴리즈 업로드](#22)
   - 2.3. [Pinpoint 서비스 Deployment 파일 수정 및 배포](#23)
-  - 2.4. [HBase 기본 데이터 실행](#24)
-  - 2.5. [Pinpoint 서비스 브로커 등록](#25)
+  - 2.4. [Pinpoint 서비스 브로커 등록](#24)
 3. [Sample Web App 연동 Pinpoint 연동](#3)
   - 3.1. [Sample Web App 구조](#31)
   - 3.2. [PaaS-TA에서 서비스 신청](#32)
@@ -119,7 +118,7 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 	    	loggregator-agent                 2.0*      2382c90  
 	    	nats                              24*       30e7a82  
 	    	nodejs-buildpack                  1.6.28*   4cfdb7b  
-	    	paas-ta-portal-release            2.0*      non-git  
+	    	paas-ta-portal-release            1.0*      non-git  
 	    	paasta-delivery-pipeline-release  1.0*      b3ee8f48+  
 	    	php-buildpack                     4.3.57*   efc48f3  
 	    	postgres                          29*       5de4d63d+  
@@ -144,54 +143,38 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 
 - **사용 예시**
 
-		$ bosh -e micro-bosh upload-release paasta-pinpoint-2.0.tgz
+		$ bosh -e micro-bosh upload-release paasta-pinpoint-release.tgz
         Using environment '10.30.40.111' as user 'admin' (openid, bosh.admin)
-		Using environment '10.30.40.111' as user 'admin' (openid, bosh.admin)
 
-		######################################################## 100.00% 144.14 MiB/s 2s
-		Task 4460
+		######################################################## 100.00% 119.48 MiB/s 6s
+        Task 604436
         
-        Task 4460 | 04:31:41 | Extracting release: Extracting release (00:00:04)
-		Task 4460 | 04:31:45 | Verifying manifest: Verifying manifest (00:00:00)
-		Task 4460 | 04:31:45 | Resolving package dependencies: Resolving package dependencies (00:00:00)
-		Task 4460 | 04:31:45 | Creating new packages: gra-log-purger/f02fa5774ab54dbb1b1c3702d03cb929b85d60e6 (00:00:00)
-		Task 4460 | 04:31:45 | Creating new packages: cf-mysql-broker/250c6466bdaff96677e501ed5219d92ce4e61bd8 (00:00:00)
-		Task 4460 | 04:31:45 | Creating new packages: mysqlclient/ce95f8ac566f76b650992987d5282ee473356e43 (00:00:00)
-		Task 4460 | 04:31:45 | Creating new packages: acceptance-tests/1cb3ce7e20f5a8395b43fc6f0e3f2e92b0dc27bd (00:00:00)
-		Task 4460 | 04:31:45 | Creating new packages: galera/d15a1d2d15e5e7417278d4aa1b908566022b9623 (00:00:01)
-		Task 4460 | 04:31:46 | Creating new packages: galera-healthcheck/3da4dedbcd7d9f404a19e7720e226fd472002266 (00:00:00)
-		Task 4460 | 04:31:46 | Creating new packages: quota-enforcer/e2c4c9e7d7bbbe4bfdc0866962461b00e654cca3 (00:00:00)
-		Task 4460 | 04:31:46 | Creating new packages: python/4e255efa754d91b825476b57e111345f200944e1 (00:00:01)
-		Task 4460 | 04:31:47 | Creating new packages: ruby/ff79c965224b4160c1526bd704b3b21e4ad7c362 (00:00:00)
-		Task 4460 | 04:31:47 | Creating new packages: route-registrar/f3fdfb8c940e7227a96c06e413ae6827aba8eeda (00:00:00)
-		Task 4460 | 04:31:47 | Creating new packages: check/d6811f25e9d56428a9b942631c27c9b24f5064dc (00:00:01)
-		Task 4460 | 04:31:48 | Creating new packages: cli/24305e50a638ece2cace4ef4803746c0c9fe4bb0 (00:00:00)
-		Task 4460 | 04:31:48 | Creating new packages: mariadb/43aa3547bc5a01dd51f1501e6b93c215dd7255e9 (00:00:01)
-		Task 4460 | 04:31:49 | Creating new packages: openjdk-1.8.0_45/57e0ee876ea9d90f5470e3784ae1171bccee850a (00:00:02)
-		Task 4460 | 04:31:51 | Creating new packages: mariadb_ctrl/7658290da98e2cad209456f174d3b9fa143c87fc (00:00:01)
-		Task 4460 | 04:31:52 | Creating new packages: scons/11e7ad3b28b43a96de3df7aa41afddde582fcc38 (00:00:00)
-		Task 4460 | 04:31:52 | Creating new packages: syslog_aggregator/078da6dcb999c1e6f5398a6eb739182ccb4aba25 (00:00:00)
-		Task 4460 | 04:31:52 | Creating new packages: xtrabackup/2e701e7a9e4241b28052d984733de36aae152275 (00:00:01)
-		Task 4460 | 04:31:53 | Creating new packages: boost/3eb8bdb1abb7eff5b63c4c5bdb41c0a778925c31 (00:00:01)
-		Task 4460 | 04:31:54 | Creating new packages: common/ba480a46c4b2aa9484fb24ed01a8649453573e6f (00:00:00)
-		Task 4460 | 04:31:54 | Creating new packages: switchboard/fad565dadbb37470771801952001c7071e55a364 (00:00:01)
-		Task 4460 | 04:31:55 | Creating new packages: op-mysql-java-broker/3bf47851b2c0d3bea63a0c58452df58c14a15482 (00:00:01)
-		Task 4460 | 04:31:56 | Creating new packages: golang/f57ddbc8d55d7a0f08775bf76bb6a27dc98c7ea7 (00:00:01)
-		Task 4460 | 04:31:57 | Creating new jobs: cf-mysql-broker/9828ead15eabdc33b2c27fe275b463735edb115d (00:00:00)
-		Task 4460 | 04:31:57 | Creating new jobs: acceptance-tests/48c00c36ec5210cbdd3b125ae6a72cfdf6eaf4e2 (00:00:00)
-		Task 4460 | 04:31:57 | Creating new jobs: broker-deregistrar/b5f6f776d46eb1ac561ab1e8f58d8ddedb97f86e (00:00:00)
-		Task 4460 | 04:31:57 | Creating new jobs: proxy/7907d8759aa11dfcbbe79220dc945c96b5562ac1 (00:00:00)
-		Task 4460 | 04:31:57 | Creating new jobs: mysql/078561f02f2516212ed59c48e1dd45360f93871c (00:00:00)
-		Task 4460 | 04:31:57 | Creating new jobs: op-mysql-java-broker/6e47c9ea6fbe0867d4a476af5abf157830c03024 (00:00:00)
-		Task 4460 | 04:31:57 | Creating new jobs: broker-registrar/e1f5e30b87e70e916ea74ea8eb63a7b6ff6ff643 (00:00:00)
-		Task 4460 | 04:31:57 | Release has been created: paasta-mysql/2.0 (00:00:00)
+        Task 604436 | 06:38:45 | Extracting release: Extracting release (00:00:05)
+        Task 604436 | 06:38:51 | Verifying manifest: Verifying manifest (00:00:00)
+        Task 604436 | 06:38:51 | Resolving package dependencies: Resolving package dependencies (00:00:00)
+        Task 604436 | 06:38:51 | Creating new packages: bosh-helpers/e818e2120b03e3340d2813ee8e8a0627f6750d52329f54c1b932843a3aa9cc3f (00:00:00)
+        Task 604436 | 06:38:51 | Creating new packages: broker/7b93b205d289989b2fc57ab775331f7938a3150f44247b4f6a77661db961b226 (00:00:00)
+        Task 604436 | 06:38:51 | Creating new packages: collector/a833cd6414788c05ea4633965aee8393290b2bf0c4c5d8118e13788c50d5f334 (00:00:01)
+        Task 604436 | 06:38:52 | Creating new packages: hadoop/54a95c16685fefc6f80757d663b0f0f80d64f454ca1fef5e7f60fff288409bdf (00:00:04)
+        Task 604436 | 06:38:56 | Creating new packages: haproxy/36b96cd676e6369d65ea2458b8700b9545927c445bc47de6653de51ef779a3d5 (00:00:00)
+        Task 604436 | 06:38:56 | Creating new packages: hbase/2f41aa099754a83cf9eaee352568928abe28c421b54e74a9fd6aec9da8d72b55 (00:00:02)
+        Task 604436 | 06:38:58 | Creating new packages: java/0b3dcab5e65a3de7ab25f0b356578300a138bbf7d068b94d158927ea76f15165 (00:00:02)
+        Task 604436 | 06:39:01 | Creating new packages: pinpoint_web/fe6382870b3ea67157ee0dc30874450b230de52d36c57262f1c7a63fd7fe8b38 (00:00:01)
+        Task 604436 | 06:39:02 | Creating new packages: tomcat/c8b9799b07a35c301a885ba9fb23f1568d3d0f466d2d9f0c3b37ca99fea51b9d (00:00:00)
+        Task 604436 | 06:39:02 | Creating new jobs: broker/350ed3e701721b348ffc4b2a903e16944bf8cee01c3ddafc539b75a5db476ff9 (00:00:00)
+        Task 604436 | 06:39:02 | Creating new jobs: collector/3134bb21112e6c1ae3074cd025bbb4bab987028175f755f8c84b8ca049eda308 (00:00:00)
+        Task 604436 | 06:39:02 | Creating new jobs: h_master/f8db37c7eeab582e4b0e124b10c239941476161832c74cdaa689f192477fe2d7 (00:00:01)
+        Task 604436 | 06:39:03 | Creating new jobs: haproxy_webui/0f3c3e1bfb49d4e32b2d3ee142d26b14d0f380e38439de45bf69fa7c25b53285 (00:00:00)
+        Task 604436 | 06:39:03 | Creating new jobs: pinpoint_web/c0ccf5e7794c113ef9984cbab8456cf08d022d6c62fd3e42da646898332f12e3 (00:00:00)
+        Task 604436 | 06:39:03 | Release has been created: paasta-pinpoint-release/1.0 (00:00:00)
+        
+        Task 604436 Started  Fri Sep  6 06:38:45 UTC 2019
+        Task 604436 Finished Fri Sep  6 06:39:03 UTC 2019
+        Task 604436 Duration 00:00:18
+        Task 604436 done
+        
+        Succeeded
 
-		Task 4460 Started  Fri Aug 31 04:31:41 UTC 2018
-		Task 4460 Finished Fri Aug 31 04:31:57 UTC 2018
-		Task 4460 Duration 00:00:16
-		Task 4460 done
-
-		Succeeded
 
 -	업로드 된 Pinpoint 릴리즈를 확인한다.
 
@@ -223,7 +206,7 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 		paas-ta-portal-release            2.0*      non-git  
 		paasta-delivery-pipeline-release  1.0*      b3ee8f48+  
 		paasta-mysql                      2.0       85e3f01e+  
-		paasta-pinpoint                   2.0*      2dbb8bf3+  
+		paasta-pinpoint                   1.0*      2dbb8bf3+  
 		php-buildpack                     4.3.57*   efc48f3  
 		postgres                          29*       5de4d63d+  
 		python-buildpack                  1.6.18*   bcc4f26  
@@ -248,14 +231,13 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 - **사용 예시**
 
 		$ bosh -e micro-bosh stemcells
-		Name                                      Version   OS             CPI  CID  
-		bosh-vsphere-esxi-ubuntu-trusty-go_agent  3586.26*  ubuntu-trusty  -    sc-109fbdb0-f663-49e8-9c30-8dbdd2e5b9b9  
-		~                                         3445.2*   ubuntu-trusty  -    sc-025c70b5-7d6e-4ba3-a12b-7e71c33dad24  
-		~                                         3309*     ubuntu-trusty  -    sc-22429dba-e5cc-4469-ab3a-882091573277  
+		Name                                       Version  OS             CPI  CID  
+		bosh-openstack-kvm-ubuntu-xenial-go_agent  315.41*  ubuntu-xenial  -    fb08e389-2350-4091-9b29-41743495e62c  
+		~                                          315.36*  ubuntu-xenial  -    7076cf5d-a473-4c46-b6c1-4a7813911f76  
 
 		(*) Currently deployed
 
-		3 stemcells
+		2 stemcells
 
 		Succeeded
 		
@@ -554,199 +536,155 @@ deployment 파일에서 사용하는 network, vm_type 등은 cloud config 를 �
 -	Deployment 파일을 서버 환경에 맞게 수정한다.
 
 ```yaml
-# paasta-pinpoint 설정 파일 내용
-name: paasta-pinpoint-service                              # 서비스 배포이름(필수)
-
-releases:
-- name: paasta-pinpoint                                    # 서비스 릴리즈 이름(필수)
-  version: "2.0"                                        # 서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
-
-stemcells:
-- alias: default
-  os: ((stemcell_os))                                   # 배포시 사용할 stemcell OS 이름 
-  version: "((stemcell_version))"                       # 배포시 사용할 stemcell OS 버전 
+# paasta-pinpoint-vsphere 설정 파일 내용
+name: "((deployment_name))"                           # 서비스 배포이름(필수)
 
 update:
   canaries: 1                            # canary 인스턴스 수(필수)
-  canary_watch_time: 30000-120000        # canary 인스턴스가 수행하기 위한 대기 시간(필수)
+  canary_watch_time: 120000              # canary 인스턴스가 수행하기 위한 대기 시간(필수)
+  update_watch_time: 120000              # non-canary 인스턴스가 수행하기 위한 대기 시간(필수)
   max_in_flight: 8                       # non-canary 인스턴스가 병렬로 update 하는 최대 개수(필수)
-  update_watch_time: 30000-120000        # non-canary 인스턴스가 수행하기 위한 대기 시간(필수)
+
+stemcells:
+- alias: "((stemcell_alias))"
+  os: "((stemcell_os))"
+  version: "((stemcell_version))"
+
+releases:
+- name: "((releases_name))"                  # 서비스 릴리즈 이름(필수) bosh releases로 확인 가능
+  version: "latest"                                             # 서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
 
 instance_groups:
-- name: h_slave                          #작업 이름(필수) : Hadoop slave 
-  azs:                                   #설치 할 zone 이름
-  - z5
-  instances: 2                           # job 인스턴스 수(필수)
-  vm_type: ((vm_type_small))             # cloud config 에 정의한 vm_type
-  stemcell: default
-  networks:
-  - name: ((default_network_name))       # cloud config 에 정의한 network 이름
-    static_ips:                          # 사용할 IP addresses
-    - 10.30.107.190
-    - 10.30.107.191
-  templates:
-  - name: h_slave                        # job template 이름(필수)
-    release: paasta-pinpoint
-
-- name: h_secondary                      #작업 이름(필수) : Hadoop secondary server
-  azs:                                   #설치 할 zone 이름
-  - z5
-  instances: 1                           # job 인스턴스 수(필수)
-  vm_type: ((vm_type_small))             # cloud config 에 정의한 vm_type
-  stemcell: default
-  networks:
-  - name: ((default_network_name))
-    static_ips:
-    - 10.30.107.176
-  templates:
-  - name: h_secondary
-    release: paasta-pinpoint
-
-- name: h_master                         #작업 이름(필수) : Hadoop master server
+- name: h_master                          #작업 이름(필수)
   azs:
-  - z5
-  instances: 1
-  vm_type: ((vm_type_small))
-  stemcell: default
-  networks:
-  - name: ((default_network_name))
-    static_ips:
-    - 10.30.107.175
-  templates:
+  - z3
+  instances: 1                            # job 인스턴스 수(필수)
+  vm_type: "((vm_type))"
+  stemcell: "((stemcell_alias))"
+  persistent_disk_type: "((mariadb_disk_type))"
+  networks:                               # 네트워크 구성정보          
+  - name: "((internal_networks_name))"                         # Networks block에서 선언한 network 이름(필수)
+  jobs:
   - name: h_master
-    release: paasta-pinpoint
+    release: "((releases_name))"
+  syslog_aggregator: null
+  properties:
+    pem_key: ((pem_key))
+    PemSSH: ((PemSSH))
 
-- name: collector                          #작업 이름(필수) : pinpoint collector server
+- name: collector                          #작업 이름(필수)
   azs:
-  - z5
-  instances: 2
-  vm_type: ((vm_type_small))
-  stemcell: default
-  networks:
-  - name: ((default_network_name))
-    static_ips:
-    - 10.30.107.145
-    - 10.30.107.146
-  templates:
-  - name: collector
-    release: paasta-pinpoint
+  - z3
+  instances: 1                            # job 인스턴스 수(필수)
+  vm_type: "((vm_type))"
+  stemcell: "((stemcell_alias))"
+  persistent_disk_type: "((mariadb_disk_type))"
+  networks:                               # 네트워크 구성정보          
+  - name: "((internal_networks_name))"                         # Networks block에서 선언한 network 이름(필수)
+  jobs:
+  - name: collector 
+    release: "((releases_name))"
+  syslog_aggregator: null
 
-- name: haproxy_webui                       #작업 이름(필수) : pinpoint webui haproxy
+- name: pinpoint_web                          #작업 이름(필수)
   azs:
-  - z5
-  instances: 1
-  vm_type: ((vm_type_small))
-  stemcell: default
-  networks:
-  - name: ((default_network_name))
-    static_ips:
-    - 10.30.107.178
-  - name: ((public_network_name))
-    static_ips: 
-    - 115.68.47.183
-  templates:
-  - name: haproxy_webui
-    release: paasta-pinpoint
+  - z3
+  instances: 1                            # job 인스턴스 수(필수)
+  vm_type: "((vm_type))"
+  stemcell: "((stemcell_alias))"
+  persistent_disk_type: "((mariadb_disk_type))"
+  networks:                               # 네트워크 구성정보          
+  - name: "((internal_networks_name))"                         # Networks block에서 선언한 network 이름(필수)
+  jobs:
+  - name: pinpoint_web
+    release: "((releases_name))"
+  syslog_aggregator: null
 
-- name: webui                                 #작업 이름(필수) : pinpoint webui server
+- name: broker                          #작업 이름(필수)
   azs:
-  - z5
-  instances: 2
-  vm_type: ((vm_type_small))
-  stemcell: default
-  networks:
-  - name: ((default_network_name))
-    static_ips:
-    - 10.30.107.179
-    - 10.30.107.180
-  templates:
-  - name: webui
-    release: paasta-pinpoint
-
-- name: pinpoint_broker                            #작업 이름(필수) : pinpoint service broker
-  azs:
-  - z5
-  instances: 1
-  vm_type: ((vm_type_small))
-  stemcell: default
-  networks:
-  - name: ((default_network_name))
-    static_ips:
-    - 10.30.107.182
-  templates:
+  - z3
+  instances: 1                            # job 인스턴스 수(필수)
+  vm_type: "((vm_type))"
+  stemcell: "((stemcell_alias))"
+  persistent_disk_type: "((mariadb_disk_type))"
+  networks:                               # 네트워크 구성정보          
+  - name: "((internal_networks_name))"                         # Networks block에서 선언한 network 이름(필수)
+  jobs:
   - name: broker
-    release: paasta-pinpoint
+    release: "((releases_name))"
+  syslog_aggregator: null
 
-properties:                                  # Pinpoint 설정정보
-  master:
-    host_name: h-master                      # Pinpoint master 설정정보
-    host_ip: 10.30.107.175
-    port: 9000
-    http_port: 50070
-    replication: 2                           # Pinpoint master 복제개수
-    tcp_listen_port: 29994
-    udp_stat_listen_port: 29995
-    udp_span_listen_port: 29996
-  broker:                                    # Pinpoint broker 설정정보
-    collector_ips:
-    - 10.30.107.145
-    - 10.30.107.146
-    collector_tcp_port: 29994                           #
-    collector_stat_port: 29995
-    collector_span_port: 29996
-    dashboard_uri: http://115.68.47.183:80/#/main       # Pinpoint dashboard url 설정정보
-  secondary:                                  # Pinpoint secondary 설정정보
-    host_name: h-secondary
-    host_ip: 10.30.107.176
-    http_port: 50090
-  yarn:                                       # Pinpoint yarn 설정정보
-    host_name: h-master
-    host_ip: 10.30.107.175
-    resource_tracker_port: 8025
-    scheduler_port: 8030
-    resourcemanager_port: 8040
-  slave:                                      # Pinpoint slave 설정정보
-    host_names:
-    - h-slave0
-    - h-slave1
-    host_ips:
-    - 10.30.107.190
-    - 10.30.107.191
-  collector:                              # Pinpoint collector 설정정보
-    host_names:
-    - h-collector0
-    - h-collector1
-    host_ips:
-    - 10.30.107.145
-    - 10.30.107.146
-  haproxy:                                 # Pinpoint haproxy 설정정보
-    host_name: haproxy-webui
-    host_ip: 10.30.107.178
-    http_port: 80
-  webui:                                   # Pinpoint webui 설정정보
-    host_names:
-    - h-webui0
-    - h-webui1
-    host_ips:
-    - 10.30.107.179
-    - 10.30.107.180
+- name: haproxy_webui                          #작업 이름(필수)
+  azs:
+  - z7
+  instances: 1                            # job 인스턴스 수(필수)
+  vm_type: "((vm_type))"
+  stemcell: "((stemcell_alias))"
+  persistent_disk_type: "((mariadb_disk_type))"
+  networks:                               # 네트워크 구성정보          
+  - name: "((internal_networks_name))"                         # Networks block에서 선언한 network 이름(필수)
+  - name: "((external_networks_name))"
+    static_ips: "((haproxy_public_ip))"
+  jobs:
+  - name: haproxy_webui
+    release: "((releases_name))"
+  syslog_aggregator: null
+
+properties:                                # Pinpoint 설정정보
+  master:                                  # Pinpoint master 설정정보
+    replication: 1                         # Pinpoint master 복제개수
+    tcp_listen_port: 29994                 # Pinpoint master tcp port
+  broker:                                  # Pinpoint broker 설정정보
+    collector_tcp_port: 29994              # Pinpoint collector tcp port 설정정보
+    collector_stat_port: 29995             # Pinpoint collector stat port 설정정보
+    collector_span_port: 29996             # Pinpoint collector span port 설정정보
+    dashboard_uri: http://((haproxy_public_ip)):80/#/main   # Pinpoint dashboard url 설정정보
+  yarn:                                    # Pinpoint yarn 설정정보      
+    resource_tracker_port: 8025            # Pinpoint yarn resource_tracker_port
+    scheduler_port: 8030                   # Pinpoint yarn scheduler_port
+    resourcemanager_port: 8040             # Pinpoint yarn resourcemanager_port
+
 ```
 
 -	deploy-pinpoint-bosh2.0.sh 파일을 서버 환경에 맞게 수정한다.
 
 ```sh
 #!/bin/bash
-# stemcell 버전은 3309 버전으로 사용하시고 https://github.com/PaaS-TA/Guide-2.0-Linguine-/blob/master/Download_Page.md 에서 다운받아 쓰십시요.
-# vsphere 인 경우 에는 use-public-network-vsphere.yml 사용하여 public ip를 설정 하고 그 이외의 IaaS는 use-public-network.yml 사용한다.
+# 프로퍼티 설정은 pinpoint_property.yml을 통해 수정을 한다.
 
 bosh -e micro-bosh -d paasta-pinpoint-service deploy paasta_pinpoint_bosh2.0.yml \
-   -o use-public-network-vsphere.yml \
-   -v default_network_name=service_private \
-   -v public_network_name=service_public \
-   -v stemcell_os=ubuntu-trusty \
-   -v stemcell_version=3309 \
-   -v vm_type_small=minimal
+     -o use-public-network-vsphere.yml \
+     -l pinpoint_property.yml\
+     -l pem.yml
+
 ```
+
+```paata_pinpoint.yml
+#!/bin/bash
+  
+---
+### Pinpoint Bosh Deployment Name Setting ###
+deployment_name: paasta-pinpoint-service                       #PinPoint_Deployment name
+#
+#### Main Stemcells Setting ###
+stemcell_os: ubuntu-xenial                                      # Deployment Main Stemcell OS
+stemcell_version: latest                                       # Main Stemcell Version
+stemcell_alias: default                                         # Main Stemcell Alias
+#
+#### VM Type
+vm_type: caas_small_highmem
+#
+#### Pinpoint Release Deployment Setting ### 
+releases_name :  paasta-pinpoint-release                              # Pinpoint Release Name
+internal_networks_name : default                        # Some Network From Your 'bosh cloud-config(cc)'
+external_networks_name : vip
+haproxy_public_ip : xx.xx.xxx.xxx
+mariadb_disk_type : 30GB # MariaDB Disk Type 'bosh cloud-config(cc)'
+PemSSH : true                                           # BOSH VM 접속할 SSH PemKey를 설정했으면 true 아닐경우 false를 입력한다.  true 설정시 pem.yml에 pemkey값을 넣는다.
+#
+```
+
+
 
 -	Pinpoint 서비스팩을 배포한다.
 
@@ -1111,78 +1049,18 @@ bosh -e micro-bosh -d paasta-pinpoint-service deploy paasta_pinpoint_bosh2.0.yml
 
 		Instance                                              Process State  AZ  IPs            VM CID                                   VM Type  Active  
 		collector/5f10f9cf-67ed-4c08-8c14-99d7f7a818c2        running        z5  10.30.107.145  vm-1714d225-85fa-4236-94db-7ed26baa52b3  minimal  true  
-		collector/79d48854-7eb3-4f50-92aa-8b2df8380653        running        z5  10.30.107.146  vm-415e14ed-5304-40ec-9529-3f3f7c1902b4  minimal  true  
-		h_master/723a34d6-0756-41e2-b11e-1530596cbb09         running        z5  10.30.107.175  vm-037e021b-3dba-4ea3-961c-6bd259d25c4b  minimal  true  
-		h_secondary/78b552e3-9b38-4f92-864f-8457e6d0673d      running        z5  10.30.107.176  vm-54d4848a-8001-49e5-8be7-37fd6ca06d6c  minimal  true  
-		h_slave/984ea017-9495-4402-8057-613bdee868be          running        z5  10.30.107.190  vm-9cdeec0d-d71a-4133-942b-7439ef0df359  minimal  true  
-		h_slave/d32b818e-9d2d-4dbe-856d-f7027605865f          running        z5  10.30.107.191  vm-6aebc5a9-8a78-4388-b876-2c6dc192de71  minimal  true  
+		h_master/723a34d6-0756-41e2-b11e-1530596cbb09         running        z5  10.30.107.175  vm-037e021b-3dba-4ea3-961c-6bd259d25c4b  minimal  true    
 		haproxy_webui/22999f9c-0798-43a5-b93b-bc5d44c4d210    running        z5  10.30.107.178  vm-294e229c-aa89-4a5c-9960-4009579bbf54  minimal  true  
-											 115.68.47.183                                                      
+											 xxx.xx.xx.xx3                                                      
 		pinpoint_broker/7a9d8423-c5f9-4e3c-be16-42e9215f8268  running        z5  10.30.107.182  vm-1b9b0891-8a02-45af-8b0c-ca21bf56e64e  minimal  true  
-		webui/30f7c9cf-ab03-4f78-a9bf-96c5148a9ec1            running        z5  10.30.107.180  vm-62d5e876-2ab4-4327-ba54-2f74b53e3da9  minimal  true  
-		webui/a0433ae3-2a7b-4c7f-822c-9c1d46c658ea            running        z5  10.30.107.179  vm-365edb16-1b8e-4c65-a984-b03a368d8e95  minimal  true  
+		webui/30f7c9cf-ab03-4f78-a9bf-96c5148a9ec1            running        z5  10.30.107.180  vm-62d5e876-2ab4-4327-ba54-2f74b53e3da9  minimal  true   
 
-		10 vms
+		5 vms
 
 		Succeeded
 
-### <div id='24'> 2.4. HBase 기본 데이터 실행
 
--	Pinpoint 서비스팩 배포가 완료 되었으면 HBase 14개의 기본 Table이 생성되어야 Application에서 서비스 팩을 정상 사용할 수 있다.
-h_master 서버에 ssh 로 접속 하여 hbase table 생성 스크립트를 구동한다.
-
-- **사용 예시**
-
-		$ bosh -e micro-bosh -d paasta-pinpoint-service ssh h_master
-		
-		h_master/fbd4ed1f-92ce-4244-a0bc-ebc089cebe12:/var/vcap/packages/hbase/bin$ sudo mount -o remount, exec /tmp && /var/vcap/packages/hbase/bin/hbase shell /var/vcap/packages/hbase/bin/hbase-create.hbase
-		2018-08-28 02:21:54,165 WARN  [main] util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-		0 row(s) in 2.0700 seconds
-
-		0 row(s) in 4.2910 seconds
-
-		0 row(s) in 1.2440 seconds
-
-		0 row(s) in 1.2360 seconds
-
-		0 row(s) in 1.2660 seconds
-
-		0 row(s) in 2.2480 seconds
-
-		0 row(s) in 2.2610 seconds
-
-		0 row(s) in 2.2490 seconds
-
-		0 row(s) in 8.2970 seconds
-
-		0 row(s) in 2.3460 seconds
-
-		0 row(s) in 2.2660 seconds
-
-		0 row(s) in 2.2680 seconds
-
-		0 row(s) in 2.3110 seconds
-
-		0 row(s) in 2.2500 seconds
-
-		TABLE
-		AgentEvent
-		AgentInfo
-		AgentLifeCycle
-		AgentStat
-		ApiMetaData
-		ApplicationIndex
-		ApplicationMapStatisticsCallee_Ver2
-		ApplicationMapStatisticsCaller_Ver2
-		ApplicationMapStatisticsSelf_Ver2
-		ApplicationTraceIndex
-		HostApplicationMap_Ver2
-		SqlMetaData_Ver2
-		StringMetaData
-		Traces
-		14 row(s) in 0.0470 seconds
-
-### <div id='25'> 2.5. Pinpoint 서비스 브로커 등록
+### <div id='24'> 2.4. Pinpoint 서비스 브로커 등록
 
 Pinpoint 서비스팩 배포가 완료 되었으면 Application에서 서비스 팩을
 사용하기 위해서 먼저 Pinpoint 서비스 브로커를 등록해 주어야 한다.

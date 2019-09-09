@@ -217,10 +217,9 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 - **사용 예시**
 
 		$ bosh -e micro-bosh stemcells
-		Name                                      Version   OS             CPI  CID  
-		bosh-vsphere-esxi-ubuntu-trusty-go_agent  3586.26*  ubuntu-trusty  -    sc-109fbdb0-f663-49e8-9c30-8dbdd2e5b9b9  
-		~                                         3445.2*   ubuntu-trusty  -    sc-025c70b5-7d6e-4ba3-a12b-7e71c33dad24  
-		~                                         3309*     ubuntu-trusty  -    sc-22429dba-e5cc-4469-ab3a-882091573277  
+		Name                                       Version  OS             CPI  CID  
+		bosh-openstack-kvm-ubuntu-xenial-go_agent  315.41*  ubuntu-xenial  -    fb08e389-2350-4091-9b29-41743495e62c  
+		~                                          315.36*  ubuntu-xenial  -    7076cf5d-a473-4c46-b6c1-4a7813911f76   
 
 		(*) Currently deployed
 
@@ -524,7 +523,7 @@ deployment 파일에서 사용하는 network, vm_type 등은 cloud config 를 �
 -	Deployment 파일을 서버 환경에 맞게 수정한다.
 
 ```yml
-# openpaas-mongodb-shard-service 설정 파일 내용
+# openpaas-mongodb-shard-aws 설정 파일 내용
 ---
 name: paasta-mongodb-shard-service  # 서비스 배포이름(필수)
 
@@ -532,259 +531,260 @@ release:
   name: paasta-mongodb-shard  #서비스 릴리즈 이름(필수)
   version: "2.0"   #서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
 
+# this section describes how updates are handled
+update:
+  canaries: 1   # canary 인스턴스 수(필수)
+  canary_watch_time: 120000  # canary 인스턴스가 수행하기 위한 대기 시간(필수)
+  update_watch_time: 120000  # non-canary 인스턴스가 병렬로 update 하는 최대 개수(필수)
+  max_in_flight: 4
+
 stemcells:
 - alias: default
-  os: ((stemcell_os))
-  version: "((stemcell_version))"
-
-update:
-  canaries: 1                                          # canary 인스턴스 수(필수)
-  canary_watch_time: 30000-180000                      # canary 인스턴스가 수행하기 위한 대기 시간(필수)
-  max_in_flight: 6                                     # non-canary 인스턴스가 병렬로 update 하는 최대 개수(필수)
-  update_watch_time: 30000-180000                      # non-canary 인스턴스가 수행하기 위한 대기 시간(필수)
+  os: ubuntu-xenial
+  version: "latest"
 
 instance_groups:
 - name: mongodb_slave1  #작업 이름(필수): mongodb replica set의 slave 서버
-  azs:
-  - z5
   instances: 2  # job 인스턴스 수(필수)
-  vm_type: ((vm_type_small))              # cloud config 에 정의한 vm_type
+  vm_type: medium
   stemcell: default
-  persistent_disk_type: 10GB              # cloud config 에 정의한 영구 디스크 타입 
-  networks:
-  - name: ((default_network_name))        # cloud config 에 정의한 network 이름
-    static_ips:                           # 사용할 IP addresses
-    - 10.30.107.202
-    - 10.30.107.203
-  properties:
-    replSetName: op1 # replicaSet1 의 이름
-  templates:
-  - name: mongodb_slave                # job template 이름(필수)
-    release: paasta-mongodb-shard
-
-- name: mongodb_slave2  #작업 이름(필수): mongodb replica set의 slave 서버
+  persistent_disk: 10240  # 영구적 디스크 사이즈 정의(옵션): 16G
   azs:
-  - z5
-  instances: 2  # job 인스턴스 수(필수)
-  vm_type: ((vm_type_small))              # cloud config 에 정의한 vm_type
-  stemcell: default
-  persistent_disk_type: 10GB              # cloud config 에 정의한 영구 디스크 타입 
-  networks:
-  - name: ((default_network_name))        # cloud config 에 정의한 network 이름
-    static_ips:                           # 사용할 IP addresses
-    - 10.30.107.205
-    - 10.30.107.206
-  properties:
-    replSetName: op2 # replicaSet1 의 이름
-  templates:
-  - name: mongodb_slave                # job template 이름(필수)
+  - z3          
+  networks:   # 네트워크 구성정보
+  - name: default   # Networks block에서 선언한 network 이름(필수)
+    static_ips:   # 사용할 IP addresses 정의(필수)
+    - 10.0.81.202
+    - 10.0.81.203
+  jobs:
+  - name: mongodb_slave
+    properties:
+      replSetName: op1 # replicaSet1 의 이름
+      mongodb:
+        key: ((key))
     release: paasta-mongodb-shard
-
-- name: mongodb_slave3  #작업 이름(필수): mongodb replica set의 slave 서버
+- name: mongodb_slave2
+  vm_type: medium
+  stemcell: default
   azs:
-  - z5
-  instances: 2  # job 인스턴스 수(필수)
-  vm_type: ((vm_type_small))              # cloud config 에 정의한 vm_type
-  stemcell: default
-  persistent_disk_type: 10GB              # cloud config 에 정의한 영구 디스크 타입 
+  - z3          
+  instances: 2
+  persistent_disk: 10240
   networks:
-  - name: ((default_network_name))        # cloud config 에 정의한 network 이름
-    static_ips:                           # 사용할 IP addresses
-    - 10.30.107.208
-    - 10.30.107.209
-  properties:
-    replSetName: op3 # replicaSet1 의 이름
-  templates:
-  - name: mongodb_slave                # job template 이름(필수)
+  - name: default
+    static_ips:
+    - 10.0.81.205
+    - 10.0.81.206
+  jobs:
+  - name: mongodb_slave          
+    properties:
+      replSetName: op2 # replicaSet2 의 이름
+      mongodb:
+        key: ((key))
     release: paasta-mongodb-shard
-
+- name: mongodb_slave3
+  instances: 2
+  azs:
+  - z3
+  vm_type: medium
+  stemcell: default    
+  persistent_disk: 10240
+  networks:
+  - name: default
+    static_ips:
+    - 10.0.81.208
+    - 10.0.81.209
+  jobs:
+  - name: mongodb_slave
+    properties:
+      replSetName: op3 # replicaSet3 의 이름
+      mongodb:
+        key: ((key))
+    release: paasta-mongodb-shard
 - name: mongodb_master1   #작업 이름(필수): mongodb replica set의 master 서버
-  azs:
-  - z5
   instances: 1  # job 인스턴스 수(필수)
-  vm_type: ((vm_type_small))              # cloud config 에 정의한 vm_type
-  stemcell: default
-  persistent_disk_type: 10GB              # cloud config 에 정의한 영구 디스크 타입 
-  networks:
-  - name: ((default_network_name))        # cloud config 에 정의한 network 이름
-    static_ips:                           # 사용할 IP addresses
-    - 10.30.107.201
-  properties:
-    replSet_hosts: ["10.30.107.201","10.30.107.202","10.30.107.203"] # 첫번째 Host는 replicaSet1의 master
-    replSetName: op1 # replicaSet1 의 이름
-  templates:
-  - name: mongodb_master                # job template 이름(필수)
-    release: paasta-mongodb-shard
-
-- name: mongodb_master2   #작업 이름(필수): mongodb replica set의 master 서버
   azs:
-  - z5
-  instances: 1  # job 인스턴스 수(필수)
-  vm_type: ((vm_type_small))              # cloud config 에 정의한 vm_type
+  - z3
   stemcell: default
-  persistent_disk_type: 10GB              # cloud config 에 정의한 영구 디스크 타입 
-  networks:
-  - name: ((default_network_name))        # cloud config 에 정의한 network 이름
-    static_ips:                           # 사용할 IP addresses
-    - 10.30.107.204
-  properties:
-    replSet_hosts: ["10.30.107.204","10.30.107.205","10.30.107.206"] # 첫번째 Host는 replicaSet1의 master
-    replSetName: op2 # replicaSet1 의 이름
-  templates:
-  - name: mongodb_master                # job template 이름(필수)
+  vm_type: medium
+  persistent_disk: 10240  # 영구적 디스크 사이즈 정의(옵션): 16G
+  networks:   # 네트워크 구성정보
+  - name: default   # Networks block에서 선언한 network 이름(필수)
+    static_ips:
+    - 10.0.81.201   # 사용할 IP addresses 정의(필수)
+  jobs:
+  - name: mongodb_master
+    properties:
+      replSet_hosts: ["10.0.81.201","10.0.81.202","10.0.81.203"] # 첫번째 Host는 replicaSet1의 master
+      replSetName: op1 # replicaSet1 의 이름
+      mongodb:
+        key: ((key))
     release: paasta-mongodb-shard
-
-- name: mongodb_master3   #작업 이름(필수): mongodb replica set의 master 서버
+- name: mongodb_master2
   azs:
-  - z5
-  instances: 1  # job 인스턴스 수(필수)
-  vm_type: ((vm_type_small))              # cloud config 에 정의한 vm_type
+  - z3
+  instances: 1
+  vm_type: medium
+  persistent_disk: 10240
   stemcell: default
-  persistent_disk_type: 10GB              # cloud config 에 정의한 영구 디스크 타입 
   networks:
-  - name: ((default_network_name))        # cloud config 에 정의한 network 이름
-    static_ips:                           # 사용할 IP addresses
-    - 10.30.107.207
-  properties:
-    replSet_hosts: ["10.30.107.207","10.30.107.208","10.30.107.209"] # 첫번째 Host는 replicaSet1의 master
-    replSetName: op3 # replicaSet1 의 이름
-  templates:
-  - name: mongodb_master                # job template 이름(필수)
+  - name: default
+    static_ips:
+    - 10.0.81.204
+  jobs:
+  - name: mongodb_master
+    properties:
+      replSet_hosts: ["10.0.81.204","10.0.81.205","10.0.81.206"] # 첫번째 Host는 replicaSet2의 master
+      replSetName: op2  # replicaSet2 의 이름
+      mongodb:
+        key: ((key))
     release: paasta-mongodb-shard
-
-- name: mongodb_config   #작업 이름(필수): mongodb  mongodb_config
+- name: mongodb_master3
   azs:
-  - z5
-  instances: 3  # job 인스턴스 수(필수)
-  vm_type: ((vm_type_small))              # cloud config 에 정의한 vm_type
+  - z3
+  vm_type: medium
   stemcell: default
-  persistent_disk_type: 10GB              # cloud config 에 정의한 영구 디스크 타입 
+  instances: 1
+  persistent_disk: 10240
   networks:
-  - name: ((default_network_name))        # cloud config 에 정의한 network 이름
-    static_ips:                           # 사용할 IP addresses
-    - 10.30.107.210
-    - 10.30.107.211
-    - 10.30.107.212
-  templates:
-  - name: mongodb_config                # job template 이름(필수)
+  - name: default
+    static_ips:
+    - 10.0.81.207
+  jobs:
+  - name: mongodb_master
+    properties:
+      replSet_hosts: ["10.0.81.207","10.0.81.208","10.0.81.209"] # 첫번째 Host는 replicaSet2의 master
+      replSetName: op3  # replicaSet3 의 이름
+      mongodb:
+        key: ((key))
     release: paasta-mongodb-shard
-
-- name: mongodb_shard   #작업 이름(필수): mongodb mongodb_shard
+- name: mongodb_config
   azs:
-  - z5
-  instances: 1  # job 인스턴스 수(필수)
-  vm_type: ((vm_type_small))              # cloud config 에 정의한 vm_type
+  - z3
   stemcell: default
+  vm_type: medium
+  instances: 3
+  persistent_disk: 10240
   networks:
-  - name: ((default_network_name))        # cloud config 에 정의한 network 이름
-    static_ips:                           # 사용할 IP addresses
-    - 10.30.107.213
-  properties:
-    bindIp: 0.0.0.0
-    configsvr_hosts: # mongodb_config hosts
-    - 10.30.107.210
-    - 10.30.107.211
-    - 10.30.107.212
-    repl_name_host_list: # mongodb_master properties
-    - op1/10.30.107.201 # replicaSet1 의 이름/host
-    - op2/10.30.107.204 # replicaSet2 의 이름/host
-    - op3/10.30.107.207 # replicaSet3 의 이름/host
-  templates:
-  - name: mongodb_shard                # job template 이름(필수)
+  - name: default
+    static_ips:
+    - 10.0.81.210
+    - 10.0.81.211
+    - 10.0.81.212
+  jobs:
+  - name: mongodb_config
     release: paasta-mongodb-shard
-
+- name: mongodb_shard
+  vm_type: medium
+  stemcell: default
+  azs:
+  - z3
+  instances: 1
+  networks:
+  - name: default
+    static_ips:
+    - 10.0.81.213
+  jobs:
+  - name: mongodb_shard
+    properties:
+      mongodb:
+        key: ((key))
+      bindIp: 0.0.0.0
+      configsvr_hosts: # mongodb_config hosts
+      - 10.0.81.210
+      - 10.0.81.211
+      - 10.0.81.212
+      repl_name_host_list: # mongodb_master properties
+      - op1/10.0.81.201 # replicaSet1 의 이름/host
+      - op2/10.0.81.204 # replicaSet2 의 이름/host
+      - op3/10.0.81.207 # replicaSet3 의 이름/host
+    release: paasta-mongodb-shard
 - name: mongodb_broker  #작업 이름(필수): mongodb 서비스 브로커
-  azs:
-  - z5
-  instances: 1  # job 인스턴스 수(필수)
-  vm_type: ((vm_type_small))              # cloud config 에 정의한 vm_type
+  vm_type: medium
   stemcell: default
-  networks:
-  - name: ((default_network_name))        # cloud config 에 정의한 network 이름
-    static_ips:                           # 사용할 IP addresses
-    - 10.30.107.214
-  templates:
-  - name: mongodb_broker                # job template 이름(필수)
-    release: paasta-mongodb-shard
-
-- name: mongodb_broker_registrar   # 작업 이름: 서비스 브로커 등록
   azs:
-  - z5
+  - z3
   instances: 1  # job 인스턴스 수(필수)
+  networks:   # 네트워크 구성정보
+  - name: default   # Networks block에서 선언한 network 이름(필수)
+    static_ips:   # 사용할 IP addresses 정의(필수)
+    - 10.0.81.214
+  jobs:
+  - name: mongodb_broker
+    release: paasta-mongodb-shard
+- name : mongodb_broker_registrar   # 작업 이름: 서비스 브로커 등록
+  azs:
+  - z3
+  stemcell: default
+  vm_type: medium
+  instances: 1
   lifecycle: errand   # bosh deploy시 vm에 생성되어 설치 되지 않고 bosh errand 로 실행할때 설정, 주로 테스트 용도에 쓰임
-  vm_type: ((vm_type_small))              # cloud config 에 정의한 vm_type
-  stemcell: default
   networks:
-  - name: ((default_network_name))        # cloud config 에 정의한 network 이름
-  properties:
-    broker:   # 서비스 브로커 설정 정보
-      host: 10.30.107.214   # 서비스 브로커 IP 
-      name: Mongo-DB  # CF에서 서비스 브로커를 생성시 생기는 서비스 이름 브로커에 고정되어있는 값
-      password: cloudfoundry  # 브로커 접근 아이디 비밀번호(필수)
-      username: admin   # 브로커 접근 아이디(필수)
-      protocol: http
-      port: 8080  # 브로커 포트
-    cf:
-      admin_password: admin   # CF 사용자의 패스워드
-      admin_username: admin_test   # CF 사용자 이름
-      api_url: https://api.115.68.46.189.xip.io  # CF 설치시 설정한 api uri 정보(필수)
-  templates:
-  - name: mongodb_broker_registrar                # job template 이름(필수)
+  - name: default
+  jobs:
+  - name: mongodb_broker_registrar
+    properties:
+      broker:   # 서비스 브로커 설정 정보
+        host: 10.0.81.214   # 서비스 브로커 IP 
+        name: Mongo-DB  # CF에서 서비스 브로커를 생성시 생기는 서비스 이름 브로커에 고정되어있는 값
+        password: cloudfoundry  # 브로커 접근 아이디 비밀번호(필수)
+        username: admin   # 브로커 접근 아이디(필수)
+        protocol: http
+        port: 8080  # 브로커 포트
+      cf:
+        admin_password: admin   # CF 사용자의 패스워드
+        admin_username: admin   # CF 사용자 이름
+        api_url: https://api.15.164.20.58.xip.io  # CF 설치시 설정한 api uri 정보(필수)
     release: paasta-mongodb-shard
-
-- name: mongodb_broker_deregistrar   # 작업 이름: 서비스 브로커 등록
+- name : mongodb_broker_deregistrar   # 작업 이름: 서비스 브로커 삭제
   azs:
-  - z5
-  instances: 1  # job 인스턴스 수(필수)
-  lifecycle: errand   # bosh deploy시 vm에 생성되어 설치 되지 않고 bosh errand 로 실행할때 설정, 주로 >테스트 용도에 쓰임
-  vm_type: ((vm_type_small))              # cloud config 에 정의한 vm_type
+  - z3
   stemcell: default
+  vm_type: medium
+  instances: 1
+  lifecycle: errand
   networks:
-  - name: ((default_network_name))        # cloud config 에 정의한 network 이름
-  properties:
-    broker:   # 서비스 브로커 설정 정보
-      host: 10.30.107.214   # 서비스 브로커 IP 
-      name: Mongo-DB  # CF에서 서비스 브로커를 생성시 생기는 서비스 이름 브로커에 고정되어있는 값
-      password: cloudfoundry  # 브로커 접근 아이디 비밀번호(필수)
-      username: admin   # 브로커 접근 아이디(필수)
-      protocol: http
-      port: 8080  # 브로커 포트
-    cf:
-      admin_password: admin   # CF 사용자의 패스워드
-      admin_username: admin_test   # CF 사용자 이름
-      api_url: https://api.115.68.46.189.xip.io  # CF 설치시 설정한 api uri 정보(필수)
-  templates:
-  - name: mongodb_broker_deregistrar                # job template 이름(필수)
+  - name: default
+  jobs:
+  - name: mongodb_broker_deregistrar
+    properties:
+      broker:
+        host: 10.0.81.214
+        name: Mongo-DB
+        password: cloudfoundry
+        username: admin
+        protocol: http
+        port: 8080
+      cf:
+        admin_password: admin
+        admin_username: admin
+        api_url: https://api.15.164.20.58.xip.io
     release: paasta-mongodb-shard
 
 properties:
-  mongodb:  # mongodb shard release의 여러 job에서 공통적으로 하용하는 properties
-    # key는 shard를 구성할 때 mongos와 각 replicaSet의 인증을 하기위해 사용
-    key: |
-      +Qy+1icfeV8D2WXIfCojRjvYlryMVI2Ry+dAi8mYZ1H1Z9pDstRkOC0/oJYs0L/i
-      +Dj/3PurWo8MJuqBYrWVGsRnsx31um0SVAgFZM2GQEKvHIByX5hq/MuHlulSLM0h
-      GKkMT19zqDwFBFIN53jN0PLuuOnJ6FxZSb4cTLymfWM543WGpYx/31b8ehPYyeRp
-      T7P2o2vUd9hecb8mQFxcjsBN7PTLwuPb5lK0BRL4Ze7rh6qeC8j7M3zimV8lX2X5
-      9EtWlQP0ORYIlFpqijatZhS8Bf5AfI1EW6kZgfqwycl2ghxmSIbeleiqyQgYZNKQ
-      yBXV9disuBXcKy4tsOjSFvKw7y61kjjQOn8KXElefokefdLbcrpeARP6LR9WwR1v
-      ZTHcChfzWA4apHo6gJZkoqGVPjF4ArXTYxZfC+hHrsa5oe3XZjNapwV6XQfBNCuQ
-      EihT3Td/B7iAUWJnGQvugFJwYKJ5EYOYubhk8QtO9QIvoZxQPDq9tgUsVgiQ6gty
-      ZT83oxFAIgm3vky9l3uPwYi6jQ2FvsEJvDyiZl7gulOaC5UD/BdcM4Y5n/dxy/6Y
-      qphWWuPsJwnYBXLJgwtTZ/NkYDYyX/tL9gyzXGPkpMMD7DofFjWEpJvHlVRKIxp1
-      /zlxbVOMAmASgZDaqFperSQQyrfQqpuvAA8pRkWgorROyrsiRYYWlJZWWa4qHlI9
-      OZ1dDp8o71l3v0SqsKbEtxINpdiUNx4OdafsMNN/KVxw9oGdrPXnDl5DomtmAoKZ
-      uaCf3AQ3RsDeymgVX3j5EpLCHBhcPj+0B5tv4Yln652HAzDissOUKPyDf+PJaVRo
-      OfDOkUvmuqnwl45DOoOtZ0BMw7hXGdgm6Xfv5jEmtSjJzQ1pfwHOOfiY+zZWhHAi
-      ow/WNvLtUgNUhobi+OQb11bMMNNtmGWe+cZft6QzBsnd2xa/tAYTZDfAJ8OCvYQK
-      e46UrHd54ZJFzdzicRZ8DeuU9G4K
+  mongodb:
+    key: ((key))
     user: root  # admin 권한 사용자이름
     passwd: openpaas  # admin 권한 사용자 비밀번호
     port: 27017   # mongodb port
-
   mongodb_broker:
     db_name: mongodb-broker # mongodb broker 관리용 데이터베이스
     authsource: admin   # mongodb broker 관리용 데이터베이스에 접근할 때 인증정보가 있는 데이터베이스
-    hosts: 10.30.107.213 # mongodb Host
+    hosts: 10.0.81.213 # mongodb Host
+
+
+meta:
+  apps_domain: 15.164.20.58.xip.io   # CF 설치시 설정한 apps 도메인 정보
+  environment: null
+  external_domain: 15.164.20.58.xip.io   # CF 설치시 설정한 외부 도메인 정보
+  nats:   # CF 설치시 설정한 nats 정보
+    machines:
+    - 10.0.1.232
+    password: nats
+    port: 4222
+    user: nats
+  syslog_aggregator: null
+
 ```
 
 -	deploy-mongodb-shard-bosh2.0.sh 파일을 서버 환경에 맞게 수정한다.
@@ -793,11 +793,9 @@ properties:
 #!/bin/bash
 # stemcell 버전은 3309 버전으로 사용하시고 https://github.com/PaaS-TA/Guide-2.0-Linguine-/blob/master/Download_Page.md 에서 다운받아 쓰십시요.
 
-bosh -e micro-bosh -d paasta-mongodb-shard-service deploy paasta_mongodb_shard_bosh2.0.yml \
-   -v default_network_name=service_private \
-   -v stemcell_os=ubuntu-trusty \
-   -v stemcell_version=3309 \
-   -v vm_type_small=minimal
+bosh -d paasta-mongodb-shard-service deploy paasta_mongodb_shard_2.0.yml \
+   -l pem.yml
+
 ```
 
 

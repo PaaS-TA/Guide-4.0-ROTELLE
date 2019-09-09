@@ -218,14 +218,13 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 - **사용 예시**
 
 		$ bosh -e micro-bosh stemcells
-		Name                                      Version   OS             CPI  CID  
-		bosh-vsphere-esxi-ubuntu-trusty-go_agent  3586.26*  ubuntu-trusty  -    sc-109fbdb0-f663-49e8-9c30-8dbdd2e5b9b9  
-		~                                         3445.2*   ubuntu-trusty  -    sc-025c70b5-7d6e-4ba3-a12b-7e71c33dad24  
-		~                                         3309*     ubuntu-trusty  -    sc-22429dba-e5cc-4469-ab3a-882091573277  
+		Name                                       Version  OS             CPI  CID  
+		bosh-openstack-kvm-ubuntu-xenial-go_agent  315.41*  ubuntu-xenial  -    fb08e389-2350-4091-9b29-41743495e62c  
+		~                                          315.36*  ubuntu-xenial  -    7076cf5d-a473-4c46-b6c1-4a7813911f76  
 
 		(*) Currently deployed
 
-		3 stemcells
+		2 stemcells
 
 		Succeeded
 		
@@ -546,14 +545,14 @@ update:
 instance_groups:
 - name: rmq                              # 작업 이름(필수): rabbitmq 서버
   azs:
-  - z5
+  - z3
   instances: 1                           # job 인스턴스 수(필수)
   vm_type: ((vm_type_small))             # cloud config 에 정의한 vm_type
   stemcell: default
   networks:
   - name: ((default_network_name))       # cloud config 에 정의한 network 이름
     static_ips:
-    - 10.30.107.193                      # 사용할 IP addresses 정의(필수): rabbitmq-server IP
+    - 10.0.81.31                      # 사용할 IP addresses 정의(필수): rabbitmq-server IP
   jobs:
   - name: rabbitmq-server                # job template 이름(필수)
     release: paasta-rabbitmq             # 릴리즈 이름(필수)
@@ -561,14 +560,14 @@ instance_groups:
 
 - name: haproxy                          # 작업 이름(필수): rabbitmq haproxy
   azs:
-  - z5
+  - z3
   instances: 1                           # job 인스턴스 수(필수)
   vm_type: ((vm_type_small))             # cloud config 에 정의한 vm_type
   stemcell: default
   networks:
   - name: ((default_network_name))       # cloud config 에 정의한 network 이름
     static_ips:
-    - 10.30.107.192                      # 사용할 IP addresses 정의(필수): rabbitmq haproxy IP
+    - 10.0.81.32                      # 사용할 IP addresses 정의(필수): rabbitmq haproxy IP
   jobs:
   - name: rabbitmq-haproxy                # job template 이름(필수)
     release: paasta-rabbitmq             # 릴리즈 이름(필수)
@@ -576,14 +575,14 @@ instance_groups:
 
 - name: paasta-rmq-broker                # 작업 이름(필수): rabbit mq broker
   azs:
-  - z5
+  - z3
   instances: 1                           # job 인스턴스 수(필수)
   vm_type: ((vm_type_small))             # cloud config 에 정의한 vm_type
   stemcell: default
   networks:
   - name: ((default_network_name))       # cloud config 에 정의한 network 이름
     static_ips:
-    - 10.30.107.191                      # 사용할 IP addresses 정의(필수): rabbitmq broker
+    - 10.0.81.33                      # 사용할 IP addresses 정의(필수): rabbitmq broker
   jobs:
   - name: rabbitmq-broker                # job template 이름(필수)
     release: paasta-rabbitmq             # 릴리즈 이름(필수)
@@ -592,7 +591,7 @@ instance_groups:
 - name: broker-registrar
   lifecycle: errand                      # bosh deploy시 vm에 생성되어 설치 되지 않고 bosh errand 로 실할때 설정, 주로 테스트 용도에 쓰임
   azs:
-  - z5
+  - z3
   instances: 1                           # job 인스턴스 수(필수)
   vm_type: ((vm_type_small))             # cloud config 에 정의한 vm_type
   stemcell: default
@@ -600,7 +599,7 @@ instance_groups:
   - name: ((default_network_name))       # cloud config 에 정의한 network 이름
   properties:
     broker:
-      host: 10.30.107.191
+      host: 10.0.81.33
       name: rabbitmq-sb
       password: admin
       username: admin
@@ -613,7 +612,7 @@ instance_groups:
 - name: broker-deregistrar
   lifecycle: errand                      # bosh deploy시 vm에 생성되어 설치 되지 않고 bosh errand 로실행할때 설정, 주로 테스트 용도에 쓰임
   azs:
-  - z5
+  - z3
   instances: 1                           # job 인스턴스 수(필수)
   vm_type: ((vm_type_small))             # cloud config 에 정의한 vm_type
   stemcell: default
@@ -621,7 +620,7 @@ instance_groups:
   - name: ((default_network_name))       # cloud config 에 정의한 network 이름
   properties:
     broker:
-      host: 10.30.107.191
+      host: 10.0.81.33
       name: rabbitmq-sb
       password: admin
       username: admin
@@ -635,8 +634,8 @@ properties:
   cf:                                          # CF 환경 정보
     admin_password: admin                      # CF 어드민 아이디 비밀번호(필수)
     admin_username: admin_test                      # CF 어드민 아이디 (필수)
-    api_url: http://api.115.68.46.189.xip.io    # CF API url(필수)
-    domain: 115.68.46.189.xip.io                # CF 도메인(필수)
+    api_url: http://api.xxx.xx.xx.xxx.xip.io    # CF API url(필수)
+    domain: api.xxx.xx.xx.xxx.xip.io                # CF 도메인(필수)
   rabbitmq-server:
     restart_statsdb_cron_schedule: "42 */4 * * *"
     plugins:                                  # rabbitmq 플러그인 정보(필수)
@@ -657,21 +656,21 @@ properties:
         username: admin
         password: admin
       broker:                                # rabbitmq service broker 아이디 및 패스워드 정보
-        username: admin          
+        username: admin
         password: admin
   rabbitmq-haproxy:                          # rabbitmq service broker 아이디 및 패스워드 정보
     stats:
       username: admin
       password: admin
   broker:                                    # rabbitmq service broker 아이디 및 패스워드 정보
-    host: 10.30.107.181 
+    host: 10.0.81.33
     protocol: http
     name: p-rabbitmq
     username: "admin"
     password: "admin"
   rabbitmq-broker:
     route: paasta-rabbitmq-broker
-    cc_endpoint: http://api.115.68.46.189.xip.io
+    cc_endpoint: http://api.xxx.xx.xx.xxx.xip.io
     service:                                 # 서비스 이름및 uuid 플랜 Id 정보
       username: "admin"
       password: "admin"
@@ -687,7 +686,7 @@ properties:
         policy_name: "operator_set_policy"
         policy_definition: "{\"ha-mode\":\"exactly\",\"ha-params\":2,\"ha-sync-mode\":\"automatic\"}"
         policy_priority: 50
-      management_domain: 115.68.46.189.xip.io
+      management_domain: api.xxx.xx.xx.xxx.xip.io
       ssl: |
         -----BEGIN CERTIFICATE-----
         MIIC+zCCAeOgAwIBAgIBAjANBgkqhkiG9w0BAQUFADAnMRUwEwYDVQQDEwxNeVRl
@@ -710,6 +709,7 @@ properties:
       administrator:
         username: admin
         password: admin
+
 ```
 
 -	deploy-rabbitmq-bosh2.0.sh 파일을 서버 환경에 맞게 수정한다.
@@ -719,9 +719,9 @@ properties:
 # stemcell 버전은 3309 버전으로 사용하시고 https://github.com/PaaS-TA/Guide-2.0-Linguine-/blob/master/Download_Page.md 에서 다운받아 쓰십시요.
 
 bosh -e micro-bosh -d paasta-rabbitmq-service deploy paasta_rabbitmq_bosh2.0.yml \
-   -v default_network_name=service_private \
-   -v stemcell_os=ubuntu-trusty \
-   -v stemcell_version=3309 \
+   -v default_network_name=default \
+   -v stemcell_os=ubuntu-xenial \
+   -v stemcell_version=315.36 \
    -v vm_type_small=minimal
 ```
 

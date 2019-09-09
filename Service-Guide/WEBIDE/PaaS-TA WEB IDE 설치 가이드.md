@@ -196,14 +196,13 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 - **사용 예시**
 
 		$ bosh -e micro-bosh stemcells
-		Name                                      Version   OS             CPI  CID  
-		bosh-vsphere-esxi-ubuntu-trusty-go_agent  3586.26*  ubuntu-trusty  -    sc-109fbdb0-f663-49e8-9c30-8dbdd2e5b9b9  
-		~                                         3445.2*   ubuntu-trusty  -    sc-025c70b5-7d6e-4ba3-a12b-7e71c33dad24  
-		~                                         3309*     ubuntu-trusty  -    sc-22429dba-e5cc-4469-ab3a-882091573277  
+		Name                                       Version  OS             CPI  CID  
+		bosh-openstack-kvm-ubuntu-xenial-go_agent  315.41*  ubuntu-xenial  -    fb08e389-2350-4091-9b29-41743495e62c  
+		~                                          315.36*  ubuntu-xenial  -    7076cf5d-a473-4c46-b6c1-4a7813911f76  
 
 		(*) Currently deployed
 
-		3 stemcells
+		2 stemcells
 
 		Succeeded
 		
@@ -503,61 +502,89 @@ deployment 파일에서 사용하는 network, vm_type 등은 cloud config 를 �
 -	Deployment 파일을 서버 환경에 맞게 수정한다.
 
 ```yml
-# paasta-web-ide-service 설정 파일 내용
+# paasta-web-ide-aws 설정 파일 내용
 ---
-name: paasta-web-ide-service  # 서비스 배포이름(필수)
-
-release:
-  name: paasta-web-ide  #서비스 릴리즈 이름(필수)
-  version: "2.0"   #서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
+name: paasta-web-ide  # 서비스 배포이름(필수)
 
 stemcells:
-- alias: default
-  os: ((stemcell_os))
-  version: "((stemcell_version))"
+  - alias: ((stemcell_alias))
+    os: ((stemcell_os))
+    version: "((stemcell_version))"
+
+releases:
+  - name: "((releases_name))"                   # 서비스 릴리즈 이름(필수) bosh releases로 확인 가능
+    version: latest                                             # 서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
 
 update:
-  canaries: 1                                          # canary 인스턴스 수(필수)
-  canary_watch_time: 30000-180000                      # canary 인스턴스가 수행하기 위한 대기 시간(필수)
-  max_in_flight: 1                                      # non-canary 인스턴스가 병렬로 update 하는 최대 개수(필수)
-  update_watch_time: 30000-180000                      # non-canary 인스턴스가 수행하기 위한 대기 시간(필수)
+  canaries: 1                                               # canary 인스턴스 수(필수)
+  canary_watch_time: 5000-120000                            # canary 인스턴스가 수행하기 위한 대기 시간(필수)
+  update_watch_time: 5000-120000                            # non-canary 인스턴스가 수행하기 위한 대기 시간(필수)
+  max_in_flight: 1                                          # non-canary 인스턴스가 병렬로 update 하는 최대 개수(필수)
+  serial: false
+
 
 instance_groups:
-- name: paasta-web-ide1 #작업 이름(필수)
+- name: eclipse-che  #작업 이름(필수)
   azs:
-  - z5
-  instances: 1          # job 인스턴스 수(필수)
-  vm_type: ((vm_type_medium))            # cloud config 에 정의한 vm_type
-  stemcell: default
+    - z7
+  instances: "((eclipse_che_instances))"
+  vm_type: "((web_ide_vm_type))"
+  stemcell: "((stemcell_alias))"
   networks:
-  - name: ((default_network_name))       # cloud config 에 정의한 network 이름
-  - name: ((public_network_name))
-    static_ips: 115.68.47.181
-  properties:
-    che:
-      ip: 115.68.47.181
-      port: 8080
-  templates:
-  - name: eclipse-che                # job template 이름(필수)
-    release: paasta-web-ide
+  - name: ((internal_networks_name))
+  - name: ((external_networks_name))
+    static_ips: ((eclipse_che_public_ip))
+  jobs:
+  - name: eclipse-che
+    release: "((releases_name))"
 
-- name: paasta-web-ide2 #작업 이름(필수)
+
+- name: mariadb
   azs:
-  - z5
-  instances: 1          # job 인스턴스 수(필수)
-  vm_type: ((vm_type_medium))            # cloud config 에 정의한 vm_type
-  stemcell: default
+    - z3
+  instances: 1
+  vm_type: small
+  stemcell: "((stemcell_alias))"
+  persistent_disk_type: "((mariadb_disk_type))"
   networks:
-  - name: ((default_network_name))       # cloud config 에 정의한 network 이름
-  - name: ((public_network_name))
-    static_ips: 115.68.47.182
+  - name: ((internal_networks_name))
+  jobs:
+  - name: mariadb
+    release: "((releases_name))"
+  syslog_aggregator: null
   properties:
-    che:
-      ip: 115.68.47.182
-      port: 8080
-  templates:
-  - name: eclipse-che                # job template 이름(필수)
-    release: paasta-web-ide
+    mariadb:                                                # MARIA DB SERVER 설정 정보
+      port: ((mariadb_port))                                            # MARIA DB PORT 번호
+      admin_user:
+        password: '((mariadb_user_password))'                             # MARIA DB ROOT 계정 비밀번호
+      host_names:
+        - mariadb0
+  ########## INFRA ##########
+
+  ######## BROKER ########
+
+- name: webide-broker
+  azs:
+    - z3
+  instances: 1
+  vm_type: medium
+  stemcell: "((stemcell_alias))"
+  networks:
+  - name: ((internal_networks_name))
+  jobs:
+  - name: web-ide-broker
+    release: "((releases_name))"
+  syslog_aggregator: null
+  properties:
+    server:
+      port: ((server_port))
+    datasource:
+      password: "((mariadb_user_password))"
+    serviceDefinition:
+      id: ((serviceDefinition_id))
+      plan1:
+        id: ((serviceDefinition_plan1_id))
+
 
 ```
 
@@ -568,13 +595,25 @@ instance_groups:
 # stemcell 버전은 3309 버전으로 사용하시고 https://github.com/PaaS-TA/Guide-2.0-Linguine-/blob/master/Download_Page.md 에서 다운받아 쓰십시요.
 # vsphere 이이외 iaas 사용시 use-public-network-vsphere.yml 대신 use-public-network.yml 을 사용
 
-bosh -e micro-bosh -d paasta-web-ide-service deploy paasta_web_ide_bosh2.0.yml \
-   -o use-public-network-vsphere.yml \
-   -v default_network_name=service_private \
-   -v public_network_name=service_public \
-   -v stemcell_os=ubuntu-trusty \
-   -v stemcell_version=3309 \
-   -v vm_type_medium=service_medium_2G
+bosh -d paasta-web-ide deploy paasta_web_ide.yml \
+   -o use-public-network-aws.yml \
+   -v releases_name="paas-ta-webide-release" \
+   -v stemcell_os="ubuntu-xenial" \
+   -v stemcell_version="315.36" \
+   -v stemcell_alias="default" \
+   -v web_ide_vm_type="large" \
+   -v vm_type_tiny="minimal" \
+   -v vm_type_small="small" \
+   -v internal_networks_name=default \
+   -v external_networks_name=vip \
+   -v eclipse_che_instances=1 \
+   -v eclipse_che_public_ip=["xx.xxx.xx.xxx"] \
+   -v server_port="8080" \
+   -v serviceDefinition_id="af86588c-6212-11e7-907b-b6006ad3webide0" \
+   -v serviceDefinition_plan1_id="a5930564-6212-11e7-907b-b6006ad3webide1" \
+   -v mariadb_disk_type="10GB" \
+   -v mariadb_port="3306" \
+   -v mariadb_user_password="Paasta@2018" \
 ```
 
 
@@ -612,10 +651,10 @@ bosh -e micro-bosh -d paasta-web-ide-service deploy paasta_web_ide_bosh2.0.yml \
 		  networks:
 		  - name: ((default_network_name))       # cloud config 에 정의한 network 이름
 		  - name: ((public_network_name))
-		    static_ips: 115.68.47.181
+		    static_ips: xxx.xx.xx.xx1
 		  properties:
 		    che:
-		      ip: 115.68.47.181
+		      ip: xxx.xx.xx.xx1
 		      port: 8080
 		  templates:
 		  - name: eclipse-che                # job template 이름(필수)
@@ -630,373 +669,99 @@ bosh -e micro-bosh -d paasta-web-ide-service deploy paasta_web_ide_bosh2.0.yml \
 		  networks:
 		  - name: ((default_network_name))       # cloud config 에 정의한 network 이름
 		  - name: ((public_network_name))
-		    static_ips: 115.68.47.182
+		    static_ips: xxx.xx.xx.xx2
 		  properties:
 		    che:
-		      ip: 115.68.47.182
+		      ip: xxx.xx.xx.xx2
 		      port: 8080
 		  templates:
 		  - name: eclipse-che                # job template 이름(필수)
 		    release: paasta-web-ide
-		inception@inception:~/workspace/servicepacks/paasta-web-ide-2.0$ 
-		inception@inception:~/workspace/servicepacks/paasta-web-ide-2.0$ 
+
+-	WEB IDE 서비스팩을 배포한다.
+
 		inception@inception:~/workspace/servicepacks/paasta-web-ide-2.0$ ./deploy-web-ide-bosh2.0.sh 
-		Using environment '10.30.40.111' as user 'admin' (openid, bosh.admin)
+		Using environment '10.0.1.6' as client 'admin'
 
-		Using deployment 'paasta-web-ide-service'
-
-		+ azs:
-		+ - cloud_properties:
-		+     datacenters:
-		+     - clusters:
-		+       - BD-HA:
-		+           resource_pool: CF_BOSH2_Pool
-		+       name: BD-HA
-		+   name: z1
-		+ - cloud_properties:
-		+     datacenters:
-		+     - clusters:
-		+       - BD-HA:
-		+           resource_pool: CF_BOSH2_Pool
-		+       name: BD-HA
-		+   name: z2
-		+ - cloud_properties:
-		+     datacenters:
-		+     - clusters:
-		+       - BD-HA:
-		+           resource_pool: CF_BOSH2_Pool
-		+       name: BD-HA
-		+   name: z3
-		+ - cloud_properties:
-		+     datacenters:
-		+     - clusters:
-		+       - BD-HA:
-		+           resource_pool: CF_BOSH2_Pool
-		+       name: BD-HA
-		+   name: z4
-		+ - cloud_properties:
-		+     datacenters:
-		+     - clusters:
-		+       - BD-HA:
-		+           resource_pool: CF_BOSH2_Pool
-		+       name: BD-HA
-		+   name: z5
-		+ - cloud_properties:
-		+     datacenters:
-		+     - clusters:
-		+       - BD-HA:
-		+           resource_pool: CF_BOSH2_Pool
-		+       name: BD-HA
-		+   name: z6
-
-		+ vm_types:
-		+ - cloud_properties:
-		+     cpu: 1
-		+     disk: 8192
-		+     ram: 1024
-		+   name: minimal
-		+ - cloud_properties:
-		+     cpu: 1
-		+     disk: 10240
-		+     ram: 2048
-		+   name: default
-		+ - cloud_properties:
-		+     cpu: 1
-		+     disk: 30720
-		+     ram: 4096
-		+   name: small
-		+ - cloud_properties:
-		+     cpu: 2
-		+     disk: 20480
-		+     ram: 4096
-		+   name: medium
-		+ - cloud_properties:
-		+     cpu: 2
-		+     disk: 20480
-		+     ram: 8192
-		+   name: medium-memory-8GB
-		+ - cloud_properties:
-		+     cpu: 4
-		+     disk: 20480
-		+     ram: 8192
-		+   name: large
-		+ - cloud_properties:
-		+     cpu: 8
-		+     disk: 20480
-		+     ram: 16384
-		+   name: xlarge
-		+ - cloud_properties:
-		+     cpu: 2
-		+     disk: 51200
-		+     ram: 4096
-		+   name: small-50GB
-		+ - cloud_properties:
-		+     cpu: 2
-		+     disk: 51200
-		+     ram: 4096
-		+   name: small-50GB-ephemeral-disk
-		+ - cloud_properties:
-		+     cpu: 4
-		+     disk: 102400
-		+     ram: 8192
-		+   name: small-100GB-ephemeral-disk
-		+ - cloud_properties:
-		+     cpu: 4
-		+     disk: 102400
-		+     ram: 8192
-		+   name: small-highmem-100GB-ephemeral-disk
-		+ - cloud_properties:
-		+     cpu: 8
-		+     disk: 20480
-		+     ram: 16384
-		+   name: small-highmem-16GB
-		+ - cloud_properties:
-		+     cpu: 1
-		+     disk: 4096
-		+     ram: 2048
-		+   name: caas_small
-		+ - cloud_properties:
-		+     cpu: 1
-		+     disk: 4096
-		+     ram: 1024
-		+   name: caas_small_api
-		+ - cloud_properties:
-		+     cpu: 1
-		+     disk: 4096
-		+     ram: 4096
-		+   name: caas_medium
-		+ - cloud_properties:
-		+     cpu: 2
-		+     disk: 8192
-		+     ram: 4096
-		+   name: service_medium
-		+ - cloud_properties:
-		+     cpu: 2
-		+     disk: 10240
-		+     ram: 2048
-		+   name: service_medium_2G
-		+ - cloud_properties:
-		+     cpu: 1
-		+     disk: 4096
-		+     ram: 512
-		+   name: portal_small
-		+ - cloud_properties:
-		+     cpu: 1
-		+     disk: 4096
-		+     ram: 1024
-		+   name: portal_medium
-		+ - cloud_properties:
-		+     cpu: 1
-		+     disk: 4096
-		+     ram: 2048
-		+   name: portal_large
-
-		+ vm_extensions:
-		+ - cloud_properties:
-		+     ports:
-		+     - host: 3306
-		+   name: mysql-proxy-lb
-		+ - name: cf-router-network-properties
-		+ - name: cf-tcp-router-network-properties
-		+ - name: diego-ssh-proxy-network-properties
-		+ - name: cf-haproxy-network-properties
-		+ - cloud_properties:
-		+     disk: 51200
-		+   name: small-50GB
-		+ - cloud_properties:
-		+     disk: 102400
-		+   name: small-highmem-100GB
-
-		+ compilation:
-		+   az: z1
-		+   network: default
-		+   reuse_compilation_vms: true
-		+   vm_type: large
-		+   workers: 5
-
-		+ networks:
-		+ - name: default
-		+   subnets:
-		+   - azs:
-		+     - z1
-		+     - z2
-		+     - z3
-		+     - z4
-		+     - z5
-		+     - z6
-		+     cloud_properties:
-		+       name: Internal
-		+     dns:
-		+     - 8.8.8.8
-		+     gateway: 10.30.20.23
-		+     range: 10.30.0.0/16
-		+     reserved:
-		+     - 10.30.0.0 - 10.30.111.40
-		+ - name: public
-		+   subnets:
-		+   - azs:
-		+     - z1
-		+     - z2
-		+     - z3
-		+     - z4
-		+     - z5
-		+     - z6
-		+     cloud_properties:
-		+       name: External
-		+     dns:
-		+     - 8.8.8.8
-		+     gateway: 115.68.46.177
-		+     range: 115.68.46.176/28
-		+     reserved:
-		+     - 115.68.46.176 - 115.68.46.188
-		+     static:
-		+     - 115.68.46.189 - 115.68.46.190
-		+   type: manual
-		+ - name: service_private
-		+   subnets:
-		+   - azs:
-		+     - z1
-		+     - z2
-		+     - z3
-		+     - z4
-		+     - z5
-		+     - z6
-		+     cloud_properties:
-		+       name: Internal
-		+     dns:
-		+     - 8.8.8.8
-		+     gateway: 10.30.20.23
-		+     range: 10.30.0.0/16
-		+     reserved:
-		+     - 10.30.0.0 - 10.30.106.255
-		+     static:
-		+     - 10.30.107.1 - 10.30.107.255
-		+ - name: service_public
-		+   subnets:
-		+   - azs:
-		+     - z1
-		+     - z2
-		+     - z3
-		+     - z4
-		+     - z5
-		+     - z6
-		+     cloud_properties:
-		+       name: External
-		+     dns:
-		+     - 8.8.8.8
-		+     gateway: 115.68.47.161
-		+     range: 115.68.47.160/24
-		+     reserved:
-		+     - 115.68.47.161 - 115.68.47.174
-		+     static:
-		+     - 115.68.47.175 - 115.68.47.185
-		+   type: manual
-		+ - name: portal_service_public
-		+   subnets:
-		+   - azs:
-		+     - z1
-		+     - z2
-		+     - z3
-		+     - z4
-		+     - z5
-		+     - z6
-		+     cloud_properties:
-		+       name: External
-		+     dns:
-		+     - 8.8.8.8
-		+     gateway: 115.68.46.209
-		+     range: 115.68.46.208/28
-		+     reserved:
-		+     - 115.68.46.216 - 115.68.46.222
-		+     static:
-		+     - 115.68.46.214
-		+   type: manual
-
-		+ disk_types:
-		+ - disk_size: 1024
-		+   name: default
-		+ - disk_size: 1024
-		+   name: 1GB
-		+ - disk_size: 2048
-		+   name: 2GB
-		+ - disk_size: 4096
-		+   name: 4GB
-		+ - disk_size: 5120
-		+   name: 5GB
-		+ - disk_size: 8192
-		+   name: 8GB
-		+ - disk_size: 10240
-		+   name: 10GB
-		+ - disk_size: 20480
-		+   name: 20GB
-		+ - disk_size: 30720
-		+   name: 30GB
-		+ - disk_size: 51200
-		+   name: 50GB
-		+ - disk_size: 102400
-		+   name: 100GB
-		+ - disk_size: 1048576
-		+   name: 1TB
-
-		+ stemcells:
-		+ - alias: default
-		+   os: ubuntu-trusty
-		+   version: '3309'
-
-		+ update:
-		+   canaries: 1
-		+   canary_watch_time: 30000-180000
-		+   max_in_flight: 1
-		+   update_watch_time: 30000-180000
-
-		+ release:
-		+   name: paasta-web-ide
-		+   version: '2.0'
-
-		+ instance_groups:
-		+ - azs:
-		+   - z5
-		+   instances: 1
-		+   name: paasta-web-ide1
-		+   networks:
-		+   - name: service_private
-		+   - default:
-		+     - dns
-		+     - gateway
-		+     name: service_public
-		+     static_ips: 115.68.47.181
-		+   properties:
-		+     che:
-		+       ip: "<redacted>"
-		+       port: "<redacted>"
-		+   stemcell: default
-		+   templates:
-		+   - name: eclipse-che
-		+     release: paasta-web-ide
-		+   vm_type: service_medium_2G
-		+ - azs:
-		+   - z5
-		+   instances: 1
-		+   name: paasta-web-ide2
-		+   networks:
-		+   - name: service_private
-		+   - default:
-		+     - dns
-		+     - gateway
-		+     name: service_public
-		+     static_ips: 115.68.47.182
-		+   properties:
-		+     che:
-		+       ip: "<redacted>"
-		+       port: "<redacted>"
-		+   stemcell: default
-		+   templates:
-		+   - name: eclipse-che
-		+     release: paasta-web-ide
-		+   vm_type: service_medium_2G
-
-		+ name: paasta-web-ide-service
-
+        Using deployment 'paasta-web-ide'
+        
+        + stemcells:
+        + - alias: default
+        +   os: ubuntu-xenial
+        +   version: '315.36'
+          
+          releases:
+        + - name: paas-ta-webide-release
+        +   version: '1.0'
+          
+        + update:
+        +   canaries: 1
+        +   canary_watch_time: 5000-120000
+        +   max_in_flight: 1
+        +   serial: false
+        +   update_watch_time: 5000-120000
+          
+        + instance_groups:
+        + - azs:
+        +   - z7
+        +   instances: 1
+        +   jobs:
+        +   - name: eclipse-che
+        +     release: paas-ta-webide-release
+        +   name: eclipse-che
+        +   networks:
+        +   - default:
+        +     - dns
+        +     - gateway
+        +     name: default
+        +   - name: vip
+        +     static_ips:
+        +     - 13.209.28.254
+        +   stemcell: default
+        +   vm_type: large
+        + - azs:
+        +   - z3
+        +   instances: 1
+        +   jobs:
+        +   - name: mariadb
+        +     release: paas-ta-webide-release
+        +   name: mariadb
+        +   networks:
+        +   - name: default
+        +   persistent_disk_type: 10GB
+        +   properties:
+        +     mariadb:
+        +       admin_user:
+        +         password: "<redacted>"
+        +       host_names:
+        +       - "<redacted>"
+        +       port: "<redacted>"
+        +   stemcell: default
+        +   syslog_aggregator: 
+        +   vm_type: small
+        + - azs:
+        +   - z3
+        +   instances: 1
+        +   jobs:
+        +   - name: web-ide-broker
+        +     release: paas-ta-webide-release
+        +   name: webide-broker
+        +   networks:
+        +   - name: default
+        +   properties:
+        +     datasource:
+        +       password: "<redacted>"
+        +     server:
+        +       port: "<redacted>"
+        +     serviceDefinition:
+        +       id: "<redacted>"
+        +       plan1:
+        +         id: "<redacted>"
+        +   stemcell: default
+        +   syslog_aggregator: 
+        +   vm_type: medium
+          
+        + name: paasta-web-ide
 		Continue? [yN]: y
 
 		Task 7867
@@ -1036,9 +801,9 @@ bosh -e micro-bosh -d paasta-web-ide-service deploy paasta_web_ide_bosh2.0.yml \
 
 		Instance                                              Process State  AZ  IPs            VM CID                                   VM Type            Active  
 		paasta-web-ide1/dfa63633-f846-48a4-9ea8-c23291fe0ea0  running        z5  10.30.107.0    vm-4811a409-e48b-44c1-976c-268fe0af0697  service_medium_2G  true  
-											 115.68.47.181                                                                
+											 xxx.xx.xx.xx1                                                                
 		paasta-web-ide2/9a1e6f85-a8d5-41c0-96f7-56ddb8bce657  running        z5  10.30.108.0    vm-ba125e95-804a-4272-8cda-e3bfa38be98f  service_medium_2G  true  
-											 115.68.47.182                                                                
+											 xxx.xx.xx.xx2                                                                
 
 		2 vms
 

@@ -218,14 +218,13 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 - **사용 예시**
 
 		$ bosh -e micro-bosh stemcells
-		Name                                      Version   OS             CPI  CID  
-		bosh-vsphere-esxi-ubuntu-trusty-go_agent  3586.26*  ubuntu-trusty  -    sc-109fbdb0-f663-49e8-9c30-8dbdd2e5b9b9  
-		~                                         3445.2*   ubuntu-trusty  -    sc-025c70b5-7d6e-4ba3-a12b-7e71c33dad24  
-		~                                         3309*     ubuntu-trusty  -    sc-22429dba-e5cc-4469-ab3a-882091573277  
+		Name                                       Version  OS             CPI  CID  
+		bosh-openstack-kvm-ubuntu-xenial-go_agent  315.41*  ubuntu-xenial  -    fb08e389-2350-4091-9b29-41743495e62c  
+		~                                          315.36*  ubuntu-xenial  -    7076cf5d-a473-4c46-b6c1-4a7813911f76  
 
 		(*) Currently deployed
 
-		3 stemcells
+		2 stemcells
 
 		Succeeded
 		
@@ -524,112 +523,112 @@ deployment 파일에서 사용하는 network, vm_type 등은 cloud config 를 �
         
 ```yml
 # paasta-swift-object-service 설정 파일 내용
-name: paasta-swift-object-service                       # 서비스 배포이름(필수)
+name: paasta-glusterfs-service                       # 서비스 배포이름(필수)
 
 releases:
 - name: paasta-glusterfs             # 서비스 릴리즈 이름(필수)
   version: "2.0"                       # 서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
 
-stemcells:
-- alias: default
-  os: ((stemcell_os))
-  version: "((stemcell_version))"
-
 update:
   canaries: 1                        # canary 인스턴스 수(필수)
   canary_watch_time: 30000-600000    # canary 인스턴스가 수행하기 위한 대기 시간(필수)
-  max_in_flight: 1                   # non-canary 인스턴스가 병렬로 update 하는 최대 개수(필수)
   update_watch_time: 30000-600000    # non-canary 인스턴스가 수행하기 위한 대기 시간(필수)
+  max_in_flight: 1                   # non-canary 인스턴스가 병렬로 update 하는 최대 개수(필수)
+
+stemcells:
+- alias: default
+  os: ubuntu-xenial
+  version: latest
 
 instance_groups:
-- name: mysql                        #작업 이름(필수): mysql 서버
+- instances: 1                    # job 인스턴스 수(필수)
+  name: mysql  # 작업 이름(필수): MySQL 서버
   azs:
-  - z5
-  instances: 1  # job 인스턴스 수(필수)
-  vm_type: ((vm_type_small))              # cloud config 에 정의한 vm_type
+  - z3
   stemcell: default
-  networks:
-  - name: ((default_network_name))        # cloud config 에 정의한 network 이름
-    static_ips:                           # 사용할 IP addresses
-    - 10.30.107.196
-  properties:
-    admin_username: root          # MySQL 어드민 계정
-    admin_password: admin         # MySQL 어드민 패스워드
-  templates:
-  - name: mysql                # job template 이름(필수)
+  networks:                       # 네트워크 구성정보
+  - name: default          # Networks block에서 선언한 network 이름(필수)
+    static_ips: 10.0.81.196     # 사용할 IP addresses 정의(필수): MySQL 서버 IP
+#  persistent_disk: 1024          # 영구적 디스크 사이즈 정의(옵션): 1G, 상황에 맞게 수정
+  vm_type: medium
+  jobs: 
+  - name: mysql                 # job template 이름(필수)
     release: paasta-glusterfs
+    properties:                     # job에 대한 속성을 지정(필수)
+      admin_username: root          # MySQL 어드민 계정
+      admin_password: admin         # MySQL 어드민 패스워드
 
-- name: paasta-glusterfs-broker           #작업 이름(필수): broker 서버
+- instances: 1
+  name: paasta-glusterfs-broker
   azs:
-  - z5
-  instances: 1  # job 인스턴스 수(필수)
-  vm_type: ((vm_type_small))              # cloud config 에 정의한 vm_type
-  stemcell: default
+  - z3
   networks:
-  - name: ((default_network_name))        # cloud config 에 정의한 network 이름
-    static_ips:                           # 사용할 IP addresses
-    - 10.30.107.197
-  properties:
-    jdbc_ip: 10.30.107.196             # Mysql IP(필수)
-    jdbc_pwd: admin                    # Mysql password(필수)
-    jdbc_port: 3306                    # Mysql Port
-    log_dir: paasta-glusterfs-broker   # Broker Log 저장 디렉토리 명
-    log_file: paasta-glusterfs-broker  # Broker Log 저장 파일 명
-    log_level: INFO                    # Broker Log 단계
-    glusterfs_url: 54.211.7.235        # Glusterfs 서비스 주소
-    glusterfs_tenantname: service      # Glusterfs 서비스 테넌트 이름
-    glusterfs_username: swift          # Glusterfs 서비스 계정 아이디
-    glusterfs_password: password       # Glusterfs 서비스 암호
-  templates:
-  - name: op-glusterfs-java-broker                # job template 이름(필수)
+  - name: default
+  stemcell: default
+  vm_type: medium
+  jobs: 
+  - name: op-glusterfs-java-broker
+    release: paasta-glusterfs 
+    properties:
+      jdbc_ip: 10.0.81.196             # Mysql IP(필수)
+      jdbc_pwd: admin                    # Mysql password(필수)
+      jdbc_port: 3306                    # Mysql Port
+      log_dir: paasta-glusterfs-broker   # Broker Log 저장 디렉토리 명
+      log_file: paasta-glusterfs-broker  # Broker Log 저장 파일 명
+      log_level: INFO                    # Broker Log 단계
+      glusterfs_url: 52.201.48.51        # Glusterfs 서비스 주소
+      glusterfs_tenantname: service      # Glusterfs 서비스 테넌트 이름
+      glusterfs_username: swift          # Glusterfs 서비스 계정 아이디
+      glusterfs_password: password       # Glusterfs 서비스 암호
+
+- instances: 1
+  azs:
+  - z3
+  lifecycle: errand  # bosh deploy시 vm에 생성되어 설치 되지 않고 bosh errand 로실행할때 설정, 주로 테스트 용도에 쓰임
+  stemcell: default
+  name: broker-registrar
+  networks:
+  - name: default
+  vm_type: medium
+  jobs: 
+  - name: broker-registrar
     release: paasta-glusterfs
+    properties:
+      broker:
+        host: 10.0.81.197          # Service Broker IP
+        name: glusterfs-service      # Service Broker Name
+        password: cloudfoundry       # Service Broker Auth Password
+        username: admin              # Service Broker Auth Id
+        protocol: http               # Service Broker Http Protocol
+        port: 8080                   # Service Broker port
+      cf:
+        admin_password: admin                      # CF Paasword
+        admin_username: admin                      # CF Id
+        api_url: https://api.15.164.20.58.xip.io   # CF Target Url
+        skip_ssl_validation: true                  # CF SSL 설정
 
-- name: broker-registrar           #작업 이름(필수): broker-registrar 
+- instances: 1
   azs:
-  - z5
-  instances: 1  # job 인스턴스 수(필수)
-  lifecycle: errand                    # bosh deploy시 vm에 생성되어 설치 되지 않고 bosh errand 로실행>할때 설정, 주로 테스트 용도에 쓰임
-  vm_type: ((vm_type_small))              # cloud config 에 정의한 vm_type
+  - z3
+  lifecycle: errand
   stemcell: default
+  name: broker-deregistrar
   networks:
-  - name: ((default_network_name))        # cloud config 에 정의한 network 이름
-  properties:
-    broker:
-      host: 10.30.107.197          # Service Broker IP
-      name: glusterfs-service      # Service Broker Name
-      password: cloudfoundry       # Service Broker Auth Password
-      username: admin              # Service Broker Auth Id
-      protocol: http               # Service Broker Http Protocol
-      port: 8080                   # Service Broker port
-    cf:
-      admin_password: admin                      # CF Paasword
-      admin_username: admin_test                      # CF Id
-      api_url: https://api.115.68.46.189.xip.io   # CF Target Url
-      skip_ssl_validation: true                  # CF SSL 설정
-  templates:
-  - name: broker-registrar                # job template 이름(필수)
+  - name: default
+  vm_type: medium
+  jobs: 
+  - name: broker-deregistrar
     release: paasta-glusterfs
-
-- name: broker-deregistrar           #작업 이름(필수): broker-deregistrar 
-  azs:
-  - z5
-  instances: 1  # job 인스턴스 수(필수)
-  lifecycle: errand                    # bosh deploy시 vm에 생성되어 설치 되지 않고 bosh errand 로실행>할때 설정, 주로 테스트 용도에 쓰임
-  vm_type: ((vm_type_small))              # cloud config 에 정의한 vm_type
-  stemcell: default
-  networks:
-  - name: ((default_network_name))        # cloud config 에 정의한 network 이름
-  properties:
-    broker:
+    properties:
+      broker:
       name: glusterfs-service
-    cf:
-      admin_password: admin                      # CF Paasword
-      admin_username: admin_test                      # CF Id
-      api_url: https://api.115.68.46.189.xip.io   # CF Target Url
-      skip_ssl_validation: true                  # CF SSL 설정
-  templates:
-  - name: broker-deregistrar                # job template 이름(필수)
-    release: paasta-glusterfs
+      cf:
+        admin_password: admin
+        admin_username: admin
+        api_url: https://15.164.20.58.xip.io
+        skip_ssl_validation: true
+properties: {}
+
 ```
 
 -	deploy-mysql-bosh2.0.sh 파일을 서버 환경에 맞게 수정한다.
