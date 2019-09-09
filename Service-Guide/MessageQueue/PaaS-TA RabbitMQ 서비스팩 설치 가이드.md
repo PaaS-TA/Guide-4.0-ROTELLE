@@ -1370,7 +1370,7 @@ Sample App에서 RabbitMQ 서비스를 사용하기 위해서는 서비스 신�
 - **내 서비스명** : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경 설정 정보를 가져온다.
 
 
->`$ cf create-service p-rabbitmq standard rabbitmq-service-instance`
+>`$ cf create-service p-rabbitmq standard my_rabbitmq_service`
 
 >![rabbitmq_image_09]
 
@@ -1387,70 +1387,82 @@ Sample App에서 RabbitMQ 서비스를 사용하기 위해서는 서비스 신�
 <div id='14'></div>
 
 ### <div id='33'> 3.3. Sample App에 서비스 바인드 신청 및 App 확인
-서비스 신청이 완료되었으면 Sample App 에서는 생성된 서비스 인스턴스를 Bind 하여 App에서 RabbitMQ 서비스를 이용한다.
+서비스 신청이 완료되었으면 cf 에서 제공하는 rabbit-example-app을 다운로드해서 테스트를 진행한다.
 * 참고: 서비스 Bind 신청시 PaaS-TA에서 서비스 Bind 신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
-#### Sample App 디렉토리로 이동하여 manifest 파일을 확인한다.
+#### git을 통해 sample-app을 다운로드 한다.
 
->`$ cd rabbit-labrat`<br>
-
->`$ vi manifest.yml`
-
-**applications:**
-- name: lab-rat         # 배포할 App 이름 <br>
-- command: puma           # 배포시 명령어
-
-<br>
+>`$ git clone https://github.com/pivotal-cf/rabbit-example-app.git`<br>
 
 #### --no-start 옵션으로 App을 배포한다. 
 --no-start: App 배포시 구동은 하지 않는다.
 
->`$cf push --no-start`<br>
+>`$cd rabbit-example-app`<br>
+
+>`$cf push test-app --no-start`<br>
 
 >![rabbitmq_image_11]
 
-#### 배포된 Sample App을 확인하고 로그를 수행한다.
-
->`$cf apps`<br>
-
->![rabbitmq_image_12]
-
-<br>
-
->`$ cf logs lab-rat}`  **// cf logs {배포된 App명}}**
-
->![rabbitmq_image_13]
-
-<br>
-
 #### Sample App에서 생성한 서비스 인스턴스 바인드 신청을 한다. 
 
->`cf bind-service lab-rat rabbitmq-service-instance`<br>
-
->![rabbitmq_image_14]
+>`cf bind-service test-app my_rabbitmq_service`<br>
 
 <br>
+
+>(참고) 바인드 후 App구동시 Mysql 서비스 접속 에러로 App 구동이 안될 경우 보안 그룹을 추가한다.  
+
+<br>
+
+##### rule.json 화일을 만들고 아래와 같이 내용을 넣는다.
+>`$ vi rule.json`
+
+```json
+[
+  {
+    "protocol": "all",
+    "destination": "{haproxy_IP}"
+  }
+]
+```
+<br>
+
+##### 보안 그룹을 생성한다.
+
+>`$ cf create-security-group rabbitmq rule.json`
+
+<br>
+
+##### 모든 App에 Mysql 서비스를 사용할수 있도록 생성한 보안 그룹을 적용한다.
+
+>`$ cf bind-running-security-group rabbitmq`
+
+<br>
+
+
 
 #### 바인드가 적용되기 위해서 App을 재기동한다.
 
->`cf restart lab-rat`
-
->![rabbitmq_image_15]
-
->![rabbitmq_image_16]
+>`cf restart test-app`
 
 <br>
 
 ####  App이 정상적으로 RabbitMQ 서비스를 사용하는지 확인한다.
 
 
->`curl lab-rat.115.68.46.186.xip.io`  **//- curl 로 확인**
->![rabbitmq_image_17]
+####  브라우저에서 확인
+>`http://test-app.<YOUR_DOMAIN>/write`
+>`http://test-app.<YOUR_DOMAIN>/read`
+>![rabbitmq_image_12]
 
->![rabbitmq_image_18]
+####  스토어 엔드포인트 테스트
+>`curl -XPOST -d 'test' http://test-app.<YOUR-DOMAIN>/store`
+>`curl -XGET http://test-app.<YOUR-DOMAIN>/store`
+>![rabbitmq_image_13]
 
->![rabbitmq_image_19]
-
+####  큐 엔드포인트 테스트
+>`curl -XPOST -d 'test' http://test-app.<YOUR-DOMAIN>/queues/<YOUR-QUEUE-NAME>`
+>`curl -XGET http://test-app.<YOUR-DOMAIN>/queues/<YOUR-QUEUE-NAME>`
+>![rabbitmq_image_14]
 
 [rabbitmq_image_01]:/Service-Guide/images/rabbitmq/rabbitmq_image_01.png
 [rabbitmq_image_02]:/Service-Guide/images/rabbitmq/rabbitmq_image_02.png
