@@ -10,9 +10,8 @@
   - 2.3. [2.3. RabbitMQ 서비스 Deployment 파일 수정 및 배포](#23)
   - 2.4. [RabbitMQ 서비스 브로커 등록](#24)
 3. [RabbitMQ 연동 Sample App 설명](#3)
-  - 3.1. [Sample App 구조](#31)
-  - 3.2. [PaaS-TA에서 서비스 신청](#32)
-  - 3.3. [Sample App에 서비스 바인드 신청 및 App 확인](#33)
+  - 3.1. [PaaS-TA에서 서비스 신청](#31)
+  - 3.2. [Sample App에 서비스 바인드 신청 및 App 확인](#32)
      
 # <div id='1'> 1. 문서 개요
 ### <div id='11'> 1.1. 목적
@@ -1309,48 +1308,9 @@ RabbitMQ 서비스팩 배포가 완료 되었으면 Application에서 서비스 
 # <div id='3'> 3. RabbitMQ 연동 Sample App 설명
 본 Sample App은 PaaS-TA에 배포되며 RabbitMQ의 서비스를 Provision과 Bind를 한 상태에서 사용이 가능하다.
 
-
 <div id='12'></div>
 
-### <div id='31'> 3.1. Sample App 구조
-Sample App은 PaaS-TA에 App으로 배포가 된다. 배포 완료 후 정상적으로 App이 구동되면 curl 명령어로 App url를 입력하면 RabbitMQ 환경정보(서비스 연결 정보)를 보여주는 url 페이지를 제공한다.
-
-Sample App 구조는 다음과 같다.
-<table>
-  <tr>
-    <td>이름</td>
-    <td>설명</td>
-  </tr>
-  <tr>
-    <td>lib</td>
-    <td>Sample 소스디렉토리</td>
-  </tr>
-  <tr>
-    <td>manifest.yml</td>
-    <td>PaaS-TA에 app 배포시 필요한 설정을 저장하는 파일</td>
-  </tr>
-  <tr>
-    <td>Gemfile</td>
-    <td>Sample App 구동시 필요한 ruby gem 설정 파일</td>
-  </tr>
-  <tr>
-    <td>config.ru</td>
-    <td>Sample App 구동 파일</td>
-  </tr>
-</table>
-
-
-#### PaaSTA-Sample-Apps.zip 파일 압축을 풀고 Service 폴더안에 있는 RabbitMQ Sample Web App인 rabbit-labrat을 복사한다.
-
->`$ ls -all`
-
->![rabbitmq_image_07]
-
-<br>
-
-<div id='13'></div>
-
-### <div id='32'> 3.2. PaaS-TA에서 서비스 신청
+### <div id='31'> 3.1. PaaS-TA에서 서비스 신청
 Sample App에서 RabbitMQ 서비스를 사용하기 위해서는 서비스 신청(Provision)을 해야 한다.
 *참고: 서비스 신청시 PaaS-TA에서 서비스를 신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
@@ -1384,9 +1344,9 @@ Sample App에서 RabbitMQ 서비스를 사용하기 위해서는 서비스 신�
 
 <br>
 
-<div id='14'></div>
+<div id='13'></div>
 
-### <div id='33'> 3.3. Sample App에 서비스 바인드 신청 및 App 확인
+### <div id='32'> 3.2. Sample App에 서비스 바인드 신청 및 App 확인
 서비스 신청이 완료되었으면 cf 에서 제공하는 rabbit-example-app을 다운로드해서 테스트를 진행한다.
 * 참고: 서비스 Bind 신청시 PaaS-TA에서 서비스 Bind 신청 할 수 있는 사용자로 로그인이 되어 있어야 한다.
 
