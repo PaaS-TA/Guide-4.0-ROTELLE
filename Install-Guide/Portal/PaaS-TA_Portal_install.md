@@ -394,17 +394,14 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 -	Deploy시 사용할 Stemcell을 확인한다.
 
 - **사용 예시**
-
 		$ bosh -e micro-bosh stemcells
-		Name                                      Version   OS             CPI  CID  
-		bosh-vsphere-esxi-ubuntu-trusty-go_agent  3586.26*  ubuntu-trusty  -    sc-109fbdb0-f663-49e8-9c30-8dbdd2e5b9b9
-		~                                         3468.51*  ubuntu-trusty  -    sc-bd8fadf2-92f2-495b-b172-d571a388abf5  
-		~                                         3445.2*   ubuntu-trusty  -    sc-025c70b5-7d6e-4ba3-a12b-7e71c33dad24
-		~                                         3309*     ubuntu-trusty  -    sc-22429dba-e5cc-4469-ab3a-882091573277  
+		Name                                       Version  OS             CPI  CID  
+		bosh-openstack-kvm-ubuntu-xenial-go_agent  315.41*  ubuntu-xenial  -    fb08e389-2350-4091-9b29-41743495e62c  
+		~                                          315.36*  ubuntu-xenial  -    7076cf5d-a473-4c46-b6c1-4a7813911f76  
 
 		(*) Currently deployed
 
-		4 stemcells
+		2 stemcells
 
 		Succeeded
 		
@@ -726,10 +723,6 @@ deployment 파일에서 사용하는 network, vm_type 등은 cloud config 를 �
 > deployment 파일 위치 : PAAS-TA-PORTAL-RELEASE/deployments/paas-ta-portal-bosh2.0-vsphere.yml
 -  azs의 경우 z5 ~ z6 로 설정한다.
 -  "(())" 구문은 bosh deploy 할 때 변수로 받아서 처리하는 구문이므로 이 부분의 수정 방법은 아래의 deploy-portal-bosh2.0.sh 참고 예) os : ((stemcell_os))
-```diff
--  Object Storage 경우 stemcell 버전을 3468.51이상의 버전에선 지원하지 않음.
-   3468.51 이외의 다른버전을 사용한다면 binary_storage_stemcells 스템셀 버전을 수정해주어야한다.
-```
  
 ```yml
 # paas-ta-portal-bosh2.0-vsphere.yml 설정 파일 내용
