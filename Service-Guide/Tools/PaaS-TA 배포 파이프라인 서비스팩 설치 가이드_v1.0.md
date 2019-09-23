@@ -1344,8 +1344,8 @@ bosh -e micro-bosh -d paasta-delivery-pipeline-service deploy paasta_delivery_pi
 
 		+ stemcells:
 		+ - alias: default
-		+   os: ubuntu-trusty
-		+   version: '3309'
+		+   os: ubuntu-xenial\
+		+   version: '315.41'
 
 		+ releases:
 		+ - name: paasta-mysql
