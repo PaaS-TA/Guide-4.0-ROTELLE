@@ -19,7 +19,7 @@
   - [MySQL](./Service-Guide/DBMS/PaaS-TA%20MySQL%20서비스팩%20설치%20가이드.md)
 - NOSQL 설치
   - [MongoDB](./Service-Guide/NoSQL/PaaS-TA%20Mongodb%20서비스팩%20설치%20가이드.md)
-  - [Redis](./Service-Guide/NoSQL/PaaS-TA%On-Demand%Redis%서비스팩%설치%가이드.md)
+  - [Redis](./Service-Guide/NoSQL/PaaS-TA%20On-Demand%20Redis%20서비스팩%20설치%20가이드.md)
 - Storage 설치
   - [GlusterFS](./Service-Guide/Storage/PaaS-TA%20GlusterFS%20서비스팩%20설치%20가이드.md)
 - MessageQueue 설치
