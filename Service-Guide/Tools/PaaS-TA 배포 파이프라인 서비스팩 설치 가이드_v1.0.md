@@ -1050,7 +1050,7 @@ bosh -e micro-bosh -d paasta-delivery-pipeline-service deploy paasta_delivery_pi
    -o use-public-network-vsphere.yml \
    -v default_network_name=service_private \
    -v public_network_name=service_public \
-   -v stemcell_os=ubuntu-trusty \
+   -v stemcell_os=ubuntu-xenial \
    -v stemcell_version=315.41 \
    -v vm_type_small=minimal
 ```
