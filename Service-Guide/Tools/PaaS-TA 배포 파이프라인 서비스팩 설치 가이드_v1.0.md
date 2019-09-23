@@ -315,7 +315,7 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 
 		Succeeded
 		
->Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell을 업로드를 해야 한다. (배포 파이프라인 서비스는 stemcell 3445.2 버전을 사용)
+>Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell을 업로드를 해야 한다.
 
 ### <div id='23'/> 2.3 배포 파이프라인 서비스 Deployment 파일 수정 및 배포
 
@@ -1051,7 +1051,7 @@ bosh -e micro-bosh -d paasta-delivery-pipeline-service deploy paasta_delivery_pi
    -v default_network_name=service_private \
    -v public_network_name=service_public \
    -v stemcell_os=ubuntu-trusty \
-   -v stemcell_version=3445.2 \
+   -v stemcell_version=315.41 \
    -v vm_type_small=minimal
 ```
 
