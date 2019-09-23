@@ -205,8 +205,6 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 		2 stemcells
 
 		Succeeded
-		
->Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell을 업로드를 해야 한다. (WEB-IDE 은 stemcell 3309 버전을 사용)
 		 
 
 ### <div id='9'/> 2.3.WEB-IDE Deployment 파일 수정 및 배포
@@ -592,7 +590,6 @@ instance_groups:
 
 ```sh
 #!/bin/bash
-# stemcell 버전은 3309 버전으로 사용하시고 https://github.com/PaaS-TA/Guide-2.0-Linguine-/blob/master/Download_Page.md 에서 다운받아 쓰십시요.
 # vsphere 이이외 iaas 사용시 use-public-network-vsphere.yml 대신 use-public-network.yml 을 사용
 
 bosh -d paasta-web-ide deploy paasta_web_ide.yml \
