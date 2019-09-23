@@ -133,26 +133,24 @@ paasta-logging-service-release.tgz
 
 ### <div id="2.1.2"/> 2.2.2 Stemcell 다운로드
 
-Logging 서비스 설치에 필요한 을 확인하여 존재하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell을 업로드 한다. (Logging 서비스는 Stemcell 3445.2/3468.51 버전을 사용, PaaSTA-Stemcell.zip)
+Logging 서비스 설치에 필요한 을 확인하여 존재하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell을 업로드 한다. 
 
 -	설치 파일 다운로드 위치 : https://paas-ta.kr/download/package
 
 ```
 # Stemcell 목록 확인
-$ bosh -e micro-bosh stemcells
-Using environment '10.30.40.111' as user 'admin' (openid, bosh.admin)
+- **사용 예시**
 
-Name                                      Version   OS             CPI  CID  
-bosh-vsphere-esxi-ubuntu-trusty-go_agent  3586.26*  ubuntu-trusty  -    sc-109fbdb0-f663-49e8-9c30-8dbdd2e5b9b9  
-~                                         3468.51*  ubuntu-trusty  -    sc-bd8fadf2-92f2-495b-b172-d571a388abf5  
-~                                         3445.2*   ubuntu-trusty  -    sc-025c70b5-7d6e-4ba3-a12b-7e71c33dad24  
-~                                         3309*     ubuntu-trusty  -    sc-22429dba-e5cc-4469-ab3a-882091573277  
+		$ bosh -e micro-bosh stemcells
+		Name                                       Version  OS             CPI  CID  
+		bosh-openstack-kvm-ubuntu-xenial-go_agent  315.41*  ubuntu-xenial  -    fb08e389-2350-4091-9b29-41743495e62c  
+		~                                          315.36*  ubuntu-xenial  -    7076cf5d-a473-4c46-b6c1-4a7813911f76  
 
-(*) Currently deployed
+		(*) Currently deployed
 
-4 stemcells
+		2 stemcells
 
-Succeeded
+		Succeeded
 ```
 
 ### <div id="2.2"/> 2.2. Logging 서비스 릴리즈 업로드
@@ -590,7 +588,7 @@ logging_service_release_version: "1.0"
 
 # STEMCELL
 stemcell_os: "ubuntu-trusty"
-stemcell_version: "3468.51"
+stemcell_version: "315.41"
 
 # VM_TYPE
 vm_type_minimal: "minimal"
