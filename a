@@ -1,0 +1,952 @@
+[33mcommit 484d18d92e9aa945cb4fd732f8838c81c797a3a0[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 2d701d4 21d9776
+Author: 박철한 <parkcheolhan@bluedigm.com>
+Date:   Mon Sep 23 16:10:20 2019 +0900
+
+    Merge branch 'master' of https://github.com/PaaS-TA/Guide-4.0-ROTELLE
+
+[33mcommit 2d701d48a66ba82407ed0a3647383421c70f630b[m
+Author: 박철한 <parkcheolhan@bluedigm.com>
+Date:   Mon Sep 23 16:09:28 2019 +0900
+
+    on-demand 링크 추가
+
+[33mcommit 21d97763940b3ccccf3415e37b8268190486f81e[m
+Author: REX <rexx4314@gmail.com>
+Date:   Mon Sep 23 16:02:08 2019 +0900
+
+    Update README.md for PaaS-TA 4.6
+
+[33mcommit 080c14ffbbbcf582728f8fd2fef4339e7753767a[m
+Author: REX <rexx4314@gmail.com>
+Date:   Mon Sep 23 15:59:18 2019 +0900
+
+    Create PaaS_TA_PaaS-TA_Install_Guide-v4.6.md
+
+[33mcommit 58562f5b27f90a48b8fb392c2cedb2384d13f9fb[m
+Author: REX <rexx4314@gmail.com>
+Date:   Mon Sep 23 15:58:34 2019 +0900
+
+    Create PaaS_TA_BOSH2_Install_Guide-v4.6.md
+
+[33mcommit c0f4ffaf84493936516c03181b4f7b059c66ee7d[m
+Author: REX <rexx4314@gmail.com>
+Date:   Mon Sep 23 15:57:49 2019 +0900
+
+    파스타 4.0 설치 메뉴얼
+
+[33mcommit e8c08802c43505bf17abd06bfdb5706b32a57de1[m
+Author: parkcheolhan <35785850+parkcheolhan@users.noreply.github.com>
+Date:   Tue Sep 17 10:43:04 2019 +0900
+
+    Update PaaS-TA_Portal_install.md
+
+[33mcommit e5110ebe7db9baee0c1488ec064e1c29fa0e88b4[m
+Author: parkcheolhan <35785850+parkcheolhan@users.noreply.github.com>
+Date:   Tue Sep 17 10:40:39 2019 +0900
+
+    Update PaaS-TA 배포 파이프라인 서비스팩 설치 가이드_v1.0.md
+
+[33mcommit c8fa5beb87517008ac611f2a1e93a70ce97e8516[m
+Author: 박철한 <parkcheolhan@bluedigm.com>
+Date:   Mon Sep 9 14:05:18 2019 +0900
+
+    rabbitmq Update Sample-App Guide
+
+[33mcommit 49acc48303992a20517a66f383137a2ecb40d19a[m
+Author: 박철한 <parkcheolhan@bluedigm.com>
+Date:   Mon Sep 9 14:00:29 2019 +0900
+
+    rabbitmq Update Sample-App Guide
+
+[33mcommit 7a69c279c2c3a27a10d4bbcdd01a179b71d4195e[m
+Author: 박철한 <parkcheolhan@bluedigm.com>
+Date:   Mon Sep 9 10:45:33 2019 +0900
+
+    PaaS-TA 4.6 Update Service Guide
+
+[33mcommit 1c3b5701f6dc28150c2fdeccc2497edf896e519d[m
+Author: lena-kim <lena@bluedigm.com>
+Date:   Thu Jul 25 18:07:05 2019 +0900
+
+    modify deployment file (templates -> jobs)
+
+[33mcommit b2ef65b9b1af690c13fd67d9fc3f89963304707f[m
+Author: lena-kim <lena@bluedigm.com>
+Date:   Thu Jul 25 16:26:03 2019 +0900
+
+    modify deployment file (templates -> jobs)
+
+[33mcommit b9aaf77f7b5c427ae884de14e2d198df4cb81d24[m
+Author: REX <rexx4314@gmail.com>
+Date:   Wed Jul 17 15:17:23 2019 +0900
+
+    Update PaaS_TA_PaaS-TA_Install_Guide-v4.3.md
+
+[33mcommit 8e5d4b800dc81e7e7bf6fae956f5aeac45b045a2[m
+Author: parkcheolhan <35785850+parkcheolhan@users.noreply.github.com>
+Date:   Wed Jul 10 17:39:33 2019 +0900
+
+    update-paasta-guide
+
+[33mcommit e1e8c330e7af8b6666a221473cfb750b94baed76[m
+Author: infranicsrnd <45093484+infranicsrnd@users.noreply.github.com>
+Date:   Wed Jul 10 17:25:34 2019 +0900
+
+    Update PaaS_TA_PaaS-TA_Install_Guide-v4.3.md
+
+[33mcommit a180f3f53b2248e6a8faddc86875e8f70d474526[m
+Author: infranicsrnd <45093484+infranicsrnd@users.noreply.github.com>
+Date:   Wed Jul 10 17:07:30 2019 +0900
+
+    Update PaaS_TA_PaaS-TA_Install_Guide-v4.3.md
+
+[33mcommit 1f91c4a86d88725fb3ec5e6389432d21a8d8488e[m
+Author: infranicsrnd <45093484+infranicsrnd@users.noreply.github.com>
+Date:   Wed Jul 10 17:05:41 2019 +0900
+
+    Update PaaS_TA_PaaS-TA_Install_Guide-v4.3.md
+
+[33mcommit 396804a4725332f3a79765f5495a5767080f488f[m
+Author: infranicsrnd <45093484+infranicsrnd@users.noreply.github.com>
+Date:   Wed Jul 10 16:16:48 2019 +0900
+
+    Update PaaS_TA_PaaS-TA_Install_Guide-v4.3.md
+    
+    파스타 배포 예시
+
+[33mcommit 1595b96215289b862eb9e1be4b253c8cb1fa6dcd[m
+Author: 박철한 <parkcheolhan@bluedigm.com>
+Date:   Tue Jul 9 17:06:24 2019 +0900
+
+    파일 이름 변경
+
+[33mcommit 1b97919282aeb9b51ca49ddb3806ee36b3215f30[m
+Author: 박철한 <parkcheolhan@bluedigm.com>
+Date:   Tue Jul 9 17:03:43 2019 +0900
+
+    on-demand redis service
+
+[33mcommit 17d1795159429a916136c48d3f46d7faed04f8d8[m
+Merge: 9032457 99af1ff
+Author: 박철한 <parkcheolhan@bluedigm.com>
+Date:   Tue Jul 9 10:36:39 2019 +0900
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 90324578fe81a311655f03300a124391e699eb49[m
+Author: 박철한 <parkcheolhan@bluedigm.com>
+Date:   Tue Jul 9 10:36:25 2019 +0900
+
+    on-demand redis service
+
+[33mcommit 99af1ff4645f5d35b20d3bf0ae547d45ed6c8e66[m
+Author: parkcheolhan <35785850+parkcheolhan@users.noreply.github.com>
+Date:   Wed Jun 26 15:46:24 2019 +0900
+
+    Update Portal_Guide
+
+[33mcommit ab03db12bb3c9218c3e4b6418bec2687ecf2a017[m
+Author: parkcheolhan <35785850+parkcheolhan@users.noreply.github.com>
+Date:   Wed Jun 26 15:27:23 2019 +0900
+
+    Update Portal_Guide
+
+[33mcommit 04e25b8e0ac29d3be6c8ba8b151ded12512e95f5[m
+Author: parkcheolhan <35785850+parkcheolhan@users.noreply.github.com>
+Date:   Tue Jun 25 14:15:26 2019 +0900
+
+    update portal guide
+
+[33mcommit 0875b9626d513d4a7f8ca8fe83a52a297eb9edfb[m
+Author: 박철한 <parkcheolhan@bluedigm.com>
+Date:   Tue Jun 25 09:38:39 2019 +0900
+
+    Update Portal Install Guide
+
+[33mcommit 16670f782ccd050633dde137b9f873e90f95b88d[m
+Author: parkcheolhan <35785850+parkcheolhan@users.noreply.github.com>
+Date:   Tue Jun 25 09:34:28 2019 +0900
+
+    Update
+
+[33mcommit 157c55bfda2fe14527931ef2a0a49ae92d038010[m
+Author: parkcheolhan <35785850+parkcheolhan@users.noreply.github.com>
+Date:   Tue Jun 25 09:33:15 2019 +0900
+
+    Update PaaS-TA_Portal_install.md
+
+[33mcommit bdab2891de2b9ef01e6a009d028470645a0b9c15[m
+Author: 이우송 <32665532+amedio77@users.noreply.github.com>
+Date:   Wed May 29 13:02:33 2019 +0900
+
+    Update Bosh-Lite PaaS-TA 설치 가이드v2.0.md
+
+[33mcommit e30e072bd9b5ce86eba29703722b2eea85120e10[m
+Author: 이우송 <32665532+amedio77@users.noreply.github.com>
+Date:   Wed May 29 11:47:16 2019 +0900
+
+    Update Bosh-Lite PaaS-TA 설치 가이드v2.0.md
+
+[33mcommit 2adf5271cf08ae69ea832e9a1615c2ac7aefde4a[m
+Author: 이우송 <32665532+amedio77@users.noreply.github.com>
+Date:   Wed May 29 09:37:17 2019 +0900
+
+    Update Bosh-Lite PaaS-TA 설치 가이드v2.0.md
+
+[33mcommit 9663f5bd7103a3ed8a04d06ba27822c0706129d4[m
+Author: 이우송 <32665532+amedio77@users.noreply.github.com>
+Date:   Wed May 29 09:30:27 2019 +0900
+
+    Update Bosh-Lite PaaS-TA 설치 가이드v2.0.md
+
+[33mcommit 3f8ecc8c6c3bac85ab7891d379283679f5d039c8[m
+Author: 이우송 <32665532+amedio77@users.noreply.github.com>
+Date:   Wed May 29 09:26:17 2019 +0900
+
+    Update Bosh-Lite 설치 가이드v2.0.md
+
+[33mcommit 34df9fdacb2e55a89acd5eb3b6ff391a4c3deeb2[m
+Author: 이우송 <32665532+amedio77@users.noreply.github.com>
+Date:   Tue May 28 13:14:13 2019 +0900
+
+    Update Bosh-Lite PaaS-TA 설치 가이드v2.0.md
+
+[33mcommit 866cff4157bd02b07e8ad7effd1d457f55b1795c[m
+Author: amedio <amedio77@gmail.com>
+Date:   Mon May 27 19:47:36 2019 +0900
+
+    파스타 4.3 설치 메뉴얼
+
+[33mcommit 0c5764f8955feb8256cb301499e00d4addbc4475[m
+Author: amedio <amedio77@gmail.com>
+Date:   Mon May 27 16:13:39 2019 +0900
+
+    파스타 4.3 설치 메뉴얼
+
+[33mcommit 975da8eafe664a60ae1ed6f169f4d32043c03cf5[m
+Author: amedio <amedio77@gmail.com>
+Date:   Mon May 27 14:21:11 2019 +0900
+
+    파스타 4.3 설치 메뉴얼
+
+[33mcommit 4a7ec368984dd78f7c6fb4377e0794eb63efa0f5[m
+Author: amedio <amedio77@gmail.com>
+Date:   Mon May 27 14:18:31 2019 +0900
+
+    파스타 4.3 설치 메뉴얼
+
+[33mcommit f90dd5a6b3cf305dffee7b3be3349591f0c629e8[m
+Author: amedio <amedio77@gmail.com>
+Date:   Mon May 27 13:34:19 2019 +0900
+
+    파스타 4.3 설치 메뉴얼
+
+[33mcommit 1d06bd5e3f539c456920a286213b581f4b787a94[m
+Merge: f7cbadc 0f2b2bd
+Author: amedio <amedio77@gmail.com>
+Date:   Mon May 27 13:30:56 2019 +0900
+
+    Merge branch 'master' of https://github.com/PaaS-TA/Guide-4.0-ROTELLE
+
+[33mcommit f7cbadc7d1ec29213e69c58dd8c553fd710b7981[m
+Author: amedio <amedio77@gmail.com>
+Date:   Mon May 27 13:30:28 2019 +0900
+
+    파스타 4.3 설치 메뉴얼
+
+[33mcommit 0f2b2bd9ec2f91ad2406aa1d42083ff403f55c6b[m
+Author: 이우송 <32665532+amedio77@users.noreply.github.com>
+Date:   Mon May 27 10:18:38 2019 +0900
+
+    Update Bosh-Lite PaaS-TA 설치 가이드v2.0.md
+
+[33mcommit 080405c927aaaff1d7f6f0045013647b67b8caa7[m
+Author: amedio <amedio77@gmail.com>
+Date:   Mon May 27 10:14:17 2019 +0900
+
+    파스타 4.3 설치 메뉴얼
+
+[33mcommit b57723d08bd294d1cb92f5ac4e4f26e646ff0eab[m
+Author: 이우송 <32665532+amedio77@users.noreply.github.com>
+Date:   Mon May 27 09:59:26 2019 +0900
+
+    Update Bosh-Lite 설치 가이드v2.0.md
+
+[33mcommit 4164ae9a88f36abc77536eaddb9355da5acb6522[m
+Author: 이우송 <32665532+amedio77@users.noreply.github.com>
+Date:   Mon May 27 09:47:40 2019 +0900
+
+    Update Bosh-Lite 설치 가이드v2.0.md
+
+[33mcommit bda4965655a949a14910a2446e0d2b3c622a2c07[m
+Author: 이우송 <32665532+amedio77@users.noreply.github.com>
+Date:   Mon May 27 09:44:37 2019 +0900
+
+    Update Bosh-Lite 설치 가이드v2.0.md
+
+[33mcommit b38da80df9979f272abb8bfd376c5211940d87fe[m
+Author: 이우송 <32665532+amedio77@users.noreply.github.com>
+Date:   Fri May 24 15:45:34 2019 +0900
+
+    Update Bosh-Lite 설치 가이드v2.0.md
+
+[33mcommit 1116e462ac82eecee4e3adf4ae178675320bcdbc[m
+Author: 이우송 <32665532+amedio77@users.noreply.github.com>
+Date:   Fri May 24 14:56:54 2019 +0900
+
+    Update Bosh-Lite 설치 가이드v2.0.md
+
+[33mcommit 1e719ab8cbafa90f3e0241e13c3e768719f128b2[m
+Author: 이우송 <32665532+amedio77@users.noreply.github.com>
+Date:   Fri May 24 14:56:15 2019 +0900
+
+    Update Bosh-Lite 설치 가이드v2.0.md
+
+[33mcommit cf09ae17a1f9b34c468acecf704308d25b1fab4e[m
+Author: 이우송 <32665532+amedio77@users.noreply.github.com>
+Date:   Fri May 24 14:54:49 2019 +0900
+
+    Update Bosh-Lite 설치 가이드v2.0.md
+
+[33mcommit 854c551fa2a64ea2799bad36f95f4a490d570044[m
+Author: 이우송 <32665532+amedio77@users.noreply.github.com>
+Date:   Fri May 24 14:52:48 2019 +0900
+
+    Update Bosh-Lite 설치 가이드v2.0.md
+
+[33mcommit 2c29ee4f8585a4bb49e280cc5e3758e7abdb06cc[m
+Author: amedio <amedio77@gmail.com>
+Date:   Fri May 24 14:43:47 2019 +0900
+
+    파스타 4.3 설치 메뉴얼
+
+[33mcommit b6b5547c79ea31f91e8419bf6fcc3168b36c73a0[m
+Author: amedio <amedio77@gmail.com>
+Date:   Fri May 24 14:27:38 2019 +0900
+
+    파스타 4.3 설치 메뉴얼
+
+[33mcommit 863abb9356edb70fef98d728987248eeee95f839[m
+Author: amedio <amedio77@gmail.com>
+Date:   Fri May 24 14:24:35 2019 +0900
+
+    파스타 4.3 설치 메뉴얼
+
+[33mcommit 70d89ac9dfb583d3ba8d21b0372e8246bee9e12f[m
+Author: amedio <amedio77@gmail.com>
+Date:   Fri May 24 14:19:08 2019 +0900
+
+    파스타 4.3 설치 메뉴얼
+
+[33mcommit 01203ac86211aa913360f6cf4e21748215028898[m
+Author: amedio <amedio77@gmail.com>
+Date:   Fri May 24 14:17:50 2019 +0900
+
+    파스타 4.3 설치 메뉴얼
+
+[33mcommit ed08a6d46e7bc3d92566ca0970bbcb3a7dfc1739[m
+Author: 이우송 <32665532+amedio77@users.noreply.github.com>
+Date:   Fri May 24 13:43:50 2019 +0900
+
+    Update Bosh-Lite 설치 가이드v2.0.md
+
+[33mcommit 0976cd103f09f9e4decb4a1ebaf822fbd5667b02[m
+Author: 이우송 <32665532+amedio77@users.noreply.github.com>
+Date:   Fri May 24 13:41:15 2019 +0900
+
+    Update Bosh-Lite 설치 가이드v2.0.md
+
+[33mcommit e1cc06b24a7727be666ee2a8fc71c69484de86ea[m
+Author: 이우송 <32665532+amedio77@users.noreply.github.com>
+Date:   Fri May 24 13:39:05 2019 +0900
+
+    Update Bosh-Lite 설치 가이드v2.0.md
+
+[33mcommit 87308e60262e5cf8477e065a6b752c24cb35f99d[m
+Author: 이우송 <32665532+amedio77@users.noreply.github.com>
+Date:   Fri May 24 12:18:55 2019 +0900
+
+    Update Bosh-Lite 설치 가이드v2.0.md
+
+[33mcommit a282d58d437be0e7671e93bb9a51f2d631d74d66[m
+Author: 이우송 <32665532+amedio77@users.noreply.github.com>
+Date:   Fri May 24 12:11:26 2019 +0900
+
+    Update Bosh-Lite 설치 가이드v2.0.md
+
+[33mcommit d86aa9ec2aa756e39c8ada9324b406a7b223c148[m
+Author: 이우송 <32665532+amedio77@users.noreply.github.com>
+Date:   Fri May 24 11:51:20 2019 +0900
+
+    Update Bosh-Lite 설치 가이드v2.0.md
+
+[33mcommit d96617297bcdb78e72ffd7cdc9f9ce3966865f12[m
+Author: 이우송 <32665532+amedio77@users.noreply.github.com>
+Date:   Fri May 24 10:48:50 2019 +0900
+
+    Update Bosh-Lite 설치 가이드v2.0.md
+
+[33mcommit 17e449ffb533212f84eed5f80783a83b410fdc58[m
+Author: 이우송 <32665532+amedio77@users.noreply.github.com>
+Date:   Fri May 24 10:45:04 2019 +0900
+
+    Update Bosh-Lite 설치 가이드v2.0.md
+
+[33mcommit 84638fc353550569554d92f37442d7dbc5cae5da[m
+Author: 이우송 <32665532+amedio77@users.noreply.github.com>
+Date:   Fri May 24 10:42:57 2019 +0900
+
+    Update Bosh-Lite 설치 가이드v2.0.md
+
+[33mcommit ca7ce85a9563756f697380a8ca2953ce72aef827[m
+Author: 이우송 <32665532+amedio77@users.noreply.github.com>
+Date:   Fri May 24 10:41:44 2019 +0900
+
+    Update Bosh-Lite 설치 가이드v2.0.md
+
+[33mcommit 172dcda55ec7ace6b40158fd138f9bc59f8d0223[m
+Author: 이우송 <32665532+amedio77@users.noreply.github.com>
+Date:   Fri May 24 10:37:51 2019 +0900
+
+    Update Bosh-Lite 설치 가이드v2.0.md
+
+[33mcommit a030e9f4226a585a3cedb24a8a83955965e791b0[m
+Author: 이우송 <32665532+amedio77@users.noreply.github.com>
+Date:   Fri May 24 10:32:57 2019 +0900
+
+    Update Bosh-Lite 설치 가이드v2.0.md
+
+[33mcommit d32ceb0c9f8ae073a30aaa67daab89d68f0e1ff0[m
+Author: 이우송 <32665532+amedio77@users.noreply.github.com>
+Date:   Fri May 24 10:13:28 2019 +0900
+
+    Update Bosh-Lite 설치 가이드v2.0.md
+
+[33mcommit 3bd551e4463e9d1aaaeb78d86af6813df5b4991e[m
+Author: amedio <amedio77@gmail.com>
+Date:   Thu May 23 09:02:43 2019 +0900
+
+    파스타 4.3 설치 메뉴얼
+
+[33mcommit 2f6ec32cc1e7b9632702b06b6cd5e90339f694f7[m
+Author: amedio <amedio77@gmail.com>
+Date:   Thu May 23 08:43:38 2019 +0900
+
+    파스타 4.3 설치 메뉴얼
+
+[33mcommit 0e664dff501f5384047c1d38090a90eb983941f3[m
+Author: amedio <amedio77@gmail.com>
+Date:   Thu May 23 08:39:07 2019 +0900
+
+    파스타 4.3 설치 메뉴얼
+
+[33mcommit dabc1902f98c9caf073611189bd325d1e976543a[m
+Author: amedio <amedio77@gmail.com>
+Date:   Thu May 16 17:47:14 2019 +0900
+
+    파스타 4.3 설치 메뉴얼
+
+[33mcommit ee8e43218f1d5736879ab91b2277cc93adb05b9d[m
+Author: amedio <amedio77@gmail.com>
+Date:   Thu May 16 17:33:20 2019 +0900
+
+    파스타 4.3 설치 메뉴얼
+
+[33mcommit b7e2e60b404cc6ed5144a424680527386e5b254d[m
+Author: amedio <amedio77@gmail.com>
+Date:   Thu May 16 17:32:45 2019 +0900
+
+    파스타 4.3 설치 메뉴얼
+
+[33mcommit 6c8eec83244fece3e38c37156c637cc078648a05[m
+Author: amedio <amedio77@gmail.com>
+Date:   Thu May 16 13:31:52 2019 +0900
+
+    파스타 4.3 설치 메뉴얼
+
+[33mcommit 4bdef1937a97802ae2fbd408c358902d0c04a0c9[m
+Author: amedio <amedio77@gmail.com>
+Date:   Thu May 16 13:27:20 2019 +0900
+
+    파스타 4.3 설치 메뉴얼
+
+[33mcommit 75d1412a1e054aebc9205f1cefb8774e42e8e62f[m[33m ([m[1;33mtag: 4.3[m[33m)[m
+Author: swmoon <swmoon@bluedigm.com>
+Date:   Mon Apr 29 15:12:47 2019 +0900
+
+    다운로드 URL 수정
+
+[33mcommit 5c0c54a1bd93bd14cb9c2c0f6ca37f2eadf637e8[m
+Author: parkcheolhan <35785850+parkcheolhan@users.noreply.github.com>
+Date:   Mon Apr 29 15:03:14 2019 +0900
+
+    Update PaaS-TA_Portal_install.md
+    
+    download 수정
+
+[33mcommit b18061cdfed90c62e7594a22c7f2e9afdd9a1bf7[m
+Author: swmoon <swmoon@bluedigm.com>
+Date:   Mon Apr 29 14:53:42 2019 +0900
+
+    다운로드 URL 수정
+
+[33mcommit 269f6a9a051ea4ad407a2fa3febea960a5b1603d[m
+Author: amedio <amedio77@gmail.com>
+Date:   Mon Apr 22 17:26:05 2019 +0900
+
+     paasta 4.3 Readme.md update 1
+
+[33mcommit ea70df3b72f2f46c096e3bff61836bf609613347[m
+Author: amedio <amedio77@gmail.com>
+Date:   Mon Apr 22 17:15:57 2019 +0900
+
+     paasta 4.3 Readme.md update
+
+[33mcommit a09eaf496b95b1db5268c2298f3cc255c0257990[m
+Author: amedio <amedio77@gmail.com>
+Date:   Mon Apr 22 17:12:09 2019 +0900
+
+     paasta 4.0 Readme.md create
+
+[33mcommit 0d8ffbb5d372f2d560a20c3598b5f90e4f5f764e[m
+Author: amedio <amedio77@gmail.com>
+Date:   Mon Apr 22 17:11:20 2019 +0900
+
+     paasta 4.3 Readme.md update
+
+[33mcommit 5a67ae0e9ac69de066e45d4cc8c8d09accebc2b0[m
+Author: jinhyunree <hyunlee@bluedigm.com>
+Date:   Fri Apr 19 13:02:20 2019 +0900
+
+    Update PaaS-TA Container 서비스팩 설치 가이드_v1.0.md
+
+[33mcommit 17f6c5b5ca66cf76b0d0060001abaafd529d71c0[m
+Author: jinhyunree <hyunlee@bluedigm.com>
+Date:   Fri Apr 12 15:44:57 2019 +0900
+
+    Update PaaS-TA Container 서비스 사용자 가이드_v1.0.md
+
+[33mcommit f3086d7d815eb30be39f5623c79a819067bcf621[m
+Author: jinhyunree <hyunlee@bluedigm.com>
+Date:   Wed Apr 10 17:41:17 2019 +0900
+
+    Update PaaS-TA Cubrid 서비스팩 설치 가이드.md
+
+[33mcommit 8ffef1681c5cd7531e8172f80cb4c9ab8f179540[m
+Author: seongwookmoon <31715439+seongwookmoon@users.noreply.github.com>
+Date:   Tue Apr 2 17:53:18 2019 +0900
+
+    Update PaaS-TA 배포 파이프라인 서비스팩 설치 가이드_v1.0.md
+
+[33mcommit b8c9eed8369e72bc9383883c3759d313ea1b22c5[m
+Author: seongwookmoon <31715439+seongwookmoon@users.noreply.github.com>
+Date:   Tue Apr 2 17:52:30 2019 +0900
+
+    Update PaaS-TA 배포 파이프라인 서비스팩 설치 가이드_v1.0.md
+
+[33mcommit 7a1ef424f74a77444f838fda445249f602ed0e1d[m
+Author: seongwookmoon <31715439+seongwookmoon@users.noreply.github.com>
+Date:   Tue Apr 2 17:51:28 2019 +0900
+
+    Update PaaS-TA 배포 파이프라인 서비스팩 설치 가이드_v1.0.md
+
+[33mcommit 0ef10868f7de933592dff59f9848f9e69c64c03f[m
+Author: seongwookmoon <31715439+seongwookmoon@users.noreply.github.com>
+Date:   Tue Apr 2 17:50:39 2019 +0900
+
+    Update PaaS-TA 배포 파이프라인 서비스팩 설치 가이드_v1.0.md
+
+[33mcommit 03cf6b239db1c02b6244c8b18b561d7442cf331a[m
+Author: infranicsrnd <45093484+infranicsrnd@users.noreply.github.com>
+Date:   Thu Mar 21 17:56:59 2019 +0900
+
+    Update README.md
+    
+    caas 서비스 , logging 서비스 사용자 가이드 링크 추가
+
+[33mcommit cb9e16817d0caa52d437b6ecd47e899f08cd55d2[m
+Author: lena-kim <lime913@gmail.com>
+Date:   Thu Mar 14 12:17:33 2019 +0900
+
+    Update PaaS-TA Logging 서비스 설치 가이드_v1.0.md
+    
+    설치 전 확인 사항 추가
+
+[33mcommit 1b52949d253f491bd9e9c747041adc4029ad2a29[m
+Author: infranicsrnd <45093484+infranicsrnd@users.noreply.github.com>
+Date:   Wed Feb 27 13:35:45 2019 +0900
+
+    Update PaaS_TA_PaaS-TA_Install_Guide-v4.0.md
+
+[33mcommit aeeb09bc68ae6622ccc3e19646c0e4a999e4d7ff[m
+Author: 박철한 <parkcheolhan@bluedigm.com>
+Date:   Fri Feb 1 09:47:19 2019 +0900
+
+    포탈 로그인 권한 내용 수정
+
+[33mcommit b572bb00be101c5bef287cc2d273e26e8eea118f[m
+Author: 박철한 <parkcheolhan@bluedigm.com>
+Date:   Fri Feb 1 09:42:26 2019 +0900
+
+    포탈 로그인 권한 내용 이미지 수정
+
+[33mcommit e487f19ee30b0489bb61e4454bc23cc5236701b2[m
+Author: 박철한 <parkcheolhan@bluedigm.com>
+Date:   Fri Feb 1 09:36:10 2019 +0900
+
+    포탈 로그인 권한 내용 추가
+
+[33mcommit d05253dab3c669486647a5acc005c95246d529b5[m
+Author: 박철한 <parkcheolhan@bluedigm.com>
+Date:   Wed Jan 30 16:47:01 2019 +0900
+
+    포탈 로그인 권한 내용 추가
+
+[33mcommit 33901dbe048079c2cff529aa50b6a570ae8686de[m
+Author: 박철한 <parkcheolhan@bluedigm.com>
+Date:   Mon Jan 28 10:38:05 2019 +0900
+
+    설치가이드 모니터링 수정
+
+[33mcommit 7221842556b9e1ac796ddec44775fba0653aff03[m
+Author: 박철한 <parkcheolhan@bluedigm.com>
+Date:   Fri Jan 25 19:32:34 2019 +0900
+
+    링크 수정
+
+[33mcommit 0aa24d5ed946a8fe2edf017176818ff56abd2b4b[m
+Merge: bcc05fe fc88eb7
+Author: 박철한 <parkcheolhan@bluedigm.com>
+Date:   Fri Jan 25 18:47:30 2019 +0900
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit bcc05fe35bf1a4b3f3e0144f88c3ccbbb46f2ecd[m
+Author: 박철한 <parkcheolhan@bluedigm.com>
+Date:   Fri Jan 25 18:47:02 2019 +0900
+
+    이미지 수정
+
+[33mcommit fc88eb7bc55b39f3c09d8cbf1487b34f651bf0e0[m
+Author: seongwookmoon <31715439+seongwookmoon@users.noreply.github.com>
+Date:   Fri Jan 25 18:35:23 2019 +0900
+
+    Update PaaS-TA 운영자 포탈 가이드_v1.1.md
+
+[33mcommit 239d97c9fb54fc87d95e537ab34d3975d3bdb3f5[m
+Merge: eaf1b84 2b1a97e
+Author: 박철한 <parkcheolhan@bluedigm.com>
+Date:   Fri Jan 25 18:29:44 2019 +0900
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit eaf1b84f5665c88e06320ff42abc21bb8f804391[m
+Author: 박철한 <parkcheolhan@bluedigm.com>
+Date:   Fri Jan 25 18:29:23 2019 +0900
+
+    이미지 추가
+
+[33mcommit 2b1a97e631289015a1b9f5c61237412b22d5b9a2[m
+Merge: bdcbdd5 c9abce0
+Author: sjchoi <sjchoi@bluedigm.com>
+Date:   Fri Jan 25 18:26:28 2019 +0900
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit bdcbdd58fb487ffc6fe74b6780b18a8a16072c4a[m
+Author: sjchoi <sjchoi@bluedigm.com>
+Date:   Fri Jan 25 18:25:48 2019 +0900
+
+    PaaS-TA 4.0 use Guide
+
+[33mcommit c9abce0c9f7eedac2475c7769805dd389ac1c228[m
+Author: 박철한 <parkcheolhan@bluedigm.com>
+Date:   Fri Jan 25 18:21:16 2019 +0900
+
+    이미지 추가
+
+[33mcommit 9aa1e6b77976dbad2803e99cff9c38aeb29d827c[m
+Author: 박철한 <parkcheolhan@bluedigm.com>
+Date:   Fri Jan 25 18:20:23 2019 +0900
+
+    사용자 포탈 가이드 추가
+
+[33mcommit 52809b6885b68f36e2489ab4c758c3e4bea69082[m
+Author: 박철한 <parkcheolhan@bluedigm.com>
+Date:   Fri Jan 25 16:18:36 2019 +0900
+
+    텍스트 수정
+
+[33mcommit 1e0d90347dc510e125d003d6296e6e8d600c47b0[m
+Author: 박철한 <parkcheolhan@bluedigm.com>
+Date:   Fri Jan 25 16:14:10 2019 +0900
+
+    링크 이동 및 이미지 오류 수정
+
+[33mcommit b5b52bf1181e648887465744005cfdd291cf803f[m
+Author: 박철한 <parkcheolhan@bluedigm.com>
+Date:   Fri Jan 25 16:11:30 2019 +0900
+
+    포탈 운영자포탈 오류 해결 추가
+
+[33mcommit f1fa11a636254830ce05a56c79ca6d917fc2a6b0[m
+Merge: ee2957e 97f72bb
+Author: 박철한 <parkcheolhan@bluedigm.com>
+Date:   Fri Jan 25 15:58:45 2019 +0900
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit ee2957e81c15d4073db2043991386d657c9d2355[m
+Author: 박철한 <parkcheolhan@bluedigm.com>
+Date:   Fri Jan 25 15:58:20 2019 +0900
+
+    포탈 모니터링 관련부분 설명 추가
+
+[33mcommit 97f72bbb23ee08e00370cce446245533ece18899[m
+Author: sjchoi <sjchoi@bluedigm.com>
+Date:   Fri Jan 25 10:00:42 2019 +0900
+
+    Guide-4.0-ROTELLE 운영자 포탈 가이드
+
+[33mcommit ee1eb503e8ee60d827eec69111a9ebd8d882da04[m
+Merge: d506240 7e68ba8
+Author: 박철한 <parkcheolhan@bluedigm.com>
+Date:   Thu Jan 24 13:20:19 2019 +0900
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit d50624042c2ba0c00ebb95ff96f4b47d3c2f5c01[m
+Author: 박철한 <parkcheolhan@bluedigm.com>
+Date:   Thu Jan 24 13:20:06 2019 +0900
+
+    다운로드 링크 수정
+
+[33mcommit 7e68ba8559984494f167aa3bb77ce1da9040b3cf[m
+Author: jinhyunree <hyunlee@bluedigm.com>
+Date:   Thu Jan 24 11:14:02 2019 +0900
+
+    Update PaaS-TA Container 서비스팩 설치 가이드_v1.0.md
+
+[33mcommit f25b91f33f6c35e4667df3dc66ca50838a9c1ea4[m
+Author: jinhyunree <hyunlee@bluedigm.com>
+Date:   Thu Jan 24 11:13:16 2019 +0900
+
+    Update PaaS-TA Container 서비스팩 설치 가이드_v1.0.md
+
+[33mcommit 4c03e0dd669a067061c1a9ace3b566208f61a2a0[m
+Author: csupshin <csupshin@crossent.com>
+Date:   Thu Jan 10 10:51:41 2019 +0900
+
+    kafka download url change
+
+[33mcommit 1945ceb38800b0287b462b3b79cac6832dd5ec81[m
+Author: 박철한 <parkcheolhan@bluedigm.com>
+Date:   Fri Jan 4 13:33:04 2019 +0900
+
+    다운로드 링크 수정
+
+[33mcommit ca1ca4248c668fe675435686c0476469c0aca6e4[m
+Author: csupshin <csupshin@crossent.com>
+Date:   Tue Dec 18 13:38:06 2018 +0900
+
+    모니터링 설치 가이드 && 설치 자동화 설치 가이드 수정
+
+[33mcommit c1ec00622153416065e2538800ee7e52f0534c66[m
+Author: csupshin <csupshin@crossent.com>
+Date:   Mon Dec 17 14:03:17 2018 +0900
+
+    IaaS/PaaS 통합 모니터링
+
+[33mcommit 92bae5345d27b6200baa87f4f50052d1d8393afb[m
+Author: csupshin <csupshin@crossent.com>
+Date:   Fri Dec 14 17:49:27 2018 +0900
+
+    통합 모니터링 가이드 수정
+
+[33mcommit 475e0646cf479cecd211a962f792960f539a0e3e[m
+Merge: b1de5aa 6cad38d
+Author: csupshin <csupshin@crossent.com>
+Date:   Fri Dec 14 16:32:23 2018 +0900
+
+    Merge branch 'master' of https://github.com/PaaS-TA/Guide-4.0-ROTELLE
+
+[33mcommit b1de5aa636cf8a39a5bbd093527b97ed35f05d34[m
+Author: csupshin <csupshin@crossent.com>
+Date:   Fri Dec 14 16:30:21 2018 +0900
+
+    IaaS-PaaS모니터링 설치 가이드
+
+[33mcommit 6cad38dd2ed8d75a3fce4c70cdb5730eb8f8ba6f[m
+Author: jinhyunree <hyunlee@bluedigm.com>
+Date:   Fri Dec 14 10:11:32 2018 +0900
+
+    Update PaaS-TA Logging 서비스 설치 가이드_v1.0.md
+
+[33mcommit 1a53621721f8ba7278beae8d4b3b4b5a3259e52b[m
+Author: jinhyunree <hyunlee@bluedigm.com>
+Date:   Fri Dec 14 10:07:22 2018 +0900
+
+    Update PaaS-TA Container 서비스팩 설치 가이드_v1.0.md
+
+[33mcommit 0555ddecf69bfbfc804afcc3bc84055a89c7f1fa[m
+Author: jinhyunree <hyunlee@bluedigm.com>
+Date:   Thu Dec 13 12:51:39 2018 +0900
+
+    Create PaaS-TA Container 서비스 사용자 가이드_v1.0.md
+
+[33mcommit 07feb9b6339e6a5872b187b02f9587d33526fd3c[m
+Author: jinhyunree <hyunlee@bluedigm.com>
+Date:   Thu Dec 13 12:50:19 2018 +0900
+
+    Add files via upload
+
+[33mcommit 0db2c5bf8e1ee7f3c9dc1229f33f2033e1ab69d1[m
+Author: jinhyunree <hyunlee@bluedigm.com>
+Date:   Thu Dec 13 12:47:08 2018 +0900
+
+    Add files via upload
+
+[33mcommit 73dbbe4b017eda491132c6d73c3e5eca9aca5958[m
+Author: jinhyunree <hyunlee@bluedigm.com>
+Date:   Thu Dec 13 12:45:02 2018 +0900
+
+    Create PaaS-TA Logging 서비스 사용자 가이드_v1.0.md
+
+[33mcommit ed25eb7b72f436d9adb40117da83a9ea3f3e158d[m
+Author: jinhyunree <hyunlee@bluedigm.com>
+Date:   Thu Dec 13 12:40:22 2018 +0900
+
+    Update PaaS-TA Logging 서비스 설치 가이드_v1.0.md
+
+[33mcommit 1f43ec933c2802aa4e628f8719de3a1399e7be0e[m
+Author: jinhyunree <hyunlee@bluedigm.com>
+Date:   Thu Dec 13 11:27:35 2018 +0900
+
+    Add files via upload
+
+[33mcommit 667c325a4af58f35daf5ed33aabd1ec0c0a148d3[m
+Author: jinhyunree <hyunlee@bluedigm.com>
+Date:   Thu Dec 13 11:27:08 2018 +0900
+
+    Create PaaS-TA Logging 서비스 설치 가이드_v1.0.md
+
+[33mcommit a55d2c29b4dcf50f688e8644ed5301c214503624[m
+Author: jinhyunree <hyunlee@bluedigm.com>
+Date:   Thu Dec 13 11:22:21 2018 +0900
+
+    Update README.md
+
+[33mcommit 3810a424f2b47b39fae4d2d894535a7cf3a010f9[m
+Author: jinhyunree <hyunlee@bluedigm.com>
+Date:   Thu Dec 13 11:18:47 2018 +0900
+
+    Update README.md
+
+[33mcommit c4a4720084e8de9a07c78f8c5a953a9ef3ee765a[m
+Author: jinhyunree <hyunlee@bluedigm.com>
+Date:   Thu Dec 13 11:05:37 2018 +0900
+
+    Add files via upload
+
+[33mcommit 3ac0712aa6baf3e53d1a4e3e86634c987e3ae793[m
+Author: jinhyunree <hyunlee@bluedigm.com>
+Date:   Thu Dec 13 11:05:21 2018 +0900
+
+    Update PaaS-TA Container 서비스팩 설치 가이드_v1.0.md
+
+[33mcommit a0f40f3bf4c336c2d99a4b442419222ce430eb61[m
+Author: jinhyunree <hyunlee@bluedigm.com>
+Date:   Thu Dec 13 11:02:26 2018 +0900
+
+    Create PaaS-TA Container 서비스팩 설치 가이드_v1.0.md
+
+[33mcommit d7e356bd7ebafb5fcb76178f014962791686395a[m
+Author: csupshin <csupshin@crossent.com>
+Date:   Thu Dec 13 10:26:20 2018 +0900
+
+    메인 페이지 수정
+
+[33mcommit 3cabc5867ce31ff236d713851c9f52c1ba6defbe[m
+Author: leedonghyean <ehdgus6600@naver.com>
+Date:   Thu Dec 13 09:34:13 2018 +0900
+
+    git commit
+
+[33mcommit cf017a3ba3e5b9f6949f56cbae11a8d5fa509fc6[m
+Author: leedonghyean <ehdgus6600@naver.com>
+Date:   Thu Dec 13 09:32:18 2018 +0900
+
+    git coomit
+
+[33mcommit 1427e6911cd4b7a45728f559cbb2dd28687e1648[m
+Author: leedonghyean <ehdgus6600@naver.com>
+Date:   Thu Dec 13 09:30:37 2018 +0900
+
+    git commit
+
+[33mcommit 0db1afc19fbbc947ebd318087f2ec7521ca3e2a3[m
+Author: leedonghyean <ehdgus6600@naver.com>
+Date:   Thu Dec 13 09:26:30 2018 +0900
+
+    paasta 4.0 update
+
+[33mcommit 932ecd0c20c0c140375dfa57fa488407b293a27c[m
+Author: leedonghyean <ehdgus6600@naver.com>
+Date:   Thu Dec 13 09:25:31 2018 +0900
+
+    paasta 4.0 update
+
+[33mcommit 28739eca78103566094265d68785ea0d7b52688a[m
+Author: leedonghyean <ehdgus6600@naver.com>
+Date:   Thu Dec 13 09:24:35 2018 +0900
+
+    paasta 4.0 update
+
+[33mcommit 70c28584b29082d5f6c11409262c87d8a7fc9645[m
+Author: csupshin <csupshin@crossent.com>
+Date:   Wed Dec 12 13:17:40 2018 +0900
+
+    PaaS-TA 설치 가이드 수정
+
+[33mcommit fb870a961c9cb5f2fe94c6756fe212a992824ff9[m
+Author: csupshin <csupshin@crossent.com>
+Date:   Wed Dec 12 09:44:55 2018 +0900
+
+    Download URL 수정
+
+[33mcommit 092c29252f4e65add42e18a83703ca94bd5100f3[m
+Author: csupshin <csupshin@crossent.com>
+Date:   Wed Dec 12 09:42:06 2018 +0900
+
+    PaaS-TA 모니터링 추가
+
+[33mcommit 0b26f5280e6aa276f8a37cde0efd1d56b550628c[m
+Author: csupshin <csupshin@crossent.com>
+Date:   Tue Dec 11 09:35:05 2018 +0900
+
+    Portal Guide Add
+
+[33mcommit 8b549083a2b45348d0ca31463641b592c6e28618[m
+Author: csupshin <csupshin@crossent.com>
+Date:   Tue Dec 11 09:31:26 2018 +0900
+
+    portal_install Guide
+
+[33mcommit 86b6d3ddb8b2226768f72c91c1216f71174b1e28[m
+Author: csupshin <csupshin@crossent.com>
+Date:   Tue Dec 11 09:18:33 2018 +0900
+
+    migration
+
+[33mcommit 4ccbc7d30c5860e67d8a907225cde37124b17453[m
+Author: csupshin <csupshin@crossent.com>
+Date:   Tue Dec 11 08:45:25 2018 +0900
+
+    PaaS-TA 4.0 use Guide
+
+[33mcommit 2c3295e6372d6771135dd084a7c6e567054084cc[m
+Author: csupshin <csupshin@crossent.com>
+Date:   Tue Dec 11 08:40:52 2018 +0900
+
+    PaaS-TA 4.0 Install Guide

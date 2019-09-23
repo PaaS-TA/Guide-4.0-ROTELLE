@@ -1799,8 +1799,8 @@ bosh -e micro-bosh -d paasta-delivery-pipeline-service deploy paasta_delivery_pi
         +     host: "<redacted>"
         +     port: "<redacted>"
         +     vcap_password: "<redacted>"
-
-Continue? [yN]: Y
+        Continue? [yN]: Y
+        
 		Task 4506 | 06:04:10 | Preparing deployment: Preparing deployment (00:00:01)
 		Task 4506 | 06:04:12 | Preparing package compilation: Finding packages to compile (00:00:00)
 		Task 4506 | 06:04:12 | Compiling packages: delivery-pipeline-scheduler/01dea40e305407b6b107a8fe230bb37dadadca87
