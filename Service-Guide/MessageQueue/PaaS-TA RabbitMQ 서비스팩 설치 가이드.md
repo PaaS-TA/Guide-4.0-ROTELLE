@@ -227,7 +227,6 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 
 		Succeeded
 		
->Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell을 업로드를 해야 한다. (RabbitMQ는 stemcell 3309 버전을 사용)
 	
 
 ### <div id='23'> 2.3. RabbitMQ 서비스 Deployment 파일 수정 및 배포
@@ -715,7 +714,6 @@ properties:
 
 ```sh
 #!/bin/bash
-# stemcell 버전은 3309 버전으로 사용하시고 https://github.com/PaaS-TA/Guide-2.0-Linguine-/blob/master/Download_Page.md 에서 다운받아 쓰십시요.
 
 bosh -e micro-bosh -d paasta-rabbitmq-service deploy paasta_rabbitmq_bosh2.0.yml \
    -v default_network_name=default \

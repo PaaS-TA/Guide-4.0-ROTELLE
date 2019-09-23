@@ -241,7 +241,6 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 
 		Succeeded
 		
->Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell을 업로드를 해야 한다. (pinpoint는 stemcell 3309 버전을 사용)
 
 ### <div id='23'> 2.3. MySQL 서비스 Deployment 파일 및 deploy-mysql-bosh2.0.sh 수정 및 배포
 

@@ -601,7 +601,7 @@ bosh -d paasta-cubrid-service deploy paasta_cubrid.yml \
    -v releases_name=paasta-cubrid \
    -v default_network_name=default \
    -v stemcell_os=ubuntu-xenial \
-   -v stemcell_version="456.1" \
+   -v stemcell_version="315.36" \
    -v vm_type_small=minimal \
    -v vm_type_default=medium \
    -l pem.yml
@@ -931,8 +931,8 @@ G/GIqOk+vwkB8x//oOelECn4gWxeue0G11YNG5MrcWuVU7ijLyT6
 
 		+ stemcells:
 		+ - alias: default
-		+   os: ubuntu-trusty
-		+   version: '3309'
+		+   os: ubuntu-xenial
+		+   version: '315.36'
 
 		+ releases:
 		+ - name: paasta-mysql

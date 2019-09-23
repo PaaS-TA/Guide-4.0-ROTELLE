@@ -689,12 +689,11 @@ meta:
 
 ```sh
 #!/bin/bash
-# stemcell 버전은 3309 버전으로 사용하시고 https://github.com/PaaS-TA/Guide-2.0-Linguine-/blob/master/Download_Page.md 에서 다운받아 쓰십시요.
 
 bosh -e micro-bosh -d paasta-mysql-service deploy paasta_mysql_bosh2.0.yml \
    -v default_network_name=default \
    -v stemcell_os=ubuntu-xenial \
-   -v stemcell_version="latest" \
+   -v stemcell_version="315.36" \
    -v nats_password=229yq707p0tfaq32gkhs \
    -v vm_type_small=minimal
 ```
@@ -989,8 +988,8 @@ bosh -e micro-bosh -d paasta-mysql-service deploy paasta_mysql_bosh2.0.yml \
 
 		+ stemcells:
 		+ - alias: default
-		+   os: ubuntu-trusty
-		+   version: '3309'
+		+   os: ubuntu-xenial
+		+   version: '315.36'
 
 		+ releases:
 		+ - name: paasta-mysql

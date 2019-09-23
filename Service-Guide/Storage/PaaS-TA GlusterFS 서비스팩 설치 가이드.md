@@ -17,6 +17,7 @@
 
 # 1. 문서 개요
 
+
 ### <div id='2'>1.1. 목적</div>
 본 문서(GlusterFS 서비스팩 설치 가이드)는 전자정부 표준 프레임워크 기반의 PaaS-TA에서 제공되는 서비스팩인 GlusterFS 서비스팩을 Bosh를 이용하여 설치 하는 방법과 PaaS-TA의 SaaS 형태로 제공하는 Application 에서GlusterFS 서비스를 사용하는 방법을 기술하였다.
 PaaS-TA 3.5 버전부터는 Bosh2.0 기반으로 deploy를 진행하며 기존 Bosh1.0 기반으로 설치를 원할경우에는 PaaS-TA 3.1 이하 버전의 문서를 참고한다.
@@ -228,7 +229,6 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 
 		Succeeded
 		
->Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell을 업로드를 해야 한다. (glusterfs 는  stemcell 3309 버전을 사용)
 
 ###   <div id='9'>2.3. glusterfs 서비스 Deployment 파일 수정 및 배포</div>
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML 파일이다.
@@ -635,12 +635,11 @@ properties: {}
 
 ```sh
 #!/bin/bash
-# stemcell 버전은 3309 버전으로 사용하시고 https://github.com/PaaS-TA/Guide-2.0-Linguine-/blob/master/Download_Page.md 에서 다운받아 쓰십시요.
 
 bosh -e micro-bosh -d paasta-swift-object-service deploy paasta_swift_object_bosh2.0.yml \
    -v default_network_name=service_private \
-   -v stemcell_os=ubuntu-trusty \
-   -v stemcell_version=3309 \
+   -v stemcell_os=ubuntu-xenial \
+   -v stemcell_version=315.36 \
    -v vm_type_small=minimal
 ```
 
@@ -934,8 +933,8 @@ bosh -e micro-bosh -d paasta-swift-object-service deploy paasta_swift_object_bos
 
 		+ stemcells:
 		+ - alias: default
-		+   os: ubuntu-trusty
-		+   version: '3309'
+		+   os: ubuntu-xenial
+		+   version: '315.35'
 
 		+ releases:
 		+ - name: paasta-mysql

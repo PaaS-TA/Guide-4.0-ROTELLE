@@ -334,10 +334,9 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 - **사용 예시**
 
 		$ bosh -e micro-bosh stemcells
-		Name                                      Version   OS             CPI  CID  
-		bosh-vsphere-esxi-ubuntu-trusty-go_agent  3586.26*  ubuntu-trusty  -    sc-109fbdb0-f663-49e8-9c30-8dbdd2e5b9b9  
-		~                                         3445.2*   ubuntu-trusty  -    sc-025c70b5-7d6e-4ba3-a12b-7e71c33dad24  
-		~                                         3309*     ubuntu-trusty  -    sc-22429dba-e5cc-4469-ab3a-882091573277  
+		Name                                       Version  OS             CPI  CID  
+		bosh-openstack-kvm-ubuntu-xenial-go_agent  315.41*  ubuntu-xenial  -    fb08e389-2350-4091-9b29-41743495e62c  
+		~                                          315.36*  ubuntu-xenial  -    7076cf5d-a473-4c46-b6c1-4a7813911f76   
 
 		(*) Currently deployed
 
@@ -345,7 +344,6 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 
 		Succeeded
 		
->Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell을 업로드를 해야 한다. (redis는 stemcell 3400 이상 버전을 사용)
 		
 		
 ### <div id='23'>  2.3. On-Demand Redis 서비스 Deployment 파일 수정 및 배포
@@ -1188,8 +1186,8 @@ service_instance_space_limitation: -1                                      # Spa
           
         + stemcells:
         + - alias: default
-        +   os: ubuntu-trusty
-        +   version: '3586.25'
+        +   os: ubuntu-xenial
+        +   version: '315.36'
           
         + releases:
         + - name: bpm
