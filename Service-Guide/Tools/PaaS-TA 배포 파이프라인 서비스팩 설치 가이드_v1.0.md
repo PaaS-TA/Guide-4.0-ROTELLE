@@ -1063,438 +1063,744 @@ bosh -e micro-bosh -d paasta-delivery-pipeline-service deploy paasta_delivery_pi
 		Using environment '10.30.40.111' as user 'admin' (openid, bosh.admin)
 
 		Using deployment 'paasta-delivery-pipeline-service'
-
-		+ azs:
-		+ - cloud_properties:
-		+     datacenters:
-		+     - clusters:
-		+       - BD-HA:
-		+           resource_pool: CF_BOSH2_Pool
-		+       name: BD-HA
-		+   name: z1
-		+ - cloud_properties:
-		+     datacenters:
-		+     - clusters:
-		+       - BD-HA:
-		+           resource_pool: CF_BOSH2_Pool
-		+       name: BD-HA
-		+   name: z2
-		+ - cloud_properties:
-		+     datacenters:
-		+     - clusters:
-		+       - BD-HA:
-		+           resource_pool: CF_BOSH2_Pool
-		+       name: BD-HA
-		+   name: z3
-		+ - cloud_properties:
-		+     datacenters:
-		+     - clusters:
-		+       - BD-HA:
-		+           resource_pool: CF_BOSH2_Pool
-		+       name: BD-HA
-		+   name: z4
-		+ - cloud_properties:
-		+     datacenters:
-		+     - clusters:
-		+       - BD-HA:
-		+           resource_pool: CF_BOSH2_Pool
-		+       name: BD-HA
-		+   name: z5
-		+ - cloud_properties:
-		+     datacenters:
-		+     - clusters:
-		+       - BD-HA:
-		+           resource_pool: CF_BOSH2_Pool
-		+       name: BD-HA
-		+   name: z6
-
-		+ vm_types:
-		+ - cloud_properties:
-		+     cpu: 1
-		+     disk: 8192
-		+     ram: 1024
-		+   name: minimal
-		+ - cloud_properties:
-		+     cpu: 1
-		+     disk: 10240
-		+     ram: 2048
-		+   name: default
-		+ - cloud_properties:
-		+     cpu: 1
-		+     disk: 30720
-		+     ram: 4096
-		+   name: small
-		+ - cloud_properties:
-		+     cpu: 2
-		+     disk: 20480
-		+     ram: 4096
-		+   name: medium
-		+ - cloud_properties:
-		+     cpu: 2
-		+     disk: 20480
-		+     ram: 8192
-		+   name: medium-memory-8GB
-		+ - cloud_properties:
-		+     cpu: 4
-		+     disk: 20480
-		+     ram: 8192
-		+   name: large
-		+ - cloud_properties:
-		+     cpu: 8
-		+     disk: 20480
-		+     ram: 16384
-		+   name: xlarge
-		+ - cloud_properties:
-		+     cpu: 2
-		+     disk: 51200
-		+     ram: 4096
-		+   name: small-50GB
-		+ - cloud_properties:
-		+     cpu: 2
-		+     disk: 51200
-		+     ram: 4096
-		+   name: small-50GB-ephemeral-disk
-		+ - cloud_properties:
-		+     cpu: 4
-		+     disk: 102400
-		+     ram: 8192
-		+   name: small-100GB-ephemeral-disk
-		+ - cloud_properties:
-		+     cpu: 4
-		+     disk: 102400
-		+     ram: 8192
-		+   name: small-highmem-100GB-ephemeral-disk
-		+ - cloud_properties:
-		+     cpu: 8
-		+     disk: 20480
-		+     ram: 16384
-		+   name: small-highmem-16GB
-		+ - cloud_properties:
-		+     cpu: 1
-		+     disk: 4096
-		+     ram: 2048
-		+   name: caas_small
-		+ - cloud_properties:
-		+     cpu: 1
-		+     disk: 4096
-		+     ram: 1024
-		+   name: caas_small_api
-		+ - cloud_properties:
-		+     cpu: 1
-		+     disk: 4096
-		+     ram: 4096
-		+   name: caas_medium
-		+ - cloud_properties:
-		+     cpu: 2
-		+     disk: 8192
-		+     ram: 4096
-		+   name: service_medium
-		+ - cloud_properties:
-		+     cpu: 2
-		+     disk: 10240
-		+     ram: 2048
-		+   name: service_medium_2G
-
-		+ vm_extensions:
-		+ - cloud_properties:
-		+     ports:
-		+     - host: 3306
-		+   name: mysql-proxy-lb
-		+ - name: cf-router-network-properties
-		+ - name: cf-tcp-router-network-properties
-		+ - name: diego-ssh-proxy-network-properties
-		+ - name: cf-haproxy-network-properties
-		+ - cloud_properties:
-		+     disk: 51200
-		+   name: small-50GB
-		+ - cloud_properties:
-		+     disk: 102400
-		+   name: small-highmem-100GB
-
-		+ compilation:
-		+   az: z1
-		+   network: default
-		+   reuse_compilation_vms: true
-		+   vm_type: large
-		+   workers: 5
-
-		+ networks:
-		+ - name: default
-		+   subnets:
-		+   - azs:
-		+     - z1
-		+     - z2
-		+     - z3
-		+     - z4
-		+     - z5
-		+     - z6
-		+     cloud_properties:
-		+       name: Internal
-		+     dns:
-		+     - 8.8.8.8
-		+     gateway: 10.30.20.23
-		+     range: 10.30.0.0/16
-		+     reserved:
-		+     - 10.30.0.0 - 10.30.111.40
-		+ - name: public
-		+   subnets:
-		+   - azs:
-		+     - z1
-		+     - z2
-		+     - z3
-		+     - z4
-		+     - z5
-		+     - z6
-		+     cloud_properties:
-		+       name: External
-		+     dns:
-		+     - 8.8.8.8
-		+     gateway: 115.68.46.177
-		+     range: 115.68.46.176/28
-		+     reserved:
-		+     - 115.68.46.176 - 115.68.46.188
-		+     static:
-		+     - 115.68.46.189 - 115.68.46.190
-		+   type: manual
-		+ - name: service_private
-		+   subnets:
-		+   - azs:
-		+     - z1
-		+     - z2
-		+     - z3
-		+     - z4
-		+     - z5
-		+     - z6
-		+     cloud_properties:
-		+       name: Internal
-		+     dns:
-		+     - 8.8.8.8
-		+     gateway: 10.30.20.23
-		+     range: 10.30.0.0/16
-		+     reserved:
-		+     - 10.30.0.0 - 10.30.106.255
-		+     static:
-		+     - 10.30.107.1 - 10.30.107.255
-		+ - name: service_public
-		+   subnets:
-		+   - azs:
-		+     - z1
-		+     - z2
-		+     - z3
-		+     - z4
-		+     - z5
-		+     - z6
-		+     cloud_properties:
-		+       name: External
-		+     dns:
-		+     - 8.8.8.8
-		+     gateway: 115.68.47.161
-		+     range: 115.68.47.160/24
-		+     reserved:
-		+     - 115.68.47.161 - 115.68.47.174
-		+     static:
-		+     - 115.68.47.175 - 115.68.47.185
-		+   type: manual
-		+ - name: portal_service_public
-		+   subnets:
-		+   - azs:
-		+     - z1
-		+     - z2
-		+     - z3
-		+     - z4
-		+     - z5
-		+     - z6
-		+     cloud_properties:
-		+       name: External
-		+     dns:
-		+     - 8.8.8.8
-		+     gateway: 115.68.46.209
-		+     range: 115.68.46.208/28
-		+     reserved:
-		+     - 115.68.46.216 - 115.68.46.222
-		+     static:
-		+     - 115.68.46.214
-		+   type: manual
-
-		+ disk_types:
-		+ - disk_size: 1024
-		+   name: default
-		+ - disk_size: 1024
-		+   name: 1GB
-		+ - disk_size: 2048
-		+   name: 2GB
-		+ - disk_size: 4096
-		+   name: 4GB
-		+ - disk_size: 5120
-		+   name: 5GB
-		+ - disk_size: 8192
-		+   name: 8GB
-		+ - disk_size: 10240
-		+   name: 10GB
-		+ - disk_size: 20480
-		+   name: 20GB
-		+ - disk_size: 30720
-		+   name: 30GB
-		+ - disk_size: 51200
-		+   name: 50GB
-		+ - disk_size: 102400
-		+   name: 100GB
-		+ - disk_size: 1048576
-		+   name: 1TB
-
-		+ stemcells:
-		+ - alias: default
-		+   os: ubuntu-xenial\
-		+   version: '315.41'
-
-		+ releases:
-		+ - name: paasta-mysql
-		+   version: '2.0'
-
-		+ update:
-		+   canaries: 1
-		+   canary_watch_time: 30000-600000
-		+   max_in_flight: 1
-		+   update_watch_time: 30000-600000
-
-		+ instance_groups:
-		+ - azs:
-		+   - z5
-		+   instances: 3
-		+   name: mysql
-		+   networks:
-		+   - name: service_private
-		+     static_ips:
-		+     - 10.30.107.166
-		+     - 10.30.107.165
-		+     - 10.30.107.164
-		+   persistent_disk_type: 8GB
-		+   properties:
-		+     admin_password: "<redacted>"
-		+     character_set_server: "<redacted>"
-		+     cluster_ips:
-		+     - "<redacted>"
-		+     - "<redacted>"
-		+     - "<redacted>"
-		+     collation_server: "<redacted>"
-		+     network_name: "<redacted>"
-		+     seeded_databases: "<redacted>"
-		+     syslog_aggregator: "<redacted>"
-		+   release: paasta-mysql
-		+   stemcell: default
-		+   template: mysql
-		+   vm_type: minimal
-		+ - azs:
-		+   - z5
-		+   instances: 1
-		+   name: proxy
-		+   networks:
-		+   - name: service_private
-		+     static_ips:
-		+     - 10.30.107.168
-		+   properties:
-		+     cluster_ips:
-		+     - "<redacted>"
-		+     - "<redacted>"
-		+     - "<redacted>"
-		+     external_host: "<redacted>"
-		+     nats:
-		+       machines:
-		+       - "<redacted>"
-		+       password: "<redacted>"
-		+       port: "<redacted>"
-		+       user: "<redacted>"
-		+     network_name: "<redacted>"
-		+     proxy:
-		+       api_force_https: "<redacted>"
-		+       api_password: "<redacted>"
-		+       api_username: "<redacted>"
-		+     syslog_aggregator: "<redacted>"
-		+   release: paasta-mysql
-		+   stemcell: default
-		+   template: proxy
-		+   vm_type: minimal
-		+ - azs:
-		+   - z5
-		+   instances: 1
-		+   name: paasta-mysql-java-broker
-		+   networks:
-		+   - name: service_private
-		+     static_ips:
-		+     - 10.30.107.167
-		+   properties:
-		+     jdbc_ip: "<redacted>"
-		+     jdbc_port: "<redacted>"
-		+     jdbc_pwd: "<redacted>"
-		+     log_dir: "<redacted>"
-		+     log_file: "<redacted>"
-		+     log_level: "<redacted>"
-		+   release: paasta-mysql
-		+   stemcell: default
-		+   template: op-mysql-java-broker
-		+   vm_type: minimal
-		+ - azs:
-		+   - z5
-		+   instances: 1
-		+   lifecycle: errand
-		+   name: broker-registrar
-		+   networks:
-		+   - name: service_private
-		+   properties:
-		+     broker:
-		+       host: "<redacted>"
-		+       name: "<redacted>"
-		+       password: "<redacted>"
-		+       port: "<redacted>"
-		+       protocol: "<redacted>"
-		+       username: "<redacted>"
-		+     cf:
-		+       admin_password: "<redacted>"
-		+       admin_username: "<redacted>"
-		+       api_url: "<redacted>"
-		+       skip_ssl_validation: "<redacted>"
-		+   release: paasta-mysql
-		+   stemcell: default
-		+   template: broker-registrar
-		+   vm_type: minimal
-		+ - azs:
-		+   - z5
-		+   instances: 1
-		+   lifecycle: errand
-		+   name: broker-deregistrar
-		+   networks:
-		+   - name: service_private
-		+   properties:
-		+     broker:
-		+       name: "<redacted>"
-		+     cf:
-		+       admin_password: "<redacted>"
-		+       admin_username: "<redacted>"
-		+       api_url: "<redacted>"
-		+       skip_ssl_validation: "<redacted>"
-		+   release: paasta-mysql
-		+   stemcell: default
-		+   template: broker-deregistrar
-		+   vm_type: minimal
-
-		+ meta:
-		+   apps_domain: 115.68.46.189.xip.io
-		+   environment: 
-		+   external_domain: 115.68.46.189.xip.io
-		+   nats:
-		+     machines:
-		+     - 10.30.112.2
-		+     password: fxaqRErYZ1TD8296u9HdMg8ol8dJ0G
-		+     port: 4222
-		+     user: nats
-		+   syslog_aggregator: 
-
-		+ name: paasta-mysql-service
-
-		Continue? [yN]: y
-
 		Task 4506
 
+
+        + azs:
+        + - cloud_properties:
+        +     datacenters:
+        +     - clusters:
+        +       - BD-HA:
+        +           resource_pool: PaaS_TA_46_Pools
+        +       name: BD-HA
+        +   name: z1
+        + - cloud_properties:
+        +     datacenters:
+        +     - clusters:
+        +       - BD-HA:
+        +           resource_pool: PaaS_TA_46_Pools
+        +       name: BD-HA
+        +   name: z2
+        + - cloud_properties:
+        +     datacenters:
+        +     - clusters:
+        +       - BD-HA:
+        +           resource_pool: PaaS_TA_46_Pools
+        +       name: BD-HA
+        +   name: z3
+        + - cloud_properties:
+        +     datacenters:
+        +     - clusters:
+        +       - BD-HA:
+        +           resource_pool: PaaS_TA_46_Pools
+        +       name: BD-HA
+        +   name: z4
+        + - cloud_properties:
+        +     datacenters:
+        +     - clusters:
+        +       - BD-HA:
+        +           resource_pool: PaaS_TA_46_Pools
+        +       name: BD-HA
+        +   name: z5
+        + - cloud_properties:
+        +     datacenters:
+        +     - clusters:
+        +       - BD-HA:
+        +           resource_pool: PaaS_TA_46_Pools
+        +       name: BD-HA
+        +   name: z6
+        + - cloud_properties:
+        +     datacenters:
+        +     - clusters:
+        +       - BD-HA:
+        +           resource_pool: PaaS_TA_46_Pools
+        +       name: BD-HA
+        +   name: z7
+          
+        + vm_types:
+        + - cloud_properties:
+        +     cpu: 1
+        +     disk: 8192
+        +     ram: 1024
+        +   name: minimal
+        + - cloud_properties:
+        +     cpu: 1
+        +     disk: 10240
+        +     ram: 2048
+        +   name: default
+        + - cloud_properties:
+        +     cpu: 1
+        +     disk: 20480
+        +     ram: 4096
+        +   name: small
+        + - cloud_properties:
+        +     cpu: 2
+        +     disk: 20480
+        +     ram: 4096
+        +   name: medium
+        + - cloud_properties:
+        +     cpu: 2
+        +     disk: 20480
+        +     ram: 8192
+        +   name: medium-memory-8GB
+        + - cloud_properties:
+        +     cpu: 4
+        +     disk: 20480
+        +     ram: 8192
+        +   name: large
+        + - cloud_properties:
+        +     cpu: 8
+        +     disk: 20480
+        +     ram: 16384
+        +   name: xlarge
+        + - cloud_properties:
+        +     cpu: 2
+        +     disk: 51200
+        +     ram: 4096
+        +   name: small-50GB
+        + - cloud_properties:
+        +     cpu: 2
+        +     disk: 51200
+        +     ram: 4096
+        +   name: small-50GB-ephemeral-disk
+        + - cloud_properties:
+        +     cpu: 4
+        +     disk: 102400
+        +     ram: 8192
+        +   name: small-100GB-ephemeral-disk
+        + - cloud_properties:
+        +     cpu: 4
+        +     disk: 102400
+        +     ram: 8192
+        +   name: small-highmem-100GB-ephemeral-disk
+        + - cloud_properties:
+        +     cpu: 8
+        +     disk: 20480
+        +     ram: 16384
+        +   name: small-highmem-16GB
+        + - cloud_properties:
+        +     cpu: 1
+        +     disk: 4096
+        +     ram: 2048
+        +   name: caas_small
+        + - cloud_properties:
+        +     cpu: 1
+        +     disk: 4096
+        +     ram: 1024
+        +   name: caas_small_api
+        + - cloud_properties:
+        +     cpu: 1
+        +     disk: 4096
+        +     ram: 4096
+        +   name: caas_medium
+        + - cloud_properties:
+        +     cpu: 1
+        +     disk: 4096
+        +     ram: 256
+        +   name: service_tiny
+        + - cloud_properties:
+        +     cpu: 1
+        +     disk: 4096
+        +     ram: 512
+        +   name: service_small
+        + - cloud_properties:
+        +     cpu: 1
+        +     disk: 4096
+        +     ram: 1024
+        +   name: service_medium
+        + - cloud_properties:
+        +     cpu: 1
+        +     disk: 4096
+        +     ram: 2048
+        +   name: service_medium_1CPU_2G
+        + - cloud_properties:
+        +     cpu: 2
+        +     disk: 8192
+        +     ram: 4096
+        +   name: service_medium_4G
+        + - cloud_properties:
+        +     cpu: 2
+        +     disk: 10240
+        +     ram: 2048
+        +   name: service_medium_2G
+        + - cloud_properties:
+        +     cpu: 1
+        +     disk: 4096
+        +     ram: 256
+        +   name: portal_tiny
+        + - cloud_properties:
+        +     cpu: 1
+        +     disk: 4096
+        +     ram: 512
+        +   name: portal_small
+        + - cloud_properties:
+        +     cpu: 1
+        +     disk: 4096
+        +     ram: 1024
+        +   name: portal_medium
+        + - cloud_properties:
+        +     cpu: 1
+        +     disk: 4096
+        +     ram: 2048
+        +   name: portal_large
+          
+        + vm_extensions:
+        + - cloud_properties:
+        +     ports:
+        +     - host: 3306
+        +   name: mysql-proxy-lb
+        + - name: cf-router-network-properties
+        + - name: cf-tcp-router-network-properties
+        + - name: diego-ssh-proxy-network-properties
+        + - name: cf-haproxy-network-properties
+        + - cloud_properties:
+        +     disk: 51200
+        +   name: small-50GB
+        + - cloud_properties:
+        +     disk: 102400
+        +   name: small-highmem-100GB
+          
+        + compilation:
+        +   az: z1
+        +   network: default
+        +   reuse_compilation_vms: true
+        +   vm_type: large
+        +   workers: 5
+          
+        + networks:
+        + - name: default
+        +   subnets:
+        +   - azs:
+        +     - z1
+        +     - z2
+        +     - z3
+        +     - z4
+        +     - z5
+        +     - z6
+        +     - z7
+        +     cloud_properties:
+        +       name: Internal
+        +     dns:
+        +     - 8.8.8.8
+        +     gateway: 10.30.20.23
+        +     range: 10.30.0.0/16
+        +     reserved:
+        +     - 10.30.0.0 - 10.30.50.10
+        +     - 10.30.51.0 - 10.30.54.255
+        +     - 10.30.56.0 - 10.30.255.255
+        +     static:
+        +     - 10.30.55.0 - 10.30.55.255
+        +   type: manual
+        + - name: service_private
+        +   subnets:
+        +   - azs:
+        +     - z1
+        +     - z2
+        +     - z3
+        +     - z4
+        +     - z5
+        +     - z6
+        +     - z7
+        +     cloud_properties:
+        +       name: Internal
+        +     dns:
+        +     - 8.8.8.8
+        +     gateway: 10.30.20.23
+        +     range: 10.30.0.0/16
+        +     reserved:
+        +     - 10.30.0.0 - 10.30.51.255
+        +     - 10.30.55.0 - 10.30.55.255
+        +     - 10.30.150.0 - 10.30.255.255
+        +     static:
+        +     - 10.30.52.0 - 10.30.54.255
+        +   type: manual
+        + - name: service_public
+        +   subnets:
+        +   - azs:
+        +     - z1
+        +     - z2
+        +     - z3
+        +     - z4
+        +     - z5
+        +     - z6
+        +     - z7
+        +     cloud_properties:
+        +       name: External
+        +     dns:
+        +     - 8.8.8.8
+        +     gateway: 115.68.46.177
+        +     range: 115.68.46.176/28
+        +     reserved:
+        +     - 115.68.46.191 - 115.68.46.191
+        +     static:
+        +     - 115.68.46.178 - 115.68.46.190
+        +   type: manual
+          
+        + disk_types:
+        + - disk_size: 1024
+        +   name: default
+        + - disk_size: 1024
+        +   name: 1GB
+        + - disk_size: 2048
+        +   name: 2GB
+        + - disk_size: 4096
+        +   name: 4GB
+        + - disk_size: 5120
+        +   name: 5GB
+        + - disk_size: 8192
+        +   name: 8GB
+        + - disk_size: 10240
+        +   name: 10GB
+        + - disk_size: 20480
+        +   name: 20GB
+        + - disk_size: 30720
+        +   name: 30GB
+        + - disk_size: 51200
+        +   name: 50GB
+        + - disk_size: 102400
+        +   name: 100GB
+        + - disk_size: 1048576
+        +   name: 1TB
+          
+        + stemcells:
+        + - alias: default
+        +   os: ubuntu-xenial
+        +   version: '315.41'
+          
+        + releases:
+        + - name: paasta-delivery-pipeline-release
+        +   version: '1.0'
+          
+        + update:
+        +   canaries: 1
+        +   canary_watch_time: 30000-120000
+        +   max_in_flight: 1
+        +   update_watch_time: 30000-120000
+          
+        + variables:
+        + - name: "/dns_healthcheck_tls_ca"
+        +   options:
+        +     common_name: dns-healthcheck-tls-ca
+        +     is_ca: true
+        +   type: certificate
+        + - name: "/dns_healthcheck_server_tls"
+        +   options:
+        +     ca: "/dns_healthcheck_tls_ca"
+        +     common_name: health.bosh-dns
+        +     extended_key_usage:
+        +     - server_auth
+        +   type: certificate
+        + - name: "/dns_healthcheck_client_tls"
+        +   options:
+        +     ca: "/dns_healthcheck_tls_ca"
+        +     common_name: health.bosh-dns
+        +     extended_key_usage:
+        +     - client_auth
+        +   type: certificate
+        + - name: "/dns_api_tls_ca"
+        +   options:
+        +     common_name: dns-api-tls-ca
+        +     is_ca: true
+        +   type: certificate
+        + - name: "/dns_api_server_tls"
+        +   options:
+        +     ca: "/dns_api_tls_ca"
+        +     common_name: api.bosh-dns
+        +     extended_key_usage:
+        +     - server_auth
+        +   type: certificate
+        + - name: "/dns_api_client_tls"
+        +   options:
+        +     ca: "/dns_api_tls_ca"
+        +     common_name: api.bosh-dns
+        +     extended_key_usage:
+        +     - client_auth
+        +   type: certificate
+          
+        + instance_groups:
+        + - azs:
+        +   - z5
+        +   instances: 1
+        +   jobs:
+        +   - name: mariadb
+        +     release: paasta-delivery-pipeline-release
+        +   name: mariadb
+        +   networks:
+        +   - name: service_private
+        +     static_ips:
+        +     - 10.30.54.68
+        +   persistent_disk_type: 2GB
+        +   stemcell: default
+        +   vm_type: minimal
+        + - azs:
+        +   - z5
+        +   instances: 1
+        +   jobs:
+        +   - name: postgres
+        +     release: paasta-delivery-pipeline-release
+        +   name: postgres
+        +   networks:
+        +   - name: service_private
+        +     static_ips:
+        +     - 10.30.54.82
+        +   persistent_disk_type: 2GB
+        +   stemcell: default
+        +   vm_type: minimal
+        + - azs:
+        +   - z5
+        +   instances: 1
+        +   jobs:
+        +   - name: inspection
+        +     release: paasta-delivery-pipeline-release
+        +   name: inspection
+        +   networks:
+        +   - name: service_private
+        +     static_ips:
+        +     - 10.30.54.69
+        +   stemcell: default
+        +   vm_type: minimal
+        + - azs:
+        +   - z5
+        +   instances: 1
+        +   jobs:
+        +   - name: haproxy
+        +     release: paasta-delivery-pipeline-release
+        +   name: haproxy
+        +   networks:
+        +   - name: service_private
+        +     static_ips:
+        +     - 10.30.54.70
+        +   - default:
+        +     - dns
+        +     - gateway
+        +     name: service_public
+        +     static_ips:
+        +     - 115.68.46.182
+        +   stemcell: default
+        +   vm_type: minimal
+        + - azs:
+        +   - z5
+        +   env:
+        +     bosh:
+        +       password: "<redacted>"
+        +   instances: 2
+        +   jobs:
+        +   - name: ci_server
+        +     release: paasta-delivery-pipeline-release
+        +   name: ci_server
+        +   networks:
+        +   - name: service_private
+        +     static_ips:
+        +     - 10.30.54.71
+        +     - 10.30.54.72
+        +   persistent_disk_type: 4GB
+        +   stemcell: default
+        +   vm_type: minimal
+        + - azs:
+        +   - z5
+        +   instances: 1
+        +   jobs:
+        +   - name: binary_storage
+        +     release: paasta-delivery-pipeline-release
+        +   name: binary_storage
+        +   networks:
+        +   - name: service_private
+        +     static_ips:
+        +     - 10.30.54.39
+        +   persistent_disk_type: 4GB
+        +   stemcell: default
+        +   vm_type: minimal
+        + - azs:
+        +   - z5
+        +   instances: 1
+        +   jobs:
+        +   - name: delivery-pipeline-common-api
+        +     release: paasta-delivery-pipeline-release
+        +   name: delivery-pipeline-common-api
+        +   networks:
+        +   - name: service_private
+        +     static_ips:
+        +     - 10.30.54.66
+        +   stemcell: default
+        +   vm_type: minimal
+        + - azs:
+        +   - z5
+        +   instances: 1
+        +   jobs:
+        +   - name: delivery-pipeline-inspection-api
+        +     release: paasta-delivery-pipeline-release
+        +   name: delivery-pipeline-inspection-api
+        +   networks:
+        +   - name: service_private
+        +     static_ips:
+        +     - 10.30.54.62
+        +   stemcell: default
+        +   vm_type: minimal
+        + - azs:
+        +   - z5
+        +   instances: 1
+        +   jobs:
+        +   - name: delivery-pipeline-binary-storage-api
+        +     release: paasta-delivery-pipeline-release
+        +   name: delivery-pipeline-binary-storage-api
+        +   networks:
+        +   - name: service_private
+        +     static_ips:
+        +     - 10.30.54.61
+        +   stemcell: default
+        +   vm_type: minimal
+        + - azs:
+        +   - z5
+        +   instances: 1
+        +   jobs:
+        +   - name: delivery-pipeline-api
+        +     release: paasta-delivery-pipeline-release
+        +   name: delivery-pipeline-api
+        +   networks:
+        +   - name: service_private
+        +     static_ips:
+        +     - 10.30.54.65
+        +   stemcell: default
+        +   vm_type: minimal
+        + - azs:
+        +   - z5
+        +   instances: 1
+        +   jobs:
+        +   - name: delivery-pipeline-service-broker
+        +     release: paasta-delivery-pipeline-release
+        +   name: delivery-pipeline-service-broker
+        +   networks:
+        +   - name: service_private
+        +     static_ips:
+        +     - 10.30.54.64
+        +   stemcell: default
+        +   vm_type: minimal
+        + - azs:
+        +   - z5
+        +   instances: 1
+        +   jobs:
+        +   - name: delivery-pipeline-ui
+        +     release: paasta-delivery-pipeline-release
+        +   name: delivery-pipeline-ui
+        +   networks:
+        +   - name: service_private
+        +     static_ips:
+        +     - 10.30.54.67
+        +   stemcell: default
+        +   vm_type: minimal
+        + - azs:
+        +   - z5
+        +   instances: 1
+        +   jobs:
+        +   - name: delivery-pipeline-scheduler
+        +     release: paasta-delivery-pipeline-release
+        +   name: delivery-pipeline-scheduler
+        +   networks:
+        +   - name: service_private
+        +     static_ips:
+        +     - 10.30.54.63
+        +   stemcell: default
+        +   vm_type: minimal
+          
+        + name: paasta-delivery-pipeline-service
+          
+        + properties:
+        +   binary_storage:
+        +     auth_port: "<redacted>"
+        +     binary_desc: "<redacted>"
+        +     container: "<redacted>"
+        +     email: "<redacted>"
+        +     password: "<redacted>"
+        +     proxy_ip: "<redacted>"
+        +     proxy_port: "<redacted>"
+        +     tenantname: "<redacted>"
+        +     username: "<redacted>"
+        +   binary_storage_api:
+        +     authorization:
+        +       id: "<redacted>"
+        +       password: "<redacted>"
+        +     http:
+        +       multipart:
+        +         max_file_size: "<redacted>"
+        +         max_request_size: "<redacted>"
+        +     java_opts: "<redacted>"
+        +     logging:
+        +       level: "<redacted>"
+        +     server:
+        +       port: "<redacted>"
+        +     url: "<redacted>"
+        +   cf:
+        +     api:
+        +       url: "<redacted>"
+        +     uaa:
+        +       oauth:
+        +         authorization:
+        +           uri: "<redacted>"
+        +         client:
+        +           id: "<redacted>"
+        +           secret: "<redacted>"
+        +         info:
+        +           uri: "<redacted>"
+        +         logout:
+        +           uri: "<redacted>"
+        +         token:
+        +           access:
+        +             uri: "<redacted>"
+        +           check:
+        +             uri: "<redacted>"
+        +   ci_server:
+        +     admin_user:
+        +       password: "<redacted>"
+        +       username: "<redacted>"
+        +     ajp13_port: "<redacted>"
+        +     credentials:
+        +       class_name: "<redacted>"
+        +       scope: "<redacted>"
+        +       url: "<redacted>"
+        +     dedicated:
+        +       urls:
+        +       - "<redacted>"
+        +     http_port: "<redacted>"
+        +     http_url: "<redacted>"
+        +     job:
+        +       name: "<redacted>"
+        +     password: "<redacted>"
+        +     shared:
+        +       urls:
+        +       - "<redacted>"
+        +     ssh:
+        +       identity: "<redacted>"
+        +       key: "<redacted>"
+        +       password: "<redacted>"
+        +       port: "<redacted>"
+        +       username: "<redacted>"
+        +   common_api:
+        +     authorization:
+        +       id: "<redacted>"
+        +       password: "<redacted>"
+        +     haproxy:
+        +       urls:
+        +       - "<redacted>"
+        +     java_opts: "<redacted>"
+        +     logging:
+        +       level: "<redacted>"
+        +     server:
+        +       port: "<redacted>"
+        +     url: "<redacted>"
+        +   haproxy:
+        +     http_port: "<redacted>"
+        +     url: "<redacted>"
+        +   inspection:
+        +     admin:
+        +       password: "<redacted>"
+        +       username: "<redacted>"
+        +     http_port: "<redacted>"
+        +     http_url: "<redacted>"
+        +     url: "<redacted>"
+        +   inspection_api:
+        +     authorization:
+        +       id: "<redacted>"
+        +       password: "<redacted>"
+        +     haproxy:
+        +       urls:
+        +       - "<redacted>"
+        +     http:
+        +       multipart:
+        +         max_file_size: "<redacted>"
+        +         max_request_size: "<redacted>"
+        +     java_opts: "<redacted>"
+        +     logging:
+        +       level: "<redacted>"
+        +     server:
+        +       port: "<redacted>"
+        +     url: "<redacted>"
+        +   mariadb:
+        +     admin_user:
+        +       password: "<redacted>"
+        +     datasource:
+        +       driver_class_name: "<redacted>"
+        +       password: "<redacted>"
+        +       url: "<redacted>"
+        +       username: "<redacted>"
+        +     host: "<redacted>"
+        +     host_ips:
+        +     - "<redacted>"
+        +     host_names:
+        +     - "<redacted>"
+        +     jpa:
+        +       database:
+        +         name: "<redacted>"
+        +     port: "<redacted>"
+        +   pipeline_api:
+        +     authorization:
+        +       id: "<redacted>"
+        +       password: "<redacted>"
+        +     haproxy:
+        +       urls:
+        +       - "<redacted>"
+        +     http:
+        +       multipart:
+        +         max_file_size: "<redacted>"
+        +         max_request_size: "<redacted>"
+        +     java_opts: "<redacted>"
+        +     logging:
+        +       level: "<redacted>"
+        +     server:
+        +       port: "<redacted>"
+        +     url: "<redacted>"
+        +   pipeline_scheduler:
+        +     java_opts: "<redacted>"
+        +     job:
+        +       description: "<redacted>"
+        +       key: "<redacted>"
+        +       repeat_interval: "<redacted>"
+        +       start_delay: "<redacted>"
+        +     logging:
+        +       level: "<redacted>"
+        +     quartz:
+        +       scheduler:
+        +         instance_id: "<redacted>"
+        +         instance_name: "<redacted>"
+        +       thread_pool:
+        +         thread_count: "<redacted>"
+        +     server:
+        +       port: "<redacted>"
+        +   pipeline_service_broker:
+        +     dashboard:
+        +       url: "<redacted>"
+        +     java_opts: "<redacted>"
+        +     logging:
+        +       controller:
+        +         level: "<redacted>"
+        +       service:
+        +         level: "<redacted>"
+        +     server:
+        +       port: "<redacted>"
+        +   pipeline_ui:
+        +     haproxy:
+        +       urls:
+        +       - "<redacted>"
+        +     http:
+        +       multipart:
+        +         max_file_size: "<redacted>"
+        +         max_request_size: "<redacted>"
+        +     java_opts: "<redacted>"
+        +     logging:
+        +       level: "<redacted>"
+        +     server:
+        +       port: "<redacted>"
+        +     url: "<redacted>"
+        +   postgres:
+        +     datasource:
+        +       database: "<redacted>"
+        +       password: "<redacted>"
+        +       url: "<redacted>"
+        +       username: "<redacted>"
+        +     host: "<redacted>"
+        +     port: "<redacted>"
+        +     vcap_password: "<redacted>"
+
+Continue? [yN]: Y
 		Task 4506 | 06:04:10 | Preparing deployment: Preparing deployment (00:00:01)
 		Task 4506 | 06:04:12 | Preparing package compilation: Finding packages to compile (00:00:00)
 		Task 4506 | 06:04:12 | Compiling packages: delivery-pipeline-scheduler/01dea40e305407b6b107a8fe230bb37dadadca87
