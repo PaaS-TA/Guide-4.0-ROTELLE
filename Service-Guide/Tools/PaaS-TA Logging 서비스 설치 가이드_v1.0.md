@@ -587,7 +587,7 @@ logging_service_release_name: "paasta-logging-service-release"
 logging_service_release_version: "1.0"
 
 # STEMCELL
-stemcell_os: "ubuntu-trusty"
+stemcell_os: "ubuntu-xenial"
 stemcell_version: "315.41"
 
 # VM_TYPE
