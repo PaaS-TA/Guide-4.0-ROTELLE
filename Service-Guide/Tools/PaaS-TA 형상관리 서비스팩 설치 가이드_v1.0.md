@@ -696,7 +696,7 @@ bosh -e micro-bosh -d paasta-sourcecontrol-service deploy paasta_sourcecontrol_b
    -o use-public-network-vsphere.yml \
    -v default_network_name=service_private \
    -v public_network_name=service_public \
-   -v stemcell_os=ubuntu-trusty \
+   -v stemcell_os=ubuntu-xenial\
    -v stemcell_version=315.41 \
    -v vm_type_small=minimal
 ```
@@ -712,7 +712,7 @@ bosh -e micro-bosh -d paasta-sourcecontrol-service deploy paasta_sourcecontrol_b
 
 		+ stemcells:
 		+ - alias: default
-		+   os: ubuntu-trusty
+		+   os: ubuntu-xenial
 		+   version: '315.41'
 
 		+ releases:
