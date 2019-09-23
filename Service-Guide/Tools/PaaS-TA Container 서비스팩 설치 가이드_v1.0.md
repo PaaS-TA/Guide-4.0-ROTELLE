@@ -164,20 +164,18 @@ $ mkdir -p ~/workspace/paasta-4.0/release/service
 
 
 ```
-$ bosh -e micro-bosh stemcells
-Using environment '10.30.40.111' as user 'admin' (openid, bosh.admin)
+- **사용 예시**
 
-Name                                      Version   OS             CPI  CID  
-bosh-vsphere-esxi-ubuntu-trusty-go_agent  3586.26*  ubuntu-trusty  -    sc-109fbdb0-f663-49e8-9c30-8dbdd2e5b9b9  
-~                                         3468.51*  ubuntu-trusty  -    sc-bd8fadf2-92f2-495b-b172-d571a388abf5  
-~                                         3445.2*   ubuntu-trusty  -    sc-025c70b5-7d6e-4ba3-a12b-7e71c33dad24  
-~                                         3309*     ubuntu-trusty  -    sc-22429dba-e5cc-4469-ab3a-882091573277  
+		$ bosh -e micro-bosh stemcells
+		Name                                       Version  OS             CPI  CID  
+		bosh-openstack-kvm-ubuntu-xenial-go_agent  315.41*  ubuntu-xenial  -    fb08e389-2350-4091-9b29-41743495e62c  
+		~                                          315.36*  ubuntu-xenial  -    7076cf5d-a473-4c46-b6c1-4a7813911f76  
 
-(*) Currently deployed
+		(*) Currently deployed
 
-4 stemcells
+		2 stemcells
 
-Succeeded
+		Succeeded
 ```
 
 
@@ -565,8 +563,8 @@ vcenter_vms: "<VCENTER_VMS>"
 
 # STEMCELL
 stemcell_os: "ubuntu-trusty"
-stemcell_version: "3586.26"
-stemcell_alias: "trusty"
+stemcell_version: "315.41"
+stemcell_alias: "xenial"
 
 # VM_TYPE
 vm_type_small: "small"
@@ -671,8 +669,8 @@ kubernetes_cluster_tag: 'kubernetes'      # Do not update!
 
 # STEMCELL
 stemcell_os: "ubuntu-trusty"
-stemcell_version: "3586.26"
-stemcell_alias: "trusty"
+stemcell_version: "315.41"
+stemcell_alias: "xenial"
 
 # VM_TYPE
 vm_type_small: "caas_small"
@@ -781,8 +779,8 @@ ignore-volume-az: true
 
 # STEMCELL
 stemcell_os: "ubuntu-trusty"
-stemcell_version: "3586.26"
-stemcell_alias: "trusty"
+stemcell_version: "315.41"
+stemcell_alias: "xenial"
 
 # VM_TYPE
 vm_type_small: "small"
@@ -1329,9 +1327,9 @@ Task 62608 done
 +   name: 1TB
 
 + stemcells:
-+ - alias: trusty
-+   os: ubuntu-trusty
-+   version: '3586.26'
++ - alias: xenial
++   os: ubuntu-xenial
++   version: '315.41'
 
 + releases:
 + - name: kubo
@@ -1366,7 +1364,7 @@ Task 62608 done
 + addons:
 + - include:
 +     stemcells:
-+     - os: ubuntu-trusty
++     - os: ubuntu-xenial
 +   jobs:
 +   - name: bosh-dns
 +     properties:
@@ -1576,7 +1574,7 @@ Task 62608 done
 +     - gateway
 +     name: service_public
 +     static_ips: 115.68.47.179
-+   stemcell: trusty
++   stemcell: xenial
 +   update:
 +     max_in_flight: 1
 +     serial: true
@@ -1598,7 +1596,7 @@ Task 62608 done
 +     static_ips:
 +     - 10.30.107.45
 +   persistent_disk_type: 10GB
-+   stemcell: trusty
++   stemcell: xenial
 +   update:
 +     max_in_flight: 1
 +     serial: true
@@ -1663,7 +1661,7 @@ Task 62608 done
 +   - name: service_private
 +     static_ips:
 +     - 10.30.107.42
-+   stemcell: trusty
++   stemcell: xenial
 +   update:
 +     max_in_flight: 1
 +     serial: true
@@ -1701,7 +1699,7 @@ Task 62608 done
 +   - name: service_private
 +     static_ips:
 +     - 10.30.107.40
-+   stemcell: trusty
++   stemcell: xenial
 +   update:
 +     max_in_flight: 1
 +     serial: true
@@ -1753,7 +1751,7 @@ Task 62608 done
 +   - name: service_private
 +     static_ips:
 +     - 10.30.107.41
-+   stemcell: trusty
++   stemcell: xenial
 +   update:
 +     max_in_flight: 1
 +     serial: true
@@ -1850,7 +1848,7 @@ Task 62608 done
 +   - name: service_private
 +     static_ips:
 +     - 10.30.107.43
-+   stemcell: trusty
++   stemcell: xenial
 +   update:
 +     max_in_flight: 1
 +     serial: true
@@ -1877,7 +1875,7 @@ Task 62608 done
 +   name: apply-addons
 +   networks:
 +   - name: default
-+   stemcell: trusty
++   stemcell: xenial
 +   vm_type: caas_small
 + - azs:
 +   - z2
@@ -1983,7 +1981,7 @@ Task 62608 done
 +     name: service_public
 +     static_ips: 115.68.47.178
 +   persistent_disk: 5120
-+   stemcell: trusty
++   stemcell: xenial
 +   vm_type: small
 + - azs:
 +   - z1
@@ -2035,7 +2033,7 @@ Task 62608 done
 +   name: worker
 +   networks:
 +   - name: service_private
-+   stemcell: trusty
++   stemcell: xenial
 +   vm_type: small-highmem-16GB
 
 + name: paasta-container-service
