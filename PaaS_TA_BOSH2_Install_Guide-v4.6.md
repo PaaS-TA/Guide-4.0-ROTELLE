@@ -557,9 +557,36 @@ Syslog Agent는 BOSH VM의 log 정보를 logsearch의 ls-router에 전송하는 
 BOSH 설치 전에 paasta-monitoring의 influxdb ip를 metric_url로 사용하기 위해 사전에 정의해야 한다. 마찬가지로 logsearch의 ls-router ip도 syslog_address로 연동하기 위해 사전에 정의해야 한다.
 PaaS-TA 설치 후 paasta-monitoring 및 logsearch를 설치하면 Data가 Agent로부터 전송된다.
 
-![PaaSTa_MONITORING_Image]
+```
+Deployment 'logsearch'
 
-![PaaSTa_LOGSEARCH_Image]
+Instance                                                   Process State  AZ  IPs           VM CID               VM Type  Active
+cluster_monitor/3c93e09f-c536-46ef-8b94-5a3eb0d95818       running        z6  10.0.201.231  i-05ee3309349a38154  medium   true
+elasticsearch_data/2f6f7fc4-239a-408e-a807-0b3477984bd5    running        z6  10.0.201.232  i-0eb2f159e2707433b  medium   true
+elasticsearch_data/8dccf768-bede-4f48-823c-2cd542c69e74    running        z5  10.0.161.233  i-09797b9c4142a3177  medium   true
+elasticsearch_master/da8b2fa0-c5fb-42cf-9c9e-826b9183155b  running        z5  10.0.161.231  i-00a0038844aaed49d  medium   true
+ingestor/a153cef0-a78e-4bbc-aca2-b1196aa5d672              running        z4  10.0.121.231  i-04812375ad4c1e333  medium   true
+ingestor/dc497569-8fcc-448f-a7ee-91c5b31d82e8              running        z6  10.0.201.233  i-00b556f3ae81bd4a8  medium   true
+kibana/6ad5109d-1f5f-44a8-b8ec-13d9435715e3                running        z5  10.0.161.234  i-04d7de0aefbaa4b0a  medium   true
+ls-router/24c113af-77fe-40c2-901f-3f49565e61c2             running        z4  10.0.121.100  i-0e9b1f502edd12a1d  small    true
+maintenance/f0307ac5-0d88-4f38-9271-54726526e5f2           running        z5  10.0.161.232  i-0dc37ed16d4e940d3  medium   true
+
+9 vms
+```
+
+```
+Deployment 'paasta-monitoring'
+
+Instance                                               Process State  AZ  IPs             VM CID               VM Type  Active
+influxdb/0d22f075-1492-4777-a6c1-3d466225371e          running        z5  10.0.161.101    i-0e0ba310891564efa  large    true
+mariadb/f375d272-3abe-4194-8877-822bc02000ec           running        z5  10.0.161.100    i-0f0a8ba9f00c480ae  medium   true
+monitoring-batch/39eb1744-dcd7-4e67-947e-9c6fbe23bb6e  running        z6  10.0.201.234    i-01fbbb27318d1f404  small    true
+monitoring-web/d34358d8-8af6-4724-b42e-e967c97831ee    running        z7  10.0.0.232      i-08285a923ed84ed0b  small    true
+                                                                          13.209.220.130
+redis/434e1515-d480-4aad-9e74-4c2bdb4e7fc1             running        z4  10.0.121.101    i-0ee6aabc9f2df8ca7  small    true
+
+5 vms
+```
 
 ### <div id='1025'/>3.3.7. BOSH Deploy
 
@@ -569,10 +596,35 @@ $ ./deploy-{iaas}.sh
 ```
 
 다음은 BOSH를 설치하는 화면이다. 
-![PaaSTa_BOSH_Use_Guide_Image9]
+
+```
+ubuntu@ip-10-0-0-59:~/workspace/paasta-4.6/deployment/bosh-deployment$ ./deploy-aws.sh
+Deployment manifest: '/home/ubuntu/workspace/paasta-4.6/deployment/bosh-deployment/bosh.yml'
+Deployment state: 'aws/state.json'
+
+Started validating
+  Validating release 'bosh'... Finished (00:00:01)
+  Validating release 'bpm'... Finished (00:00:01)
+  Validating release 'bosh-aws-cpi'... Finished (00:00:00)
+  Validating release 'uaa'... Finished (00:00:03)
+  Validating release 'credhub'...
+```
 
 다음은 BOSH 설치를 완료한 화면이다. 
-![PaaSTa_BOSH_Use_Guide_Image10]
+
+```
+  Compiling package 'uaa_utils/90097ea98715a560867052a2ff0916ec3460aabb'... Skipped [Package already compiled] (00:00:00)
+  Compiling package 'davcli/f8a86e0b88dd22cb03dec04e42bdca86b07f79c3'... Skipped [Package already compiled] (00:00:00)
+  Updating instance 'bosh/0'... Finished (00:01:44)
+  Waiting for instance 'bosh/0' to be running... Finished (00:02:16)
+  Running the post-start scripts 'bosh/0'... Finished (00:00:13)
+Finished deploying (00:11:54)
+
+Stopping registry... Finished (00:00:00)
+Cleaning up rendered CPI jobs... Finished (00:00:00)
+
+Succeeded
+```
 
 ### <div id='1026'/>3.3.8. BOSH Login
 BOSH가 설치되면, BOSH 설치 디렉터리 이하 {iaas}/creds.yml 파일이 생성된다. creds.yml은 BOSH 인증정보를 가지고 있으며, creds.yml을 활용하여 BOSH에 login 한다. BOSH 로그인 후, BOSH CLI 명령어를 이용하여 PaaS-TA를 설치할 수 있다.
@@ -631,19 +683,20 @@ $ chmod 600 jumpbox.key
 $ ssh jumpbox@{bosh_ip} -i jumpbox.key
 ```
 
-![PaaSTa_BOSH_Use_Guide_Image11]
+```
+ubuntu@ip-10-0-0-59:~/workspace/paasta-4.6/deployment/bosh-deployment$ ssh jumpbox@10.0.1.6 -i jumpbox.key
+Unauthorized use is strictly prohibited. All access and activity
+is subject to logging and monitoring.
+Welcome to Ubuntu 16.04.6 LTS (GNU/Linux 4.15.0-54-generic x86_64)
 
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+Last login: Tue Sep 24 01:17:03 UTC 2019 from 10.0.0.59 on pts/0
+Last login: Tue Sep 24 01:32:18 2019 from 10.0.0.59
+bosh/0:~$
+```
 
 [PaaSTa_BOSH_Use_Guide_Image1]:./images/bosh1.png
 [PaaSTa_BOSH_Use_Guide_Image2]:./images/bosh2.png
 [PaaSTa_BOSH_Use_Guide_Image3]:./images/bosh3.png
-[PaaSTa_BOSH_Use_Guide_Image4]:./images/bosh-install-flow.png
-[PaaSTa_BOSH_Use_Guide_Image5]:./images/directory_1.png
-[PaaSTa_BOSH_Use_Guide_Image6]:./images/directory_2.png
-[PaaSTa_BOSH_Use_Guide_Image7]:./images/directory_3.png
-[PaaSTa_BOSH_Use_Guide_Image8]:./images/directory_4.png
-[PaaSTa_BOSH_Use_Guide_Image9]:./images/deploy_1.png
-[PaaSTa_BOSH_Use_Guide_Image10]:./images/deploy_2.png
-[PaaSTa_BOSH_Use_Guide_Image11]:./images/jumpbox.png
-[PaaSTa_MONITORING_Image]:./images/paasta-monitoring.png
-[PaaSTa_LOGSEARCH_Image]:./images/logsearch.png
