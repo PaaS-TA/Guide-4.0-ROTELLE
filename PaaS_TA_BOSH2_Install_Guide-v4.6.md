@@ -33,7 +33,7 @@
 
 ## Executive Summary
 
-본 문서는 BOSH2의 설명 및 설치 가이드 문서로, BOSH를 실행할 수 있는 환경을 구성하여 실행하고 사용하는 방법에 대해서 설명하였다.
+본 문서는 BOSH2의 설명 및 설치 가이드 문서로, BOSH를 실행할 수 있는 환경을 구성하고 사용하는 방법에 대해서 설명하였다.
 
 # <div id='101'/>1.  문서 개요 
 
@@ -51,7 +51,7 @@ PaaS-TA 4.6에서 사용하는 BOSH는 설치 방식이 기존 3.1 이하 버전
 
 BOSH Document: [http://bosh.io](http://bosh.io)
 
-BOSH DEPLOYMENT: [https://github.com/cloudfoundry/bosh-deployment](https://github.com/cloudfoundry/bosh-deployment)
+BOSH Deployment: [https://github.com/cloudfoundry/bosh-deployment](https://github.com/cloudfoundry/bosh-deployment)
 
 Cloud Foundry Document: [https://docs.cloudfoundry.org](https://docs.cloudfoundry.org)
 
@@ -71,7 +71,7 @@ BOSH1은 bosh-init을 통하여 BOSH를 생성하고, BOSH1 cli를 통하여 Paa
 ## <div id='107'/>2.2. BOSH2
 
 BOSH2는 BOSH2 cli를 통하여 BOSH와 PaaS-TA를 모두 생성한다. bosh-deployment를 이용하여 BOSH를 생성한 후, paasta-deployment로 PaaS-TA를 생성한다.
-PaaS-TA 3.1 버전까지는 PaaS-TA Container, Controller를 별도로 deployment로 설치해야 했지만, 3.5 버전부터는 paasta deployment 하나로 통합되었으며, 한 번에 PaaS-TA를 설치할 수 있다.
+PaaS-TA 3.1 버전까지는 PaaS-TA Container, Controller를 별도로 deployment로 설치해야 했지만, 3.5 버전부터는 paasta-deployment 하나로 통합되었으며, 한 번에 PaaS-TA를 설치할 수 있다.
 
 ![PaaSTa_BOSH_Use_Guide_Image2]
 
@@ -81,26 +81,24 @@ BOSH의 컴포넌트 구성은 다음과 같다.
 
 ![PaaSTa_BOSH_Use_Guide_Image3]
 
-1.  Director: Director가 VM을 생성 또는 수정할 때 설정 정보를 레지스트리에 저장한다. 저장된 레지스트리 정보는 VM의 bootstrapping stage에서 이용된다.
-2.  Health Monitor: Health Monitor는 BOSH Agent로부터 클라우드의 상태 정보들을 수집한다. 클라우드로부터 특정 Alert이 발생하면, Resurrector를 하거나 Notification Plug-in을 통해 Alert Message를 전송할 수도 있다.
-3.  blobstore: Release, compilation package data를 저장하는 저장소이다.
+1.  Director: Director가 VM을 생성 또는 수정 시 설정 정보를 레지스트리에 저장한다. 저장된 레지스트리 정보는 VM의 Bootstrapping Stage에서 이용된다.
+2.  Health Monitor: Health Monitor는 BOSH Agent로부터 클라우드 상태 정보를 수집한다. 클라우드로부터 특정 Alert이 발생하면, Resurrector를 하거나 Notification Plug-in을 통해 Alert Message를 전송할 수도 있다.
+3.  Blobstore: Release, Compilation package data를 저장하는 저장소이다.
 4.  UAA: BOSH 사용자 인증 인가 처리를 한다.
-5.  Database: Director가 사용하는 Postgres 데이터베이스로, Deployment에 필요한 Stemcell, Release, Deployment의 메타 정보들을 저장한다.
-6.  Message Bus(Nats): Message Bus는 Director와 Agent 간 통신을 위한 Publish-Subscribe 방식의 Message System으로 VM 모니터링과 특정 명령을 수행하기 위해 사용된다.
-7. Agent: Agent는 클라우드에 배포되는 모든 VM에 설치되고 Director로부터 특정 명령을 받고 수행하는 역할을 하게 된다. Agent는 Director로부터 수신 받은 Job Specification(설치 할 패키지 및 구성 방법) 정보로 해당 VM에 Director의 지시대로 지정된 패키지를 설치하고, 필요한 구성 정보를 설정하게 된다.
+5.  Database: Director가 사용하는 Postgres 데이터베이스로, Deployment에 필요한 Stemcell, Release, Deployment의 메타 정보를 저장한다.
+6.  Message bus(Nats): Message bus는 Director와 Agent 간 통신을 위한 Publish-subscribe 방식의 Message system으로 VM 모니터링과 특정 명령을 수행하기 위해 사용된다.
+7. Agent: Agent는 클라우드에 배포되는 모든 VM에 설치되고, Director로부터 특정 명령을 받고 수행하는 역할을 하게 된다. Agent는 Director로부터 수신 받은 Job specification(설치 할 패키지 및 구성 방법) 정보로 해당 VM에 Director의 지시대로 지정된 패키지를 설치하고, 필요한 구성 정보를 설정하게 된다.
 
 # <div id='109'/>3. BOSH 설치 환경 구성 및 설치
 
 ## <div id='1010'/>3.1. BOSH 설치 절차
 Inception(PaaS-TA 설치 환경)은 BOSH 및 PaaS-TA를 설치하기 위한 설치 환경으로, VM 또는 SERVER 장비이다. OS version은 Ubuntu 18.04를 기준으로 한다. IaaS에서 수동으로 Inception VM을 생성해야 한다.
 
-Inception VM은 ubuntu 18.04, vcpu 2 core, memory 4G, disk 100G 이상을 권고한다.
+Inception VM은 ubuntu 18.04, vCPU 2 core, Memory 4G, Disk 100G 이상을 권고한다.
 
-![PaaSTa_BOSH_Use_Guide_Image4]
-    
 ## <div id='1011'/>3.2.  Inception 서버 구성
 
-Inception 서버는 BOSH 설치와 BOSH Director를 설정하여 PaaS-TA를 설치하기 위해 필요한 패키지 및 라이브러리, Manifest 파일 등의 환경을 가지고 있는 배포 작업 실행 서버이다. 환경 구성에 있어서 전제조건으로 Inception 서버는 외부 통신이 가능해야 한다.
+Inception 서버는 BOSH 설치와 BOSH Director를 설정하여 PaaS-TA를 설치하기 위해 필요한 패키지 및 라이브러리, Manifest 파일 등의 환경을 가지고 있는 배포 작업 실행 서버이다. Inception 서버는 외부 통신이 가능해야 한다.
 
 BOSH 및 PaaS-TA 설치를 위해 Inception 서버에 구성해야 할 컴포넌트는 다음과 같다.
 
@@ -114,7 +112,7 @@ BOSH 및 PaaS-TA 설치를 위해 Inception 서버에 구성해야 할 컴포넌
 ### <div id='1013'/>3.3.1.    Pre-requisite
 
 -   본 설치 가이드는 Ubuntu 18.04 버전을 기준으로 한다.
--   Release, Deployment 파일은 ${HOME}/workspace/paasta-4.6 이하에 다운로드해야 한다.
+-   Release, Deployment 파일은 ${HOME}/workspace/paasta-4.6 이하에 다운로드 한다.
 
 ### <div id='1014'/>3.3.2.    BOSH CLI 및 dependency 설치
 
@@ -143,7 +141,7 @@ $ bosh -v
 ```
 
 ※ BOSH2 CLI는 BOSH deploy 시, BOSH certificate 정보를 생성해 주는 기능이 있다. 
-Cloud Foundry의 기본 BOSH cli는 인증서가 1년으로 제한되어 있다. BOSH 인증서는 BOSH 내부 Component 간 통신 시 필요한 certificate이다. 만약 BOSH 설치 후 1년이 지나면 BOSH를 다시 설치해야 한다.
+Cloud Foundry의 기본 BOSH cli는 인증서가 1년으로 제한되어 있다. BOSH 인증서는 BOSH 내부 Component 간의 통신 시 필요한 certificate이다. 만약 BOSH 설치 후 1년이 지나면 BOSH를 다시 설치해야 한다.
 
 인증서 기간을 늘리고 싶다면 BOSH cli 소스를 다운로드해 컴파일하여 사용해야 한다.
 소스 컴파일 방법은 다음 가이드를 참고한다.  
@@ -198,7 +196,10 @@ $ mkdir -p ${HOME}/workspace/paasta-4.6/stemcell
 - 다운로드한 파일이 아래 경로에 존재하는지 확인한다.
 - paasta-4.6 이하 디렉터리
 
-![PaaSTa_BOSH_Use_Guide_Image5]
+```
+ubuntu@ip-10-0-0-59:~/workspace/paasta-4.6$ ls
+deployment  release  stemcell
+```
 
 <table>
 <tr>
@@ -217,7 +218,10 @@ $ mkdir -p ${HOME}/workspace/paasta-4.6/stemcell
 
 - paasta-4.6/deployment 이하 디렉터리
 
-![PaaSTa_BOSH_Use_Guide_Image6]
+```
+ubuntu@ip-10-0-0-59:~/workspace/paasta-4.6/deployment$ ls
+bosh-deployment  cloud-config  paasta-deployment  portal-deployment  service-deployment
+```
 
 <table>
 <tr>
@@ -231,17 +235,23 @@ $ mkdir -p ${HOME}/workspace/paasta-4.6/stemcell
 <tr>
 <td>paasta-deployment</td>
 <td>PaaS-TA 설치를 위한 manifest 및 설치 파일이 존재한다.</td>
+</tr>   
+<tr>
+<td>portal-deployment</td>
+<td>PaaS-TA Portal 설치를 위한 manifest 및 설치 파일이 존재한다.</td>
 </tr>
 <tr>
 <td>service-deployment</td>
-<td>PaaS-TA service (monitoring, mysql, glusterfs 등)를 설치할 manifest 및 설치 파일이 존재한다.</td>
+<td>PaaS-TA Service (monitoring, mysql, glusterfs 등)를 설치할 manifest 및 설치 파일이 존재한다.</td>
 </tr>
 </table>
 
 - paasta-4.6/release 이하 디렉터리
 
-![PaaSTa_BOSH_Use_Guide_Image7]
-
+```
+ubuntu@ip-10-0-0-59:~/workspace/paasta-4.6/release$ ls
+bosh  monitoring  paasta  portal  service
+```
 
 <table>
 <tr>
@@ -253,20 +263,31 @@ $ mkdir -p ${HOME}/workspace/paasta-4.6/stemcell
 <td>PaaS-TA 설치 시 필요한 release 파일이 존재하는 디렉터리</td>
 </tr>
 <tr>
+<td>portal</td>
+<td>PaaS-TA Portal 설치 시 필요한 release 파일이 존재하는 디렉터리</td>
+</tr>
+<tr>
 <td>monitoring</td>
-<td>Paas-TA 설치 시 필요한 monitoring release 파일이 존재하는 디렉터리</td>
+<td>Paas-TA Monitoring 설치 시 필요한 release 파일이 존재하는 디렉터리</td>
 </tr>
 <tr>
 <td>service</td>
-<td>Paas-TA 설치 시 필요한 service release (mysql, glusterfs 등) 파일이 존재하는 디렉터리</td>
+<td>Paas-TA Service 설치 시 필요한 release (mysql, glusterfs 등) 파일이 존재하는 디렉터리</td>
 </tr>
 </table>
 
 
 - paasta-4.6/stemcell  이하 디렉터리
 
-![PaaSTa_BOSH_Use_Guide_Image8]
-
+```
+ubuntu@ip-10-0-0-59:~/workspace/paasta-4.6/stemcell$ ls
+bosh-stemcell-315.36-alicloud-kvm-ubuntu-xenial-go_agent.tgz   bosh-stemcell-315.36-vsphere-esxi-ubuntu-xenial-go_agent.tgz     bosh-stemcell-315.41-openstack-kvm-ubuntu-xenial-go_agent.tgz
+bosh-stemcell-315.36-aws-xen-hvm-ubuntu-xenial-go_agent.tgz    bosh-stemcell-315.36-warden-boshlite-ubuntu-xenial-go_agent.tgz  bosh-stemcell-315.41-vcloud-esxi-ubuntu-xenial-go_agent.tgz
+bosh-stemcell-315.36-azure-hyperv-ubuntu-xenial-go_agent.tgz   bosh-stemcell-315.41-alicloud-kvm-ubuntu-xenial-go_agent.tgz     bosh-stemcell-315.41-vsphere-esxi-ubuntu-xenial-go_agent.tgz
+bosh-stemcell-315.36-google-kvm-ubuntu-xenial-go_agent.tgz     bosh-stemcell-315.41-aws-xen-hvm-ubuntu-xenial-go_agent.tgz      bosh-stemcell-315.41-warden-boshlite-ubuntu-xenial-go_agent.tgz
+bosh-stemcell-315.36-openstack-kvm-ubuntu-xenial-go_agent.tgz  bosh-stemcell-315.41-azure-hyperv-ubuntu-xenial-go_agent.tgz
+bosh-stemcell-315.36-vcloud-esxi-ubuntu-xenial-go_agent.tgz    bosh-stemcell-315.41-google-kvm-ubuntu-xenial-go_agent.tgz
+```
 
 <table>
 <tr>
@@ -313,22 +334,22 @@ ${HOME}/workspace/paasta-4.6/deployment/bosh-deployment 이하 디렉터리에�
 </tr>
 </table>
 
-설치 Shell 파일은 각 IaaS 별로 존재하며, BOSH 설치 시 명령어는 create-env로 시작한다. Shell이 아닌 BOSH command로 실행이 가능하며, 설치하는 IaaS 환경에 따라 Option이 달라진다. BOSH 삭제 시 delete-env 명령어를 사용하여 설치된 BOSH를 삭제할 수 있다.
+설치 Shell 파일은 각 IaaS 별로 존재하며, BOSH 설치 명령어는 create-env로 시작한다. Shell이 아닌 BOSH command로 실행이 가능하며, 설치하는 IaaS 환경에 따라 Option이 달라진다. BOSH 삭제 시 delete-env 명령어를 사용하여 설치된 BOSH를 삭제할 수 있다.
 
-BOSH 설치 option은 아래와 같다.
+BOSH 설치 Option은 아래와 같다.
 
 <table>
 <tr>
 <td>--state</td>
-<td>BOSH 설치 명령어 실행 시 생성되는 파일로, 설치된 BOSH의 IaaS 설정 정보를 보관한다. (중요, backup 필요)</td>
+<td>BOSH 설치 명령어 실행 시 생성되는 파일로, 설치된 BOSH의 IaaS 설정 정보를 보관한다. (중요, Backup 필요)</td>
 </tr>
 <tr>
 <td>--vars-store</td>
-<td>BOSH 설치 명령어 실행 시 생성되는 파일로, BOSH가 설치될 때 BOSH CLI는 BOSH 내부 컴포넌트가 사용하는 인증서 및 인증정보를 생성 및 저장한다. (중요, backup 필요)</td>
+<td>BOSH 설치 명령어 실행 시 생성되는 파일로, BOSH가 설치될 때 BOSH CLI는 BOSH 내부 컴포넌트가 사용하는 인증서 및 인증정보를 생성 및 저장한다. (중요, Backup 필요)</td>
 </tr>   
 <tr>
 <td>-o</td>
-<td>BOSH 설치 시 Operation 파일을 설정할 수 있는데 IaaS 별 CPI 선택 또는 Jumpbox, CredHub 등의 설정 적용을 할 수 있다.</td>
+<td>BOSH 설치 시 Operation 파일을 설정할 수 있는데, IaaS 별 CPI 또는 Jumpbox, CredHub 등의 설정을 적용할 수 있다.</td>
 </tr>
 <tr>
 <td>-v</td>
@@ -336,7 +357,7 @@ BOSH 설치 option은 아래와 같다.
 </tr>
 <tr>
 <td>--var-file</td>
-<td>주로 인증서를 사용하는 경우 사용하는 option이다.</td>
+<td>주로 인증서를 사용하는 경우 사용하는 Option이다.</td>
 </tr>
 </table>
 
@@ -524,7 +545,7 @@ bosh create-env bosh.yml \
 
 ### <div id='1024'/>3.3.6. PaaS-TA Monitoring Operation 파일
 
-PaaS-TA Monitoring을 적용하기 위해서는 BOSH deploy 시 아래 두 파일을 적용해야 한다. 만약 Monitoring을 사용하지 않는다면, 두 파일을 제거하고 Deploy 해야 한다.
+PaaS-TA Monitoring을 적용하기 위해서는 BOSH deploy 시 아래 두 파일을 적용해야 한다. 만약 Monitoring을 사용하지 않는다면, 두 파일을 제거하고 Deploy 한다.
 
 | File Name | 설명 | Requires |
 |:---  |:---     |:---   |
@@ -554,7 +575,7 @@ $ ./deploy-{iaas}.sh
 ![PaaSTa_BOSH_Use_Guide_Image10]
 
 ### <div id='1026'/>3.3.8. BOSH Login
-BOSH가 설치되면 BOSH 설치 디렉터리 이하 {iaas}/creds.yml 파일이 생성된다. creds.yml은 BOSH 인증정보를 가지고 있으며, creds.yml을 활용하여 BOSH에 login 한다. BOSH 로그인 후 BOSH cli 명령어를 이용하여 PaaS-TA를 설치할 수 있다.
+BOSH가 설치되면, BOSH 설치 디렉터리 이하 {iaas}/creds.yml 파일이 생성된다. creds.yml은 BOSH 인증정보를 가지고 있으며, creds.yml을 활용하여 BOSH에 login 한다. BOSH 로그인 후, BOSH CLI 명령어를 이용하여 PaaS-TA를 설치할 수 있다.
 
 ```
 $ cd ${HOME}/workspace/paasta-4.6/deployment/bosh-deployment
@@ -566,13 +587,11 @@ $ bosh –e {director_name} env
 ```
 
 ### <div id='1027'/>3.3.9. CredHub
-BOSH 설치 시 operation 파일로 credhub.yml을 추가하였다. CredHub은 인증정보 저장소이다. 
-BOSH 설치 시 credhub.yml을 적용하면 PaaS-TA 설치 시 인증정보를 CredHub에 저장한다. 
-CredHub cli를 통해 CredHub에 로그인하여 인증정보 조회, 수정, 삭제를 할 수 있다.
+BOSH 설치 시 Operation 파일로 credhub.yml을 추가하였다. CredHub은 인증정보 저장소이다. BOSH 설치 시 credhub.yml을 적용하면, PaaS-TA 설치 시 인증정보를 CredHub에 저장한다. CredHub CLI를 통해 CredHub에 로그인하여 인증정보 조회, 수정, 삭제를 할 수 있다.
 
 #### <div id='1028'/>3.3.9.1. CredHub CLI Install
 
-CredHub cli는 BOSH를 설치한 Inception(설치환경)에서 설치한다.
+CredHub CLI는 BOSH를 설치한 Inception(설치환경)에서 설치한다.
 
 ```
 $ wget https://github.com/cloudfoundry-incubator/credhub-cli/releases/download/2.5.2/credhub-linux-2.5.2.tgz
@@ -595,7 +614,7 @@ $ credhub login -s https://{bosh-internal-ip}:8844 --skip-tls-validation
 $ credhub find
 ```
 
-CredHub login 후 find 명령어로 조회하면 비어 있는 것을 알 수 있다. PaaS-TA를 설치하면 인증 정보가 저장되어 조회할 수 있다
+CredHub Login 후 find 명령어로 조회하면 비어 있는 것을 알 수 있다. PaaS-TA를 설치하면 인증 정보가 저장되어 조회할 수 있다
 > ex) uaa 인증정보 조회
 
 ```
@@ -603,7 +622,7 @@ $ credhub get -n /{director}/{deployment}/uaa_ca
 ```
 
 ### <div id='1030'/>3.3.10. Jumpbox
-BOSH 설치 시 operation 파일로 jumpbox-user.yml을 추가하였다. Jumpbox는 BOSH VM에 접근하기 위한 인증을 적용하게 된다. 인증키는 BOSH에서 자체적으로 생성하며, 인증키를 통해 BOSH VM에 접근할 수 있다. BOSH VM에 이상이 있거나 상태를 체크할 때 Jumpbox를 활용하여 BOSH VM에 접근할 수 있다.
+BOSH 설치 시 Operation 파일로 jumpbox-user.yml을 추가하였다. Jumpbox는 BOSH VM에 접근하기 위한 인증을 적용하게 된다. 인증키는 BOSH에서 자체적으로 생성하며, 인증키를 통해 BOSH VM에 접근할 수 있다. BOSH VM에 이상이 있거나 상태를 체크할 때 Jumpbox를 활용하여 BOSH VM에 접근할 수 있다.
 
 ```
 $ cd ${HOME}/workspace/paasta-4.6/deployment/bosh-deployment
