@@ -64,14 +64,14 @@ PaaS-TA 3.1까지는 Cloud Foundry BOSH1을 기준으로 설치했지만, PaaS-T
 
 ## <div id='106'/>2.1. BOSH1
 
-BOSH1은 bosh-init을 통하여 BOSH를 생성하고, BOSH1 cli를 통하여 PaaS-TA Controller, Container를 생성하였다.
+BOSH1은 bosh-init을 통하여 BOSH를 생성하고, BOSH1 CLI를 통하여 PaaS-TA Controller, Container를 생성하였다.
 
 ![PaaSTa_BOSH_Use_Guide_Image1]
 
 ## <div id='107'/>2.2. BOSH2
 
-BOSH2는 BOSH2 cli를 통하여 BOSH와 PaaS-TA를 모두 생성한다. bosh-deployment를 이용하여 BOSH를 생성한 후, paasta-deployment로 PaaS-TA를 생성한다.
-PaaS-TA 3.1 버전까지는 PaaS-TA Container, Controller를 별도로 deployment로 설치해야 했지만, 3.5 버전부터는 paasta-deployment 하나로 통합되었으며, 한 번에 PaaS-TA를 설치할 수 있다.
+BOSH2는 BOSH2 CLI를 통하여 BOSH와 PaaS-TA를 모두 생성한다. bosh-deployment를 이용하여 BOSH를 생성한 후, paasta-deployment로 PaaS-TA를 생성한다.
+PaaS-TA 3.1 버전까지는 PaaS-TA Container, Controller를 별도로 deployment로 설치해야 했지만, PaaS-TA 3.5 버전부터는 paasta-deployment 하나로 통합되었으며, 한 번에 PaaS-TA를 설치한다.
 
 ![PaaSTa_BOSH_Use_Guide_Image2]
 
@@ -141,9 +141,9 @@ $ bosh -v
 ```
 
 ※ BOSH2 CLI는 BOSH deploy 시, BOSH certificate 정보를 생성해 주는 기능이 있다. 
-Cloud Foundry의 기본 BOSH cli는 인증서가 1년으로 제한되어 있다. BOSH 인증서는 BOSH 내부 Component 간의 통신 시 필요한 certificate이다. 만약 BOSH 설치 후 1년이 지나면 BOSH를 다시 설치해야 한다.
+Cloud Foundry의 기본 BOSH CLI는 인증서가 1년으로 제한되어 있다. BOSH 인증서는 BOSH 내부 Component 간의 통신 시 필요한 certificate이다. 만약 BOSH 설치 후 1년이 지나면 BOSH를 다시 설치해야 한다.
 
-인증서 기간을 늘리고 싶다면 BOSH cli 소스를 다운로드해 컴파일하여 사용해야 한다.
+인증서 기간을 늘리고 싶다면 BOSH CLI 소스를 다운로드해 컴파일하여 사용해야 한다.
 소스 컴파일 방법은 다음 가이드를 참고한다.  
 
 ※ 소스 build 전제 조건
@@ -177,7 +177,7 @@ $ bosh -version
 
 1.  다운로드 파일이 위치할 경로에 디렉터리를 만든다.
 
-- [설치 파일 다운로드 받기](https://paas-ta.kr/download/package)
+- [설치 파일 다운로드](https://paas-ta.kr/download/package)
 
 ```
 $ mkdir -p ${HOME}/workspace/paasta-4.6/deployment
@@ -353,7 +353,7 @@ BOSH 설치 Option은 아래와 같다.
 </tr>
 <tr>
 <td>-v</td>
-<td>BOSH 설치 시 사용되는 yml 파일 또는 Operation 파일에 변수 값을 설정할 경우 사용한다. Operation 파일 속성에 따라 필수인 경우와 Option인 경우가 있다.</td>
+<td>BOSH 설치 시 사용되는 yml 파일 또는 Operation 파일에 변숫값을 설정할 경우 사용한다. Operation 파일 속성에 따라 필수 또는 선택 항목으로 나뉜다.</td>
 </tr>
 <tr>
 <td>--var-file</td>
@@ -547,7 +547,7 @@ bosh create-env bosh.yml \
 
 PaaS-TA Monitoring을 적용하기 위해서는 BOSH deploy 시 아래 두 파일을 적용해야 한다. 만약 Monitoring을 사용하지 않는다면, 두 파일을 제거하고 Deploy 한다.
 
-| File Name | 설명 | Requires |
+| 파일명 | 설명 | 요구사항 |
 |:---  |:---     |:---   |
 |paasta-addon/paasta-monitoring-agent.yml | PaaS-TA Monitoring Agent 적용(Monitoring 적용 시 필수) | Requries value:   -v metric_url  |
 |syslog.yml | PaaS-TA Monitoring Log Agent 적용 | Requries value: -v syslog_address   -v syslog_port -v syslog_transport |
