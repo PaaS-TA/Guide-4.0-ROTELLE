@@ -2707,7 +2707,7 @@ Context: admin, from client admin
 > - 자동승인권한: 사용자 승인이 필요하지 않은 권한 목록을 입력한다.
 
 ```
-$ uaac client add caasclient -s clientsecret --redirect_uri "http://localhost:8091, http://115.68.47.179:8091" --scope "cloud_controller_service_permissions.read , openid , cloud_controller.read , cloud_controller.write , cloud_controller.admin" --authorized_grant_types "authorization_code , client_credentials , refresh_token" --authorities="uaa.resource" --autoapprove="openid , cloud_controller_service_permissions.read"
+$ uaac client add caasclient -s clientsecret --redirect_uri "http://localhost:8091, http://13.124.44.34:8091" --scope "cloud_controller_service_permissions.read , openid , cloud_controller.read , cloud_controller.write , cloud_controller.admin" --authorized_grant_types "authorization_code , client_credentials , refresh_token" --authorities="uaa.resource" --autoapprove="openid , cloud_controller_service_permissions.read"
 ```
 
 
