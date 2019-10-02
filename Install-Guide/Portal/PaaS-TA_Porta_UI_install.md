@@ -685,7 +685,6 @@ deployment 파일에서 사용하는 network, vm_type 등은 cloud config 를 �
 
 
 -  Deployment 파일을 서버 환경에 맞게 수정한다.
-> deployment 파일 위치 : PAAS-TA-PORTAL-RELEASE/deployments/paas-ta-portal-bosh2.0-vsphere.yml
 -  azs의 경우 z5 ~ z6 로 설정한다.
 -  "(())" 구문은 bosh deploy 할 때 변수로 받아서 처리하는 구문이므로 이 부분의 수정 방법은 아래의 deploy-portal-bosh2.0.sh 참고 예) os : ((stemcell_os))
  
@@ -1627,7 +1626,7 @@ bosh -n -d paasta-portal-ui deploy --no-redact paasta-portal-bosh2.0.yml \
 
 
 
--	배포된 PaaS-TA Portal을 확인한다.
+-	배포된 PaaS-TA Portal UI를 확인한다.
 
 - **사용 예시**
 
@@ -1635,7 +1634,7 @@ bosh -n -d paasta-portal-ui deploy --no-redact paasta-portal-bosh2.0.yml \
 		Using environment '10.30.40.111' as user 'admin' (openid, bosh.admin)
 
 		Task 4823. Done
-        
+
     Deployment 'paasta-portal-ui'
 
     Instance                                                      Process State  AZ  IPs            VM CID                                   VM Type       Active  
