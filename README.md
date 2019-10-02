@@ -24,8 +24,6 @@
   - [GlusterFS](./Service-Guide/Storage/PaaS-TA%20GlusterFS%20서비스팩%20설치%20가이드.md)
 - MessageQueue 설치
   - [RabbitMQ](./Service-Guide/MessageQueue/PaaS-TA%20RabbitMQ%20서비스팩%20설치%20가이드.md)
-- API 플랫폼 설치
-  - [API 플랫폼](./Service-Guide/ETC/PaaS-TA%20API%20플랫폼%20서비스팩%20설치%20가이드.md)
 - Web IDE 설치
   - [Web IDE](./Service-Guide/WEBIDE/PaaS-TA%20WEB%20IDE%20설치%20가이드.md)
 - Pinpoint APM 설치
