@@ -364,6 +364,7 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 -	Deploy시 사용할 Stemcell을 확인한다.
 
 - **사용 예시**
+
 		$ bosh -e micro-bosh stemcells
 		Name                                       Version  OS             CPI  CID  
 		bosh-openstack-kvm-ubuntu-xenial-go_agent  315.41*  ubuntu-xenial  -    fb08e389-2350-4091-9b29-41743495e62c  
@@ -917,10 +918,10 @@ bosh -n -d paasta-portal-ui deploy --no-redact paasta-portal-bosh2.0.yml \
 > cf_admin_password: CF 관리자 계정 비밀번호를 입력한다.
 
 >cf_uaa_admin_client_secret: uaac admin client의 secret를 입력한다.\
- portal_client_secret: uaac portalclient의 secret를 입력한다.\
+ portal_client_secret: uaac portalclient의 secret를 입력한다.
    
->portal_webuser_automaticapproval: 회원가입시 cf에 접속가능 여부 true일경우 관리자포탈에서 승인을 해주어야 접근 가능하다.
- portal_webuser_monitoring : 모니터링 사용 여부 true일경우 앱 상세정보에서 모니터링창이 활성화가 된다.
+>portal_webuser_automaticapproval: 회원가입시 cf에 접속가능 여부 true일경우 관리자포탈에서 승인을 해주어야 접근 가능하다.\
+ portal_webuser_monitoring : 모니터링 사용 여부 true일경우 앱 상세정보에서 모니터링창이 활성화가 된다.\
  portal_webuser_quantity : 사용량 조회 창 활성화 여부
  
  -	PaaS-TA Portal을 배포한다.
