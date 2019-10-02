@@ -239,7 +239,7 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 
 		Succeeded
 		
->Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell을 업로드를 해야 한다. (cubrid 는 stemcell 3215.4 버전을 사용)
+>Stemcell 목록이 존재 하지 않을 경우 BOSH 설치 가이드 문서를 참고 하여 Stemcell을 업로드를 해야 한다. 
 
 ### <div id='9'> 2.3. Cubrid 서비스 Deployment 파일 및 deploy-cubrid-bosh2.0.sh 수정 및 배포
 
