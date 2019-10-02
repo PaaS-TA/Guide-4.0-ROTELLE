@@ -195,7 +195,7 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
      
      Succeeded
 
-> 2. bosh-dns include deployments에 paasta가 없다면 ~/workspace/paasta-4.0/deployment/bosh-deployment/runtime-configs 의 dns.yml 을 열어서 paasta를 추가해야한다.
+> 2. bosh-dns include deployments에 paasta가 없다면 ~/workspace/paasta-4.6/deployment/bosh-deployment/runtime-configs 의 dns.yml 을 열어서 paasta를 추가해야한다.
 
        addons:
       - name: bosh-dns
@@ -225,7 +225,7 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 
 
 > 3. dns.yml의 bosh-dns addons 설정 부분이다. Incoude.deployments에 paasta를 위와같이 추가시킨다. 
-> 4. yml설정을 한 후에 ~/workspace/paasta-4.0/deployment/bosh-deployment/update-runtime-config.sh을 실행시키면 runtime-config가 업데이트가 된다.
+> 4. yml설정을 한 후에 ~/workspace/paasta-4.6/deployment/bosh-deployment/update-runtime-config.sh을 실행시키면 runtime-config가 업데이트가 된다.
 > 5. 다시 bosh runtime-config 명령어를 통해 bosh-dns include deployments 에 paasta가 있는지 확인 후 성공적으로 등록이 되었으면 ppaasta-portal-ui-release 릴리즈 업로드 및 deploy를 진행한다.
 ### 2.2. PaaS-TA Portal UI 릴리즈 업로드
 
@@ -685,6 +685,7 @@ deployment 파일에서 사용하는 network, vm_type 등은 cloud config 를 �
 
 
 -  Deployment 파일을 서버 환경에 맞게 수정한다.
+> deployment 파일 위치 : PAAS-TA-PORTAL-RELEASE/deployments/paas-ta-portal-bosh2.0-vsphere.yml
 -  azs의 경우 z5 ~ z6 로 설정한다.
 -  "(())" 구문은 bosh deploy 할 때 변수로 받아서 처리하는 구문이므로 이 부분의 수정 방법은 아래의 deploy-portal-bosh2.0.sh 참고 예) os : ((stemcell_os))
  
@@ -850,7 +851,7 @@ bosh -n -d paasta-portal-ui deploy --no-redact paasta-portal-bosh2.0.yml \
       paasta-portal-ui-release            1.0*       235c329+  
 
 > stemcell_os : 스템셀 OS를 입력한다. $bosh stemcells 명령문으로 확인가능\
-> stemcell_version : 스템셀 버전을 입력한다. $bosh stemcells 명령문으로 확인가능(3468.51 verion 사용)\
+> stemcell_version : 스템셀 버전을 입력한다. $bosh stemcells 명령문으로 확인가능\
 > stemcell_alias : bosh deploy시 사용할 스템셀 명칭을 정한다.
 
     - $ bosh stemcells
@@ -1211,8 +1212,8 @@ bosh -n -d paasta-portal-ui deploy --no-redact paasta-portal-bosh2.0.yml \
           
         + stemcells:
         + - alias: default
-        +   os: ubuntu-trusty
-        +   version: '3468.51'
+        +   os: ubuntu-xenial
+        +   version: 'latest'
           
         + releases:
         + - name: paas-ta-portal-release
@@ -1630,13 +1631,14 @@ bosh -n -d paasta-portal-ui deploy --no-redact paasta-portal-bosh2.0.yml \
 
 - **사용 예시**
 
-		bosh -e micro-bosh -d paasta-portal-ui vms
-		Using environment '10.30.40.111' as user 'admin' (openid, bosh.admin)
-
-		Task 4823. Done
-
+```
+    bosh -e micro-bosh -d paasta-portal-ui vms
+    Using environment '10.30.40.111' as user 'admin' (openid, bosh.admin)
+    
+    Task 4823. Done
+    
     Deployment 'paasta-portal-ui'
-
+    
     Instance                                                      Process State  AZ  IPs            VM CID                                   VM Type       Active  
     haproxy/5c30c643-94d1-491c-9f6c-e72de4b0e6a4                  running        z7  10.30.56.10    vm-891ff2dd-4ee0-4c42-8fa8-b2d0cf0b8537  portal_tiny   true  
                                                                                      115.68.46.180                                                           
@@ -1648,7 +1650,7 @@ bosh -n -d paasta-portal-ui deploy --no-redact paasta-portal-bosh2.0.yml \
     
     Succeeded
 
-
+```
 ### 2.4. 사용자의 조직 생성 Flag 활성화
 PaaS-TA는 기본적으로 일반 사용자는 조직을 생성할 수 없도록 설정되어 있다. 포털 배포를 위해 조직 및 공간을 생성해야 하고 또 테스트를 구동하기 위해서도 필요하므로 사용자가 조직을 생성할 수 있도록 user_org_creation FLAG를 활성화 한다. FLAG 활성화를 위해서는 PaaS-TA 운영자 계정으로 로그인이 필요하다.
 
