@@ -52,8 +52,6 @@ PaaS-TA 4.0 버전부터는 Bosh2.0 기반으로 deploy를 진행하며 내부 �
 | paas-ta-portal-common-api | portal_small | 1vCPU / 512MB RAM / 4GB Disk |
 | paas-ta-portal-log-api | portal_small | 1vCPU / 512MB RAM / 4GB Disk |
 | paas-ta-portal-storage-api | portal_small | 1vCPU / 512MB RAM / 4GB Disk |
-| paas-ta-portal-webadmin | portal_small | 1vCPU / 512MB RAM / 4GB Disk |
-| paas-ta-portal-webuser |portal_small| 1vCPU / 512MB RAM / 4GB Disk|
 
 ### 1.4. 참고자료
 [**http://bosh.io/docs**](http://bosh.io/docs)  
