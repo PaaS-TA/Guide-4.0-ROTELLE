@@ -6,8 +6,8 @@
     *  [1.4 참고자료](#14-참고자료)
 2. [PaaS-TA Portal 설치](#2-paas-ta-portal-설치)
     *  [2.1 설치전 준비사항](#21-설치전-준비사항)
-    *  [2.2 PaaS-TA Portal 릴리즈 업로드](#22-paas-ta-portal-릴리즈-업로드)
-    *  [2.3 PaaS-TA Portal Deployment 배포](#23-paas-ta-portal-deployment-배포)
+    *  [2.2 PaaS-TA Portal UI 릴리즈 업로드](#22-paas-ta-portal-ui-릴리즈-업로드)
+    *  [2.3 PaaS-TA Portal UI Deployment 배포](#23-paas-ta-portal-ui-deployment-배포)
     *  [2.4 사용자의 조직 생성 Flag 활성화](#24-사용자의-조직-생성-flag-활성화)
     *  [2.5 사용자포탈 UAA페이지 오류](#25-사용자포탈-uaa페이지-오류)
     *  [2.6 운영자포탈 유저페이지 오류](#26-운영자-포탈-유저-페이지-조회-오류)
@@ -21,7 +21,7 @@
 ### 1.1. 목적
 
 본 문서(PaaS-TA Portal Release 설치 가이드)는 전자정부표준프레임워크 기반의 PaaS-TA에서 제공되는 PaaS-TA Portal Release를 Bosh2.0을 이용하여 설치 하는 방법을 기술하였다.
-PaaS-TA 4.0 버전부터는 Bosh2.0 기반으로 deploy를 진행하며 내부 네트워크는 link를 적용시켜 자동으로 Ip가 할당이 된다. 기존 Bosh1.0 기반으로 설치를 원할경우에는 PaaS-TA 3.1 이하 버전의 문서를 참고한다.
+PaaS-TA 4.6 버전부터는 Bosh2.0 기반으로 deploy를 진행하며 내부 네트워크는 link를 적용시켜 자동으로 Ip가 할당이 된다. 기존 Bosh1.0 기반으로 설치를 원할경우에는 PaaS-TA 3.1 이하 버전의 문서를 참고한다.
 
 ### 1.2. 범위
 설치 범위는 PaaS-TA Portal Release를 검증하기 위한 기본 설치를 기준으로 작성하였다.
@@ -68,27 +68,26 @@ PaaS-TA 4.0 버전부터는 Bosh2.0 기반으로 deploy를 진행하며 내부 �
 BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이드 문서를 참고 하여 BOSH CLI v2를 설치를 하고 사용법을 숙지 해야 한다.<br>
 
 - BOSH2.0 사용자 가이드
->BOSH2 사용자 가이드 : **<https://github.com/PaaS-TA/Guide-4.0-ROTELLE/blob/master/PaaS-TA_BOSH2_%EC%82%AC%EC%9A%A9%EC%9E%90_%EA%B0%80%EC%9D%B4%EB%93%9Cv1.0.md>**
+>BOSH2 사용자 가이드 : **<https://github.com/PaaS-TA/Guide-4.0-ROTELLE/blob/master/PaaS-TA_BOSH2_사용자_가이드v1.0.md>**
 
->BOSH CLI V2 사용자 가이드 : **<https://github.com/PaaS-TA/Guide-4.0-ROTELLE/blob/master/Use-Guide/Bosh/PaaS-TA_BOSH_CLI_V2_%EC%82%AC%EC%9A%A9%EC%9E%90_%EA%B0%80%EC%9D%B4%EB%93%9Cv1.0.md>**
+>BOSH CLI V2 사용자 가이드 : **<https://github.com/PaaS-TA/Guide-4.0-ROTELLE/blob/master/Use-Guide/Bosh/PaaS-TA_BOSH_CLI_V2_사용자_가이드v1.0.md>**
 
 - PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다.
 
 - 다운로드 방법
 1. 릴리즈된 파일받는방법
 
-        $ wget -O download.zip http://45.248.73.44/index.php/s/WrFWMyWzLHXtAeG/download
+        $ wget -O download.zip http://45.248.73.44/index.php/s/DiqGmxMk6sDjA2z/download
         $ unzip download.zip 
 
-2. PAAS-TA-PORTAL-RELEASE 다운받아  직접 릴리즈 생성및 업로드 하는 방법
+2. PAAS-TA-PORTAL-UI-RELEASE 다운받아  직접 릴리즈 생성및 업로드 하는 방법
 
-        $ git clone https://github.com/PaaS-TA/PAAS-TA-PORTAL-RELEASE.git
-        $ git checkout v4.0
-        $ cd ~/PAAS-TA-PORTAL-RELEASE
-	    $ wget -O src.zip http://45.248.73.44/index.php/s/JAQRFctz7Tn26qK/download
-	    $ unzip src.zip
-	    $ rm -rf src.zip
-	    $ sh start.sh
+        $ git clone https://github.com/PaaS-TA/PAAS-TA-PORTAL-UI-RELEASE.git
+        $ cd ~/PAAS-TA-PORTAL-UI-RELEASE
+	      $ wget -O src.zip http://45.248.73.44/index.php/s/GDWgAMRQ7tnH7eo/download
+	      $ unzip src.zip
+	      $ rm -rf src.zip
+	      $ sh start.sh
 	
         
 3. bosh envs 명령어를 통해 사용할 bosh env를 확인한다.        
@@ -234,8 +233,8 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 
 > 3. dns.yml의 bosh-dns addons 설정 부분이다. Incoude.deployments에 paasta를 위와같이 추가시킨다. 
 > 4. yml설정을 한 후에 ~/workspace/paasta-4.0/deployment/bosh-deployment/update-runtime-config.sh을 실행시키면 runtime-config가 업데이트가 된다.
-> 5. 다시 bosh runtime-config 명령어를 통해 bosh-dns include deployments 에 paasta가 있는지 확인 후 성공적으로 등록이 되었으면 paasta-portal 릴리즈 업로드 및 deploy를 진행한다.
-### 2.2. PaaS-TA Portal 릴리즈 업로드
+> 5. 다시 bosh runtime-config 명령어를 통해 bosh-dns include deployments 에 paasta가 있는지 확인 후 성공적으로 등록이 되었으면 ppaasta-portal-ui-release 릴리즈 업로드 및 deploy를 진행한다.
+### 2.2. PaaS-TA Portal UI 릴리즈 업로드
 
 -	업로드 되어 있는 릴리즈 목록을 확인한다.
 
@@ -283,18 +282,18 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 
 	    	Succeeded
 
-- paasta-portal-release(ver 2.0)이 업로드 되어 있지 않은 것을 확인
+- paasta-portal-ui-release(ver 1.0)이 업로드 되어 있지 않은 것을 확인
 
 - PaaS-TA Portal 릴리즈 파일을 업로드한다.
 > 명령어 : bosh -e "bosh env" upload-release "release file"
 
-        릴리즈 파일 위치 : PAAS-TA-PORTAL-RELEASE/paasta-portal-release-2.0.tgz
+        릴리즈 파일 위치 : PAAS-TA-PORTAL-RELEASE/paasta-portal-ui-release-1.0.tgz
             
 
 
 - **사용 예시**
 
-		$ bosh -e micro-bosh upload-release paasta-portal-release-2.0.tgz
+		$ bosh -e micro-bosh upload-release paasta-portal-ui-release-1.0.tgz
 		Using environment '10.30.40.111' as user 'admin' (openid, bosh.admin)
 
 		######################################################## 100.00% 153.81 MiB/s 3s
@@ -304,37 +303,16 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
         Task 4687 | 02:09:13 | Verifying manifest: Verifying manifest (00:00:00)
         Task 4687 | 02:09:14 | Resolving package dependencies: Resolving package dependencies (00:00:00)
         Task 4687 | 02:09:14 | Creating new packages: paas-ta-portal-webadmin/a74db51496832a2b1e1e947c424d08b33fb46c83 (00:00:01)
-        Task 4687 | 02:09:15 | Creating new packages: paas-ta-portal-log-api/0aff609e64bd4f3ea2cef82d470c0881933b5bbf (00:00:01)
-        Task 4687 | 02:09:16 | Creating new packages: paas-ta-portal-api/02e6c62924be62a2672a662f80bbf8d77c0afdb1 (00:00:01)
-        Task 4687 | 02:09:17 | Creating new packages: paas-ta-portal-storage-api/6cd6d9b3dd2376509ab79ed944c10c3782617db7 (00:00:01)
-        Task 4687 | 02:09:18 | Creating new packages: apache2/ced88bee5e97185ff8d299e2892975bd2062fa01 (00:00:00)
-        Task 4687 | 02:09:18 | Creating new packages: python/4e255efa754d91b825476b57e111345f200944e1 (00:00:02)
         Task 4687 | 02:09:20 | Creating new packages: haproxy/14b0441f6d68c89612f53ce4334a65c80d601e51 (00:00:00)
-        Task 4687 | 02:09:20 | Creating new packages: paas-ta-portal-registration/66ed72c68e86717bf53af02f07e85fa19d7da874 (00:00:01)
-        Task 4687 | 02:09:21 | Creating new packages: sshpass/1b75eb8cd625da33e67fe33deba7b675796adb83 (00:00:00)
-        Task 4687 | 02:09:21 | Creating new packages: paas-ta-portal-config-server/8064c9e7488f2f688bc259d8cb8b15f0894faa94 (00:00:00)
-        Task 4687 | 02:09:21 | Creating new packages: paas-ta-portal-infra-admin/69c651f70ca9ecfa305d60ef6c2cec36ae6d8fb6 (00:00:01)
-        Task 4687 | 02:09:22 | Creating new packages: tomcat/1ff8747498f45f21b2d43d6bc50d8e53a0ddfca7 (00:00:01)
-        Task 4687 | 02:09:23 | Creating new packages: swift-all-in-one/af76e98d69570ca8c886b3c7fcb23c3a1ccbbe40 (00:00:05)
         Task 4687 | 02:09:28 | Creating new packages: paas-ta-portal-webuser/e3901a2d9e9cd349a06fee226bc3230e1c91b430 (00:00:02)
-        Task 4687 | 02:09:30 | Creating new packages: paas-ta-portal-common-api/8d7f3eb353ec32adf744d4514e95a936c2ea1ce3 (00:00:02)
         Task 4687 | 02:09:32 | Creating new packages: java/86d8b8f8115418addf836753c1735abe547d4105 (00:00:03)
         Task 4687 | 02:09:35 | Creating new packages: mariadb/59a218308c6c7dcf8795b531b53aa4a1c666ce00 (00:00:23)
-        Task 4687 | 02:09:58 | Creating new packages: paas-ta-portal-gateway/1fc98dd004de2dd036ed8c69fe9643efa4d74f5a (00:00:00)
         Task 4687 | 02:09:58 | Creating new jobs: paas-ta-portal-webadmin/233eb71833ed12faef66b4ef1b298bee0f6f10d2 (00:00:01)
-        Task 4687 | 02:09:59 | Creating new jobs: paas-ta-portal-log-api/3a5acb369f0491a48a3c7f8c2fdcddf469a0c2e8 (00:00:00)
-        Task 4687 | 02:09:59 | Creating new jobs: paas-ta-portal-api/d047be88ad2335b7981b7bf3e8a1396176ec04eb (00:00:00)
-        Task 4687 | 02:09:59 | Creating new jobs: paas-ta-portal-storage-api/46783767f597931024cd2ae3e9d4f71f08a5a71b (00:00:00)
         Task 4687 | 02:09:59 | Creating new jobs: haproxy/6fb2bf3eefc2ec935bbb6a1d05ed92ba66ea7988 (00:00:00)
-        Task 4687 | 02:09:59 | Creating new jobs: paas-ta-portal-registration/dc5256799b47b1e0abab0d55dbbed8dabbd4997b (00:00:00)
-        Task 4687 | 02:09:59 | Creating new jobs: paas-ta-portal-infra-admin/6d09e520e3cb89e443c13b0a77f700cceb46b37a (00:00:00)
         Task 4687 | 02:09:59 | Creating new jobs: paas-ta-portal-webuser/e866e3a0fb36020dd8f207a0db5f7bd22be18d2b (00:00:00)
         Task 4687 | 02:09:59 | Creating new jobs: binary_storage/8315c60cb8259e61fb0df4742e72cb2093dd32e4 (00:00:00)
-        Task 4687 | 02:09:59 | Creating new jobs: paas-ta-portal-common-api/e9ce476a7e453bb54a1581fbfaa09f669dbe39f0 (00:00:00)
         Task 4687 | 02:09:59 | Creating new jobs: mariadb/3810edf74d908d7fb1cd284ce69a172b5fb51225 (00:00:01)
-        Task 4687 | 02:10:00 | Creating new jobs: paas-ta-portal-gateway/5950348e71002c4e7e511e8218e645f35cc887be (00:00:00)
-        Task 4687 | 02:10:00 | Release has been created: paas-ta-portal-release/2.0 (00:00:00)
-        
+        Task 4687 | 02:10:00 | Release has been created: paasta-portal-ui-release/1.0 (00:00:00)
         Task 4687 Started  Mon Sep  3 02:09:08 UTC 2018
         Task 4687 Finished Mon Sep  3 02:10:00 UTC 2018
         Task 4687 Duration 00:00:52
@@ -342,7 +320,7 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
         
         Succeeded
 
--	PaaS-TA Portal 릴리즈를 확인한다.
+-	PaaS-TA Portal UI 릴리즈를 확인한다.
 
 - **사용 예시**
 
@@ -369,7 +347,7 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 		loggregator-agent                 2.0*      2382c90  
 		nats                              24*       30e7a82  
 		nodejs-buildpack                  1.6.28*   4cfdb7b  
-		paas-ta-portal-release            2.0*      00000000  
+		paasta-portal-ui-release          1.0*      235c329+  
 		paasta-delivery-pipeline-release  1.0*      b3ee8f48+  
 		paasta-pinpoint                   2.0*      2dbb8bf3+  
 		php-buildpack                     4.3.57*   efc48f3  
@@ -384,10 +362,9 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 
 	    	(*) Currently deployed
 	    	(+) Uncommitted changes
-
 	    	31 releases
-
 	    	Succeeded
+
 		
 -	PaaS-TA Portal 릴리즈가 업로드 되어 있는 것을 확인
 
@@ -405,14 +382,9 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 
 		Succeeded
 		
->Stemcell 목록이 존재 하지 않을 경우 Stemcell을 업로드를 해야 한다. (Paas-TA Portal 은 stemcell 3468.51 이전버전을 사용)
-        
-        $ wget -O download.zip http://45.248.73.44/index.php/s/b6NA5gPCBeQfrCo/download
-        $ unzip download.zip
-        $ bosh upload-stemcell "해당 stemcell 파일"
-
- 
-### 2.3. PaaS-TA Portal Deployment 배포
+>Stemcell 목록이 존재 하지 않을 경우 Stemcell을 업로드를 해야 한다.
+         
+### 2.3. PaaS-TA Portal UI Deployment 배포
 
 BOSH Deployment manifest 는 components 요소 및 배포의 속성을 정의한 YAML 파일이다.
 Deployment manifest 에는 sotfware를 설치 하기 위해서 어떤 Stemcell (OS, BOSH agent) 을 사용할것이며 Release (Software packages, Config templates, Scripts) 이름과 버전, VMs 용량, Jobs params 등을 정의가 되어 있다.
@@ -725,23 +697,18 @@ deployment 파일에서 사용하는 network, vm_type 등은 cloud config 를 �
 -  "(())" 구문은 bosh deploy 할 때 변수로 받아서 처리하는 구문이므로 이 부분의 수정 방법은 아래의 deploy-portal-bosh2.0.sh 참고 예) os : ((stemcell_os))
  
 ```yml
-# paas-ta-portal-bosh2.0-vsphere.yml 설정 파일 내용
+# paas-ta-portal-bosh2.0.yml 설정 파일 내용
 ---
-name: paasta-portal                      # 서비스 배포이름(필수) bosh deployments 로 확인 가능한 이름
+name: paasta-portal-ui                      # 서비스 배포이름(필수) bosh deployments 로 확인 가능한 이름
 
 stemcells:
 - alias: ((stemcell_alias))
   os: ((stemcell_os))
-  version: "((stemcell_version))"
-- alias: binary_storage_stemcells
-  os: ((stemcell_os))
-  version: 3468.51 
-
-
+  version: ((stemcell_version))
 
 releases:
 - name: "((releases_name))"                   # 서비스 릴리즈 이름(필수) bosh releases로 확인 가능
-  version: "2.0"                                              # 서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
+  version: "1.0"                                              # 서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
 
 update:
   canaries: 1                                               # canary 인스턴스 수(필수)
@@ -761,14 +728,14 @@ instance_groups:
   persistent_disk_type: "((mariadb_disk_type))"
   networks:
   - name: ((internal_networks_name))
-  templates:
+  jobs:
   - name: mariadb
-    release: "((releases_name))"
+    release: "((releases_name))" 
   syslog_aggregator: null
 
 - name: haproxy
   azs:
-  - z6
+  - z7
   instances: 1
   vm_type: "((vm_type_tiny))"
   stemcell: "((stemcell_alias))"
@@ -776,205 +743,16 @@ instance_groups:
   - name: ((internal_networks_name))
   - name: ((external_networks_name))
     static_ips: ((haproxy_public_ip))
-  templates:
+  jobs:
   - name: haproxy
     release: "((releases_name))"
   syslog_aggregator: null
-
-- name: binary_storage
-  azs:
-  - z6
-  instances: 1
-  persistent_disk_type: "((binary_storage_disk_type))"
-  vm_type: "((vm_type_small))"
-  stemcell: binary_storage_stemcells
-  networks:
-  - name: ((internal_networks_name))
-  templates:
-  - name: binary_storage
-    release: "((releases_name))"
-  syslog_aggregator: null
-
-
+  properties:
+    infra:
+      admin:
+        enable: "((infra_admin))"
 
 ######## WEB SERVICE ########
-
-- name: paas-ta-portal-gateway
-  azs:
-  - z6
-  instances: 1
-  vm_type: "((vm_type_small))"
-  stemcell: "((stemcell_alias))"
-  networks:
-  - name: ((internal_networks_name))
-  templates:
-  - name: paas-ta-portal-gateway
-    release: "((releases_name))"
-  syslog_aggregator: null
-  properties:
-    java_opts: "-Xmx450m -Xss1M -XX:MaxMetaspaceSize=93382K -XX:ReservedCodeCacheSize=240m -XX:+UseCompressedOops -Djdk.tls.ephemeralDHKeySize=2048 -Dfile.encoding=UTF-8 -XX:+UseConcMarkSweepGC -XX:SoftRefLRUPolicyMSPerMB=50 -Dsun.io.useCanonCaches=false -Djava.net.preferIPv4Stack=true -XX:+HeapDumpOnOutOfMemoryError -XX:-OmitStackTraceInFastThrow -Xverify:none -XX:ErrorFile=/var/vcap/sys/log/java_error_in_idea_%p.log -XX:HeapDumpPath=/var/vcap/sys/log/java_error_in_idea.hprof"
-
-- name: paas-ta-portal-registration
-  azs:
-  - z6
-  instances: 1
-  vm_type: "((vm_type_small))"
-  stemcell: "((stemcell_alias))"
-  networks:
-  - name: ((internal_networks_name))
-  templates:
-  - name: paas-ta-portal-registration
-    release: "((releases_name))"
-  syslog_aggregator: null
-  properties:
-    java_opts: "-Xmx450m -Xss1M -XX:MaxMetaspaceSize=93382K -XX:ReservedCodeCacheSize=240m -XX:+UseCompressedOops -Djdk.tls.ephemeralDHKeySize=2048 -Dfile.encoding=UTF-8 -XX:+UseConcMarkSweepGC -XX:SoftRefLRUPolicyMSPerMB=50 -Dsun.io.useCanonCaches=false -Djava.net.preferIPv4Stack=true -XX:+HeapDumpOnOutOfMemoryError -XX:-OmitStackTraceInFastThrow -Xverify:none -XX:ErrorFile=/var/vcap/sys/log/java_error_in_idea_%p.log -XX:HeapDumpPath=/var/vcap/sys/log/java_error_in_idea.hprof"
-    server:
-      port: 2221
-
-- name: paas-ta-portal-api
-  azs:
-  - z6
-  instances: 1
-  vm_type: "((vm_type_medium))"
-  stemcell: "((stemcell_alias))"
-  networks:
-  - name: ((internal_networks_name))
-  templates:
-  - name: paas-ta-portal-api
-    release: "((releases_name))"
-  syslog_aggregator: null
-  properties:
-    java_opts: "-Xmx900m -Xss1M -XX:MaxMetaspaceSize=93382K -XX:ReservedCodeCacheSize=240m -XX:+UseCompressedOops -Djdk.tls.ephemeralDHKeySize=2048 -Dfile.encoding=UTF-8 -XX:+UseConcMarkSweepGC -XX:SoftRefLRUPolicyMSPerMB=50 -Dsun.io.useCanonCaches=false -Djava.net.preferIPv4Stack=true -XX:+HeapDumpOnOutOfMemoryError -XX:-OmitStackTraceInFastThrow -Xverify:none -XX:ErrorFile=/var/vcap/sys/log/java_error_in_idea_%p.log -XX:HeapDumpPath=/var/vcap/sys/log/java_error_in_idea.hprof"
-    cloudfoundry:
-      cc:
-        api:
-          url: ((cf_api_url))
-          uaaUrl: ((cf_uaa_url))
-          sslSkipValidation: true
-      user: # CloudFoundry Login information
-        admin:
-          username: admin
-          password: "((cf_admin_password))"
-        uaaClient:
-          clientId: admin
-          clientSecret: ((cf_uaa_admin_client_secret))
-          adminClientId: admin
-          adminClientSecret: ((cf_uaa_admin_client_secret))
-          loginClientId: admin
-          loginClientSecret: ((cf_uaa_admin_client_secret))
-          skipSSLValidation: true
-      authorization: cf-Authorization
-    abacus:
-      url: ((abacus_url))
-    monitoring:
-      api:
-        url: ((monitoring_api_url))
-
-- name: paas-ta-portal-common-api
-  azs:
-  - z6
-  instances: 1
-  vm_type: "((vm_type_small))"
-  stemcell: "((stemcell_alias))"
-  networks:
-  - name: ((internal_networks_name))
-  templates:
-  - name: paas-ta-portal-common-api
-    release: "((releases_name))"
-  syslog_aggregator: null
-  properties:
-    java_opts: "-Xmx450m -Xss1M -XX:MaxMetaspaceSize=93382K -XX:ReservedCodeCacheSize=240m -XX:+UseCompressedOops -Djdk.tls.ephemeralDHKeySize=2048 -Dfile.encoding=UTF-8 -XX:+UseConcMarkSweepGC -XX:SoftRefLRUPolicyMSPerMB=50 -Dsun.io.useCanonCaches=false -Djava.net.preferIPv4Stack=true -XX:+HeapDumpOnOutOfMemoryError -XX:-OmitStackTraceInFastThrow -Xverify:none -XX:ErrorFile=/var/vcap/sys/log/java_error_in_idea_%p.log -XX:HeapDumpPath=/var/vcap/sys/log/java_error_in_idea.hprof"
-    datasource:
-      cc:
-        driver-class-name: org.postgresql.Driver
-        url: jdbc:postgresql://((cf_db_ips)):((cf_db_port))/cloud_controller
-        username: "((cc_db_id))"
-        password: "((cc_db_password))"
-      portal:
-        driver-class-name: com.mysql.jdbc.Driver
-        username: root
-        password: "((mariadb_user_password))"
-      uaa:
-        driver-class-name: org.postgresql.Driver
-        url: jdbc:postgresql://((cf_db_ips)):((cf_db_port))/uaa
-        username: "((uaa_db_id))"
-        password: "((uaa_db_password))"
-    mail:
-      smtp:
-        host: ((mail_smtp_host))
-        port: ((mail_smtp_port))
-        username: ((mail_smtp_username))
-        password: "((mail_smtp_password))"
-        useremail: ((mail_smtp_useremail))
-        properties:
-          auth: ((mail_smtp_properties_auth))
-          starttls:
-            enable: ((mail_smtp_properties_starttls_enable))
-            required: ((mail_smtp_properties_starttls_required))
-          maximumTotalQps: 90
-          authUrl: "http://portal-web-user.((haproxy_public_ip)).xip.io"
-          charset: UTF-8
-          subject: "((mail_smtp_properties_subject))"
-          createUrl: authcreate
-          expiredUrl: authreset
-          inviteUrl: inviteorg
-
-- name: paas-ta-portal-storage-api
-  azs:
-  - z6
-  instances: 1
-  vm_type: "((vm_type_small))"
-  stemcell: "((stemcell_alias))"
-  networks:
-  - name: ((internal_networks_name))
-  templates:
-  - name: paas-ta-portal-storage-api
-    release: "((releases_name))"
-  syslog_aggregator: null
-  properties:
-    java_opts: "-Xmx450m -Xss1M -XX:MaxMetaspaceSize=93382K -XX:ReservedCodeCacheSize=240m -XX:+UseCompressedOops -Djdk.tls.ephemeralDHKeySize=2048 -Dfile.encoding=UTF-8 -XX:+UseConcMarkSweepGC -XX:SoftRefLRUPolicyMSPerMB=50 -Dsun.io.useCanonCaches=false -Djava.net.preferIPv4Stack=true -XX:+HeapDumpOnOutOfMemoryError -XX:-OmitStackTraceInFastThrow -Xverify:none -XX:ErrorFile=/var/vcap/sys/log/java_error_in_idea_%p.log -XX:HeapDumpPath=/var/vcap/sys/log/java_error_in_idea.hprof"
-    objectStorage:
-      swift:
-        tenantName: ((binary_storage_tenantname))
-        username: ((binary_storage_username))
-        password: ((binary_storage_password))
-        authMethod: keystone
-        preferredRegion: Public
-        container: portal-container
-
-- name : paas-ta-portal-log-api
-  azs:
-  - z6
-  instances: 1
-  vm_type: "((vm_type_small))"
-  stemcell: "((stemcell_alias))"
-  networks:
-  - name: ((internal_networks_name))
-  templates:
-  - name: paas-ta-portal-log-api
-    release: "((releases_name))"
-  syslog_aggregator: null
-  properties:
-    java_opts: "-Xmx450m -Xss1M -XX:MaxMetaspaceSize=93382K -XX:ReservedCodeCacheSize=240m -XX:+UseCompressedOops -Djdk.tls.ephemeralDHKeySize=2048 -Dfile.encoding=UTF-8 -XX:+UseConcMarkSweepGC -XX:SoftRefLRUPolicyMSPerMB=50 -Dsun.io.useCanonCaches=false -Djava.net.preferIPv4Stack=true -XX:+HeapDumpOnOutOfMemoryError -XX:-OmitStackTraceInFastThrow -Xverify:none -XX:ErrorFile=/var/vcap/sys/log/java_error_in_idea_%p.log -XX:HeapDumpPath=/var/vcap/sys/log/java_error_in_idea.hprof"
-    cloudfoundry:
-      cc:
-        api:
-          url: ((cf_api_url))
-          uaaUrl: ((cf_uaa_url))
-          sslSkipValidation: true
-      user: # CloudFoundry Login information
-        admin:
-          username: admin
-          password: "((cf_admin_password))"
-        uaaClient:
-          clientId: login
-          clientSecret: login-secret
-          adminClientId: admin
-          adminClientSecret: "((cf_uaa_admin_client_secret))"
-          loginClientId: login
-          loginClientSecret: login-secret
-          skipSSLValidation: true
-      authorization: cf-Authorization
 
 - name: paas-ta-portal-webadmin
   azs:
@@ -984,12 +762,15 @@ instance_groups:
   stemcell: "((stemcell_alias))"
   networks:
   - name: ((internal_networks_name))
-  templates:
+  jobs:
   - name: paas-ta-portal-webadmin
     release: "((releases_name))"
   syslog_aggregator: null
   properties:
     java_opts: "-Xmx450m -Xss1M -XX:MaxMetaspaceSize=93382K -XX:ReservedCodeCacheSize=240m -XX:+UseCompressedOops -Djdk.tls.ephemeralDHKeySize=2048 -Dfile.encoding=UTF-8 -XX:+UseConcMarkSweepGC -XX:SoftRefLRUPolicyMSPerMB=50 -Dsun.io.useCanonCaches=false -Djava.net.preferIPv4Stack=true -XX:+HeapDumpOnOutOfMemoryError -XX:-OmitStackTraceInFastThrow -Xverify:none -XX:ErrorFile=/var/vcap/sys/log/java_error_in_idea_%p.log -XX:HeapDumpPath=/var/vcap/sys/log/java_error_in_idea.hprof"
+    api:
+      url: "((default_portal_api_url))"
+    port: 8090
 
 - name: paas-ta-portal-webuser
   azs:
@@ -999,7 +780,7 @@ instance_groups:
   stemcell: "((stemcell_alias))"
   networks:
   - name: ((internal_networks_name))
-  templates:
+  jobs:
   - name: paas-ta-portal-webuser
     release: "((releases_name))"
   syslog_aggregator: null
@@ -1008,14 +789,10 @@ instance_groups:
     webDir: "/var/vcap/packages/apache2/htdocs"           # WEBUSER는 아파치를 사용함, APACHE 웹 디렉토리 설정
     cf:
       uaa:
-        url: ((cf_uaa_url))
         clientsecret: ((portal_client_secret))
-        logouturl: ((cf_uaa_logouturl))
     monitoring: ((portal_webuser_monitoring))
     quantity: ((portal_webuser_quantity))
     automaticApproval: ((portal_webuser_automaticapproval))
-
-
 
 properties:
   mariadb:                                                # MARIA DB SERVER 설정 정보
@@ -1024,21 +801,14 @@ properties:
       password: '((mariadb_user_password))'                             # MARIA DB ROOT 계정 비밀번호
     host_names:
     - mariadb0
-  binary_storage:                                         # BINARY STORAGE SERVER 설정 정보
-    proxy_port: 10008                                     # 프록시 서버 Port(Object Storage >접속 Port)
-    auth_port: 5000
-    username:                                             # 최초 생성되는 유저이름(Object Storage 접속 유저이름)
-    - ((binary_storage_username))
-    password:                                             # 최초 생성되는 유저 비밀번호(Object Storage 접속 유저 비밀번호)
-    - ((binary_storage_password))
-    tenantname:                                           # 최초 생성되는 테넌트 이름(Object Storage 접속 테넌트 이름)
-    - ((binary_storage_tenantname))
-    email:                                                # 최소 생성되는 유저의 이메일
-    - ((binary_storage_email))
-    container:                                            # 최초 생성되는 컨테이너 이름
-    - portal-container
-    binary_desc:                                          # 최초 생성되는 컨테이너에 대한 설>명
-    - "portal binary_storage"
+  portal_default:
+    name: "((default_portal_api_name))"
+    url: "((default_portal_api_url))"
+    uaa_url: "((default_portal_uaa_url))"
+    header_auth: "((default_portal_header_auth))"
+    desc: "((default_portal_api_desc))"
+  cf_api_version: "((cf_api_version))"
+  webadmin_ips: "((haproxy_public_ip))"
 
 ```
 
@@ -1052,62 +822,40 @@ properties:
 > 밑의 예시는 vsphere의 환경에서 테스트한 환경이다. 
 ```sh
 #!/bin/bash
-bosh -e micro-bosh -d paasta-portal deploy paasta-portal-bosh2.0.yml \
+bosh -n -d paasta-portal-ui deploy --no-redact paasta-portal-bosh2.0.yml \
    -o use-public-network-vsphere.yml \
-   -v releases_name="paasta-portal-release"\
-   -v stemcell_os="ubuntu-trusty"\
-   -v stemcell_version="3468.51"\
+   -v releases_name="paasta-portal-ui-release"\
+   -v stemcell_os="ubuntu-xenial"\
+   -v stemcell_version="315.36"\
    -v stemcell_alias="default"\
    -v vm_type_tiny="portal_tiny"\
    -v vm_type_small="portal_small"\
    -v vm_type_medium="portal_medium"\
    -v internal_networks_name=service_private \
-   -v external_networks_name=portal_service_public \
+   -v external_networks_name=service_public \
    -v mariadb_disk_type="10GB"\
-   -v mariadb_port="3306"\
-   -v mariadb_user_password="xxxxxxx"\
-   -v binary_storage_disk_type="10GB"\
-   -v binary_storage_username="paasta-portal"\
-   -v binary_storage_password="paasta"\
-   -v binary_storage_tenantname="paasta-portal"\
-   -v binary_storage_email="paasta@paasta.com"\
-   -v haproxy_public_ip="115.68.46.216"\
-   -v cf_db_ips="10.30.112.4"\
-   -v cf_db_port="5524"\
-   -v cc_db_id="cloud_controller"\
-   -v cc_db_password="xxxxxxx"\
-   -v cc_driver_name="postgresql"\
-   -v uaa_driver_name="postgresql"\
-   -v uaa_db_id="uaa"\
-   -v uaa_db_password="xxxxxxx"\
-   -v cf_uaa_url="https://uaa.115.68.46.189.xip.io"\
-   -v cf_uaa_logouturl="logout.do"\
-   -v cf_api_url="https://api.115.68.46.189.xip.io"\
-   -v cf_admin_password="xxxxxxx"\
-   -v cf_uaa_admin_client_secret="xxxxxxx"\
-   -v portal_client_secret="xxxxxxx"\
-   -v paas_ta_web_user_url="http://portal-web-user.115.68.46.214.xip.io"\
-   -v abacus_url="http://abacus.115.68.46.214"\
+   -v mariadb_port=3306\
+   -v mariadb_user_password="password"\
+   -v haproxy_public_ip="115.68.46.180"\
+   -v portal_client_secret="password"\
    -v portal_webuser_quantity=false\
-   -v monitoring_api_url="http://monitoring.115.68.46.214"\
    -v portal_webuser_monitoring=false\
-   -v mail_smtp_host="smtp.gmail.com"\
-   -v mail_smtp_port="465"\
-   -v mail_smtp_username="PaaS-TA"\
-   -v mail_smtp_password="xxxxxxx"\
-   -v mail_smtp_useremail="openpasta@gmail.com"\
-   -v mail_smtp_properties_auth="true"\
-   -v mail_smtp_properties_starttls_enable="true"\
-   -v mail_smtp_properties_starttls_required="true"\
-   -v mail_smtp_properties_subject="PaaS-TA User Potal"\
-   -v portal_webuser_automaticapproval=false\
+   -v portal_webuser_automaticapproval=true\
+   -v infra_admin=false\
+   -v default_portal_api_url="http://115.68.46.179:2225"\
+   -v default_portal_api_name="PaaS-TA 4.6"\
+   -v default_portal_uaa_url="https://uaa.115.68.46.178.xip.io"\
+   -v default_portal_header_auth="Basic YWRtaW46b3BlbnBhYXN0YQ=="\
+   -v default_portal_api_desc="PaaS-TA 4.6 install infra"\
+   -v cf_api_version="v3"
+
 ```
 > release_version : 릴리즈 버전을 입력한다. $bosh releases 명령문으로 확인가능
  
     - $ bosh releases
       Using environment '10.30.40.111' as user 'admin' (openid, bosh.admin)
       Name                              Version   Commit Hash  
-      paas-ta-portal-release             2.0*      00000000  
+      paasta-portal-ui-release            1.0*       235c329+  
 
 > stemcell_os : 스템셀 OS를 입력한다. $bosh stemcells 명령문으로 확인가능\
 > stemcell_version : 스템셀 버전을 입력한다. $bosh stemcells 명령문으로 확인가능(3468.51 verion 사용)\
@@ -1115,13 +863,14 @@ bosh -e micro-bosh -d paasta-portal deploy paasta-portal-bosh2.0.yml \
 
     - $ bosh stemcells
       Using environment '10.30.40.111' as user 'admin' (openid, bosh.admin)
-      Name                                      Version   OS             CPI  CID  
-      bosh-vsphere-esxi-ubuntu-trusty-go_agent  3586.26*  ubuntu-trusty  -    sc-109fbdb0-f663-49e8-9c30-8dbdd2e5b9b9
-      ~                                         3468.51*  ubuntu-trusty  -    sc-bd8fadf2-92f2-495b-b172-d571a388abf5  
-      ~                                         3445.2*   ubuntu-trusty  -    sc-025c70b5-7d6e-4ba3-a12b-7e71c33dad24  
-      ~                                         3309*     ubuntu-trusty  -    sc-22429dba-e5cc-4469-ab3a-882091573277  
+      Name                                      Version  OS             CPI  CID  
+      bosh-vsphere-esxi-ubuntu-xenial-go_agent  315.41*  ubuntu-xenial  -    sc-66428140-1807-4ca7-894f-d8ffec86d623  
+      ~                                         315.36*  ubuntu-xenial  -    sc-ae6f2d6d-788b-4f60-aaf6-7be96ff71304  
+      
       (*) Currently deployed
-      4 stemcells
+      
+      2 stemcells
+      
       
 > internal_networks_name : 내부 ip 할당할 network name $ bosh -e micro-bosh cloud-config로 확인가능\
 > external_networks_name : 외부 ip 할당할 network name $ bosh -e micro-bosh cloud-config로 확인가능
@@ -1167,58 +916,16 @@ bosh -e micro-bosh -d paasta-portal deploy paasta-portal-bosh2.0.yml \
           - 115.68.47.175 - 115.68.47.185
         type: manual
 
-> mariadb_ips: Mariadb의 ip 할당, internal_networks_name에 할당된 ip를 사용해야한다.\
-  mariadb_disk_type: Mariadb의 persistent_disk용량을 정한다.\
+> mariadb_disk_type: Mariadb의 persistent_disk용량을 정한다.\
   mariadb_port: Mariadb의 port를 정한다.\
   mariadb_user_password: Mariadb의 비밀번호를 설정한다.(임의값 가능)\
-  binary_storage_ips: Binary Storage의 ip 할당, internal_networks_name에 할당된 ip를 사용해야한다.\
-  binary_storage_disk_type: Binary Storage의 persistent_disk용량을 정한다.\
-  binary_storage_username: Binary Storage의 접속 유저 계정을 정한다.\
-  binary_storage_password: Binary Storage의 접속 유저의 비밀번호를 정한다.\
-  binary_storage_tenantname: Binary Storage의 접속 테넌트 계정을 정한다.\
-  binary_storage_email: Binary Storage 생성되는 유저의 이메일을 정한다.\
   haproxy_ips: Haproxy의 ip 할당, internal_networks_name에 할당된 ip를 사용해야한다.
-
->cf_db_ips: CF Database의 ip를 입력한다.\
- cf_db_port: CF Database의 port를 입력한다.\
- cc_db_id: CF Database의 계정을 입력한다.\
- cc_db_password: CF Database의 비밀번호를 입력한다.\
  
- >cc_driver_name: CF Database의 종류를 입력한다. (postgresql, mysql 둘중 하나를 지정해야한다.)\
- uaa_driver_name: UAA Database의 종류를 입력한다. (postgresql, mysql 둘중 하나를 지정해야한다.)
- 
- 
- >uaa_db_id: UAA Database의 계정을 입력한다.\
- uaa_db_password: UAA Database의 비밀번호를 입력한다.
-![paas-ta-portal-09]
->>cf_db_ips: api, uaa가 포함된 deployment내의 database ip주소
- 
-> cf_uaa_url: "https://uaa.[uaa가 포함된 public ip].xip.io"\
-  cf_api_url: "https://api.[api가 포함된 public ip].xip.io"
-![paas-ta-portal-07]
->>예) cf_uaa_url="https://uaa.115.68.46.189.xip.io"
-
 > cf_admin_password: CF 관리자 계정 비밀번호를 입력한다.
 
 >cf_uaa_admin_client_secret: uaac admin client의 secret를 입력한다.\
  portal_client_secret: uaac portalclient의 secret를 입력한다.\
- 
->paas_ta_web_user_url: Portal Webuser의 Url을 입력한다.\
- abacus_url: Abacus Url을 입력한다.\
- portal_webuser_monitoring : 미터링 페이지 사용 여부를 설정한다.\ 
- monitoring_api_url: Monitoring Api의 Url을 입력한다.\
- portal_webuser_monitoring: Monitoring 화면 표기 유무를 설정한다. 
- 
->mail_smtp_host: smtp의 host를 설정한다.\
- mail_smtp_port: smtp의 port를 설정한다.\
- mail_smtp_username: smtp의 계정을 설정한다.\
- mail_smtp_password: smtp의 비밀번호을 설정한다.\
- mail_smtp_useremail: smtp의 email을 설정한다.\
- mail_smtp_properties_auth=: smtp의 auth값을 설정한다.\
- mail_smtp_properties_starttls_enable: smtp의 starttls_enable값을 설정한다.\
- mail_smtp_properties_starttls_required: smtp의 starttls_required값을 설정한다.\
- mail_smtp_properties_subject: 메일제목을 설정한다.
- 
+   
 >portal_webuser_automaticapproval: 회원가입시 cf에 접속가능 여부 true일경우 관리자포탈에서 승인을 해주어야 접근 가능하다.
  portal_webuser_monitoring : 모니터링 사용 여부 true일경우 앱 상세정보에서 모니터링창이 활성화가 된다.
  portal_webuser_quantity : 사용량 조회 창 활성화 여부
@@ -1230,7 +937,7 @@ bosh -e micro-bosh -d paasta-portal deploy paasta-portal-bosh2.0.yml \
 		$ ./deploy-vsphere.sh
 		Using environment '10.30.40.111' as user 'admin' (openid, bosh.admin)
         
-        Using deployment 'paas-ta-portal-v2'
+        Using deployment 'paasta-portal-ui'
         
         + azs:
         + - cloud_properties:
@@ -1844,7 +1551,7 @@ bosh -e micro-bosh -d paasta-portal deploy paasta-portal-bosh2.0.yml \
         +     release: paas-ta-portal-release
         +   vm_type: portal_medium
           
-        + name: paas-ta-portal-v2
+        + name: paasta-portal-ui
           
         + properties:
         +   binary_storage:
@@ -1889,79 +1596,34 @@ bosh -e micro-bosh -d paasta-portal deploy paasta-portal-bosh2.0.yml \
 		Continue? [yN]: y
         
         Task 4773
-        
         Task 4773 | 06:55:36 | Preparing deployment: Preparing deployment (00:00:03)
         Task 4773 | 06:55:43 | Preparing package compilation: Finding packages to compile (00:00:00)
-        Task 4773 | 06:55:43 | Compiling packages: paas-ta-portal-storage-api/6cd6d9b3dd2376509ab79ed944c10c3782617db7
-        Task 4773 | 06:55:43 | Compiling packages: apache2/ced88bee5e97185ff8d299e2892975bd2062fa01
         Task 4773 | 06:55:43 | Compiling packages: paas-ta-portal-webuser/e3901a2d9e9cd349a06fee226bc3230e1c91b430
         Task 4773 | 06:55:43 | Compiling packages: paas-ta-portal-webadmin/a74db51496832a2b1e1e947c424d08b33fb46c83
-        Task 4773 | 06:55:43 | Compiling packages: paas-ta-portal-common-api/8d7f3eb353ec32adf744d4514e95a936c2ea1ce3 (00:02:47)
-        Task 4773 | 06:58:30 | Compiling packages: paas-ta-portal-log-api/0aff609e64bd4f3ea2cef82d470c0881933b5bbf
         Task 4773 | 06:58:39 | Compiling packages: paas-ta-portal-webadmin/a74db51496832a2b1e1e947c424d08b33fb46c83 (00:02:56)
-        Task 4773 | 06:58:39 | Compiling packages: paas-ta-portal-api/02e6c62924be62a2672a662f80bbf8d77c0afdb1
-        Task 4773 | 06:58:40 | Compiling packages: paas-ta-portal-storage-api/6cd6d9b3dd2376509ab79ed944c10c3782617db7 (00:02:57)
-        Task 4773 | 06:58:40 | Compiling packages: paas-ta-portal-registration/66ed72c68e86717bf53af02f07e85fa19d7da874
         Task 4773 | 06:58:59 | Compiling packages: paas-ta-portal-webuser/e3901a2d9e9cd349a06fee226bc3230e1c91b430 (00:03:16)
-        Task 4773 | 06:58:59 | Compiling packages: paas-ta-portal-gateway/1fc98dd004de2dd036ed8c69fe9643efa4d74f5a
-        Task 4773 | 06:59:03 | Compiling packages: paas-ta-portal-log-api/0aff609e64bd4f3ea2cef82d470c0881933b5bbf (00:00:33)
         Task 4773 | 06:59:03 | Compiling packages: haproxy/14b0441f6d68c89612f53ce4334a65c80d601e51
-        Task 4773 | 06:59:18 | Compiling packages: paas-ta-portal-registration/66ed72c68e86717bf53af02f07e85fa19d7da874 (00:00:38)
         Task 4773 | 06:59:18 | Compiling packages: java/86d8b8f8115418addf836753c1735abe547d4105
-        Task 4773 | 06:59:20 | Compiling packages: paas-ta-portal-api/02e6c62924be62a2672a662f80bbf8d77c0afdb1 (00:00:41)
-        Task 4773 | 06:59:20 | Compiling packages: swift-all-in-one/af76e98d69570ca8c886b3c7fcb23c3a1ccbbe40
-        Task 4773 | 06:59:31 | Compiling packages: paas-ta-portal-gateway/1fc98dd004de2dd036ed8c69fe9643efa4d74f5a (00:00:32)
-        Task 4773 | 06:59:31 | Compiling packages: python/4e255efa754d91b825476b57e111345f200944e1
-        Task 4773 | 07:00:07 | Compiling packages: swift-all-in-one/af76e98d69570ca8c886b3c7fcb23c3a1ccbbe40 (00:00:47)
         Task 4773 | 07:00:07 | Compiling packages: mariadb/59a218308c6c7dcf8795b531b53aa4a1c666ce00
         Task 4773 | 07:00:10 | Compiling packages: java/86d8b8f8115418addf836753c1735abe547d4105 (00:00:52)
         Task 4773 | 07:00:17 | Compiling packages: haproxy/14b0441f6d68c89612f53ce4334a65c80d601e51 (00:01:14)
         Task 4773 | 07:01:16 | Compiling packages: mariadb/59a218308c6c7dcf8795b531b53aa4a1c666ce00 (00:01:09)
-        Task 4773 | 07:02:22 | Compiling packages: apache2/ced88bee5e97185ff8d299e2892975bd2062fa01 (00:06:39)
-        Task 4773 | 07:04:08 | Compiling packages: python/4e255efa754d91b825476b57e111345f200944e1 (00:04:37)
-        Task 4773 | 07:05:04 | Creating missing vms: binary_storage/b405f486-e29b-48f1-9595-e624a92aa90f (0)
         Task 4773 | 07:05:04 | Creating missing vms: mariadb/ecb93167-602a-45d7-bcbc-502a3802c1f1 (0)
         Task 4773 | 07:05:04 | Creating missing vms: haproxy/d579d961-90bc-437c-96b8-6c23db2884ca (0)
-        Task 4773 | 07:05:04 | Creating missing vms: paas-ta-portal-registration/31137bcb-551c-4261-b03c-e9a12da030c9 (0)
-        Task 4773 | 07:05:04 | Creating missing vms: paas-ta-portal-gateway/50671fc0-0e63-4a8a-a3ae-9180da92708f (0)
-        Task 4773 | 07:05:04 | Creating missing vms: paas-ta-portal-common-api/8be2c6ae-b9f3-4759-82aa-4b3e677bd421 (0)
-        Task 4773 | 07:05:04 | Creating missing vms: paas-ta-portal-storage-api/6b5fc5a9-9066-42e1-839f-e441af45e622 (0)
-        Task 4773 | 07:05:04 | Creating missing vms: paas-ta-portal-api/3ece24a3-6355-4a8d-8ef6-5ae0c1fa13ef (0)
-        Task 4773 | 07:05:04 | Creating missing vms: paas-ta-portal-log-api/3df3861e-5652-4939-956c-019a7895611a (0)
         Task 4773 | 07:05:04 | Creating missing vms: paas-ta-portal-webadmin/969fcecc-943a-4f50-a00d-3d5f1bc65609 (0)
         Task 4773 | 07:05:04 | Creating missing vms: paas-ta-portal-webuser/07db9f77-faa8-4490-afdf-3287a82a497d (0) (00:03:32)
-        Task 4773 | 07:08:36 | Creating missing vms: paas-ta-portal-storage-api/6b5fc5a9-9066-42e1-839f-e441af45e622 (0) (00:03:32)
         Task 4773 | 07:08:38 | Creating missing vms: mariadb/ecb93167-602a-45d7-bcbc-502a3802c1f1 (0) (00:03:34)
-        Task 4773 | 07:08:47 | Creating missing vms: paas-ta-portal-common-api/8be2c6ae-b9f3-4759-82aa-4b3e677bd421 (0) (00:03:43)
-        Task 4773 | 07:08:54 | Creating missing vms: paas-ta-portal-api/3ece24a3-6355-4a8d-8ef6-5ae0c1fa13ef (0) (00:03:50)
         Task 4773 | 07:08:54 | Creating missing vms: paas-ta-portal-webadmin/969fcecc-943a-4f50-a00d-3d5f1bc65609 (0) (00:03:50)
-        Task 4773 | 07:08:55 | Creating missing vms: binary_storage/b405f486-e29b-48f1-9595-e624a92aa90f (0) (00:03:51)
-        Task 4773 | 07:08:55 | Creating missing vms: paas-ta-portal-registration/31137bcb-551c-4261-b03c-e9a12da030c9 (0) (00:03:51)
         Task 4773 | 07:08:55 | Creating missing vms: haproxy/d579d961-90bc-437c-96b8-6c23db2884ca (0) (00:03:51)
-        Task 4773 | 07:08:56 | Creating missing vms: paas-ta-portal-log-api/3df3861e-5652-4939-956c-019a7895611a (0) (00:03:52)
-        Task 4773 | 07:08:57 | Creating missing vms: paas-ta-portal-gateway/50671fc0-0e63-4a8a-a3ae-9180da92708f (0) (00:03:53)
         Task 4773 | 07:09:02 | Updating instance mariadb: mariadb/ecb93167-602a-45d7-bcbc-502a3802c1f1 (0) (canary)
-        Task 4773 | 07:09:02 | Updating instance paas-ta-portal-log-api: paas-ta-portal-log-api/3df3861e-5652-4939-956c-019a7895611a (0) (canary)
-        Task 4773 | 07:09:02 | Updating instance paas-ta-portal-webuser: paas-ta-portal-webuser/07db9f77-faa8-4490-afdf-3287a82a497d (0) (canary)
-        Task 4773 | 07:09:02 | Updating instance paas-ta-portal-api: paas-ta-portal-api/3ece24a3-6355-4a8d-8ef6-5ae0c1fa13ef (0) (canary)
+        Task 4773 | 07:09:02 | Updating instance paas-ta-portal-webuser: paas-ta-portal-webuser/07db9f77-faa8-4490-
         Task 4773 | 07:09:02 | Updating instance haproxy: haproxy/d579d961-90bc-437c-96b8-6c23db2884ca (0) (canary)
-        Task 4773 | 07:09:02 | Updating instance paas-ta-portal-gateway: paas-ta-portal-gateway/50671fc0-0e63-4a8a-a3ae-9180da92708f (0) (canary)
-        Task 4773 | 07:09:02 | Updating instance binary_storage: binary_storage/b405f486-e29b-48f1-9595-e624a92aa90f (0) (canary)
-        Task 4773 | 07:09:02 | Updating instance paas-ta-portal-common-api: paas-ta-portal-common-api/8be2c6ae-b9f3-4759-82aa-4b3e677bd421 (0) (canary)
-        Task 4773 | 07:09:02 | Updating instance paas-ta-portal-storage-api: paas-ta-portal-storage-api/6b5fc5a9-9066-42e1-839f-e441af45e622 (0) (canary)
-        Task 4773 | 07:09:02 | Updating instance paas-ta-portal-registration: paas-ta-portal-registration/31137bcb-551c-4261-b03c-e9a12da030c9 (0) (canary)
         Task 4773 | 07:09:02 | Updating instance paas-ta-portal-webadmin: paas-ta-portal-webadmin/969fcecc-943a-4f50-a00d-3d5f1bc65609 (0) (canary)
         Task 4773 | 07:09:53 | Updating instance paas-ta-portal-webuser: paas-ta-portal-webuser/07db9f77-faa8-4490-afdf-3287a82a497d (0) (canary) (00:00:51)
         Task 4773 | 07:09:56 | Updating instance haproxy: haproxy/d579d961-90bc-437c-96b8-6c23db2884ca (0) (canary) (00:00:54)
-        Task 4773 | 07:10:00 | Updating instance paas-ta-portal-log-api: paas-ta-portal-log-api/3df3861e-5652-4939-956c-019a7895611a (0) (canary) (00:00:58)
-        Task 4773 | 07:10:02 | Updating instance paas-ta-portal-gateway: paas-ta-portal-gateway/50671fc0-0e63-4a8a-a3ae-9180da92708f (0) (canary) (00:01:00)
-        Task 4773 | 07:10:02 | Updating instance paas-ta-portal-storage-api: paas-ta-portal-storage-api/6b5fc5a9-9066-42e1-839f-e441af45e622 (0) (canary) (00:01:00)
-        Task 4773 | 07:10:03 | Updating instance paas-ta-portal-registration: paas-ta-portal-registration/31137bcb-551c-4261-b03c-e9a12da030c9 (0) (canary) (00:01:01)
-        Task 4773 | 07:10:05 | Updating instance paas-ta-portal-common-api: paas-ta-portal-common-api/8be2c6ae-b9f3-4759-82aa-4b3e677bd421 (0) (canary) (00:01:03)
         Task 4773 | 07:10:12 | Updating instance paas-ta-portal-webadmin: paas-ta-portal-webadmin/969fcecc-943a-4f50-a00d-3d5f1bc65609 (0) (canary) (00:01:10)
-        Task 4773 | 07:10:16 | Updating instance paas-ta-portal-api: paas-ta-portal-api/3ece24a3-6355-4a8d-8ef6-5ae0c1fa13ef (0) (canary) (00:01:14)
         Task 4773 | 07:12:09 | Updating instance mariadb: mariadb/ecb93167-602a-45d7-bcbc-502a3802c1f1 (0) (canary) (00:03:07)
-        Task 4773 | 07:13:13 | Updating instance binary_storage: binary_storage/b405f486-e29b-48f1-9595-e624a92aa90f (0) (canary) (00:04:11)
+        
         
         Task 4773 Started  Mon Sep  3 06:55:36 UTC 2018
         Task 4773 Finished Mon Sep  3 07:13:13 UTC 2018
@@ -1976,30 +1638,24 @@ bosh -e micro-bosh -d paasta-portal deploy paasta-portal-bosh2.0.yml \
 
 - **사용 예시**
 
-		bosh -e micro-bosh -d paasta-portal vms
+		bosh -e micro-bosh -d paasta-portal-ui vms
 		Using environment '10.30.40.111' as user 'admin' (openid, bosh.admin)
 
 		Task 4823. Done
         
-        Deployment 'paasta-portal'
-        
-        Instance                                                          Process State  AZ  IPs            VM CID                                   VM Type        Active  
-        binary_storage/9f58a9b7-2a3d-4ee9-8975-7b04b99c0a21               running        z5  10.30.107.212  vm-e65ad396-ce65-4ef0-962d-5c54fa411769  portal_large   true  
-        haproxy/8cc2d633-2b43-4f3d-a2e8-72f5279c11d5                      running        z5  10.30.107.213  vm-315bfa1b-9829-46de-a19d-3bd65e9f9ad4  portal_large   true  
-                                                                                             115.68.46.214                                                            
-        mariadb/117cbf05-b223-4133-bf61-e15f16494e21                      running        z5  10.30.107.211  vm-bc5ae334-12d4-41d4-8411-d9315a96a305  portal_large   true  
-        paas-ta-portal-api/48fa0c5a-52eb-4ae8-a7b9-91275615318c           running        z5  10.30.107.217  vm-9d2a1929-0157-4c77-af5e-707ec496ed87  portal_medium  true  
-        paas-ta-portal-common-api/060320fa-7f26-4032-a1d9-6a7a41a044a8    running        z5  10.30.107.219  vm-f35e9838-74cf-40e0-9f97-894b53a68d1f  portal_medium  true  
-        paas-ta-portal-gateway/6baba810-9a4a-479d-98b2-97e5ba651784       running        z5  10.30.107.214  vm-7ec75160-bf34-442e-b755-778ae7dd3fec  portal_medium  true  
-        paas-ta-portal-log-api/a4460008-42b5-4ba0-84ee-fff49fe6c1bd       running        z5  10.30.107.218  vm-9ec0a1b0-09f6-415b-8e23-53af91fd94b8  portal_medium  true  
-        paas-ta-portal-registration/3728ed73-451e-4b93-ab9b-c610826c3135  running        z5  10.30.107.215  vm-c4020514-c458-41c6-bcbc-7e0ee1bc6f42  portal_small   true  
-        paas-ta-portal-storage-api/2940366a-8294-4509-a9c0-811c8140663a   running        z5  10.30.107.220  vm-79ad6ee1-1bb5-4308-8b71-9ed30418e2c1  portal_medium  true  
-        paas-ta-portal-webadmin/8047fcbd-9a98-4b61-b161-0cbb277fa643      running        z5  10.30.107.221  vm-188250fd-e918-4aab-9cbe-7d368852ea8a  portal_medium  true  
-        paas-ta-portal-webuser/cb206717-81c9-49ed-a0a8-e6c3b957cb66       running        z5  10.30.107.222  vm-822f68a5-91c8-453a-b9b3-c1bbb388e377  portal_medium  true
-        
-        11 vms
-        
-        Succeeded
+    Deployment 'paasta-portal-ui'
+
+    Instance                                                      Process State  AZ  IPs            VM CID                                   VM Type       Active  
+    haproxy/5c30c643-94d1-491c-9f6c-e72de4b0e6a4                  running        z7  10.30.56.10    vm-891ff2dd-4ee0-4c42-8fa8-b2d0cf0b8537  portal_tiny   true  
+                                                                                     115.68.46.180                                                           
+    mariadb/19bf81a9-cde9-432b-87ca-cbac1f28854a                  running        z6  10.30.56.9     vm-7a6f8042-e9b8-434c-abbf-776bbfd3386d  portal_small  true  
+    paas-ta-portal-webadmin/bc536f61-10bd-4702-af5f-5e63500e110e  running        z6  10.30.56.11    vm-176ccac5-f154-4420-b821-9ed30a18f3e2  portal_small  true  
+    paas-ta-portal-webuser/409c038b-d013-41d3-b6b2-aebb4a02d908   running        z6  10.30.56.12    vm-d9cf481f-64c7-45fd-aadb-e4eb1b31945a  portal_tiny   true  
+    
+    4 vms
+    
+    Succeeded
+
 
 ### 2.4. 사용자의 조직 생성 Flag 활성화
 PaaS-TA는 기본적으로 일반 사용자는 조직을 생성할 수 없도록 설정되어 있다. 포털 배포를 위해 조직 및 공간을 생성해야 하고 또 테스트를 구동하기 위해서도 필요하므로 사용자가 조직을 생성할 수 있도록 user_org_creation FLAG를 활성화 한다. FLAG 활성화를 위해서는 PaaS-TA 운영자 계정으로 로그인이 필요하다.

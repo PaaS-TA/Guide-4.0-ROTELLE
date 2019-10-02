@@ -35,7 +35,8 @@
   - [Logging 서비스](./Service-Guide/Tools/PaaS-TA%20Logging%20서비스%20설치%20가이드_v1.0.md)
   
 ## 포털 설치 가이드
-- [PaaS-TA 포털](./Install-Guide/Portal/PaaS-TA_Portal_install.md)
+- [PaaS-TA 포털 UI](./Install-Guide/Portal/PaaS-TA_Porta_UI_install.md)
+- [PaaS-TA 포털 API](./Install-Guide/Portal/PaaS-TA_Portal_API_install.md)
 
 ## 모니터링 설치 가이드
 - [PaaS-TA 모니터링](./Install-Guide/monitoring/PaaS_TA_4.0_paas_monitoring.md)
