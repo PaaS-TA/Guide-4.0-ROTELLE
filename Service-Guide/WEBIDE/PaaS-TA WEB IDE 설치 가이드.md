@@ -808,11 +808,71 @@ bosh -d paasta-web-ide deploy paasta_web_ide.yml \
 
 # <div id='10'/> 3. WEB-IDE의 PaaS-TA 포털사이트 연동
 
-### <div id='16'/> 3.1. WEB-IDE 대시보드 화면
+### <div id='16'/> 3.1. WEB-IDE 서비스 브로커를 등록한다.
 
--   WEB IDE 아이콘을 클릭하면 관리자에 의해 할당된 WEB IDE 대시보드 화면이 새탭으로 열리게 된다.
+>`$ cf create-service-broker {서비스팩 이름} {서비스팩 사용자ID} {서비스팩 사용자비밀번호} http://{서비스팩 URL(IP)}`
+  
+  **서비스팩 이름** : 서비스 팩 관리를 위해 PaaS-TA에서 보여지는 명칭이다. 서비스 Marketplace에서는 각각의 API 서비스 명이 보여지니 여기서 명칭은 서비스팩 리스트의 명칭이다.<br>
+  **서비스팩 사용자ID** / 비밀번호 : 서비스팩에 접근할 수 있는 사용자 ID입니다. 서비스팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.<br>
+  **서비스팩 URL** : 서비스팩이 제공하는 API를 사용할 수 있는 URL을 입력한다.
 
-![](/Service-Guide/images/webide/web-ide-07.png)
+>`$ cf create-service-broker webide-service-broker admin cloudfoundry http://10.30.56.33:8080`
+
+![](/Service-Guide/images/webide/web-ide-15.png)
+
+<br>
+
+##### 등록된 RabbitMQ 서비스 브로커를 확인한다.
+>`$ cf service-brokers`
+
+![](/Service-Guide/images/webide/web-ide-16.png)
+
+<br>
+
+#### 접근 가능한 서비스 목록을 확인한다.
+>`$ cf service-access`
+
+![](/Service-Guide/images/webide/web-ide-17.png)
+
+<br>
+
+- 서비스 브로커 등록시 최초에는 접근을 허용하지 않는다. 따라서 access는 none으로 설정된다.
+
+#### 특정 조직에 해당 서비스 접근 허용을 할당하고 접근 서비스 목록을 다시 확인한다. (전체 조직)
+>`$ cf enable-service-access webide`<br>
+>`$ cf service-access`
+
+![](/Service-Guide/images/webide/web-ide-18.png)
+
+<br>
+
+#### PaaS-TA Marketplace에서 서비스가 있는지 확인을 한다.
+
+>`$ cf marketplace`
+
+![](/Service-Guide/images/webide/web-ide-19.png)
+
+<br>
+
+#### Marketplace에서 원하는 서비스가 있으면 서비스 신청(Provision)을 한다.
+
+>`$ cf create-service {서비스명} {서비스 플랜} {내 서비스명}`
+- **서비스명** : p-rabbitmq로 Marketplace에서 보여지는 서비스 명칭이다.
+- **서비스플랜** : 서비스에 대한 정책으로 plans에 있는 정보 중 하나를 선택한다. RabbitMQ 서비스는 standard plan만 지원한다.
+- **내 서비스명** : 내 서비스에서 보여지는 명칭이다. 이 명칭을 기준으로 환경 설정 정보를 가져온다.
+
+
+>`$ cf create-service webide webide-shared webide-service`
+
+![](/Service-Guide/images/webide/web-ide-20.png)
+
+<br>
+
+#### 생성된 rabbitmq 서비스 인스턴스를 확인한다.
+
+>`$ cf services`
+
+![](/Service-Guide/images/webide/web-ide-21.png)
 
 <br>
 
@@ -822,7 +882,7 @@ bosh -d paasta-web-ide deploy paasta_web_ide.yml \
 
 - 사용할 언어를 선택하고 Create workspace and project 로 새로운 프로젝트를 시작한다.
 
-![](/Service-Guide/images/webide/web-ide-08.png)
+![](/Service-Guide/images/webide/web-ide-08-1.png)
 
 <br>
 
