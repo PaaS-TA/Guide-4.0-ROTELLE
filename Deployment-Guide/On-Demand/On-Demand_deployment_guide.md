@@ -199,25 +199,25 @@ On-Demand 형식을 구현하기 위한 Bosh API는 다음과 같다.
 1.1.   BoshDirector
 Bosh Director에 로그인 및 토큰을 받아 저장 및 Bosh API 접근가능한 오브젝트를 생성한다.
 
-#####parameter
+##### parameter
      
     client_id :: string
     client_secret :: string
     bosh_url :: string
     oauth_url :: string
 
-#####Request
+##### Request
     
     POST oauth_url + "/oauth/token?client_id=" + client_id + "&client_secret=" + client_secret + "&grant_type=client_credentials
 
-#####Response
+##### Response
     OAuth2AccessToken
 
 2. ServiceInstace
 2.1 VMInstance
     Bosh에 배포된 VMInstance 정보를 가져온다.
 
-#####parameter
+##### parameter
 
     deployment_name :: string
     instance_name :: string
@@ -230,18 +230,18 @@ Bosh Director에 로그인 및 토큰을 받아 저장 및 Bosh API 접근가능
 
     기본 Resttemplate으로 api요청시 redirect 부분에서 오류가 발생하기 때문에 따로 redirect 기능을 하지 않게 Resttemplate을 생성해서 요청해야한다.
 
-#####Response
+##### Response
      task :: string
 
 
 2.2. TaskResult
 Bosh task를 조회한다. (option :: output=result) 해당 deployment의 상세값을 확인할수 있다.
 
-#####parameter
+##### parameter
 
     task :: string
 
-#####Request
+##### Request
 
     Get bosh_url + "/deployments/" + deployment_name + "/instances?format=full"
 
@@ -249,7 +249,7 @@ Bosh task를 조회한다. (option :: output=result) 해당 deployment의 상세
 
     기본 Resttemplate으로 api요청시 redirect 부분에서 오류가 발생하기 때문에 따로 redirect 기능을 하지 않게 Resttemplate을 생성해서 요청해야한다.
 
-#####Response
+##### Response
     result :: string
     Bosh API에서 List<Map>형식으로 커스텀해 반환해준다.
 
@@ -257,22 +257,22 @@ Bosh task를 조회한다. (option :: output=result) 해당 deployment의 상세
 2.3. GetLock
 Deployment Update 하기전 해당 Deployment가 작업(Lock)여부 조회하는 기능이다.
 
-#####parameter
+##### parameter
 
     null
 
-#####Request
+##### Request
 
     Get bosh_url + "/locks"
 
-#####Response
+##### Response
     result :: string
     Bosh API에서 Json형식으로 반환해준다.
 
 2.4. UpdateInstance
 해당 Instance상태를 업데이트한다 (stop --> start) 
 
-#####parameter
+##### parameter
 
     deployment_name :: string
     instance_name :: string
@@ -281,56 +281,56 @@ Deployment Update 하기전 해당 Deployment가 작업(Lock)여부 조회하는
 
     type은 "started" 또는 "detached"로 정한다.
 
-#####Request
+##### Request
 
     Get bosh_url + "/deployments/" + deployment_name + "/jobs/" + job_name + "/" + job_id + "?state=" + state
 
-#####Response
+##### Response
     null
 
 2.5. GetTaskID
 현재 작업중인(state = queued, processing,cancelling) Task중 해당 deployment_name과 같은 ID를 조회한다.
 
-#####parameter
+##### parameter
 
     deployment_name :: string
 
-#####Request
+##### Request
 
     Get bosh_url + "/tasks?state=queued,processing,cancelling"
 
-#####Response
+##### Response
     List<map>
 
-#####StartInstance
+##### StartInstance
 해당 Instance VM을 실행시킨다.(stop -> start)
 
-#####parameter
+##### parameter
 
     task_id :: string
     instance_name :: string
     instance_id :: string
 
-#####Request
+##### Request
 
     Get bosh_url + "/tasks/" + task_id + "/output?type=debug"
 
-#####Response
+##### Response
     String 
 
-#####CreateInstance
+##### CreateInstance
 서비스 신청이 들어올 때 할당해줄 VM이 없을시  Instace 개수를 늘려 VM 하나를 생성하는 기능이다.
 
-#####parameter
+##### parameter
 
     deployment_name :: string
     instance_name :: string
 
-#####Request
+##### Request
 
     Post bosh_url + "/deployments"
 
-#####body
+##### body
 bosh deploy할때 필요한 manifest.yml구성된 내용을 String으로 변환해서 담아야한다.
 
 예시)
@@ -413,7 +413,7 @@ update:
   update_watch_time: 5000-120000
 ```
 
-#####Response
+##### Response
     null
 
 
@@ -651,12 +651,12 @@ public class JpaServiceInstance extends ServiceInstance {
 ```
 ◎ 1.1. On-Demand-broker에서 커스텀한 변수의 대한 설명
 
-#####vm_instance_id : 서비스 인스턴스에 할당할 VM의 Instance Id
-#####appGuid : 서비스 바인딩을 진행할 application의 Guid
-#####taskId : 서비스에 할당할 VM작업을 진행하는 BOSH의 task Id
+##### vm_instance_id : 서비스 인스턴스에 할당할 VM의 Instance Id
+##### appGuid : 서비스 바인딩을 진행할 application의 Guid
+##### taskId : 서비스에 할당할 VM작업을 진행하는 BOSH의 task Id
 
 ◎ 1.2. JPAInstance(CreateServiceInstanceRequest request) 생성자
-#####PaaS-TA Portal을 이용한 앱 템플릿을 사용하기 위해 임의로 지정한 키에 할당된 서비스 파라미터 값을 받아 appGuid에 할당한다.
+##### PaaS-TA Portal을 이용한 앱 템플릿을 사용하기 위해 임의로 지정한 키에 할당된 서비스 파라미터 값을 받아 appGuid에 할당한다.
        ```
        예시)
        public JpaServiceInstance(CreateServiceInstanceRequest request) {
@@ -695,7 +695,7 @@ public class JpaServiceInstance extends ServiceInstance {
      ```
 
      ```
-#####1.1. 에서 에러가 날 경우 서비스 생성을 중지한다.
+##### 1.1. 에서 에러가 날 경우 서비스 생성을 중지한다.
 
      ```
      예시)
@@ -841,7 +841,7 @@ public class JpaServiceInstance extends ServiceInstance {
 
 1.1. Service Instance를 제거해 반환한다.
 1.2. 비동기방식으로 삭제한 Instance에 할당된 VM을 중지시키기 위한 준비를 한다.
-#####해당 Deployment가 Lock상태인지 조회한다. Lock인경우 15초 뒤에 다시 조회후 Lock이 아닌 경우 해당 VM을 중지시킨다.
+##### 해당 Deployment가 Lock상태인지 조회한다. Lock인경우 15초 뒤에 다시 조회후 Lock이 아닌 경우 해당 VM을 중지시킨다.
 
       ```
       예시)
