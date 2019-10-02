@@ -822,7 +822,7 @@ bosh -d paasta-web-ide deploy paasta_web_ide.yml \
 
 - 사용할 언어를 선택하고 Create workspace and project 로 새로운 프로젝트를 시작한다.
 
-![](/Service-Guide/images/webide/web-ide-08.png)
+![](/Service-Guide/images/webide/web-ide-08-1.png)
 
 <br>
 
