@@ -1144,7 +1144,7 @@ bosh -d paasta-portal-api deploy paasta-portal-bosh2.0.yml \
 >cf_db_ips: CF Database의 ip를 입력한다.\
  cf_db_port: CF Database의 port를 입력한다.\
  cc_db_id: CF Database의 계정을 입력한다.\
- cc_db_password: CF Database의 비밀번호를 입력한다.\
+ cc_db_password: CF Database의 비밀번호를 입력한다.
  
  >cc_driver_name: CF Database의 종류를 입력한다. (postgresql, mysql 둘중 하나를 지정해야한다.)\
  uaa_driver_name: UAA Database의 종류를 입력한다. (postgresql, mysql 둘중 하나를 지정해야한다.)
