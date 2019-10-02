@@ -58,11 +58,8 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 
 - PaaS-TA에서 제공하는 압축된 릴리즈 파일들을 다운받는다. (PaaSTA-Deployment.zip, PaaSTA-Sample-Apps.zip, PaaSTA-Services.zip)
 
-- 다운로드 위치
->PaaSTA-Services : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Services.zip>**  
->PaaSTA-Deployment : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Deployment.zip>**  
->PaaSTA-Sample-Apps : **<https://paas-ta.kr/data/packages/2.0/PaaSTA-Sample-Apps.zip>**
-
+- 설치 파일 다운로드 위치 
+>Download : **<https://paas-ta.kr/download/package>**  
 
 ### <div id='8'>2.2. GlusterFS 서비스 릴리즈 업로드</div>
 
@@ -934,7 +931,7 @@ bosh -e micro-bosh -d paasta-swift-object-service deploy paasta_swift_object_bos
 		+ stemcells:
 		+ - alias: default
 		+   os: ubuntu-xenial
-		+   version: '315.35'
+		+   version: '315.36'
 
 		+ releases:
 		+ - name: paasta-mysql

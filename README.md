@@ -70,3 +70,4 @@
 - [Java API 서비스 미터링 개발 가이드](../../../Guide-2.0-Linguine-/blob/master/Development-Guide/PaaS-TA_Java_API_서비스_미터링_개발_가이드.md)
 - [Java 서비스 미터링 개발 가이드](../../../Guide-2.0-Linguine-/blob/master/Development-Guide/PaaS-TA_Java_서비스_미터링_개발_가이드.md)
 - [Nodejs API 서비스 미터링 개발 가이드](../../../Guide-2.0-Linguine-/blob/master/Development-Guide/PaaS-TA_Node.js_API_미터링_개발_가이드.md)
+- [On-Demand 서비스 개발 가이드](./Deployment-Guide/On-Demand/On-Demand_deployment_guide.md)

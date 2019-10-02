@@ -794,8 +794,8 @@ necessary_on_demand_vars.yml
 deployment_name: on-demand-service-broker                       #On-Demand Deployment Name을 지정한다.
 
 ### Main Stemcells Setting ###
-stemcell_os: ubuntu-trusty                                      # Deployment Main Stemcell OS
-stemcell_version: 3586.25                                       # Main Stemcell Version
+stemcell_os: ubuntu-xenial                                      # Deployment Main Stemcell OS
+stemcell_version: 315.68                                       # Main Stemcell Version
 stemcell_alias: default                                         # Main Stemcell Alias
 
 ### On-Demand Release Deployment Setting ### 
