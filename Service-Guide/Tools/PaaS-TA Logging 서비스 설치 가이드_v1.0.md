@@ -116,17 +116,17 @@ Logging 서비스 설치에 필요한 Deployment 및 릴리즈 파일을 다운�
 
 ```
 # Deployment 다운로드 파일 위치 경로 생성
-$ mkdir -p ~/workspace/paasta-4.0/deployment/service-deployment
+$ mkdir -p ~/workspace/paasta-4.6/deployment/service-deployment
 
 # Deployment 다운로드(paasta-logging-service-2.0) 및 파일 경로 확인
-$ ls ~/workspace/paasta-4.0/deployment/service-deployment/paasta-logging-service-2.0
+$ ls ~/workspace/paasta-4.6/deployment/service-deployment/paasta-logging-service-2.0
 logging-service-deploy.sh  remove-logging-service-deployment.sh  manifests
 
 # 릴리즈 다운로드 파일 위치 경로 생성
-$ mkdir -p ~/workspace/paasta-4.0/release/service
+$ mkdir -p ~/workspace/paasta-4.6/release/service
 
 # 릴리즈 파일 다운로드(paasta-logging-service-release.tgz) 및 파일 경로 확인
-$ ls ~/workspace/paasta-4.0/release/service
+$ ls ~/workspace/paasta-4.6/release/service
 paasta-logging-service-release.tgz
 
 ```
@@ -178,7 +178,7 @@ Succeeded
 
 ```
 # 릴리즈 파일 업로드
-$ bosh -e micro-bosh upload-release ~/workspace/paasta-4.0/release/service/paasta-logging-service-release.tgz
+$ bosh -e micro-bosh upload-release ~/workspace/paasta-4.6/release/service/paasta-logging-service-release.tgz
 Using environment '10.30.40.111' as client 'admin'
 
 ######################################################### 100.00% 92.74 MiB/s 0s
@@ -581,7 +581,7 @@ Succeeded
 
 ```
 # 변수 설정
-$ vi ~/workspace/paasta-4.0/deployment/service-deployment/paasta-logging-service-2.0/manifests/vars.yml
+$ vi ~/workspace/paasta-4.6/deployment/service-deployment/paasta-logging-service-2.0/manifests/vars.yml
 # RELEASE
 logging_service_release_name: "paasta-logging-service-release"
 logging_service_release_version: "1.0"
@@ -670,7 +670,7 @@ laas_logo: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAABGCAYAAABll74gAA
 
 ```
 # Deploy 스크립트 수정
-$ vi ~/workspace/paasta-4.0/deployment/service-deployment/paasta-logging-service-2.0/logging-service-deploy.sh
+$ vi ~/workspace/paasta-4.6/deployment/service-deployment/paasta-logging-service-2.0/logging-service-deploy.sh
 #!/bin/bash
 
 # SET VARIABLES
@@ -689,7 +689,7 @@ bosh -e ${BOSH2_NAME} -d ${LOGGING_SERVICE_DEPLOYMENT_NAME} deploy --no-redact m
 
 ```
 # Logging 서비스 Deploy (e.g vSphere)
-$ cd ~/workspace/paasta-4.0/deployment/service-deployment/paasta-logging-service-2.0
+$ cd ~/workspace/paasta-4.6/deployment/service-deployment/paasta-logging-service-2.0
 $ ./logging-service-deploy.sh
 Using environment '10.30.40.111' as client 'admin'
 
@@ -1015,8 +1015,8 @@ Using deployment 'paasta-logging-service'
 
 + stemcells:
 + - alias: default
-+   os: ubuntu-trusty
-+   version: '3468.51'
++   os: ubuntu-xenial
++   version: '325.41'
 
 + releases:
 + - name: paasta-logging-service-release
