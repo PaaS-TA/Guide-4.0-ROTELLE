@@ -21,8 +21,8 @@
 	  * [릴리즈 업로드](#20)
 	  * [Manifest 업로드](#21)
 	  * [서비스팩 설치](#22)
- 		
-# <div id='1'/>1.  문서 개요 
+
+# <div id='1'/>1.  문서 개요
 
 ## <div id='2'/>1.1.  목적
 
@@ -34,7 +34,7 @@
 
 # <div id='4'/>2.  플랫폼 설치 가이드
 
-BOSH는 클라우드 환경에 서비스를 배포하고 소프트웨어 릴리즈를 관리해주는 오픈 소스로 Bootstrap은 하나의 VM에 디렉터의 모든 컴포넌트를 설치한 것으로 PaaS-TA 설치를 위한 관리자 기능을 담당한다. 
+BOSH는 클라우드 환경에 서비스를 배포하고 소프트웨어 릴리즈를 관리해주는 오픈 소스로 Bootstrap은 하나의 VM에 디렉터의 모든 컴포넌트를 설치한 것으로 PaaS-TA 설치를 위한 관리자 기능을 담당한다.
 
 플랫폼 설치 자동화를 이용해서 클라우드 환경에 PaaS-TA를 설치하기 위해서는 인프라 설정, 스템셀 소프트웨어 릴리즈, Manifest 파일, 인증서 파일 5가지 요소가 필요하다. 스템셀은 클라우드 환경에 VM을 생성하기 위해 사용할 기본 이미지이고, 소프트웨어 릴리즈는 VM에 설치할 소프트웨어 패키지들을 묶어 놓은 파일이고, Manifest파일은 스템셀과 소프트웨어 릴리즈를 이용해서 서비스를 어떤 식으로 구성할지를 정의해 놓은 명세서이다. 다음 그림은 BOOTSTRAP을 이용하여 PaaS-TA를 설치하는 절차이다.
 
@@ -57,7 +57,7 @@ BOSH는 클라우드 환경에 서비스를 배포하고 소프트웨어 릴리�
 
 ### 2. *로그인 계정 수정*
 
-1.	사용자 “수정” 버튼을 클릭 후 사용자 정보 및 해당 권한을 수정하여 “확인” 버튼을 클릭한다. 
+1.	사용자 “수정” 버튼을 클릭 후 사용자 정보 및 해당 권한을 수정하여 “확인” 버튼을 클릭한다.
 2.	관리자는 선택한 사용자의 아이디는 수정할 수 없지만 비밀번호를 변경할 수 있다.
 
 ![PaaSTa_Platform_Use_Guide_Image03]
@@ -319,7 +319,12 @@ BOOTSTRAP & PaaS-TA를 설치하기 위해서는 사전에 인프라 환경 구�
         <td>bpm/0.12.3</td>
         <td>bosh-azure-hyperv-ubuntu-xenial-go_agent/97.17</td>
     </tr>
-
+		<tr>
+        <td>bosh/270.2.0</td>
+        <td>bosh-azure-cpi/36.0.1</td>
+        <td>bpm/1.1.0</td>
+        <td>bosh-azure-hyperv-ubuntu-xenial-go_agent/315.64</td>
+    </tr>
 </table>
 
 플랫폼 설치 자동화를 통해 배포 가능한 CF-Deployment 버전은 아래와 같으며, 아래의 릴리즈 버전으로 다운로드&업로드 및 설치한다.
@@ -346,12 +351,20 @@ BOOTSTRAP & PaaS-TA를 설치하기 위해서는 사전에 인프라 환경 구�
         <td>bosh-azure-hyperv-ubuntu-xenial-go_agent/97.18</td>
     </tr>
     <tr>
+        <td>cf-deployment/5.5.0</td>
+        <td>bosh-azure-hyperv-ubuntu-xenial-go_agent/97.28</td>
+    </tr>
+		<tr>
+        <td>cf-deployment/9.3.0</td>
+        <td>bosh-azure-hyperv-ubuntu-xenial-go_agent/315.36</td>
+    </tr>
+		<tr>
         <td>paasta/4.0</td>
         <td>bosh-azure-hyperv-ubuntu-xenial-go_agent/97.28</td>
     </tr>
-    <tr>
-        <td>cf-deployment/5.5.0</td>
-        <td>bosh-azure-hyperv-ubuntu-xenial-go_agent/97.28</td>
+		<tr>
+        <td>paasta/4.6</td>
+        <td>bosh-azure-hyperv-ubuntu-xenial-go_agent/315.36</td>
     </tr>
 </table>
 
@@ -394,11 +407,11 @@ PaaS-TA를 설치하기 위해 “PaaS-TA 설치 자동화” 메뉴를 클릭�
 스템셀 다운로드 유형은 총 3가지이며 Version유형으로 다운로드가 안될 경우 로컬에서 다운로드 후 로컬에서 선택 유형/스템셀 다운로드 URL을 통해 다운로드 받는 유형을 이용한다.
 상단에 위치한 “등록” 버튼을 클릭 후 스템셀 정보를 입력하고 “확인” 버튼을 클릭한다.
 
-	https://bosh.io/stemcells/bosh-azure-hyperv-ubuntu-trusty-go_agent
+
 	https://bosh.io/stemcells/bosh-azure-hyperv-ubuntu-xenial-go_agent
 
 
-**가이드에서는 버전 Ubuntu Xenial 97.17/97.28을 다운로드 하였다.**
+**가이드에서는 버전 Ubuntu Xenial 315.64를 다운로드 하였다.**
 
 ![PaaSTa_Platform_Use_Guide_Image20]
 
@@ -425,12 +438,12 @@ BOOTSTRAP을 설치하기 위해서는 BOSH 릴리즈와 BOSH CPI릴리즈 2개�
 
 ![PaaSTa_Platform_Use_Guide_Image21]
 
-**본 가이드에서는 v268.2.0을 다운로드 하였다.**
+**본 가이드에서는 v270.2.0을 다운로드 하였다.**
 
 #### 2. *BOSH CPI 릴리즈*
 
 1.	릴리즈 등록 팝업화면에서 BOSH CPI릴리즈 정보를 입력하고, “등록” 버튼 클릭한다.
-2.	BOSH-CPI 릴리즈 참조 사이트 
+2.	BOSH-CPI 릴리즈 참조 사이트
 
 <table>
   <tr>
@@ -445,29 +458,29 @@ BOOTSTRAP을 설치하기 위해서는 BOSH 릴리즈와 BOSH CPI릴리즈 2개�
 
 ![PaaSTa_Platform_Use_Guide_Image22]
 
-**본 가이드에서는 v35.4.0을 다운로드 하였다.**
+**본 가이드에서는 v36.0.1을 다운로드 하였다.**
 
 #### 3. *BPM 릴리즈*
 
 1.	릴리즈 등록 팝업화면에서 BPM릴리즈 정보를 입력하고, “등록” 버튼 클릭한다.
-2.	BPM 릴리즈 참조 사이트 
+2.	BPM 릴리즈 참조 사이트
 
     [https://bosh.io/releases/github.com/cloudfoundry-incubator/bpm-release?all=1](https://bosh.io/releases/github.com/cloudfoundry-incubator/bpm-release?all=1)
 
 ![PaaSTa_Platform_Use_Guide_Image23]
 
-**본 가이드에서는 v0.12.3을 다운로드 하였다.**
+**본 가이드에서는 v1.1.0을 다운로드 하였다.**
 
 #### 4. *OS CONF 릴리즈*
 
 1.	릴리즈 등록 팝업화면에서 OS CONF 릴리즈 정보를 입력하고, “등록” 버튼 클릭한다.
-2.	OS CONF 릴리즈 참조 사이트 
+2.	OS CONF 릴리즈 참조 사이트
 
     [https://bosh.io/releases/github.com/cloudfoundry/os-conf-release?all=1](https://bosh.io/releases/github.com/cloudfoundry/os-conf-release?all=1)
 
 ![PaaSTa_Platform_Use_Guide_Image24]
 
-**본 가이드에서는 v17을 다운로드 하였다.**
+**본 가이드에서는 v21.0.0을 다운로드 하였다.**
 
 ### <div id='13'/>2.5.4. *디렉터 인증서 생성*
 
@@ -530,7 +543,7 @@ BOOTSTRAP 설치하기 위해 플랫폼 설치 자동화 웹 화면에서 “플
   - OS-CONF 릴리즈: 설치할 OS-CONF 릴리즈를 선택
   - 스냅샷기능 사용 여부: 스냅샷 사용 여부 (특정 인프라에서만 사용 가능)
   - 스냅샷 스케쥴: 스냅샷 생성 스케쥴
-  - PaaS-TA 모니터링 정보: PaaS-TA 모니터링을 이용하려면 BOSH Release v268.2.0를 선택하고 PaaS-TA 모니터링 사용을 선택한다.
+  - PaaS-TA 모니터링 정보: PaaS-TA 모니터링을 이용하려면 BOSH Release v270.2.0를 선택하고 PaaS-TA 모니터링 사용을 선택한다.
 
 **BOOTSTRAP 릴리즈 Name Tag의 “?” 아이콘을 통해 현재 플랫폼 설치 자동화에서 설치 가능한 BOSH의 버전을 확인한다.**
 
@@ -541,7 +554,7 @@ BOOTSTRAP 설치하기 위해 플랫폼 설치 자동화 웹 화면에서 “플
 ![PaaSTa_Platform_Use_Guide_Image29]
 
 ※	BOOTSTRAP 네트워크 등록 정보
- 
+
   - 디렉터 공인 IP: Azure Public IP 입력, 디렉터 인증서 생성 정보와 같아야 한다. 실제 디렉터 Target IP가 된다. 공인 IP를 사용하지 않을 경우 값을 입력하지 않는다
   - 디렉터 내부 IP: Azure Subnet 대역의 아이피, 디렉터 인증서 생성 정보와 같아야 한다.
   - 네트워크 명: 인프라 관리에서 생성한 Azure Network 명
@@ -554,7 +567,7 @@ BOOTSTRAP 설치하기 위해 플랫폼 설치 자동화 웹 화면에서 “플
 
 1.	Azure 리소스 정보 입력 후 “다음” 버튼을 클릭한다.
 
-![PaaSTa_Platform_Use_Guide_Image30]
+![PaaSTa_Platform_Use_Guide_Image47]
 
 ※	BOOTSTRAP 리소스 등록 정보
 
@@ -570,7 +583,7 @@ BOOTSTRAP 설치하기 위해 플랫폼 설치 자동화 웹 화면에서 “플
 
 ### <div id='15'/>2.5.6 *디렉터 설정*
 
-BOOTSTRAP설치가 완료되면 BOOTSTRAP 디렉터 정보를 이용해서 플랫폼 설치 자동화의 디렉터로 설정한다. 
+BOOTSTRAP설치가 완료되면 BOOTSTRAP 디렉터 정보를 이용해서 플랫폼 설치 자동화의 디렉터로 설정한다.
 디렉터를 등록 위해서는 플랫폼 설치 자동화 웹 화면에서 “환경설정 및 관리” -> “디렉터 설정” 메뉴로 이동 후 상단에 위치한 “등록” 버튼을 클릭하고, 디렉터 등록 팝업 화면에서 디렉터 정보 입력 후 “등록” 버튼을 클릭한다.
 이미 디렉터가 존재할 경우 디렉터를 선택하고 “기본 디렉터로 설정” 버튼을 클릭한다.
 
@@ -578,7 +591,7 @@ BOOTSTRAP설치가 완료되면 BOOTSTRAP 디렉터 정보를 이용해서 플�
 
 ![PaaSTa_Platform_Use_Guide_Image32]
 
-※	디렉터 설정 등록 정보 
+※	디렉터 설정 등록 정보
 
   - 디렉터 IP: BOOTSTRAP 설치 Azure IP 정보를 입력
   - 포트번호: BOOTSTRAP 설치 Manifest의 Director Port 번호 입력(default 25555)
@@ -593,7 +606,7 @@ BOSH를 설치하고 플랫폼 설치 자동화의 디렉터로 설정이 완료
 
 ### <div id='17'/>2.6.1 *스템셀 업로드*
 
-플랫폼 설치 자동화에서 다운받은 스템셀을 “스템셀 업로드” 화면을 통해 디렉터에 97.28 버전의 스템셀을 업로드 한다.
+플랫폼 설치 자동화에서 다운받은 스템셀을 “스템셀 업로드” 화면을 통해 디렉터에 315.36 버전의 스템셀을 업로드 한다.
 
 ![PaaSTa_Platform_Use_Guide_Image34]
 
@@ -605,22 +618,22 @@ BOSH를 설치하고 플랫폼 설치 자동화의 디렉터로 설정이 완료
 1.	PaaS-TA 릴리즈 사용
 
 	1.1.	다운로드 한 paasta 릴리즈 압축 파일을 scp 명령어를 통해 플랫폼 설치 자동화가 동작하고 있는 Inception 서버로 이동시킨다.
-		
+
 		ex) $ scp -i {inception.key} ubuntu@172.xxx.xxx.xx {릴리즈 압축 일 명} # Key Pair를 사용할 경우
 		ex) $ scp ubuntu@172.xxx.xxx.xx {릴리즈 압축 일 명} # Password를 사용할 경우
 
-	1.2.	릴리즈 디렉토리를 생성하고 릴리즈 디렉토리에서 해당 릴리즈 파일의 압축을 해제한다. 릴리즈 디렉토리의 위치는 반드시 {home}/workspace/paasta-4.0/release/paasta여야 한다.
+	1.2.	릴리즈 디렉토리를 생성하고 릴리즈 디렉토리에서 해당 릴리즈 파일의 압축을 해제한다. 릴리즈 디렉토리의 위치는 반드시 {home}/workspace/paasta-4.6/release/paasta여야 한다.
 
 		-	디렉토리 생성
-		ex) $ mkdir -p workspace/paasta-4.0/release/paasta
+		ex) $ mkdir -p workspace/paasta-4.6/release/paasta
 		-	릴리즈 압축 파일 이동
-		ex) $ mv {릴리즈 압축 파일 명} workspace/paasta-4.0/release/paasta/
+		ex) $ mv {릴리즈 압축 파일 명} workspace/paasta-4.6/release/paasta/
 		-	릴리즈 파일 압축 해제
 		ex) $ tar xvf {릴리즈 압축 파일 명} # 릴리즈 파일 확장자가 tar인 경우
 		ex) $ unzip {릴리즈 압축 파일 명} # 릴리즈 파일 확장자가 zip인 경우
-	1.3.	아래는 릴리즈 디렉토리의 PaaS-TA 릴리즈 형상 예시 그림이다. 
+	1.3.	아래는 릴리즈 디렉토리의 PaaS-TA 릴리즈 형상 예시 그림이다.
 
-![PaaSTa_Platform_Use_Guide_Image35]
+![PaaSTa_Platform_Use_Guide_Image46]
 
 ### <div id='18'/>2.6.3 *CF-Deployment 설치*
 
@@ -630,9 +643,9 @@ CF-Deployment를 설치하기 위해 플랫폼 설치 자동화 웹 화면에서
 
 1.	배포에 필요한 기본정보와 도메인 / 로그인 비밀번호를 입력 후 “다음” 버튼을 클릭한다.
 
-![PaaSTa_Platform_Use_Guide_Image36]
+![PaaSTa_Platform_Use_Guide_Image48]
 
-**본 가이드에서는 CF-Deployement 버전으로 Paasta 4.0을 사용하였다.**
+**본 가이드에서는 CF-Deployement 버전으로 Paasta 4.6을 사용하였다.**
 
 ※	CF-Deployment 기본 등록 정보
 
@@ -644,7 +657,7 @@ CF-Deployment를 설치하기 위해 플랫폼 설치 자동화 웹 화면에서
   - CF Admin Password: CF Login 패스워드 입력
   - 도메인: CF 설치에 사용 할 도메인 입력 ex) {public IP}.xip.io
   - Portal 도메인: Portal을 설치 및 접속할 도메인 주소를 입력한다. Portal을 설치하지 않고 CF-Deployment를 실행할 경우 해당 값을 입력하지 않는다.
-  - PaaS-TA 모니터링 정보: PaaS-TA 모니터링을 이용하려면 paasta/4.0을 선택하고 PaaS-TA 모니터링 사용을 선택한다.
+  - PaaS-TA 모니터링 정보: PaaS-TA 모니터링을 이용하려면 paasta/4.6을 선택하고 PaaS-TA 모니터링 사용을 선택한다.
 
 
 #### 2.	*CF-Deployment설치 – 네트워크 정보 등록*
@@ -726,7 +739,7 @@ PaaS-TA개발팀에서 제공하는 PaaS-TA 서비스 릴리즈에서 “릴리�
 
 ### <div id='21'/>2.7.2. *Manifest 업로드*
 
-Manifest를 업로드 하기 위해 플랫폼 설치 자동화 웹 화면에서 “배포 정보 조회 및 관리” -> “Manifest 관리” 메뉴로 이동 후 상단의 “업로드” 버튼을 클릭한다. 
+Manifest를 업로드 하기 위해 플랫폼 설치 자동화 웹 화면에서 “배포 정보 조회 및 관리” -> “Manifest 관리” 메뉴로 이동 후 상단의 “업로드” 버튼을 클릭한다.
 
 #### 1. *Manifest 업로드 – 업로드*
 
@@ -739,7 +752,7 @@ Manifest를 업로드 하기 위해 플랫폼 설치 자동화 웹 화면에서 
 
 ### <div id='22'/>2.7.3. *서비스팩 설치*
 
-서비스팩을 설치하기 위해 플랫폼 설치 자동화 웹 화면에서 “플랫폼 설치” -> “서비스팩 설치” 메뉴로 이동 후 상단의 “설치” 버튼을 클릭한다. 
+서비스팩을 설치하기 위해 플랫폼 설치 자동화 웹 화면에서 “플랫폼 설치” -> “서비스팩 설치” 메뉴로 이동 후 상단의 “설치” 버튼을 클릭한다.
 
 #### 1.	*서비스팩 설치 – Manifest 등록*
 
@@ -801,5 +814,6 @@ Manifest를 업로드 하기 위해 플랫폼 설치 자동화 웹 화면에서 
 [PaaSTa_Platform_Use_Guide_Image43]:./images/Install_Guide/Azure/servicepack/manifest_upload.png
 [PaaSTa_Platform_Use_Guide_Image44]:./images/Install_Guide/Azure/servicepack/manifest_add.png
 [PaaSTa_Platform_Use_Guide_Image45]:./images/Install_Guide/Azure/servicepack/servicepack_install.png
-
-
+[PaaSTa_Platform_Use_Guide_Image46]:./images/Install_Guide/Azure/cfinstall/paasta_release_4.6.png
+[PaaSTa_Platform_Use_Guide_Image47]:./images/Install_Guide/Azure/bootstrapinstall/bootstrap_resource_4.6.png
+[PaaSTa_Platform_Use_Guide_Image48]:./images/Install_Guide/Azure/cfinstall/cf_default_4.6.png

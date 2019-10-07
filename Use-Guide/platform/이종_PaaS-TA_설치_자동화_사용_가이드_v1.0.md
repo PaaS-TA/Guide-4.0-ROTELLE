@@ -22,7 +22,7 @@
 
 본 문서는 이종 PaaS-TA 설치 자동화의 사용 절차에 대해 기술하였다.
 
-# <div id='1'/>1.  문서 개요 
+# <div id='1'/>1.  문서 개요
 
 ## <div id='2'/>1.1.  목적
 본 문서는 이종 PaaS-TA 설치 자동화를 사용하여 이종 PaaS-TA를 설치하는 절차에 대해 기술하였다.
@@ -32,7 +32,7 @@
 
 # <div id='4'/>2. 이종 PaaS-TA 설치 자동화 사용 가이드
 
-BOSH는 클라우드 환경에 서비스를 배포하고 소프트웨어 릴리즈를 관리해주는 오픈 소스로 Bootstrap은 하나의 VM에 디렉터의 모든 컴포넌트를 설치한 것으로 PaaS-TA 설치를 위한 관리자 기능을 담당한다. 
+BOSH는 클라우드 환경에 서비스를 배포하고 소프트웨어 릴리즈를 관리해주는 오픈 소스로 Bootstrap은 하나의 VM에 디렉터의 모든 컴포넌트를 설치한 것으로 PaaS-TA 설치를 위한 관리자 기능을 담당한다.
 
 이종 PaaS-TA 설치 자동화를 이용해서 클라우드 환경에 PaaS-TA를 설치하기 위해서는 **인프라 설정, 스템셀, 소프트웨어 릴리즈, Manifest 파일, 인증서 파일**의 5가지 요소가 필요하다. 스템셀은 클라우드 환경에 VM을 생성하기 위해 사용할 기본 이미지이고, 소프트웨어 릴리즈는 VM에 설치할 소프트웨어 패키지들을 묶어 놓은 파일이며, Manifest파일은 스템셀과 소프트웨어 릴리즈를 이용해서 서비스를 어떤 식으로 구성할지를 정의해 놓은 명세서이다. 다음 그림은 BOOTSTRAP을 이용하여 PaaS-TA를 설치하는 절차이다.
 
@@ -500,20 +500,40 @@ BOSH는 클라우드 환경에 서비스를 배포하고 소프트웨어 릴리�
     </tr>
     <tr>
         <td>bosh/267.8.0</td>
-        <td>bosh-aws-cpi/72</td>
+        <td>
+            bosh-aws-cpi/72 <br>
+            bosh-openstack-cpi/39
+        </td>
         <td>bpm/0.9.0</td>
         <td>
-            bosh-aws-xen-hvm-ubuntu-trusty-go_agent/3586.24<br>
+            bosh-aws-xen-hvm-ubuntu-trusty-go_agent/3586.24 <br>
             bosh-openstack-kvm-ubuntu-trusty-go_agent/3586.24
         </td>
     </tr>
     <tr>
         <td>bosh/268.2.0</td>
-        <td>bosh-aws-cpi/72</td>
-        <td>bpm/0.12.3</td>
         <td>
-            bosh-aws-xen-hvm-ubuntu-xenial-go_agent/97.28<br>
+            bosh-aws-cpi/72 <br>
+            bosh-openstack/39
+        </td>
+        <td>
+            bpm/0.12.3
+        </td>
+        <td>
+            bosh-aws-xen-hvm-ubuntu-xenial-go_agent/97.28 <br>
             bosh-openstack-kvm-ubuntu-xenial-go_agent/97.28
+        </td>
+    </tr>
+    <tr>
+        <td>bosh/270.2.0</td>
+        <td>
+            bosh-aws-cpi/75 <br>
+            bosh-openstack-cpi/43
+        </td>
+        <td>bpm/1.1.0</td>
+        <td>
+            bosh-aws-xen-hvm-ubuntu-xenial-go_agent/315.64 <br>
+            bosh-openstack-kvm-ubuntu-xenial-go_agent/315.64
         </td>
     </tr>
 </table>
@@ -551,15 +571,27 @@ BOSH는 클라우드 환경에 서비스를 배포하고 소프트웨어 릴리�
         </td>
     </tr>
     <tr>
+        <td>cf-deployment/5.5.0</td>
+        <td>bosh-aws-xen-hvm-ubuntu-xenial-go_agent/97.28<br>
+            bosh-openstack-kvm-ubuntu-xenial-go_agent/97.28
+        </td>
+    </tr>
+    <tr>
+        <td>cf-deployment/9.3.0</td>
+        <td>bosh-aws-xen-hvm-ubuntu-xenial-go_agent/315.36<br>
+            bosh-openstack-kvm-ubuntu-xenial-go_agent/315.36
+        </td>
+    </tr>
+    <tr>
         <td>paasta/4.0</td>
         <td>bosh-aws-xen-hvm-ubuntu-xenial-go_agent/97.28<br>
             bosh-openstack-kvm-ubuntu-xenial-go_agent/97.28
         </td>
     </tr>
     <tr>
-        <td>cf-deployment/5.5.0</td>
-        <td>bosh-aws-xen-hvm-ubuntu-xenial-go_agent/97.28<br>
-            bosh-openstack-kvm-ubuntu-xenial-go_agent/97.28
+        <td>paasta/4.6</td>
+        <td>bosh-aws-xen-hvm-ubuntu-xenial-go_agent/315.36<br>
+            bosh-openstack-kvm-ubuntu-xenial-go_agent/315.36
         </td>
     </tr>
 </table>
@@ -635,7 +667,7 @@ BOSH는 클라우드 환경에 서비스를 배포하고 소프트웨어 릴리�
   </tr>
 </table>
 
-**본 가이드에서는 버전 Xenial 97.12/97.28을 다운로드 하였다.**
+**본 가이드에서는 버전 Xenial 315.64를 다운로드 하였다.**
 
 ![Hybrid_PaaSTa_Deploy_Use_Guide_Image33]
 
@@ -656,7 +688,7 @@ BOOTSTRAP을 설치하기 위해서는 BOSH 릴리즈, BOSH CPI릴리즈, OS-CON
 
 ![Hybrid_PaaSTa_Deploy_Use_Guide_Image34]
 
-**본 가이드에서는 v268.2.0을 다운로드 하였다.**
+**본 가이드에서는 v270.2.0을 다운로드 하였다.**
 
 #### 2. BOSH CPI 릴리즈
 
@@ -680,18 +712,18 @@ BOOTSTRAP을 설치하기 위해서는 BOSH 릴리즈, BOSH CPI릴리즈, OS-CON
 
 ![Hybrid_PaaSTa_Deploy_Use_Guide_Image35]
 
-**본 가이드에서는 AWS CPI v72/Openstack CPI v39을 다운로드 하였다.**
+**본 가이드에서는 AWS CPI v75/Openstack CPI v43을 다운로드 하였다.**
 
 #### 3. BPM 릴리즈
 
 1.	릴리즈 등록 팝업화면에서 BPM릴리즈 정보를 입력하고, “등록” 버튼 클릭한다.
-2.	BPM 릴리즈 참조 사이트 
+2.	BPM 릴리즈 참조 사이트
 
     [https://bosh.io/releases/github.com/cloudfoundry-incubator/bpm-release?all=1](https://bosh.io/releases/github.com/cloudfoundry-incubator/bpm-release?all=1)
 
 ![Hybrid_PaaSTa_Deploy_Use_Guide_Image36]
 
-**본 가이드에서는 v0.12.3을 다운로드 하였다.**
+**본 가이드에서는 v1.1.0을 다운로드 하였다.**
 
 #### 4. OS-CONF 릴리즈
 
@@ -702,7 +734,7 @@ BOOTSTRAP을 설치하기 위해서는 BOSH 릴리즈, BOSH CPI릴리즈, OS-CON
 
 ![Hybrid_PaaSTa_Deploy_Use_Guide_Image37]
 
-**본 가이드에서는 v18을 다운로드 하였다.**
+**본 가이드에서는 v21.0.0을 다운로드 하였다.**
 
 ### <div id='13'/>2.5.4. 이종 BOOTSTRAP 설치
 
@@ -735,7 +767,7 @@ BOOTSTRAP 설치하기 위해 이종 PaaS-TA 설치 자동화 웹 화면에서 �
 ![Hybrid_PaaSTa_Deploy_Use_Guide_Image39]
 
 ※	이종 BOOTSTRAP Network 등록 정보
- 
+
 -	네트워크 정보 별칭: 네트워크 정보를 구분하기 위한 별칭
 -	클라우드 인프라 환경: 클라우드 인프라 설정 정보
 -	디렉터 Public IP: BOOTSTRAP이 설치될 VM의 공인 IP 정보, 공인 IP를 사용하지 않을 경우 값을 입력하지 않는다(단, 공인 아이피가 없을 경우 Inception 서버와 설치할 AWS/Openstack의 BOSH 서브넷과 통신이 가능 해야 한다. 통신이 불가능할 경우 Public IP를 반드시 사용한다).
@@ -755,7 +787,7 @@ BOOTSTRAP 설치하기 위해 이종 PaaS-TA 설치 자동화 웹 화면에서 �
 
 ![Hybrid_PaaSTa_Deploy_Use_Guide_Image40]
 
-※	이종 BOOTSTRAP 디렉터 인증서 등록 정보 
+※	이종 BOOTSTRAP 디렉터 인증서 등록 정보
 
 -	디렉터 인증서 별칭: 네트워크 정보를 구분하기 위한 별칭
 -	클라우드 인프라 환경: 클라우드 인프라 설정 정보
@@ -788,7 +820,7 @@ BOOTSTRAP 설치하기 위해 이종 PaaS-TA 설치 자동화 웹 화면에서 �
 -	OS-CONF 릴리즈: 설치할 OS-CONF 릴리즈를 선택
 -	BOSH-BPM 릴리즈: 설치할 BPM 릴리즈 선택, 특정 BOSH 버전 이상일 경우 사용
 -	스냅샷기능 사용여부: 스토리지 볼륨 또는 이미지에 대한 특정 시점에서의 사본. 볼륨을 백업하기 위해 스냅샷 기능 사용유무 체크
--	PaaS-TA 모니터링 정보: PaaS-TA 모니터링을 이용하려면 BOSH Release v268.2.0를 선택하고 PaaS-TA 모니터링 사용을 선택한다.
+-	PaaS-TA 모니터링 정보: PaaS-TA 모니터링을 이용하려면 BOSH Release v270.2.0를 선택하고 PaaS-TA 모니터링 사용을 선택한다.
 
 #### 5. 이종 BOOTSTRAP - 리소스 정보 관리
 
@@ -840,7 +872,7 @@ BOOTSTRAP 설치하기 위해 이종 PaaS-TA 설치 자동화 웹 화면에서 �
 ![Hybrid_PaaSTa_Deploy_Use_Guide_Image44]
 
 ※	이종 BOOTSTRAP 디렉터 설정 등록 정보
- 
+
 -	디렉터 IP: BOOTSTRAP 설치 IP 정보를 입력
 -	포트번호: BOOTSTRAP 설치 Manifest의 Director Port 번호 입력(default 25555)
 -	계정: BOOTSTRAP 설치 Manifest의 user_management 아래 Director User 입력
@@ -854,7 +886,7 @@ BOOTSTRAP을 설치하고 이종 PaaS-TA 설치 자동화의 AWS/Openstack의 �
 
 ### <div id='15'/>2.6.1. 스템셀 업로드
 
-“배포 정보 조회 및 관리”의 “스템셀 업로드” 메뉴에서 스템셀을 업로드할 디렉터를 선택하고, 이종 PaaS-TA 설치 자동화에서 다운받은 스템셀을 “스템셀 업로드” 화면을 통해 디렉터에 97.28 버전의 스템셀을 업로드 한다.
+“배포 정보 조회 및 관리”의 “스템셀 업로드” 메뉴에서 스템셀을 업로드할 디렉터를 선택하고, 이종 PaaS-TA 설치 자동화에서 다운받은 스템셀을 “스템셀 업로드” 화면을 통해 디렉터에 315.36 버전의 스템셀을 업로드 한다.
 
 ![Hybrid_PaaSTa_Deploy_Use_Guide_Image46]
 
@@ -873,14 +905,14 @@ BOOTSTRAP을 설치하고 이종 PaaS-TA 설치 자동화의 AWS/Openstack의 �
     ex) $ scp ubuntu@172.xxx.xxx.xx {릴리즈 압축 일 명} # Password를 사용할 경우
 
 2.	릴리즈 디렉토리를 생성하고 릴리즈 디렉토리에서 해당 릴리즈 파일의 압축을 해제한다.
-릴리즈 디렉토리의 위치는 반드시 {home}/workspace/paasta-4.0/release/paasta여야 한다.
+릴리즈 디렉토리의 위치는 반드시 {home}/workspace/paasta-4.6/release/paasta여야 한다.
 -	디렉토리 생성
 
-    ex) $ mkdir -p workspace/paasta-4.0/release/paasta
+    ex) $ mkdir -p workspace/paasta-4.6/release/paasta
 
 -	릴리즈 압축 파일 이동
 
-    ex) $ mv {릴리즈 압축 파일 명} workspace/paasta-4.0/release/paasta/
+    ex) $ mv {릴리즈 압축 파일 명} workspace/paasta-4.6/release/paasta/
 
 -	릴리즈 파일 압축 해제
 
@@ -890,7 +922,7 @@ BOOTSTRAP을 설치하고 이종 PaaS-TA 설치 자동화의 AWS/Openstack의 �
 
 3.	아래는 릴리즈 디렉토리의 PaaS-TA 릴리즈 형상 예시 그림이다.
 
-![Hybrid_PaaSTa_Deploy_Use_Guide_Image47]
+![Hybrid_PaaSTa_Deploy_Use_Guide_Image54]
 
 ### <div id='17'/>2.6.3. 이종 CF-Deployment 설치
 
@@ -906,7 +938,7 @@ BOOTSTRAP을 설치하고 이종 PaaS-TA 설치 자동화의 AWS/Openstack의 �
 
 ![Hybrid_PaaSTa_Deploy_Use_Guide_Image48]
 
-**본 가이드에서는 CF-Deployment 버전으로 paasta/4.0을 사용하였다.**
+**본 가이드에서는 CF-Deployment 버전으로 paasta/4.6을 사용하였다.**
 
 ※	이종 CF-Deployment 기본 등록 정보
 
@@ -919,7 +951,7 @@ BOOTSTRAP을 설치하고 이종 PaaS-TA 설치 자동화의 AWS/Openstack의 �
 -	Inception User Name: Inception 서버의 계정 명(PaaS-TA 선택 시 제공) ex) vcap
 -	CF Admin Password: CF Login 패스워드 입력
 -	Portal 도메인: Portal을 설치 및 접속할 도메인 주소를 입력한다. Portal을 설치하지 않고 CF-Deployment를 실행할 경우 해당 값을 입력하지 않는다.
--	PaaS-TA 모니터링 정보: PaaS-TA 모니터링을 이용하려면 paasta/4.0을 선택하고 PaaS-TA 모니터링 사용을 선택한다.
+-	PaaS-TA 모니터링 정보: PaaS-TA 모니터링을 이용하려면 paasta/4.6을 선택하고 PaaS-TA 모니터링 사용을 선택한다.
 
 #### 2. 이종 CF-Deployment 설치 - 네트워크 정보 관리
 
@@ -1022,8 +1054,14 @@ BOOTSTRAP을 설치하고 이종 PaaS-TA 설치 자동화의 AWS/Openstack의 �
 
 7.	“배포 가능 한 Private/Public CF-DEPLOYMENT 목록”에서 AWS/Openstack 정보를 선택 후 더블클릭하여 “배포 할 Private/Public CF-DEPLOYMENT 목록”에 정보가 삽입된 것을 확인한다.
 8.	VM 설치 버튼을 클릭한다.
-9.	이종 CF-DEPLOYMENT 설치 팝업 창이 출력되고 설치가 진행된다
+
+> ※	이종 CF-Deployment 설치 시 인프라 환경 타입은 [Openstack – AWS] 또는 [Openstack – Azure] 로 구성이 되어야 VM 설치 진행이 가능하다. 만약 다른 인프라 환경 타입으로의 구성 후 VM설치 버튼을 클릭하게 되면 다음과 같은 에러 메시지가 출력 된다.
+
+![Hybrid_PaaSTa_Deploy_Use_Guide_Image55]
+
+9.	이종 CF-DEPLOYMENT 설치 팝업 창이 출력되고 설치가 진행된다.
 10.	설치가 완료된 후 “배포 한 Private/Public CF-DEPLOYMENT 목록”에 정보가 삽입된 것을 확인한다.
+
 
 
 [Hybrid_PaaSTa_Deploy_Use_Guide_Image01]:./images/Use_Guide/hbpaastause/useflow.png
@@ -1079,3 +1117,5 @@ BOOTSTRAP을 설치하고 이종 PaaS-TA 설치 자동화의 AWS/Openstack의 �
 [Hybrid_PaaSTa_Deploy_Use_Guide_Image51]:./images/Use_Guide/hbpaastause/cfdeployment/hb_cfdeployment_resourceinfo.png
 [Hybrid_PaaSTa_Deploy_Use_Guide_Image52]:./images/Use_Guide/hbpaastause/cfdeployment/hb_cfdeployment_instanceinfo.png
 [Hybrid_PaaSTa_Deploy_Use_Guide_Image53]:./images/Use_Guide/hbpaastause/cfdeployment/hb_cfdeployment_install.png
+[Hybrid_PaaSTa_Deploy_Use_Guide_Image54]:./images/Use_Guide/hbpaastause/cfdeployment/hb_cfdeployment_paasta_release_4.6.png
+[Hybrid_PaaSTa_Deploy_Use_Guide_Image55]:./images/Use_Guide/hbpaastause/cfdeployment/hb_cfdeployment_install_not_pair.png
