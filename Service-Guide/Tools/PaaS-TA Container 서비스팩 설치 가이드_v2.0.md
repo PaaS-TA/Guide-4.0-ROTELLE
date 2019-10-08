@@ -1099,7 +1099,7 @@ bosh -e ${CAAS_BOSH2_NAME} -n -d ${CAAS_DEPLOYMENT_NAME} deploy --no-redact mani
 ```
 * 아래 명령어를 추가한다.
 
-manifests/ops-files/paasta-container-service/add-private-image-repository-vsphere.yml
+manifests/ops-files/paasta-container-service/add-private-image-repository.yml
 
 ```
 
