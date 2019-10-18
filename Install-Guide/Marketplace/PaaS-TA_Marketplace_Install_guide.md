@@ -616,4 +616,4 @@ marketplace-api         started           1/1         1G       1G     marketplac
 
 
 
-[Architecture]:./Market_Place_Architecture.png
+[Architecture]:./images/Market_Place_Architecture.png
