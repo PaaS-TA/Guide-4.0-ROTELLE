@@ -43,7 +43,7 @@
 - [IaaS/PaaS(PaaS-TA) 통합 모니터링](./Install-Guide/monitoring/PaaS_TA_4.0_iaas_paas_monitoring.md)
 
 ## 마켓플레이스 설치 가이드
-- [](./Install-Guide/Marketplace/PaaS-TA_Marketplace_Install_guide.md)
+- [PaaS-TA 마켓플레이스](./Install-Guide/Marketplace/PaaS-TA_Marketplace_Install_guide.md)
 
 ## 활용 가이드
 - [BOSH CLI V2(Command Line Interface) 사용](./Use-Guide/Bosh/PaaS-TA_BOSH_CLI_V2_사용자_가이드v1.0.md)
