@@ -119,6 +119,7 @@ $ vi ~/workspace/bosh-deployment/virtualbox/cpi.yml
    
       memory: 8196 ==> 수정
 
+$ cd ~/workspace/bosh-deployment
 
 $ vi create-bosh.sh
 
