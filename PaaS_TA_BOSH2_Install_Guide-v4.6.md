@@ -321,7 +321,7 @@ ${HOME}/workspace/paasta-4.6/deployment/bosh-deployment 이하 디렉터리에�
 <td>vSphere BOSH 설치 Shell</td>
 </tr>
 <tr>
-<td>deploy-google.sh</td>
+<td>deploy-gcp.sh</td>
 <td>GCP(google) BOSH 설치 Shell</td>
 </tr>
 <tr>
