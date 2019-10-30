@@ -1098,6 +1098,7 @@ bosh -e ${CAAS_BOSH2_NAME} -n -d ${CAAS_DEPLOYMENT_NAME} deploy --no-redact mani
 **※	Private Image Repository 를 사용할 경우**
 ```
 * 아래 명령어를 추가한다.
+  - network 및 dns, gateway 설정은 각 IaaS 환경의 네트워크 설정에 맞추어 수정한다.
 
 manifests/ops-files/paasta-container-service/add-private-image-repository.yml
 
