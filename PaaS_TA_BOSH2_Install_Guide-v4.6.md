@@ -368,6 +368,7 @@ bosh create-env bosh.yml \
     --state=openstack/state.json \                    # BOSH latest running state, 설치 시 생성, Backup 필요
     --vars-store=openstack/creds.yml \                # BOSH credentials and certs, 설치 시 생성, Backup 필요
     -o openstack/cpi.yml \                            # openstack cpi 적용
+    -o openstack/disable-readable-vm-names.yml \      # VM명을 UUIDs로 적용    
     -o uaa.yml \                                      # uaa 적용
     -o credhub.yml \                                  # credhub 적용
     -o jumpbox-user.yml \                             # jumpbox 적용
