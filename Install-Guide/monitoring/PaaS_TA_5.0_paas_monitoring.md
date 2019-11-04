@@ -481,8 +481,7 @@ $ bosh –e {director_name} vms
 
 PaaS-TA SaaS Application CPU, Memory, Thread , Response Time 정보를 수집을 위해서는 paasta-pinpoint-monitoring가 설치되어야 한다. 
 저세한 설치 방법은 아래 링크를 참조하길 바랍니다.
-> **[PAAS-TA-PINPOINT-MONITORING-RELEASE Git] (https://github.com/PaaS-TA/PAAS-TA-PINPOINT-MONITORING-RELEASE)**
-
+> **[설치 정보](https://github.com/PaaS-TA/PAAS-TA-PINPOINT-MONITORING-RELEASE)**
 
 ## <div id='15'/>3.5.	PaaS-TA Monitoring 설치
 
