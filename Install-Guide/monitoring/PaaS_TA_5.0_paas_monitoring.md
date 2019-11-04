@@ -9,7 +9,7 @@
     * [PaaS-TA 자원정보 수집 Architecture](#7)
 3. [PaaS-TA Monitoring 설치](#8)
     * [Pre-requsite](#9)
-    * [PaaS-TA 4.0 모니터링 설치 파일 다운로드](#10)
+    * [PaaS-TA 5.0 모니터링 설치 파일 다운로드](#10)
     * [PaaS-Ta Monitoring 설치환경](#11)
     * [Logsearch 설치](#12)
         *  [logsearch-deployment.yml](#13)
@@ -22,10 +22,10 @@
 # <div id='1'/>1.  문서 개요 
 
 ## <div id='2'/>1.1.  목적
-본 문서(설치가이드)는 파스타를 4.0 PaaS-TA 모니터링을 설치하는데 있다.
+본 문서(설치가이드)는 파스타를 5.0 PaaS-TA 모니터링을 설치하는데 있다.
 
 ## <div id='3'/>1.2.  범위
-본 문서(설치가이드)는 파스타를 4.0 PaaS-TA 모니터링을 설치하는데 있다. 모니터링중 IaaS-PaaS 통합 모니터링은 별도 통합 모니터링문서를 제공하며 본문서는 PaaS 모니터링 설치 가이드를 제공함에 있다.
+본 문서(설치가이드)는 파스타를 5.0 PaaS-TA 모니터링을 설치하는데 있다. 모니터링중 IaaS-PaaS 통합 모니터링은 별도 통합 모니터링문서를 제공하며 본문서는 PaaS, CaaS, SaaS 모니터링 설치 가이드를 제공함에 있다.
 
 ## <div id='4'/>1.3.  참고자료
 
@@ -43,42 +43,50 @@ CF DEPLOYMENT: [https://github.com/cloudfoundry/cf-deployment](https://github.co
 
 # <div id='5'/>2. PaaS-TA  Monitoring Architecture
 
-## <div id='6'/>2.1. PaaS-TA  Monitoring Architecture
-PaaS-TA 서비스 모니터링 운영환경에서는 크게 Backend 환경에서 실행되는 Batch 프로세스 영역과 Frontend 환경에서 실행되는 Monitoring 시스템 영역으로 나누어진다.
+## <div id='6'/>2.1. PaaS  Monitoring Architecture
+PaaS 서비스 모니터링 운영환경에서는 크게 Backend 환경에서 실행되는 Batch 프로세스 영역과 Frontend 환경에서 실행되는 Monitoring 시스템 영역으로 나누어진다.
 Batch 프로세스는 PaaS-TA Portal 서비스에서 등록한 임계치 정보와 AutoScale 대상 정보를 기준으로 주기적으로 시스템 metrics 정보를 조회 및 분석하여, 임계치를 초과한 서비스 발견시 관리자에게 Alarm을 전송하며, 임계치를 초과한 컨테이너 리스트 중에서 AutoScale 대상의 컨테이너 존재시 AutoScale Server 서비스에 관련 정보를 전송하여, 자동으로 AutoScaling 기능이 수행되도록 처리한다.
 Monitoring 시스템 은 TSDB(InfluxDB)로부터 시스템 환경 정보 데이터를 조회하고, Lucene(Elasticsearch)을 통해 로그 정보를 조회한다. 조회된 정보는 PaaS-TA Monitoring 시스템의 현재 자원 사용 현황을 조회하고, Kibana를 통해 로그 정보를 조회할 수 있도록 한다. Monitoring Portal은 관리자 화면으로 알람이 발생된 이벤트 현황 정보를 조회하고, 컨테이너 배치 현황과 장애 발생 서비스에 대한 통계 정보를 조회할 수 있으며, 이벤트 관련 처리정보를 이력관리할 수 있는 화면을 제공한다
 
 ![PaaSTa_Monit_architecure_Image]
 
-## <div id='7'/>2.2. PaaS-TA 자원정보 수집 Architecture
+## <div id='7'/>2.2. PaaS 자원정보 수집 Architecture
 PaaS-TA 서비스는 내부적으로 메트릭스 정보를 수집 및 전달하는 Metric Agent와 로그 정보를 수집 및 전달하는 syslog 모듈을 제공한다. Metric Agent는 시스템 관련 메트릭스를 수집하여 Influx DB에 정보를 저장한다. syslog는 PaaS-TA 서비스를 Deploy 하기 위한 manfiest 파일의 설정으로도 로그 정보를 ELK 서비스에 전달할 수 있으며, 로그 정보를 전달하기 위해서는 relp 프로토콜(reliable event logging protocol)을 사용한다.
 
 ![PaaSTa_Monit_collect_architecure_Image]
+
+## <div id='7-1'/>2.3. CaaS  Monitoring Architecture
+Caas 서비스 모니터링 운영환경에는 크게 Backend 환경에서 실행되는 Batch 프로세스 영역과 Frontend 환경에서 실행되는 Monitoring 시스템 영역으로 나누어진다.
+Batch 프로세스는 PaaS-TA Portal 서비스에서 등록한 임계치 정보를 기준으로 주기적으로 시스템 metrics 정보를 조회 및 분석하여, 임계치를 초과한 서비스 발견시 관리자에게 Alarm을 전송한다.
+Monitoring 시스템 은 K8s(Prometheus Agent)로부터 시스템 메트 데이터를 조회하고, 조회된 정보는 CaaS Monitoring 시스템의 현재 자원 사용 현황을 조회한다.
+Monitoring Portal은 관리자 화면으로 알람이 발생된 이벤트 현황 정보를 조회하고, kubernests Pod 현황 및 서비스에 대한 통계 정보를 조회할 수 있으며, 이벤트 관련 처리정보를 이력관리할 수 있는 화면을 제공한다
+
+![Caas_Monit_architecure_Image]
 
 # <div id='8'/>3.	PaaS-TA Monitoring 설치
 
 ## <div id='9'/>3.1. Pre-requsite
 
-1. PaaS-Ta 4.0 Monitoring을 설치 하기 위해서는 bosh 설치과정에서 언급한 것 처럼 관련 deployment, release , stemcell을 파스타 사이트에서 다운로드 받아 정해진 경로에 복사 해야 한다.
-2. PaaS-TA 4.0이 설치되어 있어야 하며 monitoring Agent가 설치되어 있어야 한다.
+1. PaaS-Ta 5.0 Monitoring을 설치 하기 위해서는 bosh 설치과정에서 언급한 것 처럼 관련 deployment, release , stemcell을 파스타 사이트에서 다운로드 받아 정해진 경로에 복사 해야 한다.
+2. PaaS-TA 5.0이 설치되어 있어야 하며 monitoring Agent가 설치되어 있어야 한다.
 3. bosh login이 되어 있어야 한다.
 
-## <div id='10'/>3.2.	PaaS-TA 4.0 모니터링 설치 파일 다운로드
+## <div id='10'/>3.2.	PaaS-TA 5.0 모니터링 설치 파일 다운로드
 
 > **[설치 파일 다운로드 받기](https://paas-ta.kr/download/package)**
 
 > **[Monitoring Source Git](https://github.com/PaaS-TA/PaaS-TA-Monitoring)**
 
-파스타 다운로드 URL에서 [PaaS-TA 설치 릴리즈] 파일을 다운로드 받아 ~/workspace/paasta-4.0/release 이하 디렉토리에 압축을 푼다. 압출을 풀면 아래 그림과 같이 ~/workspace/paasta-4.0/release/monitoring 이하 디렉토리가 생성되며 이하에 릴리즈 파일(tgz)이 존재한다.
+파스타 다운로드 URL에서 [PaaS-TA 설치 릴리즈] 파일을 다운로드 받아 ~/workspace/paasta-5.0/release 이하 디렉토리에 압축을 푼다. 압출을 풀면 아래 그림과 같이 ~/workspace/paasta-5.0/release/monitoring 이하 디렉토리가 생성되며 이하에 릴리즈 파일(tgz)이 존재한다.
 
 ![PaaSTa_release_dir]
 
 ## <div id='11'/>3.3. PaaS-Ta Monitoring 설치환경
 
-~/workspace/paasta-4.0/deployment/service-deployment 이하 디렉토리에는 logsearch, pasta-monitoring 디렉토리가 존재한다. Logsearch는 logAgent에서 발생한 Log정보를 수집하여 저장하는 Deployment이다. Pasta-monitoring은 PaaS-TA VM에서 발생한 Metric정보를 수집하여 모니터링을 실행한다.
+~/workspace/paasta-5.0/deployment/service-deployment 이하 디렉토리에는 logsearch, pasta-monitoring 디렉토리가 존재한다. Logsearch는 logAgent에서 발생한 Log정보를 수집하여 저장하는 Deployment이다. Pasta-monitoring은 PaaS-TA VM에서 발생한 Metric정보를 수집하여 모니터링을 실행한다.
 
 ```
-$ cd ~/workspace/paasta-4.0/deployment/service-deployment
+$ cd ~/workspace/paasta-5.0/deployment/service-deployment
 ```
 
 ## <div id='12'/>3.4.	Logsearch 설치
@@ -86,7 +94,7 @@ $ cd ~/workspace/paasta-4.0/deployment/service-deployment
 PaaS-TA VM Log수집을 위해서는 logsearch가 설치되어야 한다. 
 
 ```
-$ cd ~/workspace/paasta-4.0/deployment/service-deployment/logsearch
+$ cd ~/workspace/paasta-5.0/deployment/service-deployment/logsearch
 ```
 
 ### <div id='13'/>3.4.1.	logsearch-deployment.yml
@@ -102,7 +110,6 @@ update:
   serial: false
   update_watch_time: 5000-1200000
 instance_groups:
-
 - name: elasticsearch_master
   azs:
   - z5
@@ -141,6 +148,19 @@ instance_groups:
           service: cerebro
         - file: /var/vcap/sys/log/cerebro/cerebro.stderr.log
           service: cerebro
+  - name: route_registrar
+    release: logsearch-for-cloudfoundry
+    consumes:
+      nats: {from: nats, deployment: paasta}
+    properties:
+      route_registrar:
+        routes:
+        - name: elasticsearch
+          port: 9200
+          registration_interval: 60s
+          uris:
+          - "elastic.((system_domain))"
+
 - name: cluster_monitor
   azs:
   - z6
@@ -380,9 +400,6 @@ instance_groups:
   - name: default
     static_ips: 
     - ((router_ip)) 
-#    default: [dns, gateway]
-#  - name: vip
-#    static_ips: [34.196.20.46]
   jobs:
   - name: haproxy
     release: logsearch
@@ -406,12 +423,6 @@ instance_groups:
           registration_interval: 60s
           uris:
           - "logs.((system_domain))"
-        - name: elastic 
-          port: 9200
-          registration_interval: 60s
-          uris:
-          - "elastic.((system_domain))"
-
 
 variables:
 - name: kibana_oauth2_client_secret
@@ -421,15 +432,15 @@ variables:
 
 releases:
 - name: logsearch
-  url: file:///home/((inception_os_user_name))/workspace/paasta-4.0/release/monitoring/logsearch-boshrelease-209.0.1.tgz 
-  version: "latest"
+  url: file:///home/((inception_os_user_name))/workspace/paasta-5.0/release/monitoring/logsearch-boshrelease-209.0.1.tgz 
+  version: "209.0.1"
 - name: logsearch-for-cloudfoundry
-  url: file:///home/((inception_os_user_name))/workspace/paasta-4.0/release/monitoring/logsearch-for-cloudfoundry-207.0.1.tgz
-  version: "latest"
+  url: file:///home/((inception_os_user_name))/workspace/paasta-5.0/release/monitoring/logsearch-for-cloudfoundry-207.0.1.tgz
+  version: "207.0.1"
 stemcells:
 - alias: default
   os: ubuntu-xenial
-  version: "latest"
+  version: "315.36"
 ```
 
 ### <div id='14'/>3.4.2. deploy.sh
@@ -440,7 +451,7 @@ router_ip는 ls-router가 설치된 azs에서 정의한 cider값의 적당한 IP
 
 ```
 Bosh –e {director_name} -d logsearch deploy logsearch-deployment.yml \
-  -v inception_os_user_name=ubuntu \  # home user명 (release file path와 연관성 있음. /home/ubuntu/paasta-4.0 이하 release 파일들의 경로 설정)
+  -v inception_os_user_name=ubuntu \  # home user명 (release file path와 연관성 있음. /home/ubuntu/paasta-5.0 이하 release 파일들의 경로 설정)
   -v router_ip=10.20.50.34 \   # 배포한 ls-router VM의 private ip
   -v system_domain={system_domain}  #PaaS-TA 설치시 설정한 System Domain
 ```
@@ -448,7 +459,7 @@ Bosh –e {director_name} -d logsearch deploy logsearch-deployment.yml \
 deploy.sh을 실행하여 logsearch를 설치 한다.
 
 ```
-$ cd ~/workspace/paasta-4.0/deployment/service-deployment/logsearch
+$ cd ~/workspace/paasta-5.0/deployment/service-deployment/logsearch
 $ deploy.sh 
 ```
 
@@ -456,7 +467,7 @@ $ deploy.sh
 ```
 $ bosh –e {director_name} vms
 ```
-![PaaSTa_logsearch_vms]
+![PaaSTa_logsearch_vms_5.0]
 
 
 ## <div id='15'/>3.5.	PaaS-TA Monitoring 설치
@@ -464,7 +475,7 @@ $ bosh –e {director_name} vms
 PaaS 모니터링을 위해서 paasta-monitoring가 설치되어야 한다. 
 
 ```
-$ cd ~/workspace/paasta-4.0/deployment/service-deployment/paasta-monitoring
+$ cd ~/workspace/paasta-5.0/deployment/service-deployment/paasta-monitoring
 ```
 
 ### <div id='16'/>3.5.1.	paasta-monitoring.yml
@@ -488,18 +499,18 @@ stemcells:
 releases:
 - name: paasta-monitoring  # 서비스 릴리즈 이름(필수) bosh releases로 확인 가능
   version: latest                                              # 서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
-  url: file:///home/((inception_os_user_name))/workspace/paasta-4.0/release/monitoring/monitoring-release.tgz 
+  url: file:///home/((inception_os_user_name))/workspace/paasta-5.0/release/monitoring/monitoring-release.tgz 
 - name: bpm
   sha1: 0845cccca348c6988debba3084b5d65fa7ca7fa9
-  url: file:///home/((inception_os_user_name))/workspace/paasta-4.0/release/paasta/bpm-0.13.0-ubuntu-xenial-97.28-20181023-211102-981313842.tgz
+  url: file:///home/((inception_os_user_name))/workspace/paasta-5.0/release/paasta/bpm-0.13.0-ubuntu-xenial-97.28-20181023-211102-981313842.tgz
   version: 0.13.0
 - name: redis
   version: 14.0.1
-  url: file:///home/((inception_os_user_name))/workspace/paasta-4.0/release/service/redis-14.0.1.tgz
+  url: file:///home/((inception_os_user_name))/workspace/paasta-5.0/release/service/redis-14.0.1.tgz
   sha1: fd4a6107e1fb8aca1d551054d8bc07e4f53ddf05
 - name: influxdb
   version: latest
-  url: file:///home/((inception_os_user_name))/workspace/paasta-4.0/release/service/influxdb.tgz
+  url: file:///home/((inception_os_user_name))/workspace/paasta-5.0/release/service/influxdb.tgz
   sha1: 2337d1f26f46100b8d438b50b71e300941da74a2
 
 
@@ -719,7 +730,7 @@ Note:
 1)	mariadb, influxdb, redis vm은 사용자가 직접 ip를 지정한다. Ip 지정시 paasta-monitoring.yml의 az와 cloud-config의 subnet이 일치하는 ip대역내에 ip를 지정한다.
 2)	bosh_url: bosh 설치시 설정한 bosh private ip
 3)	bosh_password: bosh admin Password로 bosh deploy시 생성되는 bosh admin password를 입력해야 한다. 
-~/workspace/paasta-4.0/deployment/bosh-deployment/{iaas}/creds.yml
+~/workspace/paasta-5.0/deployment/bosh-deployment/{iaas}/creds.yml
 creds.yml
 admin_password: xxxxxxxxx 
 4)	smtp_url: smtp Server ip (PaaS-TA를 설치한 시스템에서 사용가능한 smtp 서버 IP
@@ -729,7 +740,7 @@ admin_password: xxxxxxxxx
 
 Monit-deploy.sh을 실행하여 paasta-monitoring을 설치 한다
 ```
-$ cd ~/workspace/paasta-4.0/deployment/service-deployment/paasta-monitoring
+$ cd ~/workspace/paasta-5.0/deployment/service-deployment/paasta-monitoring
 $ monit-deploy.sh
 ```
 
@@ -759,9 +770,10 @@ member_info에는 사용자가 사용할 ID/PWD를 입력하고 하단 paas-info
 
 
 [PaaSTa_Monit_architecure_Image]:./images/monit_architecture.png
+[Caas_Monit_architecure_Image]:./images/caas_monitoring_architecture.png
 [PaaSTa_Monit_collect_architecure_Image]:./images/collect_architecture.png
 [PaaSTa_release_dir]:./images/paasta-release.png
-[PaaSTa_logsearch_vms]:./images/logsearch.png
+[PaaSTa_logsearch_vms_5.0]:./images/logsearch_5.0.png
 [PaaSTa_monitoring_vms]:./images/paasta-monitoring.png
 
 [PaaSTa_monitoring_login]:./images/monit_login.png
