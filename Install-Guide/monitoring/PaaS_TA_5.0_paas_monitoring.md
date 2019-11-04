@@ -61,7 +61,7 @@ Batch 프로세스는 PaaS-TA Portal Caas 서비스에서 등록한 임계치 �
 Monitoring 시스템 은 K8s(Prometheus Agent)로부터 시스템 메트 데이터를 조회하고, 조회된 정보는 CaaS Monitoring 시스템의 현재 자원 사용 현황을 조회한다.
 Monitoring Portal은 관리자 화면으로 알람이 발생된 이벤트 현황 정보를 조회하고, kubernests Pod 현황 및 서비스에 대한 통계 정보를 조회할 수 있으며, 이벤트 관련 처리정보를 이력관리할 수 있는 화면을 제공한다
 
-![Saas_Monit_architecure_Image]
+![Caas_Monit_architecure_Image]
 
 ## <div id='7-2'/>2.4. SaaS  Monitoring Architecture
 Saas 서비스 모니터링 운영환경에는 크게 Backend 환경에서 실행되는 Batch 프로세스 영역과 Frontend 환경에서 실행되는 Monitoring 시스템 영역으로 나누어진다.
@@ -480,7 +480,7 @@ $ bosh –e {director_name} vms
 ## <div id='12-1'/>3.5.	paasta-monitoring release 설치
 
 PaaS-TA SaaS Application CPU, Memory, Thread , Response Time 정보를 수집을 위해서는 paasta-pinpoint-monitoring가 설치되어야 한다. 
-저세한 설치 방법은 아래 링크를 참조하길 바랍니다.
+자세한 설치 방법은 아래 링크를 참조하길 바랍니다.
 > **[설치 정보](https://github.com/PaaS-TA/PAAS-TA-PINPOINT-MONITORING-RELEASE)**
 
 ## <div id='15'/>3.5.	PaaS-TA Monitoring 설치
