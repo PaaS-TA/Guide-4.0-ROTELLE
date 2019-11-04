@@ -477,7 +477,7 @@ $ bosh –e {director_name} vms
 ```
 ![PaaSTa_logsearch_vms_5.0]
 
-## <div id='12-1'/>3.5.	PaaS-TA PINPOINT Monitoring 설치
+## <div id='12-1'/>3.5.	paasta-monitoring release 설치
 
 PaaS-TA SaaS Application CPU, Memory, Thread , Response Time 정보를 수집을 위해서는 paasta-pinpoint-monitoring가 설치되어야 한다. 
 저세한 설치 방법은 아래 링크를 참조하길 바랍니다.
@@ -762,7 +762,7 @@ $ monit-deploy.sh
 ```
 $ bosh –e {director_name} vms
 ```
-![PaaSTa_monitoring_vms]
+![PaaSTa_monitoring_vms_5.0]
 
 
 ### <div id='18'/>3.5.3. monitoring dashboard접속
@@ -771,16 +771,16 @@ $ bosh –e {director_name} vms
 
  Login 화면에서 회원 가입 버튼을 클릭한다.
 
- ![PaaSTa_monitoring_login]
+ ![PaaSTa_monitoring_login_5.0]
 
 
 member_info에는 사용자가 사용할 ID/PWD를 입력하고 하단 paas-info에는 PaaS-TA admin 권한의 계정을 입력한다. paasta deploy시 입력한 admin/pwd를 입력해야 한다. 입력후 [인증수행]를 실행후 Joing버튼을 클릭하면 회원가입이 완료된다.
 
- ![PaaSTa_monitoring_join]
+ ![PaaSTa_monitoring_join_5.0]
 
 모니터링 main dashboard 화면
 
- ![PaaSTa_monitoring_main_dashboard]
+ ![PaaSTa_monitoring_main_dashboard_5.0]
 
 
 [PaaSTa_Monit_architecure_Image]:./images/monit_architecture.png
