@@ -7,17 +7,22 @@
 2. [PaaS-TA  Monitoring Architecture](#5)
     * [PaaS-TA  Monitoring Architecture](#6)
     * [PaaS-TA 자원정보 수집 Architecture](#7)
-3. [PaaS-TA Monitoring 설치](#8)
-    * [Pre-requsite](#9)
-    * [PaaS-TA 5.0 모니터링 설치 파일 다운로드](#10)
-    * [PaaS-Ta Monitoring 설치환경](#11)
-    * [Logsearch 설치](#12)
-        *  [logsearch-deployment.yml](#13)
-        *  [deploy.sh](#14)
-    * [PaaS-TA Monitoring 설치](#15)
-        *  [paasta-monitoring.yml](#16)
-        *  [monit-deploy.sh](#17)
-    * [monitoring dashboard접속](#18)
+    * [CaaS  Monitoring Architecture](#8)
+    * [CaaS 자원정보 수집 Architecture](#9)
+    * [SaaS  Monitoring Architecture](#10)
+    * [SaaS 자원정보 수집 Architecture](#11)
+3. [PaaS-TA Monitoring 설치](#12)
+    * [Pre-requsite](#13)
+    * [PaaS-TA 5.0 모니터링 설치 파일 다운로드](#14)
+    * [PaaS-Ta Monitoring 설치환경](#15)
+    * [Logsearch 설치](#16)
+        *  [logsearch-deployment.yml](#17)
+        *  [deploy.sh](#18)
+    * [paasta-monitoring release 설치](#19)    
+    * [PaaS-TA Monitoring 설치](#20)
+        *  [paasta-monitoring.yml](#21)
+        *  [monit-deploy.sh](#22)
+    * [monitoring dashboard접속](#23)
 
 # <div id='1'/>1.  문서 개요 
 
@@ -55,7 +60,7 @@ PaaS-TA 서비스는 내부적으로 메트릭스 정보를 수집 및 전달하
 
 ![PaaSTa_Monit_collect_architecure_Image]
 
-## <div id='7-1'/>2.3. CaaS  Monitoring Architecture
+## <div id='8'/>2.3. CaaS  Monitoring Architecture
 Caas 서비스 모니터링 운영환경에는 크게 Backend 환경에서 실행되는 Batch 프로세스 영역과 Frontend 환경에서 실행되는 Monitoring 시스템 영역으로 나누어진다.
 Batch 프로세스는 PaaS-TA Portal Caas 서비스에서 등록한 임계치 정보를 기준으로 주기적으로 시스템 metrics 정보를 조회 및 분석하여, 임계치를 초과한 서비스 발견시 관리자에게 Alarm을 전송한다.
 Monitoring 시스템 은 K8s(Prometheus Agent)로부터 시스템 메트 데이터를 조회하고, 조회된 정보는 CaaS Monitoring 시스템의 현재 자원 사용 현황을 조회한다.
@@ -63,12 +68,12 @@ Monitoring Portal은 관리자 화면으로 알람이 발생된 이벤트 현황
 
 ![Caas_Monit_architecure_Image]
 
-## <div id='7-1'/>2.3. CaaS  자원정보 수집 Architecture
+## <div id='9'/>2.4. CaaS  자원정보 수집 Architecture
 CaaS 서비스는 내부적으로 메트릭스 정보를 수집 하는 Prometheus Metric Agent(Node Exporter, cAdvisor) 제공한다. Prometheus 기본 제공되는 로컬 디지스 Time-Series Database 정보를 저장한다. 해당 정보를 조회하기 위해서는 Prometheus 제공하는 API를 통하여 조회할 수 있다.
 
 ![Caas_Monit_collect_architecure_Image]
 
-## <div id='7-2'/>2.4. SaaS  Monitoring Architecture
+## <div id='10'/>2.5. SaaS  Monitoring Architecture
 Saas 서비스 모니터링 운영환경에는 크게 Backend 환경에서 실행되는 Batch 프로세스 영역과 Frontend 환경에서 실행되는 Monitoring 시스템 영역으로 나누어진다.
 Batch 프로세스는 PaaS-TA Portal SaaS 서비스에서 등록한 임계치 정보를 기준으로 주기적으로 시스템 metrics 정보를 조회 및 분석하여, 임계치를 초과한 서비스 발견시 관리자에게 Alarm을 전송한다.
 Monitoring 시스템 은 PINPOINT APM Server 로부터 시스템 메트 데이터를 조회하고, 조회된 정보는 SaaS Monitoring 시스템의 현재 자원 사용 현황을 조회한다.
@@ -76,20 +81,20 @@ Monitoring Portal은 관리자 화면으로 알람이 발생된 이벤트 현황
 
 ![Saas_Monit_architecure_Image]
 
-## <div id='7-1'/>2.3. SaaS  자원정보 수집 Architecture
+## <div id='11'/>2.6. SaaS  자원정보 수집 Architecture
 SaaS 서비스는 내부적으로 메트릭스 정보를 수집 하는 PINPOINT Metric Agent 제공한다. Metric Agent는 Application JVM 관련 멭릭스를 수집하여 Hbase DB에 정보를 저장한다. 해당 정보를 조회하기 우해서 PINPOINT APM 서버의 API를 통하여 조회할 수 있다.
 
 ![Saas_Monit_collect_architecure_Image]
 
-# <div id='8'/>3.	PaaS-TA Monitoring 설치
+# <div id='12'/>3.	PaaS-TA Monitoring 설치
 
-## <div id='9'/>3.1. Pre-requsite
+## <div id='13'/>3.1. Pre-requsite
 
 1. PaaS-Ta 5.0 Monitoring을 설치 하기 위해서는 bosh 설치과정에서 언급한 것 처럼 관련 deployment, release , stemcell을 파스타 사이트에서 다운로드 받아 정해진 경로에 복사 해야 한다.
 2. PaaS-TA 5.0이 설치되어 있어야 하며 monitoring Agent가 설치되어 있어야 한다.
 3. bosh login이 되어 있어야 한다.
 
-## <div id='10'/>3.2.	PaaS-TA 5.0 모니터링 설치 파일 다운로드
+## <div id='14'/>3.2.	PaaS-TA 5.0 모니터링 설치 파일 다운로드
 
 > **[설치 파일 다운로드 받기](https://paas-ta.kr/download/package)**
 
@@ -99,7 +104,7 @@ SaaS 서비스는 내부적으로 메트릭스 정보를 수집 하는 PINPOINT 
 
 ![PaaSTa_release_dir_5.0]
 
-## <div id='11'/>3.3. PaaS-Ta Monitoring 설치환경
+## <div id='15'/>3.3. PaaS-Ta Monitoring 설치환경
 
 ~/workspace/paasta-5.0/deployment/service-deployment 이하 디렉토리에는 logsearch, pasta-monitoring 디렉토리가 존재한다. Logsearch는 logAgent에서 발생한 Log정보를 수집하여 저장하는 Deployment이다. Pasta-monitoring은 PaaS-TA VM에서 발생한 Metric정보를 수집하여 모니터링을 실행한다.
 
@@ -107,7 +112,7 @@ SaaS 서비스는 내부적으로 메트릭스 정보를 수집 하는 PINPOINT 
 $ cd ~/workspace/paasta-5.0/deployment/service-deployment
 ```
 
-## <div id='12'/>3.4.	Logsearch 설치
+## <div id='16'/>3.4.	Logsearch 설치
 
 PaaS-TA VM Log수집을 위해서는 logsearch가 설치되어야 한다. 
 
@@ -115,7 +120,7 @@ PaaS-TA VM Log수집을 위해서는 logsearch가 설치되어야 한다.
 $ cd ~/workspace/paasta-5.0/deployment/service-deployment/logsearch
 ```
 
-### <div id='13'/>3.4.1.	logsearch-deployment.yml
+### <div id='17'/>3.4.1.	logsearch-deployment.yml
 logsearch-deployment.yml에는 ls-router, cluster-monitor, elasticsearch_data, elastic_master, kibana, mainternance 의 명세가 정의되어 있다. 
 
 ```
@@ -461,7 +466,7 @@ stemcells:
   version: "315.36"
 ```
 
-### <div id='14'/>3.4.2. deploy.sh
+### <div id='18'/>3.4.2. deploy.sh
 
 deploy.sh의 –v 의 inception_os_user_name, router_ip, system_domain 및 director_name을 시스템 상황에 맞게 설정한다.
 system_domain은 paasta 설치시 설정했던 system_domain을 입력하면 된다.
@@ -487,13 +492,13 @@ $ bosh –e {director_name} vms
 ```
 ![PaaSTa_logsearch_vms_5.0]
 
-## <div id='12-1'/>3.5.	paasta-monitoring release 설치
+## <div id='19'/>3.5.	paasta-monitoring release 설치
 
 PaaS-TA SaaS Application CPU, Memory, Thread , Response Time 정보를 수집을 위해서는 paasta-pinpoint-monitoring가 설치되어야 한다. 
 자세한 설치 방법은 아래 링크를 참조하길 바랍니다.
 > **[설치 정보](https://github.com/PaaS-TA/PAAS-TA-PINPOINT-MONITORING-RELEASE)**
 
-## <div id='15'/>3.5.	PaaS-TA Monitoring 설치
+## <div id='20'/>3.5.	PaaS-TA Monitoring 설치
 
 PaaS 모니터링을 위해서 paasta-monitoring가 설치되어야 한다. 
 
@@ -501,7 +506,7 @@ PaaS 모니터링을 위해서 paasta-monitoring가 설치되어야 한다.
 $ cd ~/workspace/paasta-5.0/deployment/service-deployment/paasta-monitoring
 ```
 
-### <div id='16'/>3.5.1.	paasta-monitoring.yml
+### <div id='21'/>3.5.1.	paasta-monitoring.yml
 paasta-monitoring.yml에는 redis, influxdb(metric_db), mariadb, monitoring-web, monitoring-batch에 대한 명세가 있다.
 
 ```
@@ -716,7 +721,7 @@ update:
 
 ```
 
-### <div id='17'/>3.5.2.	monit-deploy.sh
+### <div id='22'/>3.5.2.	monit-deploy.sh
 monit-deploy.sh의 –v 의 inception_os_user_name, system_domain 및 director_name을 시스템 상황에 맞게 설정한다.
 
 ```
@@ -774,7 +779,7 @@ $ bosh –e {director_name} vms
 ![PaaSTa_monitoring_vms_5.0]
 
 
-### <div id='18'/>3.5.3. monitoring dashboard접속
+### <div id='23'/>3.5.3. monitoring dashboard접속
  
  http://{monitoring-web-ip}:8080 에 접속하여 회원 가입 후 Main Dashboard에 접속한다.
 
