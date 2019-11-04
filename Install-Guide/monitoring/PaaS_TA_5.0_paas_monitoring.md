@@ -87,7 +87,7 @@ Monitoring Portal은 관리자 화면으로 알람이 발생된 이벤트 현황
 
 파스타 다운로드 URL에서 [PaaS-TA 설치 릴리즈] 파일을 다운로드 받아 ~/workspace/paasta-5.0/release 이하 디렉토리에 압축을 푼다. 압출을 풀면 아래 그림과 같이 ~/workspace/paasta-5.0/release/monitoring 이하 디렉토리가 생성되며 이하에 릴리즈 파일(tgz)이 존재한다.
 
-![PaaSTa_release_dir]
+![PaaSTa_release_dir_5.0]
 
 ## <div id='11'/>3.3. PaaS-Ta Monitoring 설치환경
 
@@ -481,8 +481,7 @@ $ bosh –e {director_name} vms
 
 PaaS-TA SaaS Application CPU, Memory, Thread , Response Time 정보를 수집을 위해서는 paasta-pinpoint-monitoring가 설치되어야 한다. 
 저세한 설치 방법은 아래 링크를 참조하길 바랍니다.
-PAAS-TA-PINPOINT-MONITORING-RELEASE : [https://github.com/PaaS-TA/PAAS-TA-PINPOINT-MONITORING-RELEASE](https://github.com/PaaS-TA/PAAS-TA-PINPOINT-MONITORING-RELEASE)
-
+> **[PAAS-TA-PINPOINT-MONITORING-RELEASE Git] (https://github.com/PaaS-TA/PAAS-TA-PINPOINT-MONITORING-RELEASE)**
 
 
 ## <div id='15'/>3.5.	PaaS-TA Monitoring 설치
@@ -788,7 +787,7 @@ member_info에는 사용자가 사용할 ID/PWD를 입력하고 하단 paas-info
 [Caas_Monit_architecure_Image]:./images/caas_monitoring_architecture.png
 [Saas_Monit_architecure_Image]:./images/saas_monitoring_architecture.png
 [PaaSTa_Monit_collect_architecure_Image]:./images/collect_architecture.png
-[PaaSTa_release_dir]:./images/paasta-release.png
+[PaaSTa_release_dir_5.0]:./images/paasta-release_5.0.png
 [PaaSTa_logsearch_vms_5.0]:./images/logsearch_5.0.png
 [PaaSTa_monitoring_vms_5.0]:./images/paasta-monitoring_5.0.png
 
