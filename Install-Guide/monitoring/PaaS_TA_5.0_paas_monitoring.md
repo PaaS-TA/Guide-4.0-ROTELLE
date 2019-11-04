@@ -63,6 +63,11 @@ Monitoring Portal은 관리자 화면으로 알람이 발생된 이벤트 현황
 
 ![Caas_Monit_architecure_Image]
 
+## <div id='7-1'/>2.3. CaaS  자원정보 수집 Architecture
+CaaS 서비스는 내부적으로 메트릭스 정보를 수집 하는 Metric Agent(Node Exporter, cAdvisor) 제공한다. Prometheus 기본 제공되는 로컬 디지스 Time-Series Database 정보를 저장한다. 해당 정보를 조회하기 위해서는 Prometheus 제공하는 API를 통하여 조회할 수 있다.
+
+![Caas_Monit_collect_architecure_Image]
+
 ## <div id='7-2'/>2.4. SaaS  Monitoring Architecture
 Saas 서비스 모니터링 운영환경에는 크게 Backend 환경에서 실행되는 Batch 프로세스 영역과 Frontend 환경에서 실행되는 Monitoring 시스템 영역으로 나누어진다.
 Batch 프로세스는 PaaS-TA Portal SaaS 서비스에서 등록한 임계치 정보를 기준으로 주기적으로 시스템 metrics 정보를 조회 및 분석하여, 임계치를 초과한 서비스 발견시 관리자에게 Alarm을 전송한다.
@@ -786,6 +791,7 @@ member_info에는 사용자가 사용할 ID/PWD를 입력하고 하단 paas-info
 [Caas_Monit_architecure_Image]:./images/caas_monitoring_architecture.png
 [Saas_Monit_architecure_Image]:./images/saas_monitoring_architecture.png
 [PaaSTa_Monit_collect_architecure_Image]:./images/collect_architecture.png
+[CaaS_Monit_collect_architecure_Image]:./images/caas_collect_architecture.png
 [PaaSTa_release_dir_5.0]:./images/paasta-release_5.0.png
 [PaaSTa_logsearch_vms_5.0]:./images/logsearch_5.0.png
 [PaaSTa_monitoring_vms_5.0]:./images/paasta-monitoring_5.0.png
