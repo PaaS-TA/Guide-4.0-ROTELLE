@@ -64,7 +64,7 @@ Monitoring Portal은 관리자 화면으로 알람이 발생된 이벤트 현황
 ![Caas_Monit_architecure_Image]
 
 ## <div id='7-1'/>2.3. CaaS  자원정보 수집 Architecture
-CaaS 서비스는 내부적으로 메트릭스 정보를 수집 하는 Metric Agent(Node Exporter, cAdvisor) 제공한다. Prometheus 기본 제공되는 로컬 디지스 Time-Series Database 정보를 저장한다. 해당 정보를 조회하기 위해서는 Prometheus 제공하는 API를 통하여 조회할 수 있다.
+CaaS 서비스는 내부적으로 메트릭스 정보를 수집 하는 Prometheus Metric Agent(Node Exporter, cAdvisor) 제공한다. Prometheus 기본 제공되는 로컬 디지스 Time-Series Database 정보를 저장한다. 해당 정보를 조회하기 위해서는 Prometheus 제공하는 API를 통하여 조회할 수 있다.
 
 ![Caas_Monit_collect_architecure_Image]
 
@@ -75,6 +75,11 @@ Monitoring 시스템 은 PINPOINT APM Server 로부터 시스템 메트 데이�
 Monitoring Portal은 관리자 화면으로 알람이 발생된 이벤트 현황 정보를 조회하고, Application 현황 및 서비스에 대한 통계 정보를 조회할 수 있으며, 이벤트 관련 처리정보를 이력관리할 수 있는 화면을 제공한다
 
 ![Saas_Monit_architecure_Image]
+
+## <div id='7-1'/>2.3. SaaS  자원정보 수집 Architecture
+SaaS 서비스는 내부적으로 메트릭스 정보를 수집 하는 PINPOINT Metric Agent 제공한다. Metric Agent는 Application JVM 관련 멭릭스를 수집하여 Hbase DB에 정보를 저장한다. 해당 정보를 조회하기 우해서 PINPOINT APM 서버의 API를 통하여 조회할 수 있다.
+
+![Saas_Monit_collect_architecure_Image]
 
 # <div id='8'/>3.	PaaS-TA Monitoring 설치
 
@@ -792,6 +797,7 @@ member_info에는 사용자가 사용할 ID/PWD를 입력하고 하단 paas-info
 [Saas_Monit_architecure_Image]:./images/saas_monitoring_architecture.png
 [PaaSTa_Monit_collect_architecure_Image]:./images/collect_architecture.png
 [CaaS_Monit_collect_architecure_Image]:./images/caas_collect_architecture.png
+[SaaS_Monit_collect_architecure_Image]:./images/saas_collect_architecture.png
 [PaaSTa_release_dir_5.0]:./images/paasta-release_5.0.png
 [PaaSTa_logsearch_vms_5.0]:./images/logsearch_5.0.png
 [PaaSTa_monitoring_vms_5.0]:./images/paasta-monitoring_5.0.png
