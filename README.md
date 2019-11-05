@@ -39,8 +39,8 @@
 - [PaaS-TA 포털 API](./Install-Guide/Portal/PaaS-TA_Portal_API_install.md)
 
 ## 모니터링 설치 가이드
-- [PaaS-TA 모니터링](./Install-Guide/monitoring/PaaS_TA_4.0_paas_monitoring.md)
-- [IaaS/PaaS(PaaS-TA) 통합 모니터링](./Install-Guide/monitoring/PaaS_TA_4.0_iaas_paas_monitoring.md)
+- [PaaS-TA 모니터링](./Install-Guide/monitoring/PaaS_TA_5.0_paas_monitoring.md)
+- [IaaS/PaaS(PaaS-TA) 통합 모니터링](./Install-Guide/monitoring/PaaS_TA_5.0_iaas_paas_monitoring.md)
 
 ## 마켓플레이스 설치 가이드
 - [PaaS-TA 마켓플레이스](./Install-Guide/Marketplace/PaaS-TA_Marketplace_Install_guide.md)
