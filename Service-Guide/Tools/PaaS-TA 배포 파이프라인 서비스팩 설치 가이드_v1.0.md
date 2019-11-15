@@ -195,9 +195,9 @@ BOSH CLI v2 가 설치 되어 있지 않을 경우 먼저 BOSH2.0 설치 가이�
 
 	    	Succeeded
 
--	Mysql 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
+-	paasta-delivery-pipeline-release 서비스 릴리즈가 업로드 되어 있지 않은 것을 확인
 
--	MySQL 서비스 릴리즈 파일을 업로드한다.
+-	paasta-delivery-pipeline-release 서비스 릴리즈 파일을 업로드한다.
 
 - **사용 예시**
 
@@ -615,7 +615,7 @@ name: paasta-delivery-pipeline-service                      # 서비스 배포�
 
 releases:
 - name: paasta-delivery-pipeline-release                    # 서비스 릴리즈 이름(필수)
-  version: "1.0"                                        # 서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
+  version: "latest"                                        # 서비스 릴리즈 버전(필수):latest 시 업로드된 서비스 릴리즈 최신버전
 
 stemcells:
 - alias: default
@@ -734,7 +734,6 @@ instance_groups:
   - name: ((default_network_name))
     static_ips:
     - 10.30.107.66
-#    - 10.30.107.166
   templates:
   - name: delivery-pipeline-common-api
     release: paasta-delivery-pipeline-release
@@ -749,7 +748,6 @@ instance_groups:
   - name: ((default_network_name))
     static_ips:
     - 10.30.107.62
-#    - 10.30.107.162
   templates:
   - name: delivery-pipeline-inspection-api
     release: paasta-delivery-pipeline-release
@@ -778,7 +776,6 @@ instance_groups:
   - name: ((default_network_name))
     static_ips:
     - 10.30.107.65
-#    - 10.30.107.165
   templates:
   - name: delivery-pipeline-api
     release: paasta-delivery-pipeline-release
@@ -851,7 +848,7 @@ properties:
     admin_user:
       username: 'admin'
       password: '!paas_ta202'
-    http_url: '10.30'
+    http_url: '10.30'                                      #내부 IP주소의 앞의 두자리수를 입력해야한다. 예 10.110.10.10 일경우 10.110을 입력해줘야한다. 
     http_port: 8088
     ajp13_port: 8009
     ssh:
@@ -869,12 +866,10 @@ properties:
     shared:                                                # Shared 서비스 설정 정보
       urls:
         - http://10.30.107.71:8088
-    #    - http://10.30.107.72:8088
     dedicated:                                             # Dedicated 서비스 설정 정보
       urls:
         - http://10.30.107.72:8088
-    #    - http://10.30.107.74:8088
-    #    - http://10.30.107.75:8088
+
 
   mariadb:                                                 # MARIA DB SERVER 설정 정보
     port: 3306
@@ -934,7 +929,6 @@ properties:
     haproxy:
       urls:
         - 10.30.107.66
-#        - 10.30.107.166
     java_opts: '-XX:MaxMetaspaceSize=104857K -Xss349K -Xms681574K -XX:MetaspaceSize=104857K -Xmx681574K'
 
   pipeline_api:                                            # CI API 설정 정보
@@ -953,7 +947,6 @@ properties:
     haproxy:
       urls:
         - 10.30.107.65
-#        - 10.30.107.165
     java_opts: '-XX:MaxMetaspaceSize=104857K -Xss349K -Xms681574K -XX:MetaspaceSize=104857K -Xmx681574K'
 
   inspection_api:                                          # INSPECTION API 설정 정보
@@ -972,7 +965,6 @@ properties:
     haproxy:
       urls:
         - 10.30.107.62
-#        - 10.30.107.162
     java_opts: '-XX:MaxMetaspaceSize=104857K -Xss349K -Xms681574K -XX:MetaspaceSize=104857K -Xmx681574K'
 
   binary_storage_api:                                      # BINARY STORAGE API 설정 정보
@@ -1899,7 +1891,7 @@ paasta-redis-broker           http://10.30.60.71:12350
   **서비스팩 사용자ID** / 비밀번호 : 서비스팩에 접근할 수 있는 사용자 ID입니다. 서비스팩도 하나의 API 서버이기 때문에 아무나 접근을 허용할 수 없어 접근이 가능한 ID/비밀번호를 입력한다.<br>
   **서비스팩 URL** : 서비스팩이 제공하는 API를 사용할 수 있는 URL을 입력한다.
   
->`$ cf create-service-broker delivery-pipeline admin cloudfoundry http://10.30.107.64:9090`
+>`$ cf create-service-broker delivery-pipeline admin cloudfoundry http://10.30.107.64:8080`
 
 ##### 등록된 배포 파이프라인 서비스 브로커를 확인한다.
 
@@ -1910,7 +1902,7 @@ Getting service brokers as admin...
 name                          url
 cubrid-service-broker         http://10.30.60.22:8080
 glusterfs-service             http://10.30.120.197:8080
-delivery-pipeline             http://10.30.107.64:9090
+delivery-pipeline             http://10.30.107.64:8080
 mysql-service-broker          http://10.30.40.195:8080
 paasta-redis-broker           http://10.30.60.71:12350
 ```
@@ -1953,7 +1945,7 @@ broker: delivery-pipeline
 ```
 
 ##### 특정 조직에 해당 서비스 접근 허용을 할당하고 접근 서비스 목록을 다시 확인한다. (전체 조직)
->`$ cf enable-service-access delivery-pipeline default`
+>`$ cf enable-service-access delivery-pipeline`
 
 ```
 Getting service access as admin...
