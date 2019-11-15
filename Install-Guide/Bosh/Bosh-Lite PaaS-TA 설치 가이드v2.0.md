@@ -47,9 +47,11 @@ $ bosh -e vbox update-cloud-config bosh-lite-cloud-config.yml
 
 ### Upload a runtime-config
 ```
-~/workspace/paasta-4.0/deployment/bosh-deployment$ chmod 755 ./update-runtime-config.sh
+$ cd ~/workspace/paasta-4.0/deployment/bosh-deployment
 
-~/workspace/paasta-4.0/deployment/bosh-deployment$ ./update-runtime-config.sh
+$ chmod 755 ./update-runtime-config.sh
+
+$ ./update-runtime-config.sh
 ```
 >https://github.com/cloudfoundry/cf-deployment/issues/648  
 >https://github.com/cloudfoundry/cf-deployment/blob/master/deployment-guide.md#upload-a-runtime-config
@@ -58,11 +60,11 @@ $ bosh -e vbox update-cloud-config bosh-lite-cloud-config.yml
 
 
 ```
-cd ~/workspace/paasta-4.0/stemcell
+$ cd ~/workspace/paasta-4.0/stemcell
 
-wget --content-disposition https://bosh.io/d/stemcells/bosh-warden-boshlite-ubuntu-xenial-go_agent?v=97.28
+$ wget --content-disposition https://bosh.io/d/stemcells/bosh-warden-boshlite-ubuntu-xenial-go_agent?v=97.28
 
-~/workspace/paasta-4.0/stemcell$ bosh -e vbox upload-stemcell bosh-warden-boshlite-ubuntu-xenial-go_agent-97.28.tgz
+$ bosh -e vbox upload-stemcell bosh-warden-boshlite-ubuntu-xenial-go_agent-97.28.tgz
 Using environment '192.168.50.6' as client 'admin'
 
 
@@ -125,7 +127,7 @@ bosh -e vbox -d paasta deploy paasta-deployment.yml \
 
 
 ```
-~/workspace/paasta-4.0/deployment/paasta-deployment$ ./deploy-bosh-lite.sh
+$ ./deploy-bosh-lite.sh
 
 Task 32 | 07:43:05 | Preparing deployment: Preparing deployment (00:00:29)
 Task 32 | 07:43:34 | Preparing deployment: Rendering templates (00:00:14)

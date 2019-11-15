@@ -37,7 +37,7 @@
 본 문서에서는 Linux 환경(Ubuntu 16.04)을 기준으로 인프라 환경에 플랫폼
 설치 자동화의 설치하는 방법에 대해 작성되었다.
 
-Openstack을 통해 PaaS-TA 4.0을 배포 할 경우 지원이 검증 된 Openstack 버전의 범위는 아래와 같다.
+Openstack을 통해 PaaS-TA 4.6을 배포 할 경우 지원이 검증 된 Openstack 버전의 범위는 아래와 같다.
 <table>
 <tr>
 <td>Openstack Version</td>
@@ -157,22 +157,22 @@ CF & Diego Document:
 
 [다운로드](https://paas-ta.kr/download/package)
 
-	  IEDA-WEB-INSTALLER-v4.0.tar
-	  OPENPAAS-IEDA-WEB-v4.0.tar
+	  IEDA-WEB-INSTALLER-v4.6.tar
+	  OPENPAAS-IEDA-WEB-v4.6.tar
 
 
-### 3.  다운로드 받은 IEDA-WEB-INSTALLER-v4.0.tar 파일을 Home 디렉토리에 압축을 푼다.
+### 3.  다운로드 받은 IEDA-WEB-INSTALLER-v4.6.tar 파일을 Home 디렉토리에 압축을 푼다.
 
-  	$ tar xvf IEDA-WEB-INSTALLER-v4.0.tar -C ~/
+  	$ tar xvf IEDA-WEB-INSTALLER-v4.6.tar -C ~/
 
 
 ### 4.  플랫폼 설치 자동화 설치 및 서비스 등록
 
 	$ cd IEDA-WEB-INSTALLER
-	$ ./deployer-install.sh <OPENPAAS_IEDA_WEB-v4.0.tar 파일이 있는 경로>/OPENPAAS_IEDA_WEB-v4.0.tar <mysql 비밀번호>
+	$ ./deployer-install.sh <OPENPAAS_IEDA_WEB-v4.6.tar 파일이 있는 경로>/OPENPAAS_IEDA_WEB-v4.6.tar <mysql 비밀번호>
 	
 	ex)
-	$ ./deployer-install.sh ~/Downloads/OPENPAAS_IEDA_WEB-v4.0.tar 1q2w3e4r5t
+	$ ./deployer-install.sh ~/Downloads/OPENPAAS_IEDA_WEB-v4.6.tar 1q2w3e4r5t
 
 
 

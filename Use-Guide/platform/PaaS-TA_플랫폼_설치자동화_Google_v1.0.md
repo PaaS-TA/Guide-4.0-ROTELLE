@@ -21,8 +21,8 @@
 	  * [릴리즈 업로드](#20)
 	  * [Manifest 업로드](#21)
 	  * [서비스팩 설치](#22)
- 		
-# <div id='1'/>1.  문서 개요 
+
+# <div id='1'/>1.  문서 개요
 
 ## <div id='2'/>1.1.  목적
 
@@ -34,7 +34,7 @@
 
 # <div id='4'/>2.  플랫폼 설치 가이드
 
-BOSH는 클라우드 환경에 서비스를 배포하고 소프트웨어 릴리즈를 관리해주는 오픈 소스로 Bootstrap은 하나의 VM에 설치 관리자의 모든 컴포넌트를 설치한 것으로 PaaS-TA 설치를 위한 관리자 기능을 담당한다. 
+BOSH는 클라우드 환경에 서비스를 배포하고 소프트웨어 릴리즈를 관리해주는 오픈 소스로 Bootstrap은 하나의 VM에 설치 관리자의 모든 컴포넌트를 설치한 것으로 PaaS-TA 설치를 위한 관리자 기능을 담당한다.
 
 플랫폼 설치 자동화를 이용해서 클라우드 환경에 PaaS-TA를 설치하기 위해서는 인프라 설정, 스템셀 소프트웨어 릴리즈, Manifest 파일, 인증서 파일 5가지 요소가 필요하다. 스템셀은 클라우드 환경에 VM을 생성하기 위해 사용할 기본 이미지이고, 소프트웨어 릴리즈는 VM에 설치할 소프트웨어 패키지들을 묶어 놓은 파일이고, Manifest파일은 스템셀과 소프트웨어 릴리즈를 이용해서 서비스를 어떤 식으로 구성할지를 정의해 놓은 명세서이다. 다음 그림은 BOOTSTRAP을 이용하여 PaaS-TA를 설치하는 절차이다.
 
@@ -112,7 +112,7 @@ BOOTSTRAP & PaaS-TA를 설치하기 위해서는 사전에 인프라 환경 구�
 ##### 2.5	프로젝트에 대한 API Service를 Enable 시켜준다. <br>Enable API 설정 목록은 GCE(Compute Engine) API, IAM API, Cloud Resource Manager API 3가지이다.
 
 ##### 2.6	Console 화면에서 “APIs & Services” 버튼을 클릭한다.
- 
+
 ##### 2.7	APIs & Services 화면에서 “ENABLE APIS AND SERVICES” 버튼을 클릭한다.
 
 ##### 2.8	ENABLE APIS AND SERVICES 화면에서 위에 언급한 3가지의 API를 검색하여 Enable 시켜준다.
@@ -254,7 +254,14 @@ BOOTSTRAP & PaaS-TA를 설치하기 위해서는 사전에 인프라 환경 구�
 <td>bosh/268.2.0</td>
 <td>bosh-google-cpi/27.0.1</td>
 <td>bpm/0.12.3</td>
-<td>bosh-google-kvm-ubuntu-xenial-go_agent/97.12/td>
+<td>bosh-google-kvm-ubuntu-xenial-go_agent/97.12</td>
+</tr>
+
+<tr>
+<td>bosh/270.2.0</td>
+<td>bosh-google-cpi/29.0.1</td>
+<td>bpm/1.1.0</td>
+<td>bosh-google-kvm-ubuntu-xenial-go_agent/315.64</td>
 </tr>
 </table>
 
@@ -283,12 +290,20 @@ BOOTSTRAP & PaaS-TA를 설치하기 위해서는 사전에 인프라 환경 구�
 <td>bosh-google-kvm-ubuntu-xenial-go_agent/97.18</td>
 </tr>
 <tr>
+<td>cf-deployment/5.5.0</td>
+<td>bosh-google-kvm-ubuntu-xenial-go_agent/97.28</td>
+</tr>
+<tr>
+<td>cf-deployment/9.3.0</td>
+<td>bosh-google-kvm-ubuntu-xenial-go_agent/315.36</td>
+</tr>
+<tr>
 <td>paasta/4.0</td>
 <td>bosh-google-kvm-ubuntu-xenial-go_agent/97.28</td>
 </tr>
 <tr>
-<td>cf-deployment/5.5.0</td>
-<td>bosh-google-kvm-ubuntu-xenial-go_agent/97.28</td>
+<td>paasta/4.6</td>
+<td>bosh-google-kvm-ubuntu-xenial-go_agent/315.36</td>
 </tr>
 </table>
 
@@ -308,7 +323,7 @@ PaaS-TA를 설치하기 위해 “PaaS-TA 설치 자동화” 메뉴를 클릭�
 
 ![Google_PaaSTa_Platform_Use_Guide_Image13]
 
-환경 설정 관리 화면 이동 컨테이너를 클릭하여 플랫폼 설치에 필요한 각 계정 정보를 등록한다. 
+환경 설정 관리 화면 이동 컨테이너를 클릭하여 플랫폼 설치에 필요한 각 계정 정보를 등록한다.
 
 #### 1.	Google 환경 설정 등록
 
@@ -329,14 +344,13 @@ PaaS-TA를 설치하기 위해 “PaaS-TA 설치 자동화” 메뉴를 클릭�
 
 ### 2.5.2.	스템셀 다운로드
 
-플랫폼 설치 자동화 웹 화면에서 “환경설정 및 관리” -> “스템셀 관리” 메뉴로 이동한다. “스템셀 관리” 메뉴에서는 Cloud Foundry에서 제공하는 공개 스템셀을 다운로드할 수 있는 기능을 제공한다. 
+플랫폼 설치 자동화 웹 화면에서 “환경설정 및 관리” -> “스템셀 관리” 메뉴로 이동한다. “스템셀 관리” 메뉴에서는 Cloud Foundry에서 제공하는 공개 스템셀을 다운로드할 수 있는 기능을 제공한다.
 상단에 위치한 “등록” 버튼을 클릭 후 스템셀 정보를 입력하고 “확인” 버튼을 클릭한다.
 스템셀 다운로드 유형은 총 3가지이며 Version유형으로 다운로드가 안될 경우 로컬에서 다운로드 후 로컬에서 선택 유형/스템셀 다운로드 URL을 통해 다운로드 받는 유형을 이용한다.
 
-	https://bosh.io/stemcells/bosh-google-kvm-ubuntu-trusty-go_agent
 	https://bosh.io/stemcells/bosh-google-kvm-ubuntu-xenial-go_agent
 
-※	**※본 가이드에서는 버전 Ubuntu Xenial 97.12/97.28을 다운로드 하였다.**
+※	**※본 가이드에서는 버전 Ubuntu Xenial 315.64를 다운로드 하였다.**
 
 ![Google_PaaSTa_Platform_Use_Guide_Image15]
 
@@ -349,7 +363,7 @@ PaaS-TA를 설치하기 위해 “PaaS-TA 설치 자동화” 메뉴를 클릭�
 
 ## 2.5.3.	릴리즈 다운로드
 
-BOOTSTRAP을 설치하기 위해서는 BOSH 릴리즈와 BOSH CPI릴리즈 2개의 릴리즈가 필요하며 
+BOOTSTRAP을 설치하기 위해서는 BOSH 릴리즈와 BOSH CPI릴리즈 2개의 릴리즈가 필요하며
 릴리즈를 다운로드하기 위해 플랫폼 설치 자동화 웹 화면에서 “환경설정 및 관리” -> “릴리즈 관리” 메뉴로 이동 후 상단에 위치한 “등록” 버튼을 클릭하고, 릴리즈 등록 팝업 화면에서 릴리즈 정보 입력 후 “등록” 버튼을 클릭한다.
 릴리즈 다운로드 유형은 총 3가지이며 Version유형으로 다운로드가 안될 경우 로컬에서 다운로드 후 로컬에서 선택 유형/릴리즈 다운로드 URL을 통해 다운로드 받는 유형을 이용한다.
 
@@ -363,7 +377,7 @@ BOOTSTRAP을 설치하기 위해서는 BOSH 릴리즈와 BOSH CPI릴리즈 2개�
 
 ![Google_PaaSTa_Platform_Use_Guide_Image16]
 
-※	**본 가이드에서는 v2678.2.0을 다운로드 하였다.**
+※	**본 가이드에서는 v270.2.0을 다운로드 하였다.**
 
 ※	릴리즈 등록 입력 정보
 
@@ -382,7 +396,7 @@ BOOTSTRAP을 설치하기 위해서는 BOSH 릴리즈와 BOSH CPI릴리즈 2개�
 
 ![Google_PaaSTa_Platform_Use_Guide_Image17]
 
-※	**본 가이드에서는 v27.1.0을 다운로드 하였다.**
+※	**본 가이드에서는 v29.0.1을 다운로드 하였다.**
 
 #### 3.	BPM 릴리즈
 
@@ -396,7 +410,7 @@ BOOTSTRAP을 설치하기 위해서는 BOSH 릴리즈와 BOSH CPI릴리즈 2개�
 
 ![Google_PaaSTa_Platform_Use_Guide_Image18]
 
-※	**본 가이드에서는 v0.12.3을 다운로드 하였다.**
+※	**본 가이드에서는 v1.1.0을 다운로드 하였다.**
 
 #### 4.	OS CONF 릴리즈
 ##### 4.1.	릴리즈 등록 팝업화면에서 OS CONF 릴리즈 정보를 입력하고, “등록” 버튼 클릭한다.
@@ -406,11 +420,11 @@ BOOTSTRAP을 설치하기 위해서는 BOSH 릴리즈와 BOSH CPI릴리즈 2개�
 
 ![Google_PaaSTa_Platform_Use_Guide_Image19]
 
-※	**본 가이드에서는 v17을 다운로드 하였다.**
+※	**본 가이드에서는 v21.0.0을 다운로드 하였다.**
 
 ## 2.5.4.	디렉터 인증서
 
-BOOTSTRAP을 설치하기 위해서는 Nats/Director 컴포넌트를 사용하기 위한 인증서 정보, 디렉터 인증서가 필요하며 
+BOOTSTRAP을 설치하기 위해서는 Nats/Director 컴포넌트를 사용하기 위한 인증서 정보, 디렉터 인증서가 필요하며
 디렉터 인증서를 생성하기 위해 플랫폼 설치 자동화 웹 화면에서 “환경설정 및 관리” -> “디렉터 인증서 관리” 메뉴로 이동 후 상단에 위치한 “등록” 버튼을 클릭하고, 디렉터 인증서 팝업 화면에서 디렉터 인증서 정보 입력 후 “등록” 버튼을 클릭한다.
 
 ![Google_PaaSTa_Platform_Use_Guide_Image20]
@@ -425,7 +439,7 @@ BOOTSTRAP을 설치하기 위해서는 Nats/Director 컴포넌트를 사용하�
 
 ## 2.5.5.	BOOTSTRAP설치
 
-BOOTSTRAP 설치하기 위해 플랫폼 설치 자동화 웹 화면에서 “플랫폼 설치” -> “BOOTSTRAP 설치” 메뉴로 이동 후 상단에 위치한 “설치” 버튼을 클릭한다. 
+BOOTSTRAP 설치하기 위해 플랫폼 설치 자동화 웹 화면에서 “플랫폼 설치” -> “BOOTSTRAP 설치” 메뉴로 이동 후 상단에 위치한 “설치” 버튼을 클릭한다.
 
 #### 1	클라우드 환경 선택
 
@@ -492,7 +506,7 @@ BOOTSTRAP 설치하기 위해 플랫폼 설치 자동화 웹 화면에서 “플
 
 ##### 5.1	Google 리소스 정보 입력 후 “다음” 버튼을 클릭한다.
 
-![Google_PaaSTa_Platform_Use_Guide_Image25]
+![Google_PaaSTa_Platform_Use_Guide_Image43]
 
 ※	BOOTSTRAP 설치 리소스 정보 입력 정보
 
@@ -508,7 +522,7 @@ BOOTSTRAP 설치하기 위해 플랫폼 설치 자동화 웹 화면에서 “플
 ![Google_PaaSTa_Platform_Use_Guide_Image27]
 
 ## 2.5.6.	디렉터 설정
-BOOTSTRAP설치가 완료되면 BOOTSTRAP 디렉터 정보를 이용해서 플랫폼 설치 자동화의 설치 관리자로 설정한다. 
+BOOTSTRAP설치가 완료되면 BOOTSTRAP 디렉터 정보를 이용해서 플랫폼 설치 자동화의 설치 관리자로 설정한다.
 디렉터를 등록 위해서는 플랫폼 설치 자동화 웹 화면에서 “환경설정 및 관리” -> “디렉터 설정” 메뉴로 이동 후 상단에 위치한 “등록” 버튼을 클릭하고, 디렉터 등록 팝업 화면에서 디렉터 정보 입력 후 “등록” 버튼을 클릭한다.
 이미 디렉터가 존재할 경우 디렉터를 선택하고 “기본 디렉터로 설정” 버튼을 클릭한다.
 계정 및 비밀번호, 포트번호는 **“admin/admin/25555”**이다.
@@ -527,7 +541,7 @@ BOSH를 설치하고 플랫폼 설치 자동화의 설치 관리자로 설정이
 ![Google_PaaSTa_Platform_Use_Guide_Image29]
 
 ## 2.6.1.	스템셀 업로드
-플랫폼 설치 자동화에서 다운받은 스템셀을 “스템셀 업로드” 화면을 통해 디렉터에 97.28 버전의 스템셀을 업로드 한다.
+플랫폼 설치 자동화에서 다운받은 스템셀을 “스템셀 업로드” 화면을 통해 디렉터에 315.36 버전의 스템셀을 업로드 한다.
 
 ![Google_PaaSTa_Platform_Use_Guide_Image30]
 
@@ -538,24 +552,24 @@ BOSH를 설치하고 플랫폼 설치 자동화의 설치 관리자로 설정이
 ※	플랫폼 설치 자동화를 통해 배포 가능한 PaaS-TA 버전에 맞는 릴리즈와 스템셀을 PaaS-TA 공식 홈페이지 https://paas-ta.kr/download/package에서 다운로드 받는다.
 
 1.	PaaS-TA 릴리즈 사용
-	
+
 	1.1.	다운로드 한 paasta 릴리즈 압축 파일을 scp 명령어를 통해 플랫폼 설치 자동화가 동작하고 있는 Inception 서버로 이동시킨다.
 
 		ex) $ scp -i {inception.key} ubuntu@172.xxx.xxx.xx {릴리즈 압축 일 명} # Key Pair를 사용할 경우
 		ex) $ scp ubuntu@172.xxx.xxx.xx {릴리즈 압축 일 명} # Password를 사용할 경우
-	
-	1.2.	릴리즈 디렉토리를 생성하고 릴리즈 디렉토리에서 해당 릴리즈 파일의 압축을 해제한다.릴리즈 디렉토리의 위치는 반드시 {home}/workspace/paasta-4.0/release/paasta여야 한다.
-		
+
+	1.2.	릴리즈 디렉토리를 생성하고 릴리즈 디렉토리에서 해당 릴리즈 파일의 압축을 해제한다.릴리즈 디렉토리의 위치는 반드시 {home}/workspace/paasta-4.6/release/paasta여야 한다.
+
 		-	디렉토리 생성
-		ex) $ mkdir -p workspace/paasta-4.0/release/paasta
+		ex) $ mkdir -p workspace/paasta-4.6/release/paasta
 		-	릴리즈 압축 파일 이동
-		ex) $ mv {릴리즈 압축 파일 명} workspace/paasta-4.0/release/paasta/
+		ex) $ mv {릴리즈 압축 파일 명} workspace/paasta-4.6/release/paasta/
 		-	릴리즈 파일 압축 해제
 		ex) $ tar xvf {릴리즈 압축 파일 명} # 릴리즈 파일 확장자가 tar인 경우
 		ex) $ unzip {릴리즈 압축 파일 명} # 릴리즈 파일 확장자가 zip인 경우
-	1.3.	아래는 릴리즈 디렉토리의 PaaS-TA 릴리즈 형상 예시 그림이다. 
+	1.3.	아래는 릴리즈 디렉토리의 PaaS-TA 릴리즈 형상 예시 그림이다.
 
-![Google_PaaSTa_Platform_Use_Guide_Image31]
+![Google_PaaSTa_Platform_Use_Guide_Image42]
 
 
 ## 2.6.2.	CF-Deployment 설치
@@ -565,9 +579,9 @@ CF Deployment설치하기 위해 플랫폼 설치 자동화 웹 화면에서 “
 
 ##### 1.1.	배포에 필요한 기본정보와 도메인 / 로그인 비밀번호를 입력 후 “다음” 버튼을 클릭한다.
 
-![Google_PaaSTa_Platform_Use_Guide_Image32]
+![Google_PaaSTa_Platform_Use_Guide_Image44]
 
-※	**본 가이드에서는 버전 paasta/4.0을 설치하였다.**
+※	**본 가이드에서는 버전 paasta/4.6을 설치하였다.**
 
 ※	CF-Deployment 설치 기본 정보 입력 정보
 
@@ -579,7 +593,7 @@ CF Deployment설치하기 위해 플랫폼 설치 자동화 웹 화면에서 “
 -	CF Admin Password: CF Login 패스워드 입력
 -	도메인: CF 설치에 사용 할 도메인 입력 ex) {public IP}.xip.io
 -	Portal 도메인: Portal을 설치 및 접속할 도메인 주소를 입력한다. Portal을 설치하지 않고 CF-Deployment를 실행할 경우 해당 값을 입력하지 않는다.
--	PaaS-TA 모니터링 정보: PaaS-TA 모니터링을 이용하려면 paasta/4.0을 선택하고 PaaS-TA 모니터링 사용을 선택한다.
+-	PaaS-TA 모니터링 정보: PaaS-TA 모니터링을 이용하려면 paasta/4.6을 선택하고 PaaS-TA 모니터링 사용을 선택한다.
 
 
 #### 2.	CF-Deployment 설치 – 클라우드 환경 별 네트워크 정보
@@ -662,7 +676,7 @@ PaaS-TA개발팀에서 제공하는 PaaS-TA 서비스 릴리즈에서 “릴리�
 
 ### <div id='21'/>2.7.2. *Manifest 업로드*
 
-Manifest를 업로드 하기 위해 플랫폼 설치 자동화 웹 화면에서 “배포 정보 조회 및 관리” -> “Manifest 관리” 메뉴로 이동 후 상단의 “업로드” 버튼을 클릭한다. 
+Manifest를 업로드 하기 위해 플랫폼 설치 자동화 웹 화면에서 “배포 정보 조회 및 관리” -> “Manifest 관리” 메뉴로 이동 후 상단의 “업로드” 버튼을 클릭한다.
 
 #### 1. *Manifest 업로드 – 업로드*
 
@@ -675,7 +689,7 @@ Manifest를 업로드 하기 위해 플랫폼 설치 자동화 웹 화면에서 
 
 ### <div id='22'/>2.7.3. *서비스팩 설치*
 
-서비스팩을 설치하기 위해 플랫폼 설치 자동화 웹 화면에서 “플랫폼 설치” -> “서비스팩 설치” 메뉴로 이동 후 상단의 “설치” 버튼을 클릭한다. 
+서비스팩을 설치하기 위해 플랫폼 설치 자동화 웹 화면에서 “플랫폼 설치” -> “서비스팩 설치” 메뉴로 이동 후 상단의 “설치” 버튼을 클릭한다.
 
 #### 1.	*서비스팩 설치 – Manifest 등록*
 
@@ -729,89 +743,6 @@ Manifest를 업로드 하기 위해 플랫폼 설치 자동화 웹 화면에서 
 [Google_PaaSTa_Platform_Use_Guide_Image39]:./images/Install_Guide/Google/servicepack/manifest_upload.png
 [Google_PaaSTa_Platform_Use_Guide_Image40]:./images/Install_Guide/Google/servicepack/manifest_add.png
 [Google_PaaSTa_Platform_Use_Guide_Image41]:./images/Install_Guide/Google/servicepack/servicepack_install.png
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+[Google_PaaSTa_Platform_Use_Guide_Image42]:./images/Install_Guide/Google/cfinstall/paasta_release_4.6.png
+[Google_PaaSTa_Platform_Use_Guide_Image43]:./images/Install_Guide/Google/bootstrapinstall/bootstrap_resource_4.6.png
+[Google_PaaSTa_Platform_Use_Guide_Image44]:./images/Install_Guide/Google/cfinstall/cf_default_4.6.png

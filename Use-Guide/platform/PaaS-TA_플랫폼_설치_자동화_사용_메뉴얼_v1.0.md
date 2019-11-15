@@ -136,3 +136,5 @@
 [PaaS-TA 설치 완료 후 플랫폼 설치 자동화 활용 가이드](./PaaS-TA_플랫폼_설치_자동화_활용_메뉴얼_v1.0.md)
 
 [이종 플랫폼 설치 자동화를 통해 AWS-Openstack PaaS-TA 설치 가이드](./이종_PaaS-TA_설치_자동화_사용_가이드_v1.0.md)
+
+[이종 플랫폼 설치 자동화를 통해 Azure-Openstack PaaS-TA 설치 가이드](./이종_PaaS-TA_설치_자동화_사용_가이드_[OP_Azure]_v1.0.md)

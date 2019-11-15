@@ -9,6 +9,8 @@
   - 파스타 플랫폼 수동 설치 
     - [BOSH 설치(AWS, OpenStack, vSphere, Google, Azure)](./PaaS_TA_BOSH2_Install_Guide-v4.6.md)
     - [파스타 수동 설치(AWS, OpenStack, vSphere, Google, Azure)](./PaaS_TA_PaaS-TA_Install_Guide-v4.6.md)
+    - [BOSH 및 파스타 설치(CLOUDit)](./Use-Guide/platform/PaaS-TA_플랫폼_설치수동_Cloudit_v1.0.md)
+    - [파스타 포털 수동 설치(CLOUDit)](./Use-Guide/platform/PaaS-TA_플랫폼_설치수동_Cloudit_portal_v1.0.md)
   
 ##  가이드
 - [CF Migration 가이드 (3.1 to 4.0)](./PaaS_TA_4.0_migration.md)
