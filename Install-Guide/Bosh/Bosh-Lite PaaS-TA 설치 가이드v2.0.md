@@ -5,7 +5,7 @@
 ```
 $ cd ~/workspace/
 
-$ wget --content-disposition http://45.248.73.44/index.php/s/kdyoEY7dcBDkGJn/download
+$ wget --content-disposition http://45.248.73.44/index.php/s/QYSnxjdKPL4X4Cq/download
 
 or
 
