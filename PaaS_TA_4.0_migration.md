@@ -1,7 +1,7 @@
 ## Table of Contents
 
 1. [Outline](#1)
-  * [object](#2)
+  * [objective](#2)
   * [range](#3)
 2. [Paasta 4.0 version upgrade](#4)
 	* [pre-requsite](#5)
@@ -18,7 +18,7 @@
 
 # <div id='1'/>1. Document Outline
 
-## <div id='2'/>1.1.  Object
+## <div id='2'/>1.1.  Objective
 This document (installation guide) is for upgrading pasta from version 3.1 to 4.0.
 
 ## <div id='3'/>1.2.  Range
