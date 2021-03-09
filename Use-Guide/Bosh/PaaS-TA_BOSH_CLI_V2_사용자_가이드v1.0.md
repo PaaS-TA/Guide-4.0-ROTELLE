@@ -127,13 +127,13 @@ This document aims to understand BOSH by  instruction and use examples for BOSH 
 
 ### <div id='3'/>Document Range 
 
-본 문서에서는 BOSH CLI V2 사용법에 대해서 작성하였다.
+This document is written that how to use BOSH CLI V2.
 
-### <div id='4'/>참고 자료 
+### <div id='4'/>Reference Materials
 
-본 문서는 Cloud Foundry의 BOSH Document([http://bosh.io](http://bosh.io))를 참고로 작성하였다.
+This document was described by referring to BOSH Document of Cloud Foundry([http://bosh.io](http://bosh.io)).
 
-## <div id='5'/>BOSH CLI 기본 사용법
+## <div id='5'/>BOSH CLI Instruction
 
 CLI는 BOSH 배포와 Release를 관리하기 위해 도움을 주는 커맨드 라인 명령어로 아래와 같이 구분된다.
 
