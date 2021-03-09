@@ -1,10 +1,10 @@
 ## Table Contents
-1. [개요](#1)
-	* [문서 목적](#2)
-	* [문서 범위](#3)
-	* [참고 자료](#4)
+1. [Outline](#1)
+	* [Document Objective](#2)
+	* [Document Range](#3)
+	* [Reference Materials](#4)
 
-1. [BOSH CLI 기본 사용법](#5)
+1. [BOSH CLI Instruction](#5)
 
 
 1. [BOSH CLI - Environments](#6)
@@ -120,12 +120,12 @@
 
 
 
-## <div id='1'/>문서 개요
+## <div id='1'/>Document Outline
 
-### <div id='2'/>문서 목적 
-본 문서는 BOSH에 대한 설치 및 운영 관리를 위한 도구인 BOSH CLI v2에 대해 기본 사용법 및 사용 예시를 통해 BOSH를 이해하는데 목적이 있다. 
+### <div id='2'/>Document Objective
+This document aims to understand BOSH by  instruction and use examples for BOSH CLI v2, a tool for installation and operations management for BOSH.
 
-### <div id='3'/>문서 범위 
+### <div id='3'/>Document Range 
 
 본 문서에서는 BOSH CLI V2 사용법에 대해서 작성하였다.
 
