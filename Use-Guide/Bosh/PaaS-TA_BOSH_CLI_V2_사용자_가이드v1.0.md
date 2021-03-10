@@ -375,11 +375,11 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	업로드 한 릴리즈 조회
+	View uploaded releases
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 
@@ -412,7 +412,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|location|스템셀 파일 위치 및 URL 지정|X|
@@ -438,7 +438,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|name|삭제 할 스템셀 명|O|
@@ -462,7 +462,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|name|업데이트 등록 스템셀 명|O|
 	|version|업데이트 등록 스템셀 버전|X|
@@ -487,7 +487,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|--git|BOSH 릴리즈 Git repository에 적절한 .gitignore 파일을 생성|X|
 	|--dir|디렉토리에 대한 빈 릴리스 구성 파일 생성|X|
@@ -510,7 +510,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|name|릴리즈 Job 명칭|O|
 	|--dir|디렉토리에 대한 Job 관련 빈 릴리스 구성 파일 생성|X|
@@ -531,7 +531,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|name|릴리즈 pakage 명칭|O|
 	|--dir|디렉토리에 pakage Job 관련 빈 릴리스 구성 파일 생성|X|
@@ -554,7 +554,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|name|릴리즈 pakage명칭|O|
 	|--dir|디렉토리에 대한 package 관련 빈 릴리스 구성 파일 생성|X|
@@ -575,7 +575,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|--force|릴리스 디렉토리에서 커밋되지 않은 변경 사항을 무시하도록 지정|X|
 	|--version|사용자 정의 릴리스 버전을 제공|X|
@@ -600,7 +600,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|path|릴리즈 tarball 지정|O|
 	|--force|릴리스 디렉토리에서 커밋되지 않은 변경 사항을 무시하도록 지정|X|
@@ -627,7 +627,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|--dir|디렉토리 위치 지정|O|
 
@@ -674,7 +674,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|src-path|로컬 Blob 디렉토리|O|
 	|dst-path|릴리즈 내 blob 디렉토리|X|
@@ -697,7 +697,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|blob-path|릴리즈 내 blob 디렉토리|O|
 
@@ -737,7 +737,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 
@@ -783,7 +783,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|location|릴리즈 파일 위치 및 URL 지정|O|
@@ -809,7 +809,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|name|삭제 할 릴리즈 명|O|
@@ -831,7 +831,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|name|릴리즈 명|O|
@@ -856,7 +856,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|name|릴리즈 명|O|
@@ -971,7 +971,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|my-type|config type 명|O|
@@ -995,7 +995,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 
@@ -1015,7 +1015,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|config.yml|property Manifest 파일|O|
@@ -1041,7 +1041,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 
@@ -1061,7 +1061,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|config.yml|property Manifest 파일|O|
@@ -1087,7 +1087,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 
@@ -1107,7 +1107,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|config.yml|property Manifest 파일|O|
@@ -1133,7 +1133,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **파라미터**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 
@@ -1178,7 +1178,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|my-dep|배포 명 지정|O|
@@ -1213,7 +1213,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|my-dep|배포 명|O|
@@ -1240,7 +1240,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|my-dep|배포 명|O|
@@ -1264,7 +1264,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|my-dep|배포 명|O|
@@ -1286,7 +1286,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|my-dep|배포 명 지정|O|
@@ -1321,7 +1321,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|my-dep|배포 명 지정|O|
@@ -1347,7 +1347,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|my-dep|배포 명 지정|O|
@@ -1374,7 +1374,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|my-dep|배포 명 지정|O|
@@ -1403,7 +1403,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|my-dep|배포 명 지정|O|
@@ -1426,7 +1426,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|my-dep|배포 명 지정|O|
@@ -1449,7 +1449,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|my-dep|배포 명 지정|O|
@@ -1488,7 +1488,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|my-dep|배포 명 지정|O|
@@ -1513,7 +1513,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|my-dep|배포 명 지정|O|
@@ -1538,7 +1538,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|my-dep|배포 명 지정|O|
@@ -1560,7 +1560,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|my-dep|배포 명 지정|O|
@@ -1583,7 +1583,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|my-dep|배포 명 지정|O|
@@ -1608,7 +1608,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 	
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|my-dep|배포 명 지정|O|
@@ -1651,7 +1651,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|my-dep|배포 명 지정|O|
@@ -1691,7 +1691,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 	
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|my-dep|배포 명 지정|O|
@@ -1724,7 +1724,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 	
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|my-dep|배포 명 지정|O|
@@ -1777,7 +1777,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 	
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|--recent|최근 순 4개 task 조회|X|
@@ -1824,7 +1824,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 	
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|id|task 아이디|O|
@@ -1851,7 +1851,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **파라미터**
 	
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|id|task 아이디|O|
@@ -1895,7 +1895,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 	
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|my-dep|배포 명 지정|O|
@@ -1919,7 +1919,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 	
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|my-dep|배포 명 지정|O|
@@ -1943,7 +1943,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 	
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|my-dep|배포 명 지정|O|
@@ -1969,7 +1969,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 	
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|on/off|활성/비활성화|O|
@@ -1993,7 +1993,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 	
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|my-dep|배포 명 지정|O|
@@ -2019,7 +2019,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 	
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 
@@ -2045,7 +2045,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 	
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|--all|orphaned disks에 강제 clean up적용|X|
@@ -2094,7 +2094,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 	
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|-v|수정/입력 하는 variable list|X|
 	|-o|수정/입력 하는 operation file list|X|
