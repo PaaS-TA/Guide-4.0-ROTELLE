@@ -242,9 +242,9 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|name|Name your environment|O|
-	|location|Specify Director Location|O|
-	|--ca-cert=path|Specify a CA certificate|X|
+	|name|Name the environment|O|
+	|location|Specify the location of the director|O|
+	|--ca-cert=path|Specify CA certificate|X|
 
 ### <div id='10'/>***bosh environment*** 
 
@@ -254,15 +254,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	Outputs corresponding Director information
+	Output the corresponding Director information
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|The specified Director environment name|O|
+	|my-env|Specified Director Environment Name|O|
 
-- **Example of use**
+- **Examples of Use**
  
 		$ bosh -e vbox env
 		Using environment '192.168.56.6' as '?'
@@ -287,19 +287,19 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	Delete a previously created VM based on manifest and provide the delete-env command with the same flag as provided in the create-env command.
+	Delete the previously created VM based on the manifest. and then The same flags provided in the create-env command must be provided to the delete-env command.
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|deploymentFile| Installed Manfiest File|O|
-	|--state path|Deployment state File Path|O|
+	|deploymentFile|설치 한 Manfiest File|O|
+	|--state path|Deployment state File 경로|O|
 	|-v|Manifest Replace Variable ex) internal_ip, deployment_name|X|
 	|-o|option Manifest File ex) jumpbox-user.yml, uaa.yml…|X|
-	|--vars -store path|creds.yml File, Authentication key and Job Password yml file path|X|
+	|--vars -store path|creds.yml File, 인증 키 및 Job Password yml File 경로|X|
 
-- **Use an example**
+- **Examples of Use***
 
 		$ bosh delete-env ~/workspace/bosh-deployment/bosh.yml \
   		--state state.json \
@@ -320,7 +320,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='13'/>***bosh log-in***
 
-- **Basic  Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] l
 
@@ -328,13 +328,13 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 	Log in the given user to Director
 
-- **Parameters**
+- **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|BOSH Specified Director Environment|O|
+	|my-env|Director environment name specifying BOSH|O|
 
-- **Examples of Use**
+- **Examples of Use***
 
 		$ bosh -e my-env l
 		User (): admin
@@ -355,7 +355,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|BOSH Specified Director Environment Name|O|
+	|my-env|RDirector environment name specifying BOSH|O|
 
 - **Examples of Use**
 
@@ -375,13 +375,13 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	View uploaded releases
+	업로드 한 릴리즈 조회
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
+	|my-env|The specified Director environment name|O|
 
 - **Examples of Use**
 
@@ -408,15 +408,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	스템셀 업로드
+	Upload stem cell
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|location|스템셀 파일 위치 및 URL 지정|X|
-	|--sha1|스템셀 파일 sha1um 값 확인|X|
+	|my-env|The specified Director environment name|O|
+	|location|스템셀 File 위치 및 URL 지정|X|
+	|--sha1|스템셀 File sha1um 값 확인|X|
 	|--fix|이전에 업로드 한 스템 셀을 동일한 이름과 버전으로 교체|X|
 
 - **Examples of Use**
@@ -440,7 +440,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
+	|my-env|The specified Director environment name|O|
 	|name|삭제 할 스템셀 명|O|
 	|version|삭제 할 스템셀 버전|O|
 
@@ -477,20 +477,20 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='21'/>***bosh init-release***
 
-- **Basic  Syntax**
+- **Basic Syntax**
 
 		$ bosh init-release [--git] [--dir=dir]
 
 - **Description**
 
-	dir에 릴리즈에 관련한 구성 파일을 생성 dir을 사용 않할 경우는 현재 디렉토리
+	dir에 릴리즈에 관련한 구성 File을 생성 dir을 사용 않할 경우는 현재 디렉토리
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|--git|BOSH 릴리즈 Git repository에 적절한 .gitignore 파일을 생성|X|
-	|--dir|디렉토리에 대한 빈 릴리스 구성 파일 생성|X|
+	|--git|BOSH 릴리즈 Git repository에 적절한 .gitignore File을 생성|X|
+	|--dir|디렉토리에 대한 빈 릴리스 구성 File 생성|X|
 
 - **Parameter**
 
@@ -506,16 +506,16 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	dir에 릴리즈에 대한 Job에 관련 한 빈 파일 생성
+	dir에 릴리즈에 대한 Job에 관련 한 빈 File 생성
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|name|릴리즈 Job 명칭|O|
-	|--dir|디렉토리에 대한 Job 관련 빈 릴리스 구성 파일 생성|X|
+	|--dir|디렉토리에 대한 Job 관련 빈 릴리스 구성 File 생성|X|
 
-- **Examples of Use**
+- **Examples of Use시**
 
 		$ bosh generate-job jenkins
 
@@ -527,14 +527,14 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	dir에 릴리즈에 대한 pakage에 관련 한 빈 파일 생성
+	dir에 릴리즈에 대한 pakage에 관련 한 빈 File 생성
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|name|릴리즈 pakage 명칭|O|
-	|--dir|디렉토리에 pakage Job 관련 빈 릴리스 구성 파일 생성|X|
+	|--dir|디렉토리에 pakage Job 관련 빈 릴리스 구성 File 생성|X|
 
 - **Examples of Use**
 
@@ -549,7 +549,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 - **Description**
 
 	다른 릴리스의 패키지를 dir의 릴리스로 제공, 릴리즈를 만들 때 CLI가 특정 패키리를 참조 하도록 디렉토리에 spec.lock을 포함
-	설명 참조 https://bosh.io/docs/package-vendoring.html 
+	Description 참조 https://bosh.io/docs/package-vendoring.html 
 
 
 - **Parameter**
@@ -557,7 +557,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|name|릴리즈 pakage명칭|O|
-	|--dir|디렉토리에 대한 package 관련 빈 릴리스 구성 파일 생성|X|
+	|--dir|디렉토리에 대한 package 관련 빈 릴리스 구성 File 생성|X|
 
 - **Examples of Use**
 
@@ -580,7 +580,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|--force|릴리스 디렉토리에서 커밋되지 않은 변경 사항을 무시하도록 지정|X|
 	|--version|사용자 정의 릴리스 버전을 제공|X|
 	|--version|사용자 정의 릴리스 버전을 제공|X|
-	|--timestamp-version|타임 스탬프 기반의 dev 릴리즈 버전을 생성|X|
+	|--timestamp-version|타임 스탬프 기반의 dev Release Version을 생성|X|
 	|--tarball|릴리스 타르볼의 대상을 지정|X|
 	|--sha2|SHA256 체크섬 사용 지정|X|
 
@@ -709,15 +709,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='32'/>***bosh sync-blob***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh sync-blobs
 
-- **설명**
+- **Description**
 
 	릴리즈 내 blobstore의 blob 동기화
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ cd release-dir
 		$ bosh sync-blobs
@@ -739,7 +739,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
+	|my-env|The specified Director environment name|O|
 
 - **Examples of Use**
 
@@ -785,9 +785,9 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|location|릴리즈 파일 위치 및 URL 지정|O|
-	|--sha1|릴리즈 파일 sha1um 값 확인|X|
+	|my-env|The specified Director environment name|O|
+	|location|릴리즈 File 위치 및 URL 지정|O|
+	|--sha1|릴리즈 File sha1um 값 확인|X|
 	|--fix|이전에 업로드 한 릴리즈를 동일한 이름과 버전으로 교체|X|
 
 - **Examples of Use**
@@ -811,9 +811,9 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|name|삭제 할 릴리즈 명|O|
-	|version|삭제 할 릴리즈 버전|O|
+	|my-env|The specified Director environment name|O|
+	|name|Release Name to be deleted|O|
+	|version| Release Version to be deleted전|O|
 
 - **Examples of Use**
 
@@ -827,15 +827,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	특정 스템셀에 대한 릴리즈를 컴파일 하고 내보낸다
+	특정 스템셀에 대한 릴리즈를 컴File 하고 내보낸다
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|name|릴리즈 명|O|
-	|version|릴리즈 버전|O|
+	|my-env|The specified Director environment name|O|
+	|name|Release Name|O|
+	|version|Release Version|O|
 	|os|스템셀 os 명|O|
 	|version|스템셀 os 버전|O|
 	|dir|내보내기 디렉토리|X|
@@ -852,15 +852,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	모든 Job, Job의 메타데이터 패키지 및 릴리즈 버전과 관련 된 패키지를 출력
+	모든 Job, Job의 메타데이터 패키지 및 Release Version과 관련 된 패키지를 출력
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|name|릴리즈 명|O|
-	|version|릴리즈 버전|O|
+	|my-env|The specified Director environment name|O|
+	|name|Release Name|O|
+	|version|Release Version|O|
 
 
 - **Examples of Use**
@@ -914,9 +914,9 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 	
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
+	|my-env|The specified Director environment name|O|
 	|--name|config 명 기본 Default|X|
 	|--type|config type 명|X|
 
@@ -948,11 +948,11 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
+	|my-env|The specified Director environment name|O|
 	|my-typ|config type 명|O|
-	|config.yml|config type의 property Manifest 파일|O|
+	|config.yml|config type의 property Manifest File|O|
 	|--name|config 명 기본 Default|X|
 
 - **Examples of Use**
@@ -973,7 +973,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
+	|my-env|The specified Director environment name|O|
 	|my-type|config type 명|O|
 	|--name|config 명 기본 Default|X|
 
@@ -997,7 +997,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
+	|my-env|The specified Director environment name|O|
 
 - **Examples of Use**
 
@@ -1005,7 +1005,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ###  <div id='45'/>***bosh update-cloud-config***
 
-- **BasicSyntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] update-cloud-config [config.yml] [-v ...] [-o ...] (Alias: ucc)
 
@@ -1017,9 +1017,9 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|config.yml|property Manifest 파일|O|
-	|-v|Manifest Replace 변수 ex) internal_ip, deployment_name|X|
+	|my-env|The specified Director environment name|O|
+	|config.yml|property Manifest File|O|
+	|-v|Manifest Replace Variable ex) internal_ip, deployment_name|X|
 	|-o|option Manifest File ex) jumpbox-user.yml, uaa.yml…|X|
 
 - **Examples of Use**
@@ -1043,7 +1043,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
+	|my-env|The specified Director environment name|O|
 
 - **Examples of Use**
 
@@ -1063,9 +1063,9 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|config.yml|property Manifest 파일|O|
-	|-v|Manifest Replace 변수 ex) internal_ip, deployment_name|X|
+	|my-env|The specified Director environment name|O|
+	|config.yml|property Manifest File|O|
+	|-v|Manifest Replace Variable ex) internal_ip, deployment_name|X|
 	|-o|option Manifest File ex) jumpbox-user.yml, uaa.yml…|X|
 
 
@@ -1089,7 +1089,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
+	|my-env|The specified Director environment name|O|
 
 - **Examples of Use**
 
@@ -1109,9 +1109,9 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|config.yml|property Manifest 파일|O|
-	|-v|Manifest Replace 변수 ex) internal_ip, deployment_name|X|
+	|my-env|The specified Director environment name|O|
+	|config.yml|property Manifest File|O|
+	|-v|Manifest Replace Variable ex) internal_ip, deployment_name|X|
 	|-o|option Manifest File ex) jumpbox-user.yml, uaa.yml…|X|
 
 
@@ -1123,22 +1123,22 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='53'/>***bosh deployments***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] deployments (Alias: ds)
 
-- **설명**
+- **Description**
 
-	디렉터가 설치 한 전체 배포 목록을 출력.
+	Output a list of all deployment installed by the director.
 
-- **파라미터**
+- **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
+	|my-env|The specified Director environment name|O|
 
 
-- **파라미터**
+- **Parameter**
 
 		$ bosh -e my-env ds
 		Using environment '192.168.56.6' as client 'admin'
@@ -1174,14 +1174,14 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	디렉터가 지정한 이름의 배포 목록 조회
+	Lookup a deployment list with the name specified by the director
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|my-dep|배포 명 지정|O|
+	|my-env|The specified Director environment name|O|
+	|my-dep|Specify the name of the deployment|O|
 
 - **Examples of Use**
 
@@ -1209,17 +1209,17 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	디렉터가 지정 한 배포명의 Manifest 파일를 통한 VM 설치
+	Install the VM through the manifest file of the deployment name specified by the director.
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|my-dep|배포 명|O|
-	|-v|Manifest Replace 변수 ex) internal_ip, deployment_name|X|
+	|my-env|The specified Director environment name|O|
+	|my-dep|Deployment Name|O|
+	|-v|Manifest Replace Variable ex) internal_ip, deployment_name|X|
 	|-o|option Manifest File ex) jumpbox-user.yml, uaa.yml…|X|
-	|manifest.yml|배포 Manifest 파일|O|
+	|manifest.yml|배포 Manifest File|O|
 
 
 - **Examples of Use**
@@ -1236,15 +1236,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	디렉터가 지정 한 배포명의 VM을 삭제 한다.
+	Deleted the VM of the deployment name specified by the director.
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|my-dep|배포 명|O|
-	|--force|다양한 오류 (IaaS, blobstore, database)를 무시 지정|X|
+	|my-env|The specified Director environment name|O|
+	|my-dep|Deployment Name|O|
+	|--force|Specify to ignore various errors (IaaS, blobstore, database)|X|
 
 
 
@@ -1260,14 +1260,14 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	디렉터가 지정 한 배포명의 Manifest 파일을 출력 한다.
+	Output the manifest file of the distribution name specified by the director.
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|my-dep|배포 명|O|
+	|my-env|The specified Director environment name|O|
+	|my-dep|Deployment Name|O|
 
 
 - **Examples of Use**
@@ -1282,20 +1282,20 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	디렉터가 지정한 배포의 인스턴스에 대한 VM을 재생성 한다.
+	Recreate the VM for the instance of the deployment specified by the director.
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|my-dep|배포 명 지정|O|
-	|group[/instance-id]|그룹 또는 그룹과 인스턴스 아이디|X|
+	|my-env|The specified Director environment name|O|
+	|my-dep|Specify the name of the deployment|O|
+	|group[/instance-id]|Group or group and instance ID|X|
 	|--fix|응답 하지 않는 VM을 대체 |X|
-	|--skip-drain|drain scripts를 건너 뛴다.|X|
-	|--canaries=|배포 명 지정|X|
-	|--max-in-flight=|Manifest의 max-in-flight 값을 덮어 쓴다.|X|
-	|--dry-run|배포를 변경 하지 않고 작업을 실행 한다.|X|
+	|--skip-drain|Skip the drain scripts.|X|
+	|--canaries=|Specify the name of the deployment|X|
+	|--max-in-flight=|Overwrite max-in-flight value of Manifest.|X|
+	|--dry-run|Run the work without changing the deployment.|X|
 
 
 - **Examples of Use**
@@ -1317,18 +1317,18 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	디렉터가 지정한 배포의 인스턴스에 대한 VM을 재시작 한다.
+	Restarts the VM for the instance of the deployment specified by the director.
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|my-dep|배포 명 지정|O|
-	|group[/instance-id]|그룹 또는 그룹과 인스턴스 아이디|X|
-	|--skip-drain|drain scripts를 건너 뛴다.|X|
-	|--canaries=|배포 명 지정|X|
-	|--max-in-flight=|Manifest의 max-in-flight 값을 덮어 쓴다.|X|
+	|my-env|The specified Director environment name|O|
+	|my-dep|Specify the name of the deployment|O|
+	|group[/instance-id]|Group or group and instance ID|X|
+	|--skip-drain|Skip the drain scripts.|X|
+	|--canaries=|Specify the name of the deployment|X|
+	|--max-in-flight=|Overwrite max-in-flight value of Manifest.|X|
 
 
 - **Examples of Use**
@@ -1343,17 +1343,17 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	디렉터가 지정한 배포의 인스턴스에 대한 VM을 시작 한다.
+	Starts the VM for the instance of the deployment specified by the director.
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|my-dep|배포 명 지정|O|
-	|group[/instance-id]|그룹 또는 그룹과 인스턴스 아이디|X|
-	|--canaries=|배포 명 지정|X|
-	|--max-in-flight=|Manifest의 max-in-flight 값을 덮어 쓴다.|X|
+	|my-env|The specified Director environment name|O|
+	|my-dep|Specify the name of the deployment|O|
+	|group[/instance-id]|Group or group and instance ID|X|
+	|--canaries=|Specify the name of the deployment|X|
+	|--max-in-flight=|Overwrite max-in-flight value of Manifest.|X|
 
 
 
@@ -1370,19 +1370,19 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	디렉터가 지정한 배포의 인스턴스에 대한 VM을 시작 한다.
+	Starts the VM for the instance of the deployment specified by the director.
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|my-dep|배포 명 지정|O|
-	|group[/instance-id]|그룹 또는 그룹과 인스턴스 아이디|X|
-	|--canaries=|배포 명 지정|X|
-	|--max-in-flight=|Manifest의 max-in-flight 값을 덮어 쓴다.|X|
-	|--skip-drain|drain scripts를 건너 뛴다.|X|
-	|hard|강제로 VM 삭제, 영구 디스크는 유지|X|
+	|my-env|The specified Director environment name|O|
+	|my-dep|Specify the name of the deployment|O|
+	|group[/instance-id]|Group or group and instance ID|X|
+	|--canaries=|Specify the name of the deployment|X|
+	|--max-in-flight=|Overwrite max-in-flight value of Manifest.|X|
+	|--skip-drain|Skip the drain scripts.|X|
+	|hard|forcibly Delete VM and keep persistent disks|X|
 
 
 
@@ -1399,15 +1399,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	bosh deploy와 같은 다른 명령의 영향을 받지 않도록 인스턴스를 무시
+	Do not ignore instances so they are not affected by other commands like bosh deploy.
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|my-dep|배포 명 지정|O|
-	|group[/instance-id]|그룹 또는 그룹과 인스턴스 아이디|X|
+	|my-env|The specified Director environment name|O|
+	|my-dep|Specify the name of the deployment|O|
+	|group[/instance-id]|Group or group and instance ID|X|
 
 
 - **Examples of Use**
@@ -1422,15 +1422,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	bosh deploy와 같은 다른 명령의 영향을받지 않도록 인스턴스를 무시하지 않는다
+	Do not ignore instances so they are not affected by other commands like bosh deploy.
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|my-dep|배포 명 지정|O|
-	|group[/instance-id]|그룹 또는 그룹과 인스턴스 아이디|X|
+	|my-env|The specified Director environment name|O|
+	|my-dep|Specify the name of the deployment|O|
+	|group[/instance-id]|Group or group and instance ID|X|
 
 
 - **Examples of Use**
@@ -1445,20 +1445,20 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	하나 이상의 인스턴스에서 로그를 다운로드
+	Download logs from one or more instances
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|my-dep|배포 명 지정|O|
-	|group[/instance-id]|그룹 또는 그룹과 인스턴스 아이디|X|
-	|--dir|로그의 디렉토리 지정|X|
-	|--job|특정 Job의 로그 설정|X|
-	|--only|로그 필터링|X|
-	|--agent|bosh agent 로그만 포함|X|
-	|--follow|Additional flags for following logs via SSH 로그를 실행|X|
+	|my-env|The specified Director environment name|O|
+	|my-dep|Specify the name of the deployment|O|
+	|group[/instance-id]|Group or group and instance ID|X|
+	|--dir|Specify the directory for logs|X|
+	|--job|Setting the log for a specific job|X|
+	|--only|Log filtering|X|
+	|--agent|Include only bosh agent logs|X|
+	|--follow|Run Additional flags for following logs via SSH logs.|X|
 	|--num|Additional flags for following logs via SSH 마지막 행 수를 출력|X|
 	|--gw|Additional flags for following logs via SSH ssh 게이트웨이 구성|X|
 	|--quiet|Additional flags for following logs via SSH 헤더 출력 생략|X|
@@ -1490,8 +1490,8 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|my-dep|배포 명 지정|O|
+	|my-env|The specified Director environment name|O|
+	|my-dep|Specify the name of the deployment|O|
 	|--vitals|RAM CPU disk 와 같은 vm의 기본  정보 조회|X|
 
 - **Examples of Use**
@@ -1509,15 +1509,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	인스턴스의 Lifecycle을 거치지 않고 VM을 삭제
+	Delete the VM without going through the lifecycle of the instance
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|my-dep|배포 명 지정|O|
-	|cid|인스턴스 아이디 지정|X|
+	|my-env|The specified Director environment name|O|
+	|my-dep|Specify the name of the deployment|O|
+	|cid|Specify Instance ID|X|
 
 - **Examples of Use**
 
@@ -1534,15 +1534,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	Director가 관리하는 또는 deployment의 모든 disk 조회
+	Search all disks of deployment or  a managed disk by Director. 
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|my-dep|배포 명 지정|O|
-	|--orphaned|사용하지 않는 DISK를 나열|X|
+	|my-env|The specified Director environment name|O|
+	|my-dep|Specify the name of the deployment|O|
+	|--orphaned|List unused DISKs|X|
 
 - **Examples of Use**
 
@@ -1562,10 +1562,10 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|my-dep|배포 명 지정|O|
-	|--orphaned|사용하지 않는 DISK를 나열|X|
-	|group/instance-id|그룹 또는 그룹과 인스턴스 아이디|X|
+	|my-env|The specified Director environment name|O|
+	|my-dep|Specify the name of the deployment|O|
+	|--orphaned|List the unused DISKs|X|
+	|group/instance-id|Group or group and instance ID|X|
 
 - **Examples of Use**
 
@@ -1579,14 +1579,14 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	사용하지 않는 disk 삭제
+	Delete the unused DISKs
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|my-dep|배포 명 지정|O|
+	|my-env|The specified Director environment name|O|
+	|my-dep|Specify the name of the deployment|O|
 	|--cid|삭제 할 DISK 아이디 지정|X|
 
 - **Examples of Use**
@@ -1610,10 +1610,10 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|my-dep|배포 명 지정|O|
+	|my-env|The specified Director environment name|O|
+	|my-dep|Specify the name of the deployment|O|
 	|-c|커맨드 라인 설정|X|
-	|destination|SSH 목적지 지정 그룹 또는 그룹과 인스턴스 아이디|X|
+	|destination|SSH 목적지 지정 Group or group and instance ID|X|
 	|--opts|ssh에 옵션을 전달 ex) 포트 포워딩|X|
 	|--gw-*|SSH 게이트웨이를 구성|X|
 	|-r, --recursive|directory의 반복 복사 허용|X|
@@ -1653,8 +1653,8 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|my-dep|배포 명 지정|O|
+	|my-env|The specified Director environment name|O|
+	|my-dep|Specify the name of the deployment|O|
 	|src/dst:<file>|복사 받을 script.sh file 경로|O|
 	|src/dst:<file>|복사 될 script.sh file 경로|O|
 	|-r, --recursive|directory의 반복 복사 허용|X|
@@ -1693,8 +1693,8 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|my-dep|배포 명 지정|O|
+	|my-env|The specified Director environment name|O|
+	|my-dep|Specify the name of the deployment|O|
 
 
 - **Examples of Use**
@@ -1726,13 +1726,13 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|my-dep|배포 명 지정|O|
+	|my-env|The specified Director environment name|O|
+	|my-dep|Specify the name of the deployment|O|
 	|name|실행 할 errand 이름|O|
 	|--keep-alive|errand가 실행 되는 곳에서 VM 유지|X|
 	|--when-changed|errand가 skip 설정: 이전에 이미 실행하였고 (성공적으로 마침) errand job 설정값이 바뀌지 않았을 경우|X|
 	|--download-logs|errand log를 통채로 --logs-dir에 명시된 경로에 저장|X|
-	|--logs-dir=<dir>|errand log를 저장 할 파일 경로|X|
+	|--logs-dir=<dir>|errand log를 저장 할 File 경로|X|
 	|instance=<instance-group/instance-id> (v2.0.31+)|errand를 실행하기위해 어떤 인스턴스를 사용할지 결정|X|
 
 
@@ -1779,7 +1779,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
+	|my-env|The specified Director environment name|O|
 	|--recent|최근 순 4개 task 조회|X|
 	|num|최근 순 조회하고 싶은 task 숫자|X|
 	|--all|active tasks 모두 조회|X|
@@ -1826,7 +1826,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
+	|my-env|The specified Director environment name|O|
 	|id|task 아이디|O|
 	|--debug|Debug 로그 출력|X|
 	|--result|Result 로그 출력|X|
@@ -1841,19 +1841,19 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='81'/>***bosh cancle-task***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] cancel-task [id] (Alias: ct)
 
-- **설명**
+- **Description**
 
 	task 취소. 다음 checkpoint 에서 task를 취소 한다. task가 취소될 때까지 대기하지 않는다
 
-- **파라미터**
+- **Parameter**
 	
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
+	|my-env|The specified Director environment name|O|
 	|id|task 아이디|O|
 
 
@@ -1871,10 +1871,10 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 	
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|my-dep|배포 명 지정|O|
+	|my-env|The specified Director environment name|O|
+	|my-dep|Specify the name of the deployment|O|
 
 
 
@@ -1897,9 +1897,9 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|my-dep|배포 명 지정|O|
-	|group/instance-id|그룹 또는 그룹과 인스턴스 아이디|X|
+	|my-env|The specified Director environment name|O|
+	|my-dep|Specify the name of the deployment|O|
+	|group/instance-id|Group or group and instance ID|X|
 
 
 - **Examples of Use**
@@ -1921,8 +1921,8 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|my-dep|배포 명 지정|O|
+	|my-env|The specified Director environment name|O|
+	|my-dep|Specify the name of the deployment|O|
 	|cid|스냅샷 아이디 지정|O|
 
 
@@ -1945,8 +1945,8 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|my-dep|배포 명 지정|O|
+	|my-env|The specified Director environment name|O|
+	|my-dep|Specify the name of the deployment|O|
 
 
 
@@ -1971,7 +1971,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
+	|my-env|The specified Director environment name|O|
 	|on/off|활성/비활성화|O|
 
 
@@ -1995,8 +1995,8 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
-	|my-dep|배포 명 지정|O|
+	|my-env|The specified Director environment name|O|
+	|my-dep|Specify the name of the deployment|O|
 	|--report|Report 생성|X|
 	|--auto|자동으로 Problem해결|X|
 
@@ -2021,7 +2021,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
+	|my-env|The specified Director environment name|O|
 
 
 
@@ -2047,7 +2047,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
+	|my-env|The specified Director environment name|O|
 	|--all|orphaned disks에 강제 clean up적용|X|
 
 
@@ -2083,13 +2083,13 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='94'/>***bosh interpolate***
 
-- **BasicSyntax**
+- **Basic Syntax**
 
 		$ bosh interpolate manifest.yml [-v ...] [-o ...] [--vars-store path] [--path op-path] (Alias: int)
 
 - **Description**
 
-	결과 값 이 sudout로 넘겨지는 Manifest.yml에 추가적으로 merge할 yml 파일이나 설정 값을 입력
+	결과 값 이 sudout로 넘겨지는 Manifest.yml에 추가적으로 merge할 yml File이나 설정 값을 입력
 
 
 - **Parameter**
@@ -2098,7 +2098,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|----------|-------------------------|--------------------------------|
 	|-v|수정/입력 하는 variable list|X|
 	|-o|수정/입력 하는 operation file list|X|
-	|--vars-store path|디렉터 접근 아이디 Key 및 각 JOB 패스워드 등이 존재하는 설정 파일 생성 위치|X|
+	|--vars-store path|디렉터 접근 아이디 Key 및 각 JOB 패스워드 등이 존재하는 설정 File 생성 위치|X|
 	|--path op-path|Manifest의 해당 값 출력|X|
 
 
