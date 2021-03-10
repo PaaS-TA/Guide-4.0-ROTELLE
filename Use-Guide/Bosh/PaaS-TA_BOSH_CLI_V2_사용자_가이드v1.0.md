@@ -293,7 +293,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|deploymentFile|설치 한 Manfiest File|O|
+	|deploymentFile|installed Manfiest File|O|
 	|--state path|Deployment state File 경로|O|
 	|-v|Manifest Replace Variable ex) internal_ip, deployment_name|X|
 	|-o|option Manifest File ex) jumpbox-user.yml, uaa.yml…|X|
