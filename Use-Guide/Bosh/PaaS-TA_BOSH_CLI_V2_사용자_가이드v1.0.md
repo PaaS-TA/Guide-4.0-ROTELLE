@@ -204,13 +204,13 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|deploymentFile|설치 Manfiest 파일|O|
-	|--state path|Deployment state 파일 경로|X|
-	|-v|Manifest Replace 변수 ex) internal_ip, deployment_name|X|
+	|deploymentFile|Installation Manfiest File|O|
+	|--state path|Deployment state File Path|X|
+	|-v|Manifest Replace Variable ex) internal_ip, deployment_name|X|
 	|-o|option Manifest File ex) jumpbox-user.yml, uaa.yml...|X|
-	|--vars -store path|creds.yml 파일, 인증 키 및 Job Password yml 파일 경로|X|
+	|--vars -store path|creds.yml File, Authentication key and Job Password yml file path|X|
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh create-env ~/workspace/bosh-deployment/bosh.yml \
   		--state state.json \
@@ -229,38 +229,38 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='9'/>***bosh alias-env*** 
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh alias-env [name] -e [location] [--ca-cert=path]
 
-- **설명**
+- **Description**
 
-	BOSH CLI를 통해 엑세스 할 디렉터의 별명이 지정
+	Specify a nickname for the director to access through the BOSH CLI
 
 - **parameter**
 
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|name|환경 이름 지정|O|
-	|location|디렉터 위치 지정|O|
-	|--ca-cert=path|CA 인증서를 지정|X|
+	|name|Name your environment|O|
+	|location|Specify Director Location|O|
+	|--ca-cert=path|Specify a CA certificate|X|
 
 ### <div id='10'/>***bosh environment*** 
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] environment (Alias: env)
 
-- **설명**
+- **Description**
 
-	해당 Director 정보를 출력
+	Outputs corresponding Director information
 
-- **파라미터**
+- **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|지정 한 Director 환경 이름 명칭|O|
+	|my-env|The specified Director environment name|O|
 
 - **사용 예시**
  
@@ -281,25 +281,25 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='11'/>***bosh delete-env***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh delete-env [deploymentFile] [--state path] [-v ...] [-o ...] [--vars-store path]
 
-- **설명**
+- **Description**
 
-	매니페스트를 기반으로 이전에 만든 VM을 삭제, create-env 명령에 제공된 것과 동일한 플래그를 delete-env 명령에 제공해야한다.
+	Delete a previously created VM based on manifest and provide the delete-env command with the same flag as provided in the create-env command.
 
-- **파라미터**
+- **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|deploymentFile|설치 한 Manfiest 파일|O|
-	|--state path|Deployment state 파일 경로|O|
-	|-v|Manifest Replace 변수 ex) internal_ip, deployment_name|X|
+	|deploymentFile| Installed Manfiest File|O|
+	|--state path|Deployment state File Path|O|
+	|-v|Manifest Replace Variable ex) internal_ip, deployment_name|X|
 	|-o|option Manifest File ex) jumpbox-user.yml, uaa.yml…|X|
-	|--vars -store path|creds.yml 파일, 인증 키 및 Job Password yml 파일 경로|X|
+	|--vars -store path|creds.yml File, Authentication key and Job Password yml file path|X|
 
-- **사용 예시**
+- **Use an example**
 
 		$ bosh delete-env ~/workspace/bosh-deployment/bosh.yml \
   		--state state.json \
