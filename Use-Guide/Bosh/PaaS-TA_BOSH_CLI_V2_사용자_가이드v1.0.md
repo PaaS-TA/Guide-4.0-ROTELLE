@@ -135,52 +135,52 @@ This document was described by referring to BOSH Document of Cloud Foundry([http
 
 ## <div id='5'/>BOSH CLI Instruction
 
-CLI는 BOSH 배포와 Release를 관리하기 위해 도움을 주는 커맨드 라인 명령어로 아래와 같이 구분된다.
+The CLI is a command line that helps manage BOSH deployment and Release, which is divided into the following:
 
-- bosh-cli: BOSH를 관리하기 위한 CLI
+- bosh-cli: CLI for managing BOSH
 
 
 
-- **기본 Syntax**
+- **Basics Syntax**
 
 		$ bosh [<options>] <command> [<args>]
 		
-	bosh 명령어에 대괄호로 묶인 인자인 <options>과 <args>는 명령어에 따라 선택적으로 사용되고, <command> 인자는 필수 인자이다.
+The arguments <options> and <args>, which are enclosed in brackets for the bosh command, are optionally used depending on the command, and the <command> argument is a required argument.
 
 - **Options**
 
-	|**번호**   |**옵션**                  |**설명**|
+	|**No.**   |**Option**                  |**Description**|
 	|----------|-------------------------|--------------------------------|
-	|1          |-c, --config              |BOSH configuration file 지정|
-	|2          |--ca-cert                 |Director 및 UAA 연결에 사용 되는 CA 인증서 지정|
-	|3          |--client                  |사용자 이름 또는 UAA 클라이언트 재정의|
-	|4          |-n                        |입력 사용이 필요한 확인|
-	|5          |--json                    |출력 형식을 JSON으로 변경|
-	|6          |--tty                     |명령이 리디렉션되지 않을 때 일반적으로 표시되는 모든 텍스트를 출력에 포함|
-	|7          |--no-color                |색상을 비활성화|
-	|8          |--deployment, -d          |Deploy 명령을 위한 배치 지정|
-	|9          |-h, --help                |Help 메시지 보기|
-	|10         |--column=                 |지정된 열만 표시하도록 필터링|
-	|11         |-e, --enviroment          |SHA256 체크섬 사용|
-	|12         |--sha2     |BOSH 배포파일 지정|
-	|13         |--parallel=                |병렬 작업의 최대 수|
-	|14         |--client-secret=                |암호 또는 UAA 클라이언트 암호 재정의|
+	|1          |-c, --config              |Specify BOSH configuration file|
+	|2          |--ca-cert                 |Specify the CA certificate used for Director and UAA connections|
+	|3          |--client                  |Username or UAA client redefinition|
+	|4          |-n                        |Check that you need to use input|
+	|5          |--json                    |Change the output format to JSON|
+	|6          |--tty                     |When the command is not redirected, include all text that is normally displayed in the output.|
+	|7          |--no-color                |Disable the color|
+	|8          |--deployment, -d          |Specify the deployment for the Deploy command|
+	|9          |-h, --help                |View help messages|
+	|10         |--column=                 |Filter to show only specified columns|
+	|11         |-e, --enviroment          |Use of SHA256 checksum|
+	|12         |--sha2     |Specify the BOSH deployment file|
+	|13         |--parallel=                |The maximum number of parallel jobs|
+	|14         |--client-secret=                |Password or UAA client password redefinition|
 
 ##  <div id='6'/>BOSH CLI - Environments
 
 ### <div id='7'/>***bosh environments***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh environments (Alias: envs)
 
-- **설명**
+- **Description**
 
-		BOSH CLI에 등록 한 디렉터의 별명이 지정된 환경을 나열
+		Lists the environment in which the director registered with the BOSH CLI is nicknamed
 
-- **파라미터**
+- **parameter**
 
-- **사용 예시**
+- **Example of use**
  
 		$ bosh envs
 		URL              Alias
@@ -192,17 +192,17 @@ CLI는 BOSH 배포와 Release를 관리하기 위해 도움을 주는 커맨드 
 
 ### <div id='8'/>***bosh create-env***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh create-env [deploymentFile] [--state path] [-v ...] [-o ...] [--vars-store path]
 
-- **설명**
+- **Description**
 
-	BOSH CLI를 통해 Manifest File을 기반으로 단일 VM을 생성. 일반적으로 Director 환경을 만드는 데 사용
+	Create a single VM based on the manifest file through BOSH CLI. It is usually used to create a Director environment.
 
-- **파라미터**
+- **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|deploymentFile|설치 Manfiest 파일|O|
 	|--state path|Deployment state 파일 경로|X|
@@ -237,7 +237,7 @@ CLI는 BOSH 배포와 Release를 관리하기 위해 도움을 주는 커맨드 
 
 	BOSH CLI를 통해 엑세스 할 디렉터의 별명이 지정
 
-- **파라미터**
+- **parameter**
 
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
