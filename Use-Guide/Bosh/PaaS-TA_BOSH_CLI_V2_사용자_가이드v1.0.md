@@ -262,7 +262,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|----------|-------------------------|--------------------------------|
 	|my-env|The specified Director environment name|O|
 
-- **사용 예시**
+- **Example of use**
  
 		$ bosh -e vbox env
 		Using environment '192.168.56.6' as '?'
@@ -320,21 +320,21 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='13'/>***bosh log-in***
 
-- **기본 Syntax**
+- **Basic  Syntax**
 
 		$ bosh -e [my-env] l
 
-- **설명**
+- **Description**
 
-	주어진 사용자를 Director에 로그인합니다.
+	Log in the given user to Director
 
-- **파라미터**
+- **Parameters**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|BOSH 지정 한 Director 환경 이름 명칭|O|
+	|my-env|BOSH Specified Director Environment|O|
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e my-env l
 		User (): admin
@@ -343,21 +343,21 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='14'/>***bosh log-out***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] log-out 
 
-- **설명**
+- **Description**
 
-	현재 접속 한 디렉터 로그아웃
+	Log out of the currently connected director
 
-- **파라미터**
+- **Parameter**
 
-	|**파라미터 명**|**설명**|**필수****(O/X)**|
+	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|my-env|BOSH 지정 한 Director 환경 이름 명칭|O|
+	|my-env|BOSH Specified Director Environment Name|O|
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh log-out 
 		Logged out from '192.168.10.241'
@@ -369,21 +369,21 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='16'/>***bosh Stemcells***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] stemcells (Alias: ss)
 
-- **설명**
+- **Description**
 
 	업로드 한 릴리즈 조회
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e my-env ss
 		Using environment '192.168.56.6' as '?'
@@ -402,15 +402,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='17'/>***bosh upload-stemcell***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] upload-stemcell [location] [--sha1=digest] [--fix]
 
-- **설명**
+- **Description**
 
 	스템셀 업로드
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -419,7 +419,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|--sha1|스템셀 파일 sha1um 값 확인|X|
 	|--fix|이전에 업로드 한 스템 셀을 동일한 이름과 버전으로 교체|X|
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e my-env us ~/Downloads/bosh-stemcell-3468.17-warden-boshlite-ubuntu-trusty-go_agent.tgz
 
@@ -428,15 +428,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='18'/>***bosh delete-stemcell***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] delete-stemcell [name]/[version]
 
-- **설명**
+- **Description**
 
 	업로드 한 스템셀 삭제
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -444,23 +444,23 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|name|삭제 할 스템셀 명|O|
 	|version|삭제 할 스템셀 버전|O|
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e my-env delete-stemcell bosh-warden-boshlite-ubuntu-trusty-go_agent/3468.17
 
 ### <div id='19'/>***bosh repack-stemcell***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh repack-stemcell src.tgz dst.tgz [--name=name] [--version=ver] [--cloud-properties=json-string]
 
-- **설명**
+- **Description**
 
 	기존 스템셀의 이름, 버전 및 클라우드 등록 정보와 같은 업데이트 된 등록 정보로 새로운 스템셀 타르볼을 생성
 	참조 URL: https://bosh.io/docs/repack-stemcell.html 
 
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -468,7 +468,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|version|업데이트 등록 스템셀 버전|X|
 	|cloud-properties|업데이트 등록 스템셀 cloud-properties, Json 형식|X|
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh repack-stemcell --name=acme-ubuntu-encrypted --cloud-properties='{"encrypted": true, "kms_key_arn": "arn:aws:kms:us-east-1:088444384256:key/4ffbe966-d138-4f4d-a077-4c234d05b3b1"}' bosh-stemcell-3363.9-aws-xen-hvm-ubuntu-trusty-go_agent.tgz acme-encrypted-stemcell.tgz
 
@@ -477,22 +477,22 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='21'/>***bosh init-release***
 
-- **기본 Syntax**
+- **Basic  Syntax**
 
 		$ bosh init-release [--git] [--dir=dir]
 
-- **설명**
+- **Description**
 
 	dir에 릴리즈에 관련한 구성 파일을 생성 dir을 사용 않할 경우는 현재 디렉토리
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|--git|BOSH 릴리즈 Git repository에 적절한 .gitignore 파일을 생성|X|
 	|--dir|디렉토리에 대한 빈 릴리스 구성 파일 생성|X|
 
-- **파라미터**
+- **Parameter**
 
 		$ bosh init-release --git --dir release-dir
 		$ cd release-dir
@@ -500,80 +500,80 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='22'/>***bosh generate-job***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh generate-job [name] [--dir=dir]
 
-- **설명**
+- **Description**
 
 	dir에 릴리즈에 대한 Job에 관련 한 빈 파일 생성
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|name|릴리즈 Job 명칭|O|
 	|--dir|디렉토리에 대한 Job 관련 빈 릴리스 구성 파일 생성|X|
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh generate-job jenkins
 
 ### <div id='23'/>***bosh generate-package***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh generate-pakage [name] [--dir=dir]
 
-- **설명**
+- **Description**
 
 	dir에 릴리즈에 대한 pakage에 관련 한 빈 파일 생성
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|name|릴리즈 pakage 명칭|O|
 	|--dir|디렉토리에 pakage Job 관련 빈 릴리스 구성 파일 생성|X|
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh generate-package jenkins
 
 ### <div id='24'/>***bosh vendor-package***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh vendor-package [name] src-dir [--dir=dir]
 
-- **설명**
+- **Description**
 
 	다른 릴리스의 패키지를 dir의 릴리스로 제공, 릴리즈를 만들 때 CLI가 특정 패키리를 참조 하도록 디렉토리에 spec.lock을 포함
 	설명 참조 https://bosh.io/docs/package-vendoring.html 
 
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|name|릴리즈 pakage명칭|O|
 	|--dir|디렉토리에 대한 package 관련 빈 릴리스 구성 파일 생성|X|
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh vendor-package golang-1.8-linux ~/workspace/golang-release
 
 ### <div id='25'/>***bosh create-release***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh create-release [--force] [--version=ver] [--timestamp-version] [--final] [--tarball=path] [--dir=dir] (Alias: cr)
 
-- **설명**
+- **Description**
 
 	dir에 저장된 릴리스의 새 버전을 생성
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -584,21 +584,21 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|--tarball|릴리스 타르볼의 대상을 지정|X|
 	|--sha2|SHA256 체크섬 사용 지정|X|
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh create-release --force
 
 ### <div id='26'/>***bosh finalize-release***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh finalize-release [path] [--force] [--version=ver] [--dir=dir]
 
-- **설명**
+- **Description**
 
 	선택적으로 주어진 버전으로 최종 릴리스로 릴리스 타볼의 내용을 기록
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -607,7 +607,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|--version|사용자 정의 릴리스 버전을 제공|X|
 	|--dir|디렉토리 위치 지정|X|
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ cd release-dir
 		$ bosh finalize-release /tmp/my-release.tgz
@@ -617,22 +617,22 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='27'/>***bosh reset-release***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh reset-release [--dir=dir]
 
-- **설명**
+- **Description**
 
 	릴리스 디렉토리에 보관 된 dev 릴리스, blob 등의 임시 아티팩트를 제거
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|--dir|디렉토리 위치 지정|O|
 
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh reset-release ~/Download/jenkins
 
@@ -641,15 +641,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='29'/>***bosh blob*** 
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh blobs
 
-- **설명**
+- **Description**
 
 	릴리즈 Blobstore에 등록 한 blob 출력
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ cd release-dir
 		$ bosh blobs
@@ -664,22 +664,22 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='30'/>***bosh add-blob***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh add-blob [src-path] [dst-path]
 
-- **설명**
+- **Description**
 
 	릴리즈 Blobstore에 로컬 blob 추가
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|src-path|로컬 Blob 디렉토리|O|
 	|dst-path|릴리즈 내 blob 디렉토리|X|
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ cd release-dir
 		$ bosh add-blob ~/Downloads/stress-1.0.4.tar.gz stress/stress-1.0.4.tar.gz
@@ -687,21 +687,21 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='31'/>***bosh reomove-blob***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh remove-blob [blob-path]
 
-- **설명**
+- **Description**
 
 	릴리즈 Blobstore에 존재 하는 Blob 삭제
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|blob-path|릴리즈 내 blob 디렉토리|O|
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ cd release-dir
 		$ bosh remove-blob stress/stress-1.0.4.tar.gz
@@ -727,21 +727,21 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='34'/>***bosh releases***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] releases (Alias: rs)
 
-- **설명**
+- **Description**
 
 	업로드 한 릴리즈 조회
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e my-env rs
 		Using environment '192.168.56.6' as client 'admin'
@@ -773,15 +773,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='35'/>***bosh upload-release***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] upload-release [location] [--version=ver] [--sha1=digest] [--fix] (Alias: ur)
 
-- **설명**
+- **Description**
 
 	릴리즈 업로드
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -790,7 +790,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|--sha1|릴리즈 파일 sha1um 값 확인|X|
 	|--fix|이전에 업로드 한 릴리즈를 동일한 이름과 버전으로 교체|X|
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e my-env ur
 		$ bosh -e my-env ur https://bosh.io/d/github.com/concourse/concourse?v=2.7.3
@@ -799,15 +799,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='36'/>***bosh delete-release*** 
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] delete-release [name]/[version]
 
-- **설명**
+- **Description**
 
 	업로드 한 릴리즈 삭제
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -815,21 +815,21 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|name|삭제 할 릴리즈 명|O|
 	|version|삭제 할 릴리즈 버전|O|
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e my-env delete-release cf-smoke-tests/94
 
 ### <div id='37'/>***bosh export-release***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] -d my-dep export-release [name]/[version] [os]/[version] [--dir=dir]
 
-- **설명**
+- **Description**
 
 	특정 스템셀에 대한 릴리즈를 컴파일 하고 내보낸다
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -840,21 +840,21 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|version|스템셀 os 버전|O|
 	|dir|내보내기 디렉토리|X|
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e my-env -d my-dep export-release cf-smoke-tests/94 ubuntu-trusty/3369
 
 ### <div id='38'/>***bosh inspect-release***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] inspect-release [name]/[version]
 
-- **설명**
+- **Description**
 
 	모든 Job, Job의 메타데이터 패키지 및 릴리즈 버전과 관련 된 패키지를 출력
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -863,7 +863,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|version|릴리즈 버전|O|
 
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e gcp-test inspect-release consul/155
 		Using environment '192.168.56.6' as client 'admin'
@@ -904,15 +904,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='40'/>***bosh configs***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] configs [--type=my-type] [--name=my-name]
 
-- **설명**
+- **Description**
 
 	Director의 모든 구성을 출력
 
-- **파라미터**
+- **Parameter**
 	
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -920,7 +920,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|--name|config 명 기본 Default|X|
 	|--type|config type 명|X|
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e my-env configs
 		Using environment '192.168.50.6' as client 'admin'
@@ -938,15 +938,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='41'/>***bosh update-config***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] update-config [my-type] [config.yml] [--name=my-name]
 
-- **설명**
+- **Description**
 
 	Director에서 구성을 추가하거나 업데이트
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -955,21 +955,21 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|config.yml|config type의 property Manifest 파일|O|
 	|--name|config 명 기본 Default|X|
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e my-env config my-type config.yml
 
 ### <div id='42'/>***bosh delete-config***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] delete-config [my-type] [--name=my-name]
 
-- **설명**
+- **Description**
 
 	Director의 my-type 구성을 삭제
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -977,7 +977,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|my-type|config type 명|O|
 	|--name|config 명 기본 Default|X|
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e my-env config my-type config.yml
 
@@ -985,35 +985,35 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='44'/>***bosh  cloud-configs***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] cloud-config (Alias: cc)
 
-- **설명**
+- **Description**
 
 	Deployment Property 설정
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e my-env cloud-config
 
 ###  <div id='45'/>***bosh update-cloud-config***
 
-- **기본 Syntax**
+- **BasicSyntax**
 
 		$ bosh -e [my-env] update-cloud-config [config.yml] [-v ...] [-o ...] (Alias: ucc)
 
-- **설명**
+- **Description**
 
 	Director의 cloud-conifg 구성 요소를 추가 하거나 수정
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -1022,7 +1022,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|-v|Manifest Replace 변수 ex) internal_ip, deployment_name|X|
 	|-o|option Manifest File ex) jumpbox-user.yml, uaa.yml…|X|
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e my-env ucc cc.yml
 
@@ -1031,35 +1031,35 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='47'/>***bosh runtime-configs***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e my-env runtime-config (Alias: rc)
 
-- **설명**
+- **Description**
 
 	Director의 runtime-conifg 구성 요소를 출력
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e my-env runtime-config
 
 ### <div id='48'/>***bosh update-runtime-config***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e my-env update-runtime-config [config.yml] [-v ...] [-o ...] (Alias: urc)
 
-- **설명**
+- **Description**
 
 	Director의 cloud-conifg 구성 요소를 추가 하거나 수정
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -1069,7 +1069,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|-o|option Manifest File ex) jumpbox-user.yml, uaa.yml…|X|
 
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e my-env urc runtime.yml
 
@@ -1077,35 +1077,35 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='50'/>***bosh cpi-configs***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e my-env cpi-config
 
-- **설명**
+- **Description**
 
 	Director의 cpi-conifg 구성 요소를 출력
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e my-env cpi-config
 
 ### <div id='51'/>***bosh update-cpi-config***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e my-env update-cpi-config config.yml [-v ...] [-o ...]
 
-- **설명**
+- **Description**
 
 	Director의 cpi-conifg 구성 요소를 추가 하거나 수정
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -1115,7 +1115,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|-o|option Manifest File ex) jumpbox-user.yml, uaa.yml…|X|
 
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e my-env update-cpi-config runtime.yml
 
@@ -1168,22 +1168,22 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='54'/>***bosh deployment***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] -d [my-dep] deployment
 
-- **설명**
+- **Description**
 
 	디렉터가 지정한 이름의 배포 목록 조회
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|지정 한 Director 환경 이름 명칭|O|
 	|my-dep|배포 명 지정|O|
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e vbox -d cf dep
 		Using environment '192.168.56.6' as client 'admin'
@@ -1203,15 +1203,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='55'/>***bosh deploy***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] -d [my-dep] deploy [manifest.yml] [-v ...] [-o ...]
 
-- **설명**
+- **Description**
 
 	디렉터가 지정 한 배포명의 Manifest 파일를 통한 VM 설치
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -1222,7 +1222,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|manifest.yml|배포 Manifest 파일|O|
 
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e vbox -d cf deploy cf.yml -v system_domain=sys.example.com -o large-footprint.yml
 
@@ -1230,15 +1230,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='56'/>***bosh delete-deployment***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] -d [my-dep] delete-deployment [--force] (Alias: deld)
 
-- **설명**
+- **Description**
 
 	디렉터가 지정 한 배포명의 VM을 삭제 한다.
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -1248,21 +1248,21 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e vbox -d cf deld
 
 ### <div id='57'/>***bosh manifest***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] -d [my-dep] manifest (Alias: man)
 
-- **설명**
+- **Description**
 
 	디렉터가 지정 한 배포명의 Manifest 파일을 출력 한다.
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -1270,21 +1270,21 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|my-dep|배포 명|O|
 
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e vbox -d cf man > /tmp/manifest.yml
 
 ### <div id='58'/>***bosh recreate***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] -d [my-dep] recreate [group[/instance-id]] [--skip-drain] [--fix] [--canaries=] [--max-in-flight=] [--dry-run]
 
-- **설명**
+- **Description**
 
 	디렉터가 지정한 배포의 인스턴스에 대한 VM을 재생성 한다.
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -1298,7 +1298,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|--dry-run|배포를 변경 하지 않고 작업을 실행 한다.|X|
 
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e vbox -d cf recreate
 		$ bosh -e vbox -d cf recreate --fix
@@ -1311,15 +1311,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='59'/>***bosh restart***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] -d [my-dep] restart [group[/instance-id]] [--skip-drain] [--canaries=] [--max-in-flight=]
 
-- **설명**
+- **Description**
 
 	디렉터가 지정한 배포의 인스턴스에 대한 VM을 재시작 한다.
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -1331,21 +1331,21 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|--max-in-flight=|Manifest의 max-in-flight 값을 덮어 쓴다.|X|
 
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e my-env -d my-dep restart
 
 ### <div id='60'/>***bosh start***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] -d [my-dep] start [group[/instance-id]] [--canaries=] [--max-in-flight=]
 
-- **설명**
+- **Description**
 
 	디렉터가 지정한 배포의 인스턴스에 대한 VM을 시작 한다.
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -1357,22 +1357,22 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e my-env -d my-dep start
 
 
 ### <div id='61'/>***bosh stop***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] -d [my-dep] stop [group[/instance-id]] [--skip-drain] [--canaries=] [--max-in-flight=]
 
-- **설명**
+- **Description**
 
 	디렉터가 지정한 배포의 인스턴스에 대한 VM을 시작 한다.
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -1386,22 +1386,22 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e my-env -d my-dep stop
 
 
 ### <div id='62'/>***bosh ignore***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] -d [my-dep] ignore group/instance-id
 
-- **설명**
+- **Description**
 
 	bosh deploy와 같은 다른 명령의 영향을 받지 않도록 인스턴스를 무시
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -1410,21 +1410,21 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|group[/instance-id]|그룹 또는 그룹과 인스턴스 아이디|X|
 
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e my-env -d my-dep ignore cell
 
 ### <div id='63'/>***bosh unignore***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] -d [my-dep] unignore group/instance-id
 
-- **설명**
+- **Description**
 
 	bosh deploy와 같은 다른 명령의 영향을받지 않도록 인스턴스를 무시하지 않는다
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -1433,21 +1433,21 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|group[/instance-id]|그룹 또는 그룹과 인스턴스 아이디|X|
 
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e my-env -d my-dep unignore cell
 
 ### <div id='64'/>***bosh logs***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] -d [my-dep] logs [group[/instance-id]] [--follow] [--num] [--gw-*] [--quiet]
 
-- **설명**
+- **Description**
 
 	하나 이상의 인스턴스에서 로그를 다운로드
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -1465,7 +1465,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e vbox -d cf logs diego-cell/209c42e5-3c1a-432a-8445-ab8d7c9f69b0
 		$ bosh -e vbox -d cf logs diego-cell/209c42e5-3c1a-432a-8445-ab8d7c9f69b0 --job=rep --job=silkd
@@ -1478,15 +1478,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='66'/>***bosh vms***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] -d [my-dep] vms [--vitals]
 
-- **설명**
+- **Description**
 
 	Director 가 관리하는 또는 deployment 의 모든 vm 조회
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -1494,7 +1494,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|my-dep|배포 명 지정|O|
 	|--vitals|RAM CPU disk 와 같은 vm의 기본  정보 조회|X|
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e vbox vms
 		$ bosh -e vbox -d cf vms
@@ -1502,16 +1502,16 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='67'/>***bosh delete-vms*** 
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] -d [my-dep] delete-vm [cid]
 
 
-- **설명**
+- **Description**
 
 	인스턴스의 Lifecycle을 거치지 않고 VM을 삭제
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -1519,7 +1519,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|my-dep|배포 명 지정|O|
 	|cid|인스턴스 아이디 지정|X|
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e vbox -d cf delete-vm i-fs384238fjwjf8
 
@@ -1528,15 +1528,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='69'/>***bosh disks***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] -d [my-dep] disks [--orphaned]
 
-- **설명**
+- **Description**
 
 	Director가 관리하는 또는 deployment의 모든 disk 조회
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -1544,21 +1544,21 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|my-dep|배포 명 지정|O|
 	|--orphaned|사용하지 않는 DISK를 나열|X|
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e vnps -d cf disks  
 
 ### <div id='70'/>***bosh attach-disk***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] -d [my-dep] attach-disk [group/instance-id] disk-cid
 
-- **설명**
+- **Description**
 
 	인스턴스에 disk attach. 만약 attach된 disk 가 있다면 가장 최근 attach 된 disk를 replace한다.
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -1567,21 +1567,21 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|--orphaned|사용하지 않는 DISK를 나열|X|
 	|group/instance-id|그룹 또는 그룹과 인스턴스 아이디|X|
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e vbox -d cf attach-disk postgres/209c42e5-3c1a-432a-8445-ab8d7c9f69b0 vol-shw8f293f2f2
 
 ### <div id='71'/>***bosh delete-disk***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] -d [my-dep] delete-disk [cid]
 
-- **설명**
+- **Description**
 
 	사용하지 않는 disk 삭제
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -1589,7 +1589,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|my-dep|배포 명 지정|O|
 	|--cid|삭제 할 DISK 아이디 지정|X|
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e vbox -d cf delete-disk vol-shw8f293f2f2
 
@@ -1598,15 +1598,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='73'/>***bosh ssh***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] -d [my-dep] ssh [destination] [-r] [-c=cmd] [--opts=opts] [--gw-* ...]
 
-- **설명**
+- **Description**
 
 	인스턴스 한개 또는 여러 개에 SSH설정
 
-- **파라미터**
+- **Parameter**
 	
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -1618,7 +1618,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|--gw-*|SSH 게이트웨이를 구성|X|
 	|-r, --recursive|directory의 반복 복사 허용|X|
 
-- **사용 예시**
+- **Examples of Use**
 
 		# execute command on all instances in a deployment
 		$ bosh -e vbox -d cf ssh -c 'uptime'
@@ -1641,15 +1641,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='74'/>***bosh scp***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] -d [my-dep] scp src/dst:[file] src/dst:[file] [-r] [--gw-* ...]
 
-- **설명**
+- **Description**
 
 	인스턴스로 또는 인스턴스로 부터 SCP  (to/from)설정
 
-- **파라미터**
+- **Parameter**
 
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -1660,7 +1660,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|-r, --recursive|directory의 반복 복사 허용|X|
 	|--gw-*|SCP gateway설정|X|
 
-- **사용 예시**
+- **Examples of Use**
 
 		# copy file from this machine to machines a deployment
 		$ bosh -e vbox -d cf scp ~/Downloads/script.sh :/tmp/script.sh
@@ -1681,15 +1681,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='76'/>***bosh errands***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] -d [my-dep] errands (Alias:es)
 
-- **설명**
+- **Description**
 
 	deployment로 정의 된 모든 errand 목록 조회
 
-- **파라미터**
+- **Parameter**
 	
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -1697,7 +1697,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|my-dep|배포 명 지정|O|
 
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e vbox -d cf es
 		Using environment '192.168.56.6' as '?'
@@ -1714,15 +1714,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='77'/>***bosh run-errand***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e <my-env> -d <my-dep> run-errand <name> [--keep-alive] [--when-changed] [--download-logs] [--logs-dir=<dir>] [--instance=<instance-group/instance-id>]
 
-- **설명**
+- **Description**
 
 	errand job 을 name 단위로 실행
 
-- **파라미터**
+- **Parameter**
 	
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -1736,7 +1736,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|instance=<instance-group/instance-id> (v2.0.31+)|errand를 실행하기위해 어떤 인스턴스를 사용할지 결정|X|
 
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e vbox -d cf run-errand smoke-tests
 		$ bosh -e vbox -d cf run-errand smoke-tests --keep-alive
@@ -1767,15 +1767,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='79'/>***bosh tasks***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] tasks [--recent[=num]] [--all] (Alias: ts)
 
-- **설명**
+- **Description**
 
 	활성 및 이전에 실행 한 작업에 대한 task를 출력
 
-- **파라미터**
+- **Parameter**
 	
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -1786,7 +1786,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|-d, -deployment  |deployment 단위로 필터링 해서 조회|X|
 
 
-- **사용 예시**
+- **Examples of Use**
 
 		# currently active tasks
 		$ bosh -e vbox ts
@@ -1814,15 +1814,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='80'/>***bosh task***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] task [id] [--debug] [--result] [--event] [--cpi] (Alias: t)
 
-- **설명**
+- **Description**
 
 	task 아이디를 기준으로 상세 조회. 
 
-- **파라미터**
+- **Parameter**
 	
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -1834,7 +1834,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|--cpi|CPI 로그 출력|X|
 
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e vbox t 281
 		$ bosh -e vbox t 281 --debug
@@ -1861,15 +1861,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='83'/>***bosh snapshots***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] -d [my-dep] snapshots
 
-- **설명**
+- **Description**
 
 	deployment의 스냅샷 목록을 출력 한다.
 
-- **파라미터**
+- **Parameter**
 	
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -1878,22 +1878,22 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e my-env -d my-dep snapshots
 
 
 ### <div id='84'/>***bosh take-snapshot***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] -d [my-dep] take-snapshot [group/instance-id]
 
-- **설명**
+- **Description**
 
 	특정 인스턴스 또는 deployment에 대한 스냅샷을 생성 한다.
 
-- **파라미터**
+- **Parameter**
 	
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -1902,22 +1902,22 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|group/instance-id|그룹 또는 그룹과 인스턴스 아이디|X|
 
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e my-env -d my-dep take-snapshot cell
 
 
 ### <div id='85'/>***bosh delete-snapshot***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] -d [my-dep] delete-snapshot [cid]
 
-- **설명**
+- **Description**
 
 	특정 스냅샷을 삭제 한다.
 
-- **파라미터**
+- **Parameter**
 	
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -1926,22 +1926,22 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|cid|스냅샷 아이디 지정|O|
 
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e my-env -d my-dep delete-snapshot 1acsda-ccas
 
 
 ### <div id='86'/>***bosh delete-snapshots***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] -d [my-dep] delete-snapshots
 
-- **설명**
+- **Description**
 
 	스냅샷을 전체 삭제 한다.
 
-- **파라미터**
+- **Parameter**
 	
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -1950,7 +1950,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e my-env -d my-dep delete-snapshots
 
@@ -1959,15 +1959,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='88'/>***bosh update-resurrection***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] update-resurrection [on/off]
 
-- **설명**
+- **Description**
 
 	디렉터가 지정한 환경에 대해 recovery를 활성/비활성화
 
-- **파라미터**
+- **Parameter**
 	
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -1976,22 +1976,22 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e my-env update-resurrection on
 
 
 ### <div id='89'/>***bosh cloud-check***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] -d [my-dep] cloud-check [--report] [--auto] (Alias: cck)
 
-- **설명**
+- **Description**
 
 	리소스에 대해 일관적인 검사를 하고 대화 형 복구를 허용 한다.
 
-- **파라미터**
+- **Parameter**
 	
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -2002,22 +2002,22 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e vbox -d cf cloud-check --report --auto
 
 
 ### <div id='90'/>***bosh locks***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] locks
 
-- **설명**
+- **Description**
 
 	최근 lock 목록 조회
 
-- **파라미터**
+- **Parameter**
 	
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -2026,7 +2026,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e my-env locks
 
@@ -2035,15 +2035,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='92'/>***bosh clean-up***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh -e [my-env] clean-up [--all]
 
-- **설명**
+- **Description**
 
 	releases, stemcells, orphaned disks 그리고 사용되지 않는 다른 리소스를 clean up 한다
 
-- **파라미터**
+- **Parameter**
 	
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -2052,29 +2052,29 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh -e my-env clean-up --all
 
 
 ### <div id='93'/>***bosh help***
 
-- **기본 Syntax**
+- **Basic Syntax**
 
 		$ bosh help
 
-- **설명**
+- **Description**
 
 	사용 가능한 모든 명령어와 global option 목록 조회 각각의 command에 대해서는 -h 사용
 
 
-- **파라미터**
+- **Parameter**
 	
 		없음
 
 
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh help
 
@@ -2083,16 +2083,16 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 ### <div id='94'/>***bosh interpolate***
 
-- **기본 Syntax**
+- **BasicSyntax**
 
 		$ bosh interpolate manifest.yml [-v ...] [-o ...] [--vars-store path] [--path op-path] (Alias: int)
 
-- **설명**
+- **Description**
 
 	결과 값 이 sudout로 넘겨지는 Manifest.yml에 추가적으로 merge할 yml 파일이나 설정 값을 입력
 
 
-- **파라미터**
+- **Parameter**
 	
 	|**파라미터 명**|**설명**|**필수****(O/X)**|
 	|----------|-------------------------|--------------------------------|
@@ -2102,7 +2102,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|--path op-path|Manifest의 해당 값 출력|X|
 
 
-- **사용 예시**
+- **Examples of Use**
 
 		$ bosh int bosh-deployment/bosh.yml \
   			--vars-store ./creds.yml \
