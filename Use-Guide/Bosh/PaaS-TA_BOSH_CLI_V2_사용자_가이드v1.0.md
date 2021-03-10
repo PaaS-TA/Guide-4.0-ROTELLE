@@ -375,7 +375,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	업로드 한 릴리즈 조회
+	Lookup uploaded releases
 
 - **Parameter**
 
@@ -415,9 +415,9 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|The specified Director environment name|O|
-	|location|스템셀 File 위치 및 URL 지정|X|
-	|--sha1|스템셀 File sha1um 값 확인|X|
-	|--fix|이전에 업로드 한 스템 셀을 동일한 이름과 버전으로 교체|X|
+	|location|Designation of stem cell file location and URL|X|
+	|--sha1|Check stem cell file sha1um value|X|
+	|--fix|Replace previously uploaded stem cell with the same name and version|X|
 
 - **Examples of Use**
 
@@ -434,15 +434,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	업로드 한 스템셀 삭제
+	Delete the uploaded stem cell
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|The specified Director environment name|O|
-	|name|삭제 할 스템셀 명|O|
-	|version|삭제 할 스템셀 버전|O|
+	|name|Name of stem cell to be deleted|O|
+	|version|Stem cell version to be deleted|O|
 
 - **Examples of Use**
 
@@ -456,17 +456,17 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	기존 스템셀의 이름, 버전 및 클라우드 등록 정보와 같은 업데이트 된 등록 정보로 새로운 스템셀 타르볼을 생성
-	참조 URL: https://bosh.io/docs/repack-stemcell.html 
+	Create a new stem cell tarball with updated registration information such as the name, version and cloud registration information of the existing stem cell
+	Reference URL: https://bosh.io/docs/repack-stemcell.html 
 
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|name|업데이트 등록 스템셀 명|O|
-	|version|업데이트 등록 스템셀 버전|X|
-	|cloud-properties|업데이트 등록 스템셀 cloud-properties, Json 형식|X|
+	|name|Update registration stem cell|O|
+	|version|Update registration stem cell version|X|
+	|cloud-properties|Update registration stem cell cloud-properties, Json format식|X|
 
 - **Examples of Use**
 
@@ -483,14 +483,14 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	dir에 릴리즈에 관련한 구성 File을 생성 dir을 사용 않할 경우는 현재 디렉토리
+	Create a release-related configuration file in dir. If dir is not used, create it in the current directory.
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|--git|BOSH 릴리즈 Git repository에 적절한 .gitignore File을 생성|X|
-	|--dir|디렉토리에 대한 빈 릴리스 구성 File 생성|X|
+	|--git|Create an appropriate .gitignore file in the BOSH release Git repository|X|
+	|--dir|Create an empty release configuration file in the directory|X|
 
 - **Parameter**
 
