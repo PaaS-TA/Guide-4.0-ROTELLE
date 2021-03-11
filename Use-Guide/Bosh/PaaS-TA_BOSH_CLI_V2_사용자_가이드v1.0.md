@@ -294,10 +294,10 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|deploymentFile|installed Manfiest File|O|
-	|--state path|Deployment state File 경로|O|
+	|--state path|Deployment state File |O|
 	|-v|Manifest Replace Variable ex) internal_ip, deployment_name|X|
 	|-o|option Manifest File ex) jumpbox-user.yml, uaa.yml…|X|
-	|--vars -store path|creds.yml File, 인증 키 및 Job Password yml File 경로|X|
+	|--vars -store path|creds.yml File, Authentication key and Job Password yml File Path|X|
 
 - **Examples of Use***
 
@@ -910,7 +910,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	Director의 모든 구성을 출력
+	Outputs all configurations in Director
 
 - **Parameter**
 	
@@ -944,16 +944,16 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	Director에서 구성을 추가하거나 업데이트
+	Add or Update Configuration in Director
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|The specified Director environment name|O|
-	|my-typ|config type 명|O|
+	|my-typ|config type basic|O|
 	|config.yml|config type의 property Manifest File|O|
-	|--name|config 명 기본 Default|X|
+	|--name|config name basic Default|X|
 
 - **Examples of Use**
 
@@ -967,15 +967,15 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	Director의 my-type 구성을 삭제
+	Delete my-type configuration in Director
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|The specified Director environment name|O|
-	|my-type|config type 명|O|
-	|--name|config 명 기본 Default|X|
+	|my-type|config type name|O|
+	|--name|config name basic Default|X|
 
 - **Examples of Use**
 
@@ -991,7 +991,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	Deployment Property 설정
+	Set up Deployment Property 
 
 - **Parameter**
 
@@ -1011,7 +1011,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	Director의 cloud-conifg 구성 요소를 추가 하거나 수정
+	Add or Modify the Cloud-conifg Component in Director
 
 - **Parameter**
 
@@ -1037,7 +1037,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	Director의 runtime-conifg 구성 요소를 출력
+	Output the runtime-conifg component of Director
 
 - **Parameter**
 
@@ -1057,7 +1057,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	Director의 cloud-conifg 구성 요소를 추가 하거나 수정
+	Add or modify Director's cloud-conifg component
 
 - **Parameter**
 
@@ -1083,7 +1083,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	Director의 cpi-conifg 구성 요소를 출력
+	Output the Director's cpi-conifg component
 
 - **Parameter**
 
@@ -1459,9 +1459,9 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|--only|Log filtering|X|
 	|--agent|Include only bosh agent logs|X|
 	|--follow|Run Additional flags for following logs via SSH logs.|X|
-	|--num|Additional flags for following logs via SSH 마지막 행 수를 출력|X|
-	|--gw|Additional flags for following logs via SSH ssh 게이트웨이 구성|X|
-	|--quiet|Additional flags for following logs via SSH 헤더 출력 생략|X|
+	|--num|Additional flags for following logs via SSH outputs the last line count|X|
+	|--gw|Additional flags for following logs via SSH ssh gateway configuration|X|
+	|--quiet|Omit Additional flags for following logs via SSH header output.|X|
 
 
 
@@ -1484,7 +1484,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	Director 가 관리하는 또는 deployment 의 모든 vm 조회
+	Lookup all VMs managed by Director or in deployment
 
 - **Parameter**
 
@@ -1492,7 +1492,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|----------|-------------------------|--------------------------------|
 	|my-env|The specified Director environment name|O|
 	|my-dep|Specify the name of the deployment|O|
-	|--vitals|RAM CPU disk 와 같은 vm의 기본  정보 조회|X|
+	|--vitals|Lookup basic information of vm such as RAM CPU disk|X|
 
 - **Examples of Use**
 
@@ -1556,7 +1556,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	인스턴스에 disk attach. 만약 attach된 disk 가 있다면 가장 최근 attach 된 disk를 replace한다.
+	Disk attach to the instance. If there is an attached disk, the most recently attached disk is replaced.
 
 - **Parameter**
 
@@ -1587,7 +1587,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|----------|-------------------------|--------------------------------|
 	|my-env|The specified Director environment name|O|
 	|my-dep|Specify the name of the deployment|O|
-	|--cid|삭제 할 DISK 아이디 지정|X|
+	|--cid|Specify DISK ID to be deleted|X|
 
 - **Examples of Use**
 
@@ -1604,7 +1604,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	인스턴스 한개 또는 여러 개에 SSH설정
+	Set up SSH on one or multiple instances.
 
 - **Parameter**
 	
@@ -1647,7 +1647,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	인스턴스로 또는 인스턴스로 부터 SCP  (to/from)설정
+	Set SCP (to/from) to or from an instance.
 
 - **Parameter**
 
@@ -1655,8 +1655,8 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|----------|-------------------------|--------------------------------|
 	|my-env|The specified Director environment name|O|
 	|my-dep|Specify the name of the deployment|O|
-	|src/dst:<file>|복사 받을 script.sh file 경로|O|
-	|src/dst:<file>|복사 될 script.sh file 경로|O|
+	|src/dst:<file>|script.sh file path to be copied|O|
+	|src/dst:<file>|script.sh file path to be copied|O|
 	|-r, --recursive|directory의 반복 복사 허용|X|
 	|--gw-*|SCP gateway설정|X|
 
@@ -1731,8 +1731,8 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|name|실행 할 errand 이름|O|
 	|--keep-alive|errand가 실행 되는 곳에서 VM 유지|X|
 	|--when-changed|errand가 skip 설정: 이전에 이미 실행하였고 (성공적으로 마침) errand job 설정값이 바뀌지 않았을 경우|X|
-	|--download-logs|errand log를 통채로 --logs-dir에 명시된 경로에 저장|X|
-	|--logs-dir=<dir>|errand log를 저장 할 File 경로|X|
+	|--download-logs|errand log를 통채로 --logs-dir에 명시된 path에 저장|X|
+	|--logs-dir=<dir>|errand log를 저장 할 File path|X|
 	|instance=<instance-group/instance-id> (v2.0.31+)|errand를 실행하기위해 어떤 인스턴스를 사용할지 결정|X|
 
 
