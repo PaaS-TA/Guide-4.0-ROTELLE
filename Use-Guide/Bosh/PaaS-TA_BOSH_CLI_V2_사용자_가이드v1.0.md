@@ -512,10 +512,10 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|name|릴리즈 Job 명칭|O|
-	|--dir|디렉토리에 대한 Job 관련 빈 릴리스 구성 File 생성|X|
+	|name|release Job name|O|
+	|--dir|Create empty release configuration file  related Job for directory|X|
 
-- **Examples of Use시**
+- **Examples of Use**
 
 		$ bosh generate-job jenkins
 
@@ -533,8 +533,8 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|name|릴리즈 pakage 명칭|O|
-	|--dir|디렉토리에 pakage Job 관련 빈 릴리스 구성 File 생성|X|
+	|name|release pakage name|O|
+	|--dir|Create an empty release configuration file related to pakage job in the directory|X|
 
 - **Examples of Use**
 
@@ -548,16 +548,16 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	다른 릴리스의 패키지를 dir의 릴리스로 제공, 릴리즈를 만들 때 CLI가 특정 패키리를 참조 하도록 디렉토리에 spec.lock을 포함
-	Description 참조 https://bosh.io/docs/package-vendoring.html 
+	Provide packages from different releases as releases of dir, Include spec.lock in the directory so that the CLI refers to a specific package when making a release.
+	Description reference https://bosh.io/docs/package-vendoring.html 
 
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|name|릴리즈 pakage명칭|O|
-	|--dir|디렉토리에 대한 package 관련 빈 릴리스 구성 File 생성|X|
+	|name|release pakage name|O|
+	|--dir|Create empty release configuration file related to package for directory|X|
 
 - **Examples of Use**
 
@@ -571,18 +571,18 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	dir에 저장된 릴리스의 새 버전을 생성
+	reate a new version of the release stored in dir
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|--force|릴리스 디렉토리에서 커밋되지 않은 변경 사항을 무시하도록 지정|X|
-	|--version|사용자 정의 릴리스 버전을 제공|X|
-	|--version|사용자 정의 릴리스 버전을 제공|X|
-	|--timestamp-version|타임 스탬프 기반의 dev Release Version을 생성|X|
-	|--tarball|릴리스 타르볼의 대상을 지정|X|
-	|--sha2|SHA256 체크섬 사용 지정|X|
+	|--force|Specifies to ignore uncommitted changes in the release directory|X|
+	|--version|Provide user definition release version|X|
+	|--version|Provide user definition release version|X|
+	|--timestamp-version|Create dev Release Version based on time stamp|X|
+	|--tarball|Target the release tarball정|X|
+	|--sha2|Specify use of SHA256 checksum|X|
 
 - **Examples of Use**
 
