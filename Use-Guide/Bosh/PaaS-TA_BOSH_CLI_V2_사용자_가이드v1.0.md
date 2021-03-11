@@ -506,7 +506,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	dir에 릴리즈에 대한 Job에 관련 한 빈 File 생성
+	Create empty file related to job for release in dir
 
 - **Parameter**
 
@@ -527,7 +527,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	dir에 릴리즈에 대한 pakage에 관련 한 빈 File 생성
+	Create empty file related to pakage for release in dir
 
 - **Parameter**
 
