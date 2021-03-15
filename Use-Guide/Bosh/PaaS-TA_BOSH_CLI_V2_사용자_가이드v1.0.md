@@ -596,7 +596,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	선택적으로 주어진 버전으로 최종 릴리스로 릴리스 타볼의 내용을 기록
+	Optionally record the contents of the release taball as the final release with a given version
 
 - **Parameter**
 
@@ -1219,7 +1219,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|my-dep|Deployment Name|O|
 	|-v|Manifest Replace Variable ex) internal_ip, deployment_name|X|
 	|-o|option Manifest File ex) jumpbox-user.yml, uaa.yml…|X|
-	|manifest.yml|배포 Manifest File|O|
+	|manifest.yml|deployment Manifest File|O|
 
 
 - **Examples of Use**
@@ -1915,7 +1915,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	특정 스냅샷을 삭제 한다.
+	Delete a specific snapshot.
 
 - **Parameter**
 	
@@ -1923,7 +1923,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|----------|-------------------------|--------------------------------|
 	|my-env|The specified Director environment name|O|
 	|my-dep|Specify the name of the deployment|O|
-	|cid|스냅샷 아이디 지정|O|
+	|cid|Specify Snapshot ID|O|
 
 
 - **Examples of Use**
@@ -1939,7 +1939,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	스냅샷을 전체 삭제 한다.
+	Delete all snapshots
 
 - **Parameter**
 	
@@ -1965,14 +1965,14 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	디렉터가 지정한 환경에 대해 recovery를 활성/비활성화
+	Enable/disable recovery for the environment specified by the director.
 
 - **Parameter**
 	
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|The specified Director environment name|O|
-	|on/off|활성/비활성화|O|
+	|on/off|Enable/Disable|O|
 
 
 
@@ -1989,7 +1989,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	리소스에 대해 일관적인 검사를 하고 대화 형 복구를 허용 한다.
+	Consistent checks on the resource and allow an interactive recovery.
 
 - **Parameter**
 	
@@ -1997,8 +1997,8 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|----------|-------------------------|--------------------------------|
 	|my-env|The specified Director environment name|O|
 	|my-dep|Specify the name of the deployment|O|
-	|--report|Report 생성|X|
-	|--auto|자동으로 Problem해결|X|
+	|--report|Create a report|X|
+	|--auto|Solve the problem automatically|X|
 
 
 
@@ -2015,7 +2015,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	최근 lock 목록 조회
+	lookup the recent lock list
 
 - **Parameter**
 	
@@ -2041,7 +2041,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	releases, stemcells, orphaned disks 그리고 사용되지 않는 다른 리소스를 clean up 한다
+	Clean up releases, stemcells, orphaned disks and other unused resources.
 
 - **Parameter**
 	
@@ -2065,7 +2065,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	사용 가능한 모든 명령어와 global option 목록 조회 각각의 command에 대해서는 -h 사용
+	Search all available commands and global option list Use -h for each command
 
 
 - **Parameter**
@@ -2089,17 +2089,17 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	결과 값 이 sudout로 넘겨지는 Manifest.yml에 추가적으로 merge할 yml File이나 설정 값을 입력
+	Enter the yml file or setting value to be additionally merged into Manifest.yml whose result value is passed to sudout
 
 
 - **Parameter**
 	
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|-v|수정/입력 하는 variable list|X|
-	|-o|수정/입력 하는 operation file list|X|
-	|--vars-store path|디렉터 접근 아이디 Key 및 각 JOB 패스워드 등이 존재하는 설정 File 생성 위치|X|
-	|--path op-path|Manifest의 해당 값 출력|X|
+	|-v|To modify/enter variable list|X|
+	|-o|To modify/enter operation file list|X|
+	|--vars-store path|Location of creation of setting file with director access ID key and each JOB password|X|
+	|--path op-path|Output corresponding value of Manifest|X|
 
 
 - **Examples of Use**
