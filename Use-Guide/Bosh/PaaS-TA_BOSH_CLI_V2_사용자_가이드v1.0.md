@@ -581,7 +581,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|--version|Provide user definition release version|X|
 	|--version|Provide user definition release version|X|
 	|--timestamp-version|Create dev Release Version based on time stamp|X|
-	|--tarball|Target the release tarball정|X|
+	|--tarball|Target the release tarball|X|
 	|--sha2|Specify use of SHA256 checksum|X|
 
 - **Examples of Use**
@@ -2048,7 +2048,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|The specified Director environment name|O|
-	|--all|orphaned disks에 강제 clean up적용|X|
+	|--all|Forced to clean up orphaned disks|X|
 
 
 
@@ -2070,7 +2070,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Parameter**
 	
-		없음
+		none
 
 
 
