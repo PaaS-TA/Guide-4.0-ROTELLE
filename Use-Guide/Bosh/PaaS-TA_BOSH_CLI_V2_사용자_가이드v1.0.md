@@ -602,10 +602,10 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|path|릴리즈 tarball 지정|O|
-	|--force|릴리스 디렉토리에서 커밋되지 않은 변경 사항을 무시하도록 지정|X|
-	|--version|사용자 정의 릴리스 버전을 제공|X|
-	|--dir|디렉토리 위치 지정|X|
+	|path|Specify the release tarball|O|
+	|--force|Specifies to ignore uncommitted changes in the release directory|X|
+	|--version|Provide custom release version|X|
+	|--dir|Specify directory location|X|
 
 - **Examples of Use**
 
@@ -623,13 +623,13 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	릴리스 디렉토리에 보관 된 dev 릴리스, blob 등의 임시 아티팩트를 제거
+ Remove temporary artifacts such as dev releases, blobs, etc. kept in the release directory
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|--dir|디렉토리 위치 지정|O|
+	|--dir|Specify directory location|O|
 
 
 - **Examples of Use**
@@ -647,7 +647,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	릴리즈 Blobstore에 등록 한 blob 출력
+	Blob output registered in release blobstore
 
 - **Examples of Use**
 
@@ -670,14 +670,14 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	릴리즈 Blobstore에 로컬 blob 추가
+	Add local blob to release blobstore
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|src-path|로컬 Blob 디렉토리|O|
-	|dst-path|릴리즈 내 blob 디렉토리|X|
+	|src-path|Local blob directory|O|
+	|dst-path|Blob directory in release|X|
 
 - **Examples of Use**
 
@@ -693,13 +693,13 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	릴리즈 Blobstore에 존재 하는 Blob 삭제
+	Delete blob existing in release blobstore
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
-	|blob-path|릴리즈 내 blob 디렉토리|O|
+	|blob-path|Blob directory in release|O|
 
 - **Examples of Use**
 
@@ -715,7 +715,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	릴리즈 내 blobstore의 blob 동기화
+	Blob synchronization of blobstore within release
 
 - **Examples of Use**
 
@@ -733,7 +733,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	업로드 한 릴리즈 조회
+	Lookup uploaded releases
 
 - **Parameter**
 
@@ -779,16 +779,16 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	릴리즈 업로드
+	Upload the Release 
 
 - **Parameter**
 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|The specified Director environment name|O|
-	|location|릴리즈 File 위치 및 URL 지정|O|
-	|--sha1|릴리즈 File sha1um 값 확인|X|
-	|--fix|이전에 업로드 한 릴리즈를 동일한 이름과 버전으로 교체|X|
+	|location|Specify release file location and URL|O|
+	|--sha1|Check the release file sha1um value|X|
+	|--fix|Replace previously uploaded release with the same name and version|X|
 
 - **Examples of Use**
 
@@ -805,7 +805,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	업로드 한 릴리즈 삭제
+	Delete uploaded release
 
 - **Parameter**
 
@@ -827,7 +827,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	특정 스템셀에 대한 릴리즈를 컴File 하고 내보낸다
+	Compile and export a release for a specific stem cell
 
 - **Parameter**
 
@@ -836,9 +836,9 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|my-env|The specified Director environment name|O|
 	|name|Release Name|O|
 	|version|Release Version|O|
-	|os|스템셀 os 명|O|
-	|version|스템셀 os 버전|O|
-	|dir|내보내기 디렉토리|X|
+	|os|Stem cell os name|O|
+	|version|Stem cell os version|O|
+	|dir|Export directory|X|
 
 - **Examples of Use**
 
@@ -852,7 +852,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	모든 Job, Job의 메타데이터 패키지 및 Release Version과 관련 된 패키지를 출력
+	All tasks, task metadata packages, and packages related to the release version are output.
 
 - **Parameter**
 
@@ -917,8 +917,8 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|The specified Director environment name|O|
-	|--name|config 명 기본 Default|X|
-	|--type|config type 명|X|
+	|--name|config name Default|X|
+	|--type|config type name|X|
 
 - **Examples of Use**
 
@@ -952,7 +952,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|----------|-------------------------|--------------------------------|
 	|my-env|The specified Director environment name|O|
 	|my-typ|config type basic|O|
-	|config.yml|config type의 property Manifest File|O|
+	|config.yml|property Manifest File of config type|O|
 	|--name|config name basic Default|X|
 
 - **Examples of Use**
@@ -1103,7 +1103,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	Director의 cpi-conifg 구성 요소를 추가 하거나 수정
+	Add or modify cpi-conifg component of Directorv
 
 - **Parameter**
 
@@ -1291,7 +1291,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|my-env|The specified Director environment name|O|
 	|my-dep|Specify the name of the deployment|O|
 	|group[/instance-id]|Group or group and instance ID|X|
-	|--fix|응답 하지 않는 VM을 대체 |X|
+	|--fix|Replace unresponsive VM |X|
 	|--skip-drain|Skip the drain scripts.|X|
 	|--canaries=|Specify the name of the deployment|X|
 	|--max-in-flight=|Overwrite max-in-flight value of Manifest.|X|
@@ -1612,11 +1612,11 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|----------|-------------------------|--------------------------------|
 	|my-env|The specified Director environment name|O|
 	|my-dep|Specify the name of the deployment|O|
-	|-c|커맨드 라인 설정|X|
-	|destination|SSH 목적지 지정 Group or group and instance ID|X|
-	|--opts|ssh에 옵션을 전달 ex) 포트 포워딩|X|
-	|--gw-*|SSH 게이트웨이를 구성|X|
-	|-r, --recursive|directory의 반복 복사 허용|X|
+	|-c|Set up the Command line|X|
+	|destination|Specify a SSH destination Group or group and instance ID|X|
+	|--opts|pass options to ssh ex) Port forwarding|X|
+	|--gw-*|Configure SSH gateway|X|
+	|-r, --recursive|Allow repeated copies of directories|X|
 
 - **Examples of Use**
 
@@ -1657,8 +1657,8 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|my-dep|Specify the name of the deployment|O|
 	|src/dst:<file>|script.sh file path to be copied|O|
 	|src/dst:<file>|script.sh file path to be copied|O|
-	|-r, --recursive|directory의 반복 복사 허용|X|
-	|--gw-*|SCP gateway설정|X|
+	|-r, --recursive|Allow repeated copying of directory|X|
+	|--gw-*|Set up SCP gateway |X|
 
 - **Examples of Use**
 
@@ -1687,7 +1687,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	deployment로 정의 된 모든 errand 목록 조회
+	Look up a list of all errands defined as deployment
 
 - **Parameter**
 	
@@ -1720,7 +1720,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	errand job 을 name 단위로 실행
+	Run errand job by name unit
 
 - **Parameter**
 	
@@ -1728,12 +1728,12 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 	|----------|-------------------------|--------------------------------|
 	|my-env|The specified Director environment name|O|
 	|my-dep|Specify the name of the deployment|O|
-	|name|실행 할 errand 이름|O|
-	|--keep-alive|errand가 실행 되는 곳에서 VM 유지|X|
-	|--when-changed|errand가 skip 설정: 이전에 이미 실행하였고 (성공적으로 마침) errand job 설정값이 바뀌지 않았을 경우|X|
-	|--download-logs|errand log를 통채로 --logs-dir에 명시된 path에 저장|X|
-	|--logs-dir=<dir>|errand log를 저장 할 File path|X|
-	|instance=<instance-group/instance-id> (v2.0.31+)|errand를 실행하기위해 어떤 인스턴스를 사용할지 결정|X|
+	|name|Errand name to run|O|
+	|--keep-alive|Keep the VM where errand runs|X|
+	|--when-changed|Set up skip by errand: If it has already been executed before (successfully finished) and the errand job setting value has not changed|X|
+	|--download-logs|Save the entire errand log in the path specified in --logs-dir|X|
+	|--logs-dir=<dir>|File path to save errand log|X|
+	|instance=<instance-group/instance-id> (v2.0.31+)|Decide which instance to use for running a n errand|X|
 
 
 - **Examples of Use**
@@ -1773,17 +1773,17 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	활성 및 이전에 실행 한 작업에 대한 task를 출력
+	Output tasks for active and previously executed tasks
 
 - **Parameter**
 	
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|The specified Director environment name|O|
-	|--recent|최근 순 4개 task 조회|X|
-	|num|최근 순 조회하고 싶은 task 숫자|X|
-	|--all|active tasks 모두 조회|X|
-	|-d, -deployment  |deployment 단위로 필터링 해서 조회|X|
+	|--recent|Lookup the 4 most recent tasks|X|
+	|num|Recent work order number you want to lookup|X|
+	|--all|View all active tasks|X|
+	|-d, -deployment  |Filter and search by deployment unit|X|
 
 
 - **Examples of Use**
@@ -1820,18 +1820,18 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	task 아이디를 기준으로 상세 조회. 
+	Detailed inquiry based on task ID.
 
 - **Parameter**
 	
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|The specified Director environment name|O|
-	|id|task 아이디|O|
-	|--debug|Debug 로그 출력|X|
-	|--result|Result 로그 출력|X|
-	|--event|Event 로그 출력|X|
-	|--cpi|CPI 로그 출력|X|
+	|id|task id|O|
+	|--debug|Output Debug log|X|
+	|--result|Output Result log|X|
+	|--event|Output Event log|X|
+	|--cpi|Output CPI log|X|
 
 
 - **Examples of Use**
@@ -1847,14 +1847,14 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	task 취소. 다음 checkpoint 에서 task를 취소 한다. task가 취소될 때까지 대기하지 않는다
+	Cancel task. Cancel the task at the next checkpoint. Do not wait for task to be canceled
 
 - **Parameter**
 	
 	|**Parameter Name**|**Description**|**Requirement****(O/X)**|
 	|----------|-------------------------|--------------------------------|
 	|my-env|The specified Director environment name|O|
-	|id|task 아이디|O|
+	|id|task id|O|
 
 
 ## <div id='82'/>BOSH CLI - Snapshot
@@ -1867,7 +1867,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	deployment의 스냅샷 목록을 출력 한다.
+	output a list of snapshots of deployment.
 
 - **Parameter**
 	
@@ -1891,7 +1891,7 @@ The arguments <options> and <args>, which are enclosed in brackets for the bosh 
 
 - **Description**
 
-	특정 인스턴스 또는 deployment에 대한 스냅샷을 생성 한다.
+	Create a snapshot for a specific instance or deployment.
 
 - **Parameter**
 	
